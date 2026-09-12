@@ -27,12 +27,17 @@ const LINKS_COMUNS = [
 ];
 
 export function Header() {
-  const perfil = usePerfil();
+  const perfilAtivo = usePerfil();
   const pathname = usePathname();
   const router = useRouter();
   const [aberto, setAberto] = useState(false);
 
-  const links = perfil === 'cidadao' ? LINKS_CIDADAO : perfil === 'advogado' ? LINKS_ADVOGADO : LINKS_VISITANTE;
+  // A raiz é o portal de entrada: cabeçalho reduzido, sem a navegação do perfil
+  // nem o botão Sair, porque a própria página oferece os dois caminhos.
+  const naRaiz = pathname === '/';
+  const perfil = naRaiz ? null : perfilAtivo;
+
+  const links = naRaiz ? [] : perfil === 'cidadao' ? LINKS_CIDADAO : perfil === 'advogado' ? LINKS_ADVOGADO : LINKS_VISITANTE;
 
   function onSair() {
     sair();
@@ -64,7 +69,7 @@ export function Header() {
           {links.map((l) => (
             <Item key={l.href} {...l} />
           ))}
-          <span className="mx-1 h-5 w-px bg-ink-200" aria-hidden="true" />
+          {links.length > 0 && <span className="mx-1 h-5 w-px bg-ink-200" aria-hidden="true" />}
           {LINKS_COMUNS.map((l) => (
             <Item key={l.href} {...l} />
           ))}
@@ -77,9 +82,15 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
+          {naRaiz &&
+            LINKS_COMUNS.map((l) => (
+              <Link key={l.href} href={l.href} className="text-xs font-medium text-ink-700 hover:text-navy-800">
+                {l.rotulo}
+              </Link>
+            ))}
           {perfil && <span className="badge bg-navy-100 text-navy-900">{perfil === 'cidadao' ? 'Cidadão' : 'Advogado'}</span>}
           <button
-            className="btn-ghost p-2"
+            className={cn('btn-ghost p-2', naRaiz && 'hidden')}
             aria-expanded={aberto}
             aria-controls="menu-mobile"
             aria-label={aberto ? 'Fechar menu' : 'Abrir menu'}
@@ -95,7 +106,7 @@ export function Header() {
           {links.map((l) => (
             <Item key={l.href} {...l} />
           ))}
-          <div className="h-px bg-ink-200 my-1" />
+          {links.length > 0 && <div className="h-px bg-ink-200 my-1" />}
           {LINKS_COMUNS.map((l) => (
             <Item key={l.href} {...l} />
           ))}

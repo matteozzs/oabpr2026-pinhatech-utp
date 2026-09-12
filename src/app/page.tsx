@@ -1,8 +1,14 @@
+'use client';
+
 import Link from 'next/link';
+import { usePerfil, usePronto } from '@/lib/store';
 import { ArrowRight, BookOpenCheck, FileText, MessageSquareHeart, Scale, ShieldCheck, Users } from 'lucide-react';
 import comarcas from '@/data/comarcas.json';
 
 export default function Home() {
+  const perfil = usePerfil();
+  const pronto = usePronto();
+
   const totalComarcas = comarcas.total_comarcas;
   const totalNomeacoes = comarcas.total_nomeacoes.toLocaleString('pt-BR');
   const civelFamilia = comarcas.comarcas.reduce((s, c) => s + c.civel + c.familia, 0);
@@ -17,9 +23,8 @@ export default function Home() {
           <span className="text-navy-700">Em linguagem que o cidadão entende.</span>
         </h1>
         <p className="mt-5 text-base sm:text-lg text-ink-700">
-          Do relato em voz do assistido à minuta pronta para revisão: resumo do caso, checklist de documentos,
-          procuração, declaração de hipossuficiência e comunicação acessível — com IA fundamentada só em fontes
-          verificáveis.
+          Da conversa com a parte à minuta pronta para revisão: resumo do caso, checklist de documentos, procuração,
+          declaração de hipossuficiência e comunicação acessível — com IA fundamentada só em fontes verificáveis.
         </p>
       </section>
 
@@ -27,12 +32,12 @@ export default function Home() {
         <Link href="/cidadao" className="card p-6 sm:p-8 hover:border-navy-500 hover:shadow-md transition group">
           <Users className="w-10 h-10 text-navy-700" />
           <h2 className="mt-4 text-2xl font-bold text-ink-900">Sou Cidadão</h2>
-          <p className="mt-1 text-ink-700">Preciso de ajuda com pensão, guarda, divórcio, união estável ou um problema de consumo — e não posso pagar advogado.</p>
+          <p className="mt-1 text-ink-700">Tenho um advogado dativo nomeado pela OAB ou pelo Fórum e quero acompanhar meu processo, mandar documentos e tirar dúvidas.</p>
           <span className="mt-5 inline-flex items-center gap-1 font-semibold text-navy-700 group-hover:gap-2 transition-all">
-            Pedir ajuda <ArrowRight className="w-4 h-4" />
+            Acompanhar meu processo <ArrowRight className="w-4 h-4" />
           </span>
         </Link>
-        <Link href="/advogado" className="card p-6 sm:p-8 hover:border-navy-500 hover:shadow-md transition group">
+        <Link href={pronto && perfil === 'advogado' ? '/advogado/dashboard' : '/advogado'} className="card p-6 sm:p-8 hover:border-navy-500 hover:shadow-md transition group">
           <Scale className="w-10 h-10 text-navy-700" />
           <h2 className="mt-4 text-2xl font-bold text-ink-900">Sou Advogado Dativo</h2>
           <p className="mt-1 text-ink-700">Fui nomeado(a) e quero decidir rápido, pedir só os documentos certos e gerar as peças com fundamentação conferível.</p>
@@ -64,8 +69,8 @@ export default function Home() {
         <h2 className="text-xl font-bold text-ink-900 mb-4">O que a plataforma faz</h2>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { i: MessageSquareHeart, t: 'Relato em voz ou texto', d: 'O cidadão conta o problema do jeito dele. A IA organiza os fatos e aponta o que falta.' },
-            { i: BookOpenCheck, t: 'Resumo para decidir em 1 minuto', d: 'O advogado lê a síntese e aceita ou recusa a nomeação — com justificativa formal gerada se recusar.' },
+            { i: MessageSquareHeart, t: 'Conversa em voz ou texto', d: 'A parte conta o problema do jeito dela, pelo chat ou por e-mail. A IA organiza os fatos e aponta o que falta.' },
+            { i: BookOpenCheck, t: 'Resumo fático em 1 minuto', d: 'A IA consolida o relato e a conversa com a parte numa síntese que o advogado lê antes de agir.' },
             { i: FileText, t: 'Checklist e minutas', d: 'Documentos certos para o caso, procuração, declaração de hipossuficiência, consentimento LGPD e a petição inicial em .docx.' },
             { i: ShieldCheck, t: 'IA sem alucinação', d: 'Fundamentação restrita a um corpus aberto e verificável. Citação inexistente é bloqueada no servidor.' },
           ].map(({ i: Icone, t, d }) => (
