@@ -1,0 +1,1618 @@
+{
+  "_meta": {
+    "nome": "Corpus jurídico fechado — Ordem Dativa",
+    "versao": "0.1.0",
+    "descricao": "Base de conhecimento curada para o RAG da plataforma. A IA só pode fundamentar peças e orientações nos dispositivos listados aqui. Escopo: Família e Sucessões e Direito do Consumidor (Cível), gratuidade da justiça e advocacia dativa no Paraná.",
+    "regra": "Todo dispositivo carrega 'verificado'. Enquanto false, o texto foi transcrito pela equipe e aguarda conferência das pessoas do Direito contra a fonte oficial (Planalto / TJPR / OAB-PR). Nenhum dispositivo é citado pela IA sem constar deste arquivo.",
+    "fontes_oficiais": {
+      "planalto": "https://www.planalto.gov.br/ccivil_03/",
+      "cf88": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",
+      "cpc": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm",
+      "cc": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm",
+      "cdc": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+      "eca": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm",
+      "lei_alimentos": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm",
+      "eoab": "https://www.planalto.gov.br/ccivil_03/leis/l8906.htm",
+      "stj_sumulas": "https://www.stj.jus.br/sites/portalp/Jurisprudencia/Sumulas"
+    },
+    "atualizado_em": "2026-09-12"
+  },
+  "dispositivos": [
+    {
+      "id": "CF88-5-XXXV",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 5º, XXXV",
+      "texto": "a lei não excluirá da apreciação do Poder Judiciário lesão ou ameaça a direito;",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "acesso_justica",
+        "inafastabilidade"
+      ],
+      "palavras_chave": [
+        "acesso à justiça",
+        "poder judiciário",
+        "lesão",
+        "ameaça a direito"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CF88-5-XXXII",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 5º, XXXII",
+      "texto": "o Estado promoverá, na forma da lei, a defesa do consumidor;",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "defesa_consumidor"
+      ],
+      "palavras_chave": [
+        "consumidor",
+        "defesa do consumidor"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CF88-5-LXXIV",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 5º, LXXIV",
+      "texto": "o Estado prestará assistência jurídica integral e gratuita aos que comprovarem insuficiência de recursos;",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "gratuidade",
+        "hipossuficiencia",
+        "assistencia_juridica"
+      ],
+      "palavras_chave": [
+        "assistência jurídica",
+        "gratuita",
+        "insuficiência de recursos",
+        "hipossuficiência",
+        "justiça gratuita",
+        "não tenho dinheiro",
+        "não posso pagar"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CF88-226",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 226, caput e § 6º",
+      "texto": "A família, base da sociedade, tem especial proteção do Estado. (...) § 6º O casamento civil pode ser dissolvido pelo divórcio.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "divorcio",
+        "familia"
+      ],
+      "palavras_chave": [
+        "família",
+        "divórcio",
+        "casamento",
+        "separação",
+        "me separar"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CF88-227",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 227, caput",
+      "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "guarda",
+        "crianca",
+        "prioridade_absoluta"
+      ],
+      "palavras_chave": [
+        "criança",
+        "adolescente",
+        "filho",
+        "filhos",
+        "prioridade absoluta",
+        "alimentação",
+        "convivência familiar"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CF88-229",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 229",
+      "texto": "Os pais têm o dever de assistir, criar e educar os filhos menores, e os filhos maiores têm o dever de ajudar e amparar os pais na velhice, carência ou enfermidade.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "dever_sustento"
+      ],
+      "palavras_chave": [
+        "pais",
+        "filhos menores",
+        "dever de criar",
+        "educar",
+        "sustento",
+        "pensão"
+      ],
+      "fonte": "cf88",
+      "verificado": false
+    },
+    {
+      "id": "CPC-53-I",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 53, I",
+      "texto": "É competente o foro: I - para a ação de divórcio, separação, anulação de casamento e reconhecimento ou dissolução de união estável: a) de domicílio do guardião de filho incapaz; b) do último domicílio do casal, caso não haja filho incapaz; c) de domicílio do réu, se nenhuma das partes residir no antigo domicílio do casal;",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "competencia",
+        "divorcio",
+        "uniao_estavel"
+      ],
+      "palavras_chave": [
+        "competência",
+        "foro",
+        "divórcio",
+        "união estável",
+        "onde entrar com a ação",
+        "comarca"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-53-II",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 53, II",
+      "texto": "É competente o foro: II - de domicílio ou residência do alimentando, para a ação em que se pedem alimentos;",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "competencia",
+        "alimentos"
+      ],
+      "palavras_chave": [
+        "competência",
+        "foro",
+        "alimentos",
+        "pensão",
+        "domicílio do alimentando",
+        "onde mora a criança"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-98",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 98, caput",
+      "texto": "A pessoa natural ou jurídica, brasileira ou estrangeira, com insuficiência de recursos para pagar as custas, as despesas processuais e os honorários advocatícios tem direito à gratuidade da justiça, na forma da lei.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "gratuidade",
+        "hipossuficiencia"
+      ],
+      "palavras_chave": [
+        "gratuidade da justiça",
+        "custas",
+        "despesas processuais",
+        "honorários",
+        "insuficiência de recursos",
+        "não posso pagar",
+        "sem condições"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-99",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 99, caput, §§ 2º, 3º e 4º",
+      "texto": "O pedido de gratuidade da justiça pode ser formulado na petição inicial, na contestação, na petição para ingresso de terceiro no processo ou em recurso. (...) § 2º O juiz somente poderá indeferir o pedido se houver nos autos elementos que evidenciem a falta dos pressupostos legais para a concessão de gratuidade, devendo, antes de indeferir o pedido, determinar à parte a comprovação do preenchimento dos referidos pressupostos. § 3º Presume-se verdadeira a alegação de insuficiência deduzida exclusivamente por pessoa natural. § 4º A assistência do requerente por advogado particular não impede a concessão de gratuidade da justiça.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "gratuidade",
+        "hipossuficiencia",
+        "presuncao"
+      ],
+      "palavras_chave": [
+        "pedido de gratuidade",
+        "petição inicial",
+        "presume-se verdadeira",
+        "pessoa natural",
+        "declaração de hipossuficiência"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-105",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 105, caput",
+      "texto": "A procuração geral para o foro, outorgada por instrumento público ou particular assinado pela parte, habilita o advogado a praticar todos os atos do processo, exceto receber citação, confessar, reconhecer a procedência do pedido, transigir, desistir, renunciar ao direito sobre o qual se funda a ação, receber, dar quitação, firmar compromisso e assinar declaração de hipossuficiência econômica, que devem constar de cláusula específica.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "procuracao",
+        "poderes_especiais"
+      ],
+      "palavras_chave": [
+        "procuração",
+        "poderes",
+        "cláusula específica",
+        "transigir",
+        "hipossuficiência",
+        "mandato",
+        "advogado"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-287",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 287, caput",
+      "texto": "A petição inicial deve vir acompanhada de procuração, que conterá os endereços do advogado, eletrônico e não eletrônico.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "procuracao",
+        "peticao_inicial"
+      ],
+      "palavras_chave": [
+        "petição inicial",
+        "procuração",
+        "endereço do advogado"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-292",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 292, I, II, III e V",
+      "texto": "O valor da causa constará da petição inicial ou da petição de reconvenção e será: I - na ação de cobrança de dívida, a soma monetariamente corrigida do principal, dos juros de mora vencidos e de outras penalidades, se houver, até a data de propositura da ação; II - na ação que tiver por objeto a existência, a validade, o cumprimento, a modificação, a resolução, a resilição ou a rescisão de ato jurídico, o valor do ato ou o de sua parte controvertida; III - na ação de alimentos, a soma de 12 (doze) prestações mensais pedidas pelo autor; (...) V - na ação indenizatória, inclusive a fundada em dano moral, o valor pretendido;",
+      "areas": [
+        "geral",
+        "familia",
+        "consumidor"
+      ],
+      "temas": [
+        "valor_causa",
+        "alimentos",
+        "cobranca",
+        "dano_moral"
+      ],
+      "palavras_chave": [
+        "valor da causa",
+        "12 prestações",
+        "alimentos",
+        "cobrança",
+        "dano moral",
+        "indenização"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-300",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 300, caput",
+      "texto": "A tutela de urgência será concedida quando houver elementos que evidenciem a probabilidade do direito e o perigo de dano ou o risco ao resultado útil do processo.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "tutela_urgencia",
+        "liminar"
+      ],
+      "palavras_chave": [
+        "tutela de urgência",
+        "liminar",
+        "probabilidade do direito",
+        "perigo de dano",
+        "urgente",
+        "urgência",
+        "não pode esperar",
+        "risco",
+        "imediato",
+        "sem comida",
+        "sem remédio",
+        "cortaram",
+        "corte"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-319",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 319",
+      "texto": "A petição inicial indicará: I - o juízo a que é dirigida; II - os nomes, os prenomes, o estado civil, a existência de união estável, a profissão, o número de inscrição no Cadastro de Pessoas Físicas ou no Cadastro Nacional da Pessoa Jurídica, o endereço eletrônico, o domicílio e a residência do autor e do réu; III - o fato e os fundamentos jurídicos do pedido; IV - o pedido com as suas especificações; V - o valor da causa; VI - as provas com que o autor pretende demonstrar a verdade dos fatos alegados; VII - a opção do autor pela realização ou não de audiência de conciliação ou de mediação.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "peticao_inicial",
+        "requisitos"
+      ],
+      "palavras_chave": [
+        "petição inicial",
+        "requisitos",
+        "qualificação",
+        "CPF",
+        "endereço",
+        "pedido",
+        "valor da causa",
+        "provas"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-320",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 320",
+      "texto": "A petição inicial será instruída com os documentos indispensáveis à propositura da ação.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "peticao_inicial",
+        "documentos"
+      ],
+      "palavras_chave": [
+        "documentos indispensáveis",
+        "petição inicial",
+        "instruída",
+        "documentos"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-321",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 321, caput e parágrafo único",
+      "texto": "O juiz, ao verificar que a petição inicial não preenche os requisitos dos arts. 319 e 320 ou que apresenta defeitos e irregularidades capazes de dificultar o julgamento de mérito, determinará que o autor, no prazo de 15 (quinze) dias, a emende ou a complete, indicando com precisão o que deve ser corrigido ou completado. Parágrafo único. Se o autor não cumprir a diligência, o juiz indeferirá a petição inicial.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "peticao_inicial",
+        "emenda"
+      ],
+      "palavras_chave": [
+        "emenda da inicial",
+        "15 dias",
+        "indeferimento",
+        "irregularidades"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-528",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 528, caput, §§ 3º e 7º",
+      "texto": "No cumprimento de sentença que condene ao pagamento de prestação alimentícia ou de decisão interlocutória que fixe alimentos, o juiz, a requerimento do exequente, mandará intimar o executado pessoalmente para, em 3 (três) dias, pagar o débito, provar que o fez ou justificar a impossibilidade de efetuá-lo. (...) § 3º Se o executado não pagar ou se a justificativa apresentada não for aceita, o juiz, além de mandar protestar o pronunciamento judicial na forma do § 1º, decretar-lhe-á a prisão pelo prazo de 1 (um) a 3 (três) meses. (...) § 7º O débito alimentar que autoriza a prisão civil do alimentante é o que compreende até as 3 (três) prestações anteriores ao ajuizamento da execução e as que se vencerem no curso do processo.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "execucao_alimentos",
+        "prisao_civil"
+      ],
+      "palavras_chave": [
+        "execução de alimentos",
+        "pensão atrasada",
+        "não paga pensão",
+        "prisão civil",
+        "3 prestações",
+        "cumprimento de sentença",
+        "execução",
+        "acordo",
+        "sentença",
+        "título"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-693",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 693, caput",
+      "texto": "As normas deste Capítulo aplicam-se aos processos contenciosos de divórcio, separação, reconhecimento e extinção de união estável, guarda, visitação e filiação.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "acoes_familia",
+        "procedimento"
+      ],
+      "palavras_chave": [
+        "ações de família",
+        "divórcio",
+        "guarda",
+        "visitação",
+        "união estável",
+        "filiação"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-694",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 694, caput",
+      "texto": "Nas ações de família, todos os esforços serão empreendidos para a solução consensual da controvérsia, devendo o juiz dispor do auxílio de profissionais de outras áreas de conhecimento para a mediação e conciliação.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "acoes_familia",
+        "mediacao",
+        "conciliacao"
+      ],
+      "palavras_chave": [
+        "solução consensual",
+        "mediação",
+        "conciliação",
+        "acordo",
+        "ações de família"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-731",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 731",
+      "texto": "A homologação do divórcio ou da separação consensuais, observados os requisitos legais, poderá ser requerida em petição assinada por ambos os cônjuges, da qual constarão: I - as disposições relativas à descrição e à partilha dos bens comuns; II - as disposições relativas à pensão alimentícia entre os cônjuges; III - o acordo relativo à guarda dos filhos incapazes e ao regime de visitas; IV - o valor da contribuição para criar e educar os filhos.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "divorcio",
+        "consensual"
+      ],
+      "palavras_chave": [
+        "divórcio consensual",
+        "acordo",
+        "partilha",
+        "guarda",
+        "visitas",
+        "pensão"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CPC-733",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 733, caput",
+      "texto": "O divórcio consensual, a separação consensual e a extinção consensual de união estável, não havendo nascituro ou filhos incapazes e observados os requisitos legais, poderão ser realizados por escritura pública, da qual constarão as disposições de que trata o art. 731.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "divorcio",
+        "extrajudicial",
+        "cartorio"
+      ],
+      "palavras_chave": [
+        "divórcio em cartório",
+        "escritura pública",
+        "extrajudicial",
+        "sem filhos menores"
+      ],
+      "fonte": "cpc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1566-IV",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.566, IV",
+      "texto": "São deveres de ambos os cônjuges: (...) IV - sustento, guarda e educação dos filhos;",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "dever_sustento",
+        "guarda"
+      ],
+      "palavras_chave": [
+        "deveres dos cônjuges",
+        "sustento",
+        "guarda",
+        "educação dos filhos"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1571",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.571, IV e § 1º",
+      "texto": "A sociedade conjugal termina: (...) IV - pelo divórcio. § 1º O casamento válido só se dissolve pela morte de um dos cônjuges ou pelo divórcio, aplicando-se a presunção estabelecida neste Código quanto ao ausente.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "divorcio"
+      ],
+      "palavras_chave": [
+        "divórcio",
+        "fim do casamento",
+        "sociedade conjugal",
+        "dissolução"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1583",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.583, caput e § 1º",
+      "texto": "A guarda será unilateral ou compartilhada. § 1º Compreende-se por guarda unilateral a atribuída a um só dos genitores ou a alguém que o substitua e, por guarda compartilhada a responsabilização conjunta e o exercício de direitos e deveres do pai e da mãe que não vivam sob o mesmo teto, concernentes ao poder familiar dos filhos comuns.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "guarda"
+      ],
+      "palavras_chave": [
+        "guarda",
+        "guarda compartilhada",
+        "guarda unilateral",
+        "filhos",
+        "quem fica com a criança"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1584-2",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.584, § 2º",
+      "texto": "Quando não houver acordo entre a mãe e o pai quanto à guarda do filho, encontrando-se ambos os genitores aptos a exercer o poder familiar, será aplicada a guarda compartilhada, salvo se um dos genitores declarar ao magistrado que não deseja a guarda do menor.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "guarda",
+        "guarda_compartilhada"
+      ],
+      "palavras_chave": [
+        "guarda compartilhada",
+        "sem acordo",
+        "regra geral",
+        "genitores aptos"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1634",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.634, caput, I e II",
+      "texto": "Compete a ambos os pais, qualquer que seja a sua situação conjugal, o pleno exercício do poder familiar, que consiste em, quanto aos filhos: I - dirigir-lhes a criação e a educação; II - exercer a guarda unilateral ou compartilhada nos termos do art. 1.584;",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "poder_familiar",
+        "guarda"
+      ],
+      "palavras_chave": [
+        "poder familiar",
+        "criação",
+        "educação",
+        "guarda",
+        "ambos os pais"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1694",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.694, caput e § 1º",
+      "texto": "Podem os parentes, os cônjuges ou companheiros pedir uns aos outros os alimentos de que necessitem para viver de modo compatível com a sua condição social, inclusive para atender às necessidades de sua educação. § 1º Os alimentos devem ser fixados na proporção das necessidades do reclamante e dos recursos da pessoa obrigada.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "binomio_necessidade_possibilidade"
+      ],
+      "palavras_chave": [
+        "alimentos",
+        "pensão",
+        "necessidades",
+        "recursos",
+        "proporção",
+        "quanto de pensão",
+        "valor da pensão"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1695",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.695",
+      "texto": "São devidos os alimentos quando quem os pretende não tem bens suficientes, nem pode prover, pelo seu trabalho, à própria mantença, e aquele, de quem se reclamam, pode fornecê-los, sem desfalque do necessário ao seu sustento.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos"
+      ],
+      "palavras_chave": [
+        "alimentos",
+        "necessidade",
+        "possibilidade",
+        "sustento",
+        "pensão"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1696",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.696",
+      "texto": "O direito à prestação de alimentos é recíproco entre pais e filhos, e extensivo a todos os ascendentes, recaindo a obrigação nos mais próximos em grau, uns em falta de outros.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "reciprocidade",
+        "avos"
+      ],
+      "palavras_chave": [
+        "alimentos",
+        "pais e filhos",
+        "recíproco",
+        "avós",
+        "ascendentes"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1699",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.699",
+      "texto": "Se, fixados os alimentos, sobrevier mudança na situação financeira de quem os supre, ou na de quem os recebe, poderá o interessado reclamar ao juiz, conforme as circunstâncias, exoneração, redução ou majoração do encargo.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "revisao",
+        "exoneracao"
+      ],
+      "palavras_chave": [
+        "revisão de alimentos",
+        "aumentar pensão",
+        "diminuir pensão",
+        "exoneração",
+        "mudança de situação financeira"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1703",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.703",
+      "texto": "Para a manutenção dos filhos, os cônjuges separados judicialmente contribuirão na proporção de seus recursos.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "proporcionalidade"
+      ],
+      "palavras_chave": [
+        "manutenção dos filhos",
+        "proporção dos recursos",
+        "separados",
+        "contribuição"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1723",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.723, caput",
+      "texto": "É reconhecida como entidade familiar a união estável entre o homem e a mulher, configurada na convivência pública, contínua e duradoura e estabelecida com o objetivo de constituição de família.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "uniao_estavel",
+        "reconhecimento"
+      ],
+      "palavras_chave": [
+        "união estável",
+        "convivência",
+        "morar junto",
+        "companheiro",
+        "companheira",
+        "reconhecimento"
+      ],
+      "fonte": "cc",
+      "verificado": false,
+      "nota": "O STF (ADI 4277 e ADPF 132) reconheceu a união estável homoafetiva com os mesmos efeitos."
+    },
+    {
+      "id": "CC-1724",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.724",
+      "texto": "As relações pessoais entre os companheiros obedecerão aos deveres de lealdade, respeito e assistência, e de guarda, sustento e educação dos filhos.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "uniao_estavel",
+        "deveres"
+      ],
+      "palavras_chave": [
+        "companheiros",
+        "deveres",
+        "assistência",
+        "sustento",
+        "filhos"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "CC-1725",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.725",
+      "texto": "Na união estável, salvo contrato escrito entre os companheiros, aplica-se às relações patrimoniais, no que couber, o regime da comunhão parcial de bens.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "uniao_estavel",
+        "patrimonio",
+        "partilha"
+      ],
+      "palavras_chave": [
+        "união estável",
+        "bens",
+        "partilha",
+        "comunhão parcial",
+        "dividir os bens"
+      ],
+      "fonte": "cc",
+      "verificado": false
+    },
+    {
+      "id": "LA-2",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "O credor, pessoalmente, ou por intermédio de advogado, dirigir-se-á ao juiz competente, qualificando-se, e exporá suas necessidades, provando, apenas o parentesco ou a obrigação de alimentar do devedor, indicando seu nome e sobrenome, residência ou local de trabalho, profissão e naturalidade, quanto ganha aproximadamente ou os recursos de que dispõe.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "requisitos_pedido"
+      ],
+      "palavras_chave": [
+        "ação de alimentos",
+        "parentesco",
+        "certidão de nascimento",
+        "onde trabalha",
+        "quanto ganha",
+        "pensão"
+      ],
+      "fonte": "lei_alimentos",
+      "verificado": false
+    },
+    {
+      "id": "LA-4",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "Ao despachar o pedido, o juiz fixará desde logo alimentos provisórios a serem pagos pelo devedor, salvo se o credor expressamente declarar que deles não necessita.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "alimentos_provisorios",
+        "liminar"
+      ],
+      "palavras_chave": [
+        "alimentos provisórios",
+        "desde logo",
+        "liminar",
+        "pensão provisória",
+        "urgência",
+        "pensão",
+        "alimentos",
+        "filhos",
+        "criança"
+      ],
+      "fonte": "lei_alimentos",
+      "verificado": false
+    },
+    {
+      "id": "ECA-4",
+      "diploma": "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "É dever da família, da comunidade, da sociedade em geral e do poder público assegurar, com absoluta prioridade, a efetivação dos direitos referentes à vida, à saúde, à alimentação, à educação, ao esporte, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "crianca",
+        "prioridade_absoluta",
+        "alimentos"
+      ],
+      "palavras_chave": [
+        "criança",
+        "adolescente",
+        "prioridade absoluta",
+        "alimentação",
+        "convivência familiar"
+      ],
+      "fonte": "eca",
+      "verificado": false
+    },
+    {
+      "id": "ECA-22",
+      "diploma": "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "dispositivo": "Art. 22, caput",
+      "texto": "Aos pais incumbe o dever de sustento, guarda e educação dos filhos menores, cabendo-lhes ainda, no interesse destes, a obrigação de cumprir e fazer cumprir as determinações judiciais.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "dever_sustento",
+        "guarda"
+      ],
+      "palavras_chave": [
+        "pais",
+        "sustento",
+        "guarda",
+        "educação",
+        "filhos menores"
+      ],
+      "fonte": "eca",
+      "verificado": false
+    },
+    {
+      "id": "ECA-33",
+      "diploma": "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "dispositivo": "Art. 33, caput",
+      "texto": "A guarda obriga a prestação de assistência material, moral e educacional à criança ou adolescente, conferindo a seu detentor o direito de opor-se a terceiros, inclusive aos pais.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "guarda"
+      ],
+      "palavras_chave": [
+        "guarda",
+        "assistência material",
+        "moral",
+        "educacional",
+        "avós",
+        "terceiros"
+      ],
+      "fonte": "eca",
+      "verificado": false
+    },
+    {
+      "id": "ECA-141-2",
+      "diploma": "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "dispositivo": "Art. 141, § 2º",
+      "texto": "As ações judiciais da competência da Justiça da Infância e da Juventude são isentas de custas e emolumentos, ressalvada a hipótese de litigância de má-fé.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "custas",
+        "infancia",
+        "isencao"
+      ],
+      "palavras_chave": [
+        "isenção de custas",
+        "infância e juventude",
+        "sem custas"
+      ],
+      "fonte": "eca",
+      "verificado": false
+    },
+    {
+      "id": "CDC-2",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "Consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "relacao_consumo",
+        "conceito"
+      ],
+      "palavras_chave": [
+        "consumidor",
+        "destinatário final",
+        "comprei",
+        "contratei",
+        "produto",
+        "serviço"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-3",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 3º, caput e § 2º",
+      "texto": "Fornecedor é toda pessoa física ou jurídica, pública ou privada, nacional ou estrangeira, bem como os entes despersonalizados, que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços. (...) § 2º Serviço é qualquer atividade fornecida no mercado de consumo, mediante remuneração, inclusive as de natureza bancária, financeira, de crédito e securitária, salvo as decorrentes das relações de caráter trabalhista.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "relacao_consumo",
+        "fornecedor"
+      ],
+      "palavras_chave": [
+        "fornecedor",
+        "empresa",
+        "loja",
+        "banco",
+        "operadora",
+        "serviço",
+        "financeira"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-6",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 6º, III, IV, V, VI e VIII",
+      "texto": "São direitos básicos do consumidor: (...) III - a informação adequada e clara sobre os diferentes produtos e serviços, com especificação correta de quantidade, características, composição, qualidade, tributos incidentes e preço, bem como sobre os riscos que apresentem; IV - a proteção contra a publicidade enganosa e abusiva, métodos comerciais coercitivos ou desleais, bem como contra práticas e cláusulas abusivas ou impostas no fornecimento de produtos e serviços; V - a modificação das cláusulas contratuais que estabeleçam prestações desproporcionais ou sua revisão em razão de fatos supervenientes que as tornem excessivamente onerosas; VI - a efetiva prevenção e reparação de danos patrimoniais e morais, individuais, coletivos e difusos; (...) VIII - a facilitação da defesa de seus direitos, inclusive com a inversão do ônus da prova, a seu favor, no processo civil, quando, a critério do juiz, for verossímil a alegação ou quando for ele hipossuficiente, segundo as regras ordinárias de experiências;",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "direitos_basicos",
+        "inversao_onus",
+        "dano_moral",
+        "informacao"
+      ],
+      "palavras_chave": [
+        "direitos básicos",
+        "informação",
+        "publicidade enganosa",
+        "cláusula abusiva",
+        "inversão do ônus da prova",
+        "dano moral",
+        "reparação"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-14",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 14, caput",
+      "texto": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "responsabilidade_objetiva",
+        "servico",
+        "dano"
+      ],
+      "palavras_chave": [
+        "responsabilidade objetiva",
+        "independentemente de culpa",
+        "defeito do serviço",
+        "reparação",
+        "dano"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-18",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 18, caput e § 1º",
+      "texto": "Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam ou lhes diminuam o valor (...). § 1º Não sendo o vício sanado no prazo máximo de trinta dias, pode o consumidor exigir, alternativamente e à sua escolha: I - a substituição do produto por outro da mesma espécie, em perfeitas condições de uso; II - a restituição imediata da quantia paga, monetariamente atualizada, sem prejuízo de eventuais perdas e danos; III - o abatimento proporcional do preço.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "vicio_produto",
+        "troca",
+        "devolucao"
+      ],
+      "palavras_chave": [
+        "produto com defeito",
+        "vício",
+        "30 dias",
+        "troca",
+        "devolução do dinheiro",
+        "abatimento",
+        "não consertaram"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-20",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 20, caput",
+      "texto": "O fornecedor de serviços responde pelos vícios de qualidade que os tornem impróprios ao consumo ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade com as indicações constantes da oferta ou mensagem publicitária, podendo o consumidor exigir, alternativamente e à sua escolha: I - a reexecução dos serviços, sem custo adicional e quando cabível; II - a restituição imediata da quantia paga, monetariamente atualizada, sem prejuízo de eventuais perdas e danos; III - o abatimento proporcional do preço.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "vicio_servico"
+      ],
+      "palavras_chave": [
+        "serviço mal feito",
+        "vício do serviço",
+        "reexecução",
+        "devolução",
+        "abatimento"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-22",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 22, caput e parágrafo único",
+      "texto": "Os órgãos públicos, por si ou suas empresas, concessionárias, permissionárias ou sob qualquer outra forma de empreendimento, são obrigados a fornecer serviços adequados, eficientes, seguros e, quanto aos essenciais, contínuos. Parágrafo único. Nos casos de descumprimento, total ou parcial, das obrigações referidas neste artigo, serão as pessoas jurídicas compelidas a cumpri-las e a reparar os danos causados, na forma prevista neste código.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "servico_essencial",
+        "concessionaria",
+        "corte_indevido",
+        "tutela_urgencia"
+      ],
+      "palavras_chave": [
+        "serviço essencial",
+        "água",
+        "luz",
+        "energia",
+        "corte indevido",
+        "concessionária",
+        "Sanepar",
+        "Copel",
+        "contínuo",
+        "sem água",
+        "sem luz",
+        "religação",
+        "religar"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-26",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 26, caput, I e II",
+      "texto": "O direito de reclamar pelos vícios aparentes ou de fácil constatação caduca em: I - trinta dias, tratando-se de fornecimento de serviço e de produtos não duráveis; II - noventa dias, tratando-se de fornecimento de serviço e de produtos duráveis.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "prazo",
+        "decadencia",
+        "vicio"
+      ],
+      "palavras_chave": [
+        "prazo para reclamar",
+        "30 dias",
+        "90 dias",
+        "decadência",
+        "produto durável"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-35",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 35",
+      "texto": "Se o fornecedor de produtos ou serviços recusar cumprimento à oferta, apresentação ou publicidade, o consumidor poderá, alternativamente e à sua livre escolha: I - exigir o cumprimento forçado da obrigação, nos termos da oferta, apresentação ou publicidade; II - aceitar outro produto ou prestação de serviço equivalente; III - rescindir o contrato, com direito à restituição de quantia eventualmente antecipada, monetariamente atualizada, e a perdas e danos.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "oferta",
+        "publicidade",
+        "descumprimento"
+      ],
+      "palavras_chave": [
+        "não entregaram",
+        "não cumpriram a oferta",
+        "propaganda",
+        "cumprimento forçado",
+        "rescisão"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-39",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 39, I, III, V e X",
+      "texto": "É vedado ao fornecedor de produtos ou serviços, dentre outras práticas abusivas: I - condicionar o fornecimento de produto ou de serviço ao fornecimento de outro produto ou serviço, bem como, sem justa causa, a limites quantitativos; (...) III - enviar ou entregar ao consumidor, sem solicitação prévia, qualquer produto, ou fornecer qualquer serviço; (...) V - exigir do consumidor vantagem manifestamente excessiva; (...) X - elevar sem justa causa o preço de produtos ou serviços.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "praticas_abusivas",
+        "venda_casada",
+        "cobranca_nao_solicitada"
+      ],
+      "palavras_chave": [
+        "prática abusiva",
+        "venda casada",
+        "não pedi",
+        "serviço não solicitado",
+        "vantagem excessiva",
+        "aumento abusivo"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-42",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 42, caput e parágrafo único",
+      "texto": "Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. Parágrafo único. O consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao dobro do que pagou em excesso, acrescido de correção monetária e juros legais, salvo hipótese de engano justificável.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "cobranca_indevida",
+        "repeticao_indebito",
+        "constrangimento"
+      ],
+      "palavras_chave": [
+        "cobrança indevida",
+        "cobrando errado",
+        "devolução em dobro",
+        "repetição do indébito",
+        "constrangimento",
+        "ameaça",
+        "paguei a mais"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-43",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 43, §§ 2º e 3º",
+      "texto": "§ 2º A abertura de cadastro, ficha, registro e dados pessoais e de consumo deverá ser comunicada por escrito ao consumidor, quando não solicitada por ele. § 3º O consumidor, sempre que encontrar inexatidão nos seus dados e cadastros, poderá exigir sua imediata correção, devendo o arquivista, no prazo de cinco dias úteis, comunicar a alteração aos eventuais destinatários das informações incorretas.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "negativacao",
+        "cadastro",
+        "spc_serasa"
+      ],
+      "palavras_chave": [
+        "negativação",
+        "nome sujo",
+        "SPC",
+        "Serasa",
+        "cadastro",
+        "comunicação prévia",
+        "correção de dados"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-47",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 47",
+      "texto": "As cláusulas contratuais serão interpretadas de maneira mais favorável ao consumidor.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "interpretacao",
+        "contrato"
+      ],
+      "palavras_chave": [
+        "cláusula",
+        "contrato",
+        "interpretação favorável",
+        "letra miúda"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-51",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 51, caput, IV e § 1º, III",
+      "texto": "São nulas de pleno direito, entre outras, as cláusulas contratuais relativas ao fornecimento de produtos e serviços que: (...) IV - estabeleçam obrigações consideradas iníquas, abusivas, que coloquem o consumidor em desvantagem exagerada, ou sejam incompatíveis com a boa-fé ou a eqüidade; (...) § 1º Presume-se exagerada, entre outros casos, a vantagem que: (...) III - se mostra excessivamente onerosa para o consumidor, considerando-se a natureza e conteúdo do contrato, o interesse das partes e outras circunstâncias peculiares ao caso.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "clausula_abusiva",
+        "nulidade",
+        "contrato"
+      ],
+      "palavras_chave": [
+        "cláusula abusiva",
+        "nula",
+        "desvantagem exagerada",
+        "boa-fé",
+        "contrato abusivo"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "CDC-101-I",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 101, I",
+      "texto": "Na ação de responsabilidade civil do fornecedor de produtos e serviços, sem prejuízo do disposto nos Capítulos I e II deste título, serão observadas as seguintes normas: I - a ação pode ser proposta no domicílio do autor;",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "competencia",
+        "foro_consumidor"
+      ],
+      "palavras_chave": [
+        "competência",
+        "domicílio do autor",
+        "onde entrar com a ação",
+        "foro",
+        "comarca"
+      ],
+      "fonte": "cdc",
+      "verificado": false
+    },
+    {
+      "id": "EOAB-2",
+      "diploma": "Estatuto da Advocacia e da OAB (Lei 8.906/1994)",
+      "dispositivo": "Art. 2º, caput e § 1º",
+      "texto": "O advogado é indispensável à administração da justiça. § 1º No seu ministério privado, o advogado presta serviço público e exerce função social.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "advocacia",
+        "funcao_social"
+      ],
+      "palavras_chave": [
+        "advogado",
+        "indispensável",
+        "função social",
+        "serviço público"
+      ],
+      "fonte": "eoab",
+      "verificado": false
+    },
+    {
+      "id": "EOAB-22-1",
+      "diploma": "Estatuto da Advocacia e da OAB (Lei 8.906/1994)",
+      "dispositivo": "Art. 22, § 1º",
+      "texto": "O advogado, quando indicado para patrocinar causa de juridicamente necessitado, no caso de impossibilidade da Defensoria Pública no local da prestação de serviço, tem direito aos honorários fixados pelo juiz, segundo tabela organizada pelo Conselho Seccional da OAB, e pagos pelo Estado.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "advocacia_dativa",
+        "honorarios",
+        "defensoria"
+      ],
+      "palavras_chave": [
+        "advogado dativo",
+        "honorários",
+        "tabela da OAB",
+        "pagos pelo Estado",
+        "Defensoria Pública",
+        "necessitado",
+        "nomeação"
+      ],
+      "fonte": "eoab",
+      "verificado": false
+    },
+    {
+      "id": "EOAB-34-XII",
+      "diploma": "Estatuto da Advocacia e da OAB (Lei 8.906/1994)",
+      "dispositivo": "Art. 34, XI e XII",
+      "texto": "Constitui infração disciplinar: (...) XI - abandonar a causa sem justo motivo ou antes de decorridos dez dias da comunicação da renúncia; XII - recusar-se a prestar, sem justo motivo, assistência jurídica, quando nomeado em virtude de impossibilidade da Defensoria Pública;",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "advocacia_dativa",
+        "recusa",
+        "justo_motivo",
+        "infracao_disciplinar"
+      ],
+      "palavras_chave": [
+        "recusa da nomeação",
+        "justo motivo",
+        "infração disciplinar",
+        "abandono de causa",
+        "dativo"
+      ],
+      "fonte": "eoab",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-309",
+      "diploma": "Súmula 309 do STJ",
+      "dispositivo": "Súmula 309",
+      "texto": "O débito alimentar que autoriza a prisão civil do alimentante é o que compreende as três prestações anteriores ao ajuizamento da execução e as que se vencerem no curso do processo.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "execucao_alimentos",
+        "prisao_civil"
+      ],
+      "palavras_chave": [
+        "prisão civil",
+        "três prestações",
+        "pensão atrasada",
+        "execução"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-358",
+      "diploma": "Súmula 358 do STJ",
+      "dispositivo": "Súmula 358",
+      "texto": "O cancelamento de pensão alimentícia de filho que atingiu a maioridade está sujeito à decisão judicial, mediante contraditório, ainda que nos próprios autos.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "exoneracao",
+        "maioridade"
+      ],
+      "palavras_chave": [
+        "filho maior de idade",
+        "cancelar pensão",
+        "exoneração",
+        "18 anos",
+        "contraditório"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-596",
+      "diploma": "Súmula 596 do STJ",
+      "dispositivo": "Súmula 596",
+      "texto": "A obrigação alimentar dos avós tem natureza complementar e subsidiária, somente se configurando no caso de impossibilidade total ou parcial de seu cumprimento pelos pais.",
+      "areas": [
+        "familia"
+      ],
+      "temas": [
+        "alimentos",
+        "avos",
+        "subsidiariedade"
+      ],
+      "palavras_chave": [
+        "avós",
+        "pensão dos avós",
+        "complementar",
+        "subsidiária",
+        "pai não paga"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-297",
+      "diploma": "Súmula 297 do STJ",
+      "dispositivo": "Súmula 297",
+      "texto": "O Código de Defesa do Consumidor é aplicável às instituições financeiras.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "banco",
+        "instituicao_financeira",
+        "aplicacao_cdc"
+      ],
+      "palavras_chave": [
+        "banco",
+        "financeira",
+        "cartão de crédito",
+        "empréstimo",
+        "CDC se aplica"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-385",
+      "diploma": "Súmula 385 do STJ",
+      "dispositivo": "Súmula 385",
+      "texto": "Da anotação irregular em cadastro de proteção ao crédito, não cabe indenização por dano moral, quando preexistente legítima inscrição, ressalvado o direito ao cancelamento.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "negativacao",
+        "dano_moral",
+        "spc_serasa"
+      ],
+      "palavras_chave": [
+        "negativação indevida",
+        "dano moral",
+        "inscrição preexistente",
+        "nome sujo",
+        "SPC",
+        "Serasa"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-479",
+      "diploma": "Súmula 479 do STJ",
+      "dispositivo": "Súmula 479",
+      "texto": "As instituições financeiras respondem objetivamente pelos danos gerados por fortuito interno relativos a fraudes e delitos praticados por terceiros no âmbito de operações bancárias.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "banco",
+        "fraude",
+        "responsabilidade_objetiva"
+      ],
+      "palavras_chave": [
+        "fraude bancária",
+        "golpe",
+        "empréstimo que não fiz",
+        "banco responde",
+        "terceiros"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "STJ-SUM-548",
+      "diploma": "Súmula 548 do STJ",
+      "dispositivo": "Súmula 548",
+      "texto": "Incumbe ao credor a exclusão do registro da dívida em nome do devedor no cadastro de inadimplentes no prazo de cinco dias úteis, a partir do integral e efetivo pagamento do débito.",
+      "areas": [
+        "consumidor"
+      ],
+      "temas": [
+        "negativacao",
+        "baixa",
+        "pagamento"
+      ],
+      "palavras_chave": [
+        "paguei e continua negativado",
+        "cinco dias úteis",
+        "baixa da negativação",
+        "exclusão do cadastro"
+      ],
+      "fonte": "stj_sumulas",
+      "verificado": false
+    },
+    {
+      "id": "LGPD-7-I",
+      "diploma": "Lei Geral de Proteção de Dados (Lei 13.709/2018)",
+      "dispositivo": "Art. 7º, I",
+      "texto": "O tratamento de dados pessoais somente poderá ser realizado nas seguintes hipóteses: I - mediante o fornecimento de consentimento pelo titular;",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "lgpd",
+        "consentimento",
+        "dados_pessoais"
+      ],
+      "palavras_chave": [
+        "consentimento",
+        "dados pessoais",
+        "LGPD",
+        "tratamento de dados"
+      ],
+      "fonte": "planalto",
+      "verificado": false
+    },
+    {
+      "id": "LGPD-8",
+      "diploma": "Lei Geral de Proteção de Dados (Lei 13.709/2018)",
+      "dispositivo": "Art. 8º, caput e § 4º",
+      "texto": "O consentimento previsto no inciso I do art. 7º desta Lei deverá ser fornecido por escrito ou por outro meio que demonstre a manifestação de vontade do titular. (...) § 4º O consentimento deverá referir-se a finalidades determinadas, e as autorizações genéricas para o tratamento de dados pessoais serão nulas.",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "lgpd",
+        "consentimento"
+      ],
+      "palavras_chave": [
+        "consentimento por escrito",
+        "finalidade determinada",
+        "LGPD"
+      ],
+      "fonte": "planalto",
+      "verificado": false
+    },
+    {
+      "id": "PR-LEI-18664",
+      "diploma": "Lei Estadual do Paraná nº 18.664/2015",
+      "dispositivo": "Ementa (referência)",
+      "texto": "Lei estadual que disciplina o pagamento, pelo Estado do Paraná, de honorários aos advogados nomeados para atuar como dativos em favor de pessoas hipossuficientes, nos casos em que não haja Defensoria Pública disponível, observada a tabela de honorários. [REFERÊNCIA — o texto integral deve ser conferido na Casa Civil do Paraná antes de citação literal.]",
+      "areas": [
+        "geral"
+      ],
+      "temas": [
+        "advocacia_dativa",
+        "honorarios",
+        "parana"
+      ],
+      "palavras_chave": [
+        "honorários dativos",
+        "Paraná",
+        "PGE",
+        "pagamento pelo Estado",
+        "tabela"
+      ],
+      "fonte": "planalto",
+      "verificado": false,
+      "nota": "Entrada de referência. A IA é instruída a NÃO citar texto literal deste item, apenas mencionar a existência da lei."
+    }
+  ]
+}

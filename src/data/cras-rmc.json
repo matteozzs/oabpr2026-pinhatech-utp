@@ -1,0 +1,42 @@
+{
+  "_aviso": "Orientação geral sobre a rede de Proteção Social Básica (CRAS) na Região Metropolitana de Curitiba. Dados de caráter informativo para a demonstração; endereços e telefones devem ser confirmados no site da prefeitura de cada município ou no Cadastro Nacional do SUAS (CadSUAS/MDS). A plataforma NÃO inventa endereço nem telefone: o botão de localização abre uma busca pública.",
+  "fonte_referencia": "Política Nacional de Assistência Social (PNAS) / Tipificação Nacional de Serviços Socioassistenciais (Resolução CNAS nº 109/2009); Fundação de Ação Social de Curitiba (FAS).",
+  "servicos_glossario": {
+    "PAIF": "Acompanhamento de famílias em situação de vulnerabilidade, fortalecimento de vínculos e prevenção de riscos.",
+    "CadUnico": "Inscrição e atualização no Cadastro Único — porta de entrada para programas sociais e base para comprovar hipossuficiência.",
+    "BPC": "Orientação para acesso ao Benefício de Prestação Continuada (idosos e pessoas com deficiência).",
+    "SCFV": "Serviço de Convivência e Fortalecimento de Vínculos para crianças, adolescentes, adultos e idosos.",
+    "Encaminhamentos": "Encaminhamento para saúde, educação, habitação, documentação civil e outros serviços públicos."
+  },
+  "municipios": [
+    { "municipio": "Curitiba", "rede": "39 CRAS distribuídos pelas administrações regionais (FAS)", "servicos": ["PAIF", "SCFV", "CadUnico", "BPC", "Encaminhamentos", "Atendimento domiciliar a idosos e PcD"], "temDefensoria": true },
+    { "municipio": "Adrianópolis", "rede": "Rede municipal de CRAS", "servicos": ["CadUnico", "PAIF", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Agudos do Sul", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Almirante Tamandaré", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Araucária", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Balsa Nova", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Bocaiúva do Sul", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "Campina Grande do Sul", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Campo do Tenente", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "Campo Largo", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Campo Magro", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Cerro Azul", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Colombo", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Contenda", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Doutor Ulysses", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "Fazenda Rio Grande", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Itaperuçu", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Lapa", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Mandirituba", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Piên", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "Pinhais", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Piraquara", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Quatro Barras", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Quitandinha", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "Rio Branco do Sul", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": false },
+    { "municipio": "Rio Negro", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false },
+    { "municipio": "São José dos Pinhais", "rede": "Rede municipal de CRAS", "servicos": ["PAIF", "CadUnico", "SCFV", "Encaminhamentos"], "temDefensoria": true },
+    { "municipio": "Tijucas do Sul", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico", "SCFV"], "temDefensoria": false },
+    { "municipio": "Tunas do Paraná", "rede": "CRAS municipal", "servicos": ["PAIF", "CadUnico"], "temDefensoria": false }
+  ]
+}

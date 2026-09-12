@@ -1,0 +1,987 @@
+{
+ "fonte": "https://advocaciadativa.oabpr.org.br/nomeacoes-por-periodo",
+ "periodo": "12/03/2026 a 12/09/2026",
+ "extraido_em": "2026-09-12",
+ "total_nomeacoes": 80933,
+ "total_comarcas": 163,
+ "comarcas": [
+  {
+   "nome": "ALMIRANTE TAMANDARÉ",
+   "nomeacoes": 360,
+   "civel": 283,
+   "familia": 49
+  },
+  {
+   "nome": "ALTO PARANÁ",
+   "nomeacoes": 179,
+   "civel": 24,
+   "familia": 41
+  },
+  {
+   "nome": "ALTO PIQUIRI",
+   "nomeacoes": 284,
+   "civel": 60,
+   "familia": 93
+  },
+  {
+   "nome": "ALTÔNIA",
+   "nomeacoes": 322,
+   "civel": 32,
+   "familia": 55
+  },
+  {
+   "nome": "AMPERE",
+   "nomeacoes": 343,
+   "civel": 87,
+   "familia": 111
+  },
+  {
+   "nome": "ANDIRÁ",
+   "nomeacoes": 413,
+   "civel": 62,
+   "familia": 115
+  },
+  {
+   "nome": "ANTONINA",
+   "nomeacoes": 91,
+   "civel": 22,
+   "familia": 21
+  },
+  {
+   "nome": "APUCARANA",
+   "nomeacoes": 338,
+   "civel": 172,
+   "familia": 67
+  },
+  {
+   "nome": "ARAPONGAS",
+   "nomeacoes": 1286,
+   "civel": 368,
+   "familia": 103
+  },
+  {
+   "nome": "ARAPOTI",
+   "nomeacoes": 409,
+   "civel": 50,
+   "familia": 95
+  },
+  {
+   "nome": "ARAUCÁRIA",
+   "nomeacoes": 1668,
+   "civel": 238,
+   "familia": 165
+  },
+  {
+   "nome": "ASSAÍ",
+   "nomeacoes": 470,
+   "civel": 21,
+   "familia": 264
+  },
+  {
+   "nome": "ASSIS CHATEAUBRIAND",
+   "nomeacoes": 575,
+   "civel": 96,
+   "familia": 179
+  },
+  {
+   "nome": "ASTORGA",
+   "nomeacoes": 558,
+   "civel": 77,
+   "familia": 215
+  },
+  {
+   "nome": "BANDEIRANTES",
+   "nomeacoes": 491,
+   "civel": 97,
+   "familia": 103
+  },
+  {
+   "nome": "BARBOSA FERRAZ",
+   "nomeacoes": 213,
+   "civel": 40,
+   "familia": 65
+  },
+  {
+   "nome": "BARRACÃO",
+   "nomeacoes": 313,
+   "civel": 60,
+   "familia": 33
+  },
+  {
+   "nome": "BELA VISTA DO PARAÍSO",
+   "nomeacoes": 268,
+   "civel": 38,
+   "familia": 26
+  },
+  {
+   "nome": "BOCAIÚVA DO SUL",
+   "nomeacoes": 952,
+   "civel": 58,
+   "familia": 438
+  },
+  {
+   "nome": "CAMBARÁ",
+   "nomeacoes": 252,
+   "civel": 35,
+   "familia": 132
+  },
+  {
+   "nome": "CAMBÉ",
+   "nomeacoes": 870,
+   "civel": 185,
+   "familia": 40
+  },
+  {
+   "nome": "CAMPINA DA LAGOA",
+   "nomeacoes": 241,
+   "civel": 21,
+   "familia": 86
+  },
+  {
+   "nome": "CAMPINA GRANDE DO SUL",
+   "nomeacoes": 562,
+   "civel": 146,
+   "familia": 306
+  },
+  {
+   "nome": "CAMPO LARGO",
+   "nomeacoes": 1724,
+   "civel": 324,
+   "familia": 657
+  },
+  {
+   "nome": "CAMPO MOURÃO",
+   "nomeacoes": 498,
+   "civel": 440,
+   "familia": 25
+  },
+  {
+   "nome": "CANTAGALO",
+   "nomeacoes": 379,
+   "civel": 68,
+   "familia": 155
+  },
+  {
+   "nome": "CAPANEMA",
+   "nomeacoes": 492,
+   "civel": 63,
+   "familia": 190
+  },
+  {
+   "nome": "CAPITÃO LEÔNIDAS MARQUES",
+   "nomeacoes": 307,
+   "civel": 73,
+   "familia": 109
+  },
+  {
+   "nome": "CARLÓPOLIS",
+   "nomeacoes": 307,
+   "civel": 34,
+   "familia": 61
+  },
+  {
+   "nome": "CASCAVEL",
+   "nomeacoes": 2055,
+   "civel": 478,
+   "familia": 103
+  },
+  {
+   "nome": "CASTRO",
+   "nomeacoes": 19,
+   "civel": 6,
+   "familia": 4
+  },
+  {
+   "nome": "CATANDUVAS",
+   "nomeacoes": 318,
+   "civel": 46,
+   "familia": 103
+  },
+  {
+   "nome": "CENTENÁRIO DO SUL",
+   "nomeacoes": 291,
+   "civel": 21,
+   "familia": 101
+  },
+  {
+   "nome": "CERRO AZUL",
+   "nomeacoes": 305,
+   "civel": 86,
+   "familia": 77
+  },
+  {
+   "nome": "CHOPINZINHO",
+   "nomeacoes": 647,
+   "civel": 51,
+   "familia": 247
+  },
+  {
+   "nome": "CIANORTE",
+   "nomeacoes": 482,
+   "civel": 213,
+   "familia": 72
+  },
+  {
+   "nome": "CIDADE GAÚCHA",
+   "nomeacoes": 146,
+   "civel": 32,
+   "familia": 7
+  },
+  {
+   "nome": "CLEVELÂNDIA",
+   "nomeacoes": 324,
+   "civel": 42,
+   "familia": 62
+  },
+  {
+   "nome": "COLOMBO",
+   "nomeacoes": 561,
+   "civel": 151,
+   "familia": 38
+  },
+  {
+   "nome": "COLORADO",
+   "nomeacoes": 55,
+   "civel": 49,
+   "familia": 0
+  },
+  {
+   "nome": "CONGONHINHAS",
+   "nomeacoes": 108,
+   "civel": 15,
+   "familia": 44
+  },
+  {
+   "nome": "CORBÉLIA",
+   "nomeacoes": 420,
+   "civel": 51,
+   "familia": 98
+  },
+  {
+   "nome": "CORNÉLIO PROCÓPIO",
+   "nomeacoes": 74,
+   "civel": 43,
+   "familia": 1
+  },
+  {
+   "nome": "CORONEL VIVIDA",
+   "nomeacoes": 291,
+   "civel": 47,
+   "familia": 57
+  },
+  {
+   "nome": "CRUZEIRO DO OESTE",
+   "nomeacoes": 700,
+   "civel": 157,
+   "familia": 275
+  },
+  {
+   "nome": "CURITIBA",
+   "nomeacoes": 993,
+   "civel": 410,
+   "familia": 54
+  },
+  {
+   "nome": "CURIÚVA",
+   "nomeacoes": 89,
+   "civel": 36,
+   "familia": 42
+  },
+  {
+   "nome": "CÂNDIDO DE ABREU",
+   "nomeacoes": 216,
+   "civel": 21,
+   "familia": 72
+  },
+  {
+   "nome": "DOIS VIZINHOS",
+   "nomeacoes": 500,
+   "civel": 78,
+   "familia": 23
+  },
+  {
+   "nome": "ENGENHEIRO BELTRÃO",
+   "nomeacoes": 236,
+   "civel": 49,
+   "familia": 63
+  },
+  {
+   "nome": "FAXINAL",
+   "nomeacoes": 453,
+   "civel": 49,
+   "familia": 149
+  },
+  {
+   "nome": "FAZENDA RIO GRANDE",
+   "nomeacoes": 1799,
+   "civel": 362,
+   "familia": 775
+  },
+  {
+   "nome": "FORMOSA DO OESTE",
+   "nomeacoes": 155,
+   "civel": 13,
+   "familia": 24
+  },
+  {
+   "nome": "FOZ DO IGUAÇU",
+   "nomeacoes": 1044,
+   "civel": 466,
+   "familia": 50
+  },
+  {
+   "nome": "FRANCISCO BELTRÃO",
+   "nomeacoes": 284,
+   "civel": 235,
+   "familia": 39
+  },
+  {
+   "nome": "GOIOERÊ",
+   "nomeacoes": 1042,
+   "civel": 111,
+   "familia": 342
+  },
+  {
+   "nome": "GRANDES RIOS",
+   "nomeacoes": 164,
+   "civel": 15,
+   "familia": 62
+  },
+  {
+   "nome": "GUARANIAÇU",
+   "nomeacoes": 166,
+   "civel": 23,
+   "familia": 33
+  },
+  {
+   "nome": "GUARAPUAVA",
+   "nomeacoes": 1332,
+   "civel": 440,
+   "familia": 18
+  },
+  {
+   "nome": "GUARATUBA",
+   "nomeacoes": 84,
+   "civel": 26,
+   "familia": 0
+  },
+  {
+   "nome": "GUAÍRA",
+   "nomeacoes": 402,
+   "civel": 10,
+   "familia": 70
+  },
+  {
+   "nome": "IBAITI",
+   "nomeacoes": 288,
+   "civel": 23,
+   "familia": 9
+  },
+  {
+   "nome": "IBIPORÃ",
+   "nomeacoes": 622,
+   "civel": 116,
+   "familia": 219
+  },
+  {
+   "nome": "ICARAÍMA",
+   "nomeacoes": 174,
+   "civel": 13,
+   "familia": 51
+  },
+  {
+   "nome": "IMBITUVA",
+   "nomeacoes": 375,
+   "civel": 63,
+   "familia": 74
+  },
+  {
+   "nome": "IPIRANGA",
+   "nomeacoes": 140,
+   "civel": 25,
+   "familia": 39
+  },
+  {
+   "nome": "IPORÃ",
+   "nomeacoes": 574,
+   "civel": 134,
+   "familia": 263
+  },
+  {
+   "nome": "IRATI",
+   "nomeacoes": 678,
+   "civel": 236,
+   "familia": 132
+  },
+  {
+   "nome": "IRETAMA",
+   "nomeacoes": 204,
+   "civel": 22,
+   "familia": 66
+  },
+  {
+   "nome": "IVAIPORÃ",
+   "nomeacoes": 489,
+   "civel": 36,
+   "familia": 77
+  },
+  {
+   "nome": "JACAREZINHO",
+   "nomeacoes": 480,
+   "civel": 141,
+   "familia": 16
+  },
+  {
+   "nome": "JAGUAPITÃ",
+   "nomeacoes": 411,
+   "civel": 10,
+   "familia": 77
+  },
+  {
+   "nome": "JAGUARIAÍVA",
+   "nomeacoes": 334,
+   "civel": 42,
+   "familia": 35
+  },
+  {
+   "nome": "JANDAIA DO SUL",
+   "nomeacoes": 259,
+   "civel": 130,
+   "familia": 38
+  },
+  {
+   "nome": "JOAQUIM TÁVORA",
+   "nomeacoes": 188,
+   "civel": 13,
+   "familia": 52
+  },
+  {
+   "nome": "LAPA",
+   "nomeacoes": 943,
+   "civel": 81,
+   "familia": 230
+  },
+  {
+   "nome": "LARANJEIRAS DO SUL",
+   "nomeacoes": 586,
+   "civel": 72,
+   "familia": 112
+  },
+  {
+   "nome": "LOANDA",
+   "nomeacoes": 612,
+   "civel": 49,
+   "familia": 101
+  },
+  {
+   "nome": "LONDRINA",
+   "nomeacoes": 4320,
+   "civel": 1012,
+   "familia": 2
+  },
+  {
+   "nome": "MALLET",
+   "nomeacoes": 2,
+   "civel": 0,
+   "familia": 1
+  },
+  {
+   "nome": "MAMBORÊ",
+   "nomeacoes": 163,
+   "civel": 16,
+   "familia": 3
+  },
+  {
+   "nome": "MANDAGUARI",
+   "nomeacoes": 280,
+   "civel": 62,
+   "familia": 33
+  },
+  {
+   "nome": "MANDAGUAÇU",
+   "nomeacoes": 356,
+   "civel": 79,
+   "familia": 163
+  },
+  {
+   "nome": "MANGUEIRINHA",
+   "nomeacoes": 317,
+   "civel": 42,
+   "familia": 104
+  },
+  {
+   "nome": "MANOEL RIBAS",
+   "nomeacoes": 270,
+   "civel": 25,
+   "familia": 60
+  },
+  {
+   "nome": "MARECHAL CÂNDIDO RONDON",
+   "nomeacoes": 557,
+   "civel": 75,
+   "familia": 69
+  },
+  {
+   "nome": "MARIALVA",
+   "nomeacoes": 549,
+   "civel": 54,
+   "familia": 322
+  },
+  {
+   "nome": "MARILÂNDIA DO SUL",
+   "nomeacoes": 500,
+   "civel": 170,
+   "familia": 161
+  },
+  {
+   "nome": "MARINGÁ",
+   "nomeacoes": 1938,
+   "civel": 791,
+   "familia": 6
+  },
+  {
+   "nome": "MARMELEIRO",
+   "nomeacoes": 301,
+   "civel": 51,
+   "familia": 95
+  },
+  {
+   "nome": "MATELÂNDIA",
+   "nomeacoes": 328,
+   "civel": 87,
+   "familia": 43
+  },
+  {
+   "nome": "MATINHOS",
+   "nomeacoes": 50,
+   "civel": 23,
+   "familia": 2
+  },
+  {
+   "nome": "MEDIANEIRA",
+   "nomeacoes": 633,
+   "civel": 93,
+   "familia": 63
+  },
+  {
+   "nome": "MORRETES",
+   "nomeacoes": 25,
+   "civel": 4,
+   "familia": 9
+  },
+  {
+   "nome": "NOVA AURORA",
+   "nomeacoes": 455,
+   "civel": 51,
+   "familia": 129
+  },
+  {
+   "nome": "NOVA ESPERANÇA",
+   "nomeacoes": 600,
+   "civel": 44,
+   "familia": 204
+  },
+  {
+   "nome": "NOVA FÁTIMA",
+   "nomeacoes": 143,
+   "civel": 10,
+   "familia": 29
+  },
+  {
+   "nome": "NOVA LONDRINA",
+   "nomeacoes": 368,
+   "civel": 61,
+   "familia": 66
+  },
+  {
+   "nome": "ORTIGUEIRA",
+   "nomeacoes": 366,
+   "civel": 93,
+   "familia": 108
+  },
+  {
+   "nome": "PAIÇANDU",
+   "nomeacoes": 641,
+   "civel": 73,
+   "familia": 148
+  },
+  {
+   "nome": "PALMAS",
+   "nomeacoes": 816,
+   "civel": 74,
+   "familia": 264
+  },
+  {
+   "nome": "PALMEIRA",
+   "nomeacoes": 455,
+   "civel": 101,
+   "familia": 171
+  },
+  {
+   "nome": "PALMITAL",
+   "nomeacoes": 70,
+   "civel": 14,
+   "familia": 21
+  },
+  {
+   "nome": "PALOTINA",
+   "nomeacoes": 725,
+   "civel": 146,
+   "familia": 278
+  },
+  {
+   "nome": "PARANACITY",
+   "nomeacoes": 219,
+   "civel": 14,
+   "familia": 42
+  },
+  {
+   "nome": "PARANAGUÁ",
+   "nomeacoes": 133,
+   "civel": 94,
+   "familia": 2
+  },
+  {
+   "nome": "PARANAVAÍ",
+   "nomeacoes": 580,
+   "civel": 90,
+   "familia": 42
+  },
+  {
+   "nome": "PARAÍSO DO NORTE",
+   "nomeacoes": 269,
+   "civel": 12,
+   "familia": 40
+  },
+  {
+   "nome": "PATO BRANCO",
+   "nomeacoes": 507,
+   "civel": 78,
+   "familia": 14
+  },
+  {
+   "nome": "PEABIRU",
+   "nomeacoes": 121,
+   "civel": 12,
+   "familia": 4
+  },
+  {
+   "nome": "PINHAIS",
+   "nomeacoes": 585,
+   "civel": 235,
+   "familia": 222
+  },
+  {
+   "nome": "PINHÃO",
+   "nomeacoes": 603,
+   "civel": 62,
+   "familia": 275
+  },
+  {
+   "nome": "PIRAQUARA",
+   "nomeacoes": 1283,
+   "civel": 213,
+   "familia": 496
+  },
+  {
+   "nome": "PIRAÍ DO SUL",
+   "nomeacoes": 275,
+   "civel": 72,
+   "familia": 92
+  },
+  {
+   "nome": "PITANGA",
+   "nomeacoes": 498,
+   "civel": 63,
+   "familia": 44
+  },
+  {
+   "nome": "PONTA GROSSA",
+   "nomeacoes": 4074,
+   "civel": 1972,
+   "familia": 10
+  },
+  {
+   "nome": "PONTAL DO PARANÁ",
+   "nomeacoes": 59,
+   "civel": 16,
+   "familia": 7
+  },
+  {
+   "nome": "PORECATU",
+   "nomeacoes": 328,
+   "civel": 63,
+   "familia": 93
+  },
+  {
+   "nome": "PRIMEIRO DE MAIO",
+   "nomeacoes": 217,
+   "civel": 36,
+   "familia": 47
+  },
+  {
+   "nome": "PRUDENTÓPOLIS",
+   "nomeacoes": 633,
+   "civel": 70,
+   "familia": 215
+  },
+  {
+   "nome": "PÉROLA",
+   "nomeacoes": 195,
+   "civel": 32,
+   "familia": 73
+  },
+  {
+   "nome": "QUATRO BARRAS",
+   "nomeacoes": 291,
+   "civel": 9,
+   "familia": 132
+  },
+  {
+   "nome": "QUEDAS DO IGUAÇU",
+   "nomeacoes": 443,
+   "civel": 97,
+   "familia": 129
+  },
+  {
+   "nome": "REALEZA",
+   "nomeacoes": 417,
+   "civel": 39,
+   "familia": 71
+  },
+  {
+   "nome": "REBOUÇAS",
+   "nomeacoes": 303,
+   "civel": 23,
+   "familia": 80
+  },
+  {
+   "nome": "RESERVA",
+   "nomeacoes": 165,
+   "civel": 9,
+   "familia": 75
+  },
+  {
+   "nome": "RIBEIRÃO CLARO",
+   "nomeacoes": 172,
+   "civel": 31,
+   "familia": 34
+  },
+  {
+   "nome": "RIBEIRÃO DO PINHAL",
+   "nomeacoes": 293,
+   "civel": 9,
+   "familia": 18
+  },
+  {
+   "nome": "RIO BRANCO DO SUL",
+   "nomeacoes": 542,
+   "civel": 19,
+   "familia": 310
+  },
+  {
+   "nome": "RIO NEGRO",
+   "nomeacoes": 235,
+   "civel": 42,
+   "familia": 102
+  },
+  {
+   "nome": "ROLÂNDIA",
+   "nomeacoes": 912,
+   "civel": 63,
+   "familia": 45
+  },
+  {
+   "nome": "SALTO DO LONTRA",
+   "nomeacoes": 212,
+   "civel": 46,
+   "familia": 35
+  },
+  {
+   "nome": "SANTA FÉ",
+   "nomeacoes": 284,
+   "civel": 50,
+   "familia": 35
+  },
+  {
+   "nome": "SANTA HELENA",
+   "nomeacoes": 351,
+   "civel": 37,
+   "familia": 71
+  },
+  {
+   "nome": "SANTA ISABEL DO IVAÍ",
+   "nomeacoes": 194,
+   "civel": 3,
+   "familia": 25
+  },
+  {
+   "nome": "SANTA MARIANA",
+   "nomeacoes": 190,
+   "civel": 12,
+   "familia": 77
+  },
+  {
+   "nome": "SANTO ANTÔNIO DA PLATINA",
+   "nomeacoes": 500,
+   "civel": 58,
+   "familia": 19
+  },
+  {
+   "nome": "SANTO ANTÔNIO DO SUDOESTE",
+   "nomeacoes": 344,
+   "civel": 20,
+   "familia": 21
+  },
+  {
+   "nome": "SARANDI",
+   "nomeacoes": 828,
+   "civel": 186,
+   "familia": 70
+  },
+  {
+   "nome": "SENGÉS",
+   "nomeacoes": 397,
+   "civel": 32,
+   "familia": 179
+  },
+  {
+   "nome": "SERTANÓPOLIS",
+   "nomeacoes": 259,
+   "civel": 78,
+   "familia": 76
+  },
+  {
+   "nome": "SIQUEIRA CAMPOS",
+   "nomeacoes": 230,
+   "civel": 32,
+   "familia": 28
+  },
+  {
+   "nome": "SÃO JERÔNIMO DA SERRA",
+   "nomeacoes": 243,
+   "civel": 41,
+   "familia": 60
+  },
+  {
+   "nome": "SÃO JOSÉ DOS PINHAIS",
+   "nomeacoes": 1678,
+   "civel": 645,
+   "familia": 235
+  },
+  {
+   "nome": "SÃO JOÃO",
+   "nomeacoes": 307,
+   "civel": 51,
+   "familia": 100
+  },
+  {
+   "nome": "SÃO JOÃO DO IVAÍ",
+   "nomeacoes": 301,
+   "civel": 93,
+   "familia": 114
+  },
+  {
+   "nome": "SÃO JOÃO DO TRIUNFO",
+   "nomeacoes": 133,
+   "civel": 20,
+   "familia": 33
+  },
+  {
+   "nome": "SÃO MATEUS DO SUL",
+   "nomeacoes": 589,
+   "civel": 94,
+   "familia": 189
+  },
+  {
+   "nome": "SÃO MIGUEL DO IGUAÇU",
+   "nomeacoes": 417,
+   "civel": 90,
+   "familia": 30
+  },
+  {
+   "nome": "TEIXEIRA SOARES",
+   "nomeacoes": 264,
+   "civel": 28,
+   "familia": 59
+  },
+  {
+   "nome": "TELÊMACO BORBA",
+   "nomeacoes": 955,
+   "civel": 110,
+   "familia": 140
+  },
+  {
+   "nome": "TERRA BOA",
+   "nomeacoes": 1,
+   "civel": 0,
+   "familia": 0
+  },
+  {
+   "nome": "TERRA RICA",
+   "nomeacoes": 347,
+   "civel": 39,
+   "familia": 136
+  },
+  {
+   "nome": "TERRA ROXA",
+   "nomeacoes": 299,
+   "civel": 99,
+   "familia": 103
+  },
+  {
+   "nome": "TIBAGI",
+   "nomeacoes": 327,
+   "civel": 103,
+   "familia": 36
+  },
+  {
+   "nome": "TOLEDO",
+   "nomeacoes": 1070,
+   "civel": 148,
+   "familia": 177
+  },
+  {
+   "nome": "TOMAZINA",
+   "nomeacoes": 214,
+   "civel": 20,
+   "familia": 61
+  },
+  {
+   "nome": "UBIRATÃ",
+   "nomeacoes": 204,
+   "civel": 33,
+   "familia": 37
+  },
+  {
+   "nome": "UMUARAMA",
+   "nomeacoes": 918,
+   "civel": 367,
+   "familia": 60
+  },
+  {
+   "nome": "UNIÃO DA VITÓRIA",
+   "nomeacoes": 339,
+   "civel": 140,
+   "familia": 33
+  },
+  {
+   "nome": "URAÍ",
+   "nomeacoes": 171,
+   "civel": 26,
+   "familia": 77
+  },
+  {
+   "nome": "WENCESLAU BRAZ",
+   "nomeacoes": 343,
+   "civel": 21,
+   "familia": 86
+  },
+  {
+   "nome": "XAMBRÊ",
+   "nomeacoes": 167,
+   "civel": 46,
+   "familia": 44
+  }
+ ]
+}
