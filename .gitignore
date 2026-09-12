@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# arquivos originais da marca (grandes; os servidos ficam em public/marca)
+# mantidos no repo para reprocessamento — descomente para ignorar
+# /marca-origem
