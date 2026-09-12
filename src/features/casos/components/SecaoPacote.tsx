@@ -25,13 +25,13 @@ export function SecaoPacote({ caso }: { caso: Caso }) {
   }
 
   return (
-    <Secao id="pacote" titulo="Pacote de protocolo" descricao="Minuta revisada + procuração assinada + declaração + documentos do assistido.">
+    <Secao id="pacote" titulo="Pacote de protocolo" descricao="Minuta revisada + procuração assinada + declaração + documentos da parte.">
       <ul className="text-sm space-y-1 mb-4">
         <Item ok={Boolean(minuta)} texto="Minuta da petição inicial gerada e revisada" />
-        <Item ok={assinado('procuracao')} texto="Procuração assinada pelo assistido" />
+        <Item ok={assinado('procuracao')} texto="Procuração assinada pela parte" />
         <Item ok={assinado('consentimento_dados')} texto="Consentimento para uso de dados assinado" />
         <Item ok={assinado('declaracao_hipossuficiencia')} texto="Declaração de hipossuficiência assinada" />
-        <Item ok={pendentes.length === 0} texto={`Documentos do assistido recebidos (${pendentes.length} pendente(s))`} />
+        <Item ok={pendentes.length === 0} texto={`Documentos da parte recebidos (${pendentes.length} pendente(s))`} />
       </ul>
 
       <div className="flex flex-wrap gap-2">
@@ -45,12 +45,12 @@ export function SecaoPacote({ caso }: { caso: Caso }) {
             <ClipboardList className="w-4 h-4" /> Registrar protocolo (simulação)
           </button>
         )}
-        {finalizado && <Aviso tipo="ok">Protocolado. O assistido foi avisado pela conversa.</Aviso>}
+        {finalizado && <Aviso tipo="ok">Protocolado. A parte foi avisada pela conversa.</Aviso>}
       </div>
 
       {!pronto && !finalizado && (
         <p className="text-xs text-ink-500 mt-2">
-          Para aprovar: gere a minuta e obtenha ao menos uma assinatura do assistido (ele assina na tela dele).
+          Para aprovar: gere a minuta e obtenha ao menos uma assinatura da parte (ela assina na tela dela).
         </p>
       )}
     </Secao>

@@ -7,11 +7,12 @@ export const maxDuration = 60;
 
 export async function POST(req: Request) {
   try {
-    const { caso } = await req.json();
-    if (!caso?.relato?.texto || String(caso.relato.texto).trim().length < 10) {
-      return NextResponse.json({ erro: 'Relato muito curto para análise.' }, { status: 400 });
+    const { caso, mensagens } = await req.json();
+    const material = [caso?.relato?.texto ?? '', ...((mensagens ?? []) as { texto?: string }[]).map((m) => m?.texto ?? '')].join(' ').trim();
+    if (material.length < 10) {
+      return NextResponse.json({ erro: 'Ainda não há material suficiente. Converse com a parte ou registre o relato antes de gerar o resumo.' }, { status: 400 });
     }
-    const r = await tarefaResumo(caso);
+    const r = await tarefaResumo(caso, mensagens ?? []);
     return NextResponse.json(r);
   } catch (e) {
     if (e instanceof ErroIA) return NextResponse.json({ erro: e.message, tentativas: e.tentativas }, { status: e.status });

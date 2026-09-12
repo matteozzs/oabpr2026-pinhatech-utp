@@ -8,16 +8,12 @@ import { Logo } from './Logo';
 import { sair, usePerfil } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
-const LINKS_CIDADAO = [
-  { href: '/cidadao', rotulo: 'Minhas solicitações' },
-  { href: '/cidadao/nova-solicitacao', rotulo: 'Nova solicitação' },
-];
+const LINKS_CIDADAO = [{ href: '/cidadao', rotulo: 'Meus processos' }];
 
 const LINKS_ADVOGADO = [
   { href: '/advogado/dashboard', rotulo: 'Atendimentos' },
   { href: '/advogado/chat', rotulo: 'Conversas' },
-  { href: '/advogado/novo-atendimento', rotulo: 'Novo atendimento' },
-  { href: '/advogado/credenciamento', rotulo: 'Credenciamento' },
+  { href: '/advogado/novo-atendimento', rotulo: 'Registrar nomeação' },
 ];
 
 const LINKS_VISITANTE = [

@@ -1,4 +1,4 @@
-import type { Caso, ChecklistDocumental, MetaIA, Minuta, ResumoFatico } from '@/types';
+import type { Caso, ChecklistDocumental, Mensagem, MetaIA, Minuta, ResumoFatico } from '@/types';
 
 /**
  * Cliente tipado das rotas `/api/ia/*`.
@@ -18,8 +18,9 @@ async function post<T>(url: string, corpo: unknown): Promise<T> {
   return j as T;
 }
 
-export function pedirResumo(caso: Caso) {
-  return post<{ resumo: ResumoFatico; meta: MetaIA }>('/api/ia/resumo', { caso }).then((r) => ({ dados: r.resumo, meta: r.meta }));
+/** O resumo nasce do relato inicial somado à conversa havida com a parte. */
+export function pedirResumo(caso: Caso, mensagens: Mensagem[] = []) {
+  return post<{ resumo: ResumoFatico; meta: MetaIA }>('/api/ia/resumo', { caso, mensagens }).then((r) => ({ dados: r.resumo, meta: r.meta }));
 }
 
 export function pedirChecklist(caso: Caso, resumo?: ResumoFatico) {

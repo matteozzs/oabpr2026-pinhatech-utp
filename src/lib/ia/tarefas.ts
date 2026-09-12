@@ -1,4 +1,4 @@
-import type { Area, Caso, ChecklistDocumental, DocumentoCatalogo, MetaIA, Minuta, ResumoFatico } from '@/types';
+import type { Area, Caso, ChecklistDocumental, DocumentoCatalogo, Mensagem, MetaIA, Minuta, ResumoFatico } from '@/types';
 import { lerPrompt, systemBase } from './prompts';
 import { recuperar, renderizarFontes, validarFontes, idsCitadosNoTexto } from './rag';
 import { gerarJSON } from './provider';
@@ -62,13 +62,27 @@ function textoDeBusca(caso: Partial<Caso>, resumo?: ResumoFatico) {
 
 /* ---------------------------------------------------------------------- */
 
-export async function tarefaResumo(caso: Partial<Caso>): Promise<{ resumo: ResumoFatico; meta: MetaIA }> {
+/** A conversa vira lista estruturada, só com o que é fato do caso (sem mensagens operacionais). */
+function conversaParaPrompt(mensagens: Mensagem[] = []) {
+  return mensagens
+    .filter((m) => m.autor !== 'plataforma' && m.tipo !== 'orientacao_cras' && m.tipo !== 'solicitacao_assinatura')
+    .map((m) => ({
+      autor: m.autor === 'assistido' ? 'parte' : 'advogado',
+      origem: m.canal === 'whatsapp_simulado' ? 'whatsapp' : 'chat',
+      em: m.enviadoEm,
+      texto: m.texto,
+      anexo: m.anexo?.nome ?? null,
+    }));
+}
+
+export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = []): Promise<{ resumo: ResumoFatico; meta: MetaIA }> {
   const inicio = Date.now();
   const area = (caso.area ?? 'familia') as Area;
-  const rec = recuperar({ area, texto: textoDeBusca(caso), limite: 10 });
+  const conversa = conversaParaPrompt(mensagens);
+  const rec = recuperar({ area, texto: `${textoDeBusca(caso)} ${conversa.map((m) => m.texto).join(' ')}`, limite: 10 });
   const permitidas = new Set(rec.map((r) => r.dispositivo.id));
 
-  const user = [bloco('tarefa', lerPrompt('01-resumo-fatico')), renderizarFontes(rec), bloco('caso', casoParaPrompt(caso))].join('\n\n');
+  const user = [bloco('tarefa', lerPrompt('01-resumo-fatico')), renderizarFontes(rec), bloco('caso', casoParaPrompt(caso)), bloco('conversa', conversa)].join('\n\n');
 
   const { dados, meta } = await gerarJSON<Omit<ResumoFatico, 'geradoEm' | 'modelo' | 'fontesUtilizadas'> & { fontesUtilizadas?: { id: string }[] }>({
     system: systemBase(),

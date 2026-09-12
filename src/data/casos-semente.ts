@@ -4,6 +4,10 @@ import { catalogoPorArea } from './documentos';
 /**
  * Casos de demonstração. Nomes e fatos são fictícios.
  * Todos já chegam com a nomeação aceita — a nomeação e o aceite acontecem na OAB/Fórum, antes da plataforma.
+ *
+ * Coerência de dados: onde 'documentos_pessoais' consta como recebido, a qualificação (CPF, RG,
+ * endereço) está preenchida — o dado veio do documento. Onde não consta (004 e 006), fica vazia
+ * de propósito, para demonstrar o marcador [A COMPLETAR EM ENTREVISTA] nos documentos gerados.
  * As comarcas são reais (fonte: advocaciadativa.oabpr.org.br, 12/03 a 12/09/2026) — inclusive
  * Terra Boa, que teve 1 nomeação em seis meses, e Castro, com 19: exemplos de cobertura leve.
  */
@@ -38,6 +42,11 @@ export const CASOS_SEMENTE: Caso[] = [
     assistido: {
       nome: 'Maria Aparecida dos Santos',
       tipoPessoa: 'PF',
+      cpf: '041.882.560-17',
+      rg: '9.884.213-0 SESP/PR',
+      nacionalidade: 'brasileira',
+      endereco: 'Rua das Araucárias, 145',
+      cep: '83408-140',
       cidade: 'Colombo',
       uf: 'PR',
       bairro: 'Alto Maracanã',
@@ -80,6 +89,12 @@ export const CASOS_SEMENTE: Caso[] = [
     assistido: {
       nome: 'José Carlos Ferreira',
       tipoPessoa: 'PF',
+      cpf: '028.447.910-55',
+      rg: '7.412.908-3 SESP/PR',
+      nacionalidade: 'brasileiro',
+      estadoCivil: 'solteiro',
+      endereco: 'Rua Professor Nilo Brandão, 872',
+      cep: '82900-030',
       cidade: 'Curitiba',
       uf: 'PR',
       bairro: 'Cajuru',
@@ -120,6 +135,11 @@ export const CASOS_SEMENTE: Caso[] = [
     assistido: {
       nome: 'Antônio Marcos da Silva',
       tipoPessoa: 'PF',
+      cpf: '063.115.240-88',
+      rg: '10.229.744-6 SESP/PR',
+      nacionalidade: 'brasileiro',
+      endereco: 'Rua Alagoas, 58',
+      cep: '83820-120',
       cidade: 'Fazenda Rio Grande',
       uf: 'PR',
       bairro: 'Nações',
@@ -204,6 +224,11 @@ export const CASOS_SEMENTE: Caso[] = [
     assistido: {
       nome: 'Paulo Roberto Nunes',
       tipoPessoa: 'PF',
+      cpf: '017.306.829-04',
+      rg: '6.330.517-2 SESP/PR',
+      nacionalidade: 'brasileiro',
+      endereco: 'Avenida General Carlos Cavalcanti, 2310',
+      cep: '84030-900',
       cidade: 'Ponta Grossa',
       uf: 'PR',
       bairro: 'Uvaranas',

@@ -1,25 +1,42 @@
 'use client';
 
 import { useState } from 'react';
-import { Building2, FileSignature, MessageSquareText, Send, UserRound } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Building2, FileSignature, MessageSquareText, Send, Sparkles, UserRound } from 'lucide-react';
 import type { Caso } from '@/types';
-import { ADVOGADO_DEMO, atualizarDocumento, enviarMensagem, mudarStatus } from '@/lib/store';
+import { ADVOGADO_DEMO, atualizarCaso, atualizarDocumento, enviarMensagem, mudarStatus, useMensagens } from '@/lib/store';
 import { encontrarCras } from '@/lib/cras';
 import { Aviso, Carregando, RotuloIA } from '@/components/ui';
 import { iaApi, useIA } from '@/features/ia';
 
 /**
- * Ações rápidas do advogado no chat: pedir documentos (IA), enviar orientação do CRAS,
- * pedir assinatura, e — para a demonstração sem acompanhamento — simular a resposta do assistido.
+ * Ações do advogado dentro da conversa.
+ *
+ * É daqui que nasce o **resumo fático**: quando o advogado julga ter apurado o suficiente
+ * com a parte — por mensagem ou áudio transcrito — ele gera o resumo, que passa a existir
+ * no painel do caso. Um atalho aparece ao lado do botão assim que o resumo fica pronto.
  */
 export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
   const ia = useIA();
+  const mensagens = useMensagens(caso.id);
   const [rascunho, setRascunho] = useState<string | null>(null);
 
   const adv = caso.advogado ?? ADVOGADO_DEMO;
   const primeiroNome = caso.assistido.nome.split(' ')[0];
   const docsPendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
   const docsAssinar = caso.documentos.filter((d) => d.exigeAssinatura && d.status !== 'assinado');
+  const temResumo = Boolean(caso.ia.resumo);
+  const falasDaParte = mensagens.filter((m) => m.autor === 'assistido').length;
+
+  async function gerarResumo() {
+    const r = await ia.executar('resumo', () => iaApi.pedirResumo(caso, mensagens));
+    if (!r) return;
+    atualizarCaso(caso.id, (c) => ({ ia: { ...c.ia, resumo: r } }), {
+      tipo: 'ia',
+      descricao: `Resumo fático gerado pela IA (${r.modelo}) a partir da conversa com a parte.`,
+      autor: 'ia',
+    });
+  }
 
   async function pedirDocumentos() {
     const cras = encontrarCras(caso.assistido.cidade);
@@ -38,7 +55,7 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
     if (!rascunho) return;
     enviarMensagem({ casoId: caso.id, autor: 'advogado', canal: 'chat', tipo: 'texto', texto: rascunho, geradaPorIA: true });
     docsPendentes.filter((d) => d.status === 'pendente').forEach((d) => atualizarDocumento(caso.id, d.id, { status: 'solicitado' }));
-    if (caso.status === 'em_atendimento') mudarStatus(caso.id, 'aguardando_documentos', 'Documentos solicitados ao assistido pelo chat.');
+    if (caso.status === 'em_atendimento') mudarStatus(caso.id, 'aguardando_documentos', 'Documentos solicitados à parte pela conversa.');
     setRascunho(null);
   }
 
@@ -77,7 +94,7 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
         caso.id,
         doc.id,
         { status: 'recebido', arquivoNome: `${doc.nome} (foto simulada).jpg` },
-        { tipo: 'documento', descricao: `Assistido enviou "${doc.nome}" pelo chat.`, autor: 'assistido' },
+        { tipo: 'documento', descricao: `Parte enviou "${doc.nome}" pela conversa.`, autor: 'assistido' },
       );
     }
   }
@@ -87,7 +104,7 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
       {rascunho !== null && (
         <div className="rounded-xl border border-navy-100 bg-navy-50 p-3 space-y-2">
           <p className="label">Revise antes de enviar</p>
-          <textarea className="input min-h-[160px]" value={rascunho} onChange={(e) => setRascunho(e.target.value)} aria-label="Mensagem ao assistido" />
+          <textarea className="input min-h-[160px]" value={rascunho} onChange={(e) => setRascunho(e.target.value)} aria-label="Mensagem à parte" />
           <div className="flex gap-2">
             <button className="btn-primary text-xs" onClick={enviarRascunho}>
               <Send className="w-3.5 h-3.5" /> Enviar
@@ -100,8 +117,31 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
         </div>
       )}
 
+      {ia.ocupado === 'resumo' && <Carregando texto="Lendo a conversa e consolidando o resumo fático…" />}
       {ia.ocupado === 'mensagem' && <Carregando texto="Redigindo mensagem acessível…" />}
       {ia.erro && <Aviso tipo="erro">{ia.erro}</Aviso>}
+
+      {/* Resumo fático: o passo que fecha a apuração */}
+      <div className="flex flex-wrap items-center gap-1.5 pb-1.5 border-b border-ink-200">
+        <button
+          className="btn-primary text-xs py-1.5"
+          onClick={gerarResumo}
+          disabled={ia.ocupado !== null}
+          title={falasDaParte === 0 ? 'Sem falas da parte ainda — o resumo usará apenas o relato inicial' : ''}
+        >
+          <Sparkles className="w-3.5 h-3.5" /> {temResumo ? 'Atualizar resumo fático' : 'Gerar resumo fático'}
+        </button>
+
+        {temResumo && (
+          <Link href={`/advogado/caso/${caso.id}?secao=resumo`} className="btn-secondary text-xs py-1.5">
+            Ver no painel do caso <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
+
+        <span className="text-[11px] text-ink-500 ml-1">
+          {falasDaParte > 0 ? `a partir de ${falasDaParte} fala(s) da parte + relato inicial` : 'a partir do relato inicial'}
+        </span>
+      </div>
 
       <div className="flex flex-wrap gap-1.5">
         <button
@@ -118,7 +158,7 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
         <button className="btn-secondary text-xs py-1.5" onClick={pedirAssinatura} disabled={docsAssinar.length === 0}>
           <FileSignature className="w-3.5 h-3.5" /> Pedir assinatura
         </button>
-        <button className="btn-ghost text-xs py-1.5" onClick={simularResposta} title="Somente para a demonstração: simula o assistido respondendo">
+        <button className="btn-ghost text-xs py-1.5" onClick={simularResposta} title="Somente para a demonstração: simula a parte respondendo">
           <UserRound className="w-3.5 h-3.5" /> Simular resposta (demo)
         </button>
       </div>

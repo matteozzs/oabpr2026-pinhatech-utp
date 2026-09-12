@@ -227,6 +227,10 @@ export interface Minuta {
   fundamentacaoNaoLocalizada: string[];
   geradoEm: string;
   modelo: string;
+  /** Preenchido quando o advogado revisa e marca a minuta como conferida (só possível sem lacunas). */
+  revisadaEm?: string;
+  /** Marcado quando o advogado editou o texto gerado. */
+  editadaEm?: string;
 }
 
 export interface Caso {

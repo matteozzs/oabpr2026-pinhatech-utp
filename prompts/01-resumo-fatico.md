@@ -1,23 +1,34 @@
-# Tarefa 01 — Resumo fático e triagem
+# Tarefa 01 — Resumo fático
 
 ## Objetivo
 
-Produzir a síntese executiva que permite ao(à) advogado(a) dativo(a) — já nomeado(a) pela OAB/Fórum — se apropriar do caso em menos de um minuto, sem ouvir áudios longos nem ler relatos desorganizados.
+Consolidar **tudo que o(a) advogado(a) dativo(a) apurou com a parte** — a nomeação recebida, o relato inicial e, principalmente, a **conversa** havida no chat (mensagens escritas e transcrições de áudio) — em uma síntese executiva que permita se apropriar do caso em menos de um minuto.
+
+Esta tarefa é acionada pelo advogado **de dentro da conversa**, quando ele julga já ter apurado o suficiente. O resultado alimenta o checklist documental e a minuta.
 
 ## Entrada
 
-Bloco `<caso>` com: relato livre do cidadão (texto ou transcrição de voz), área declarada, comarca, se há processo ativo, dados básicos informados.
-Bloco `<fontes>` com os dispositivos recuperados para o tema.
+- `<caso>`: área, comarca, se há processo ativo, dados já conhecidos da parte e o relato inicial.
+- `<conversa>`: histórico do chat em ordem cronológica, com autor e origem de cada mensagem (`texto` ou `transcricao_audio`). Pode vir vazio — nesse caso trabalhe apenas com o relato inicial.
+- `<fontes>`: dispositivos recuperados para o tema.
 
 ## Regras específicas
 
-- Reorganize os fatos em **ordem cronológica**, sem acrescentar nada que não esteja no relato.
+### Sobre a conversa
+- A conversa é **fonte de fato**, não de direito. Extraia dela: datas, valores, nomes, vínculos, documentos mencionados, mudanças na versão dos fatos.
+- Quando a parte **corrigir ou complementar** algo dito antes, vale a informação mais recente — e registre a mudança em `alertas`.
+- Transcrições de áudio podem conter repetição, hesitação e erro de transcrição. Interprete o sentido sem acrescentar fato novo; se um trecho for ininteligível ou ambíguo em ponto relevante, registre em `dadosFaltantes`.
+- **Não trate como fato** o que a parte apresenta como suposição, boato ou opinião ("acho que ele ganha uns três mil"). Se for relevante, registre como a confirmar.
+- Ignore mensagens operacionais da plataforma e pedidos de documento feitos pelo advogado — não são fatos do caso.
+
+### Sobre a síntese
+- Reorganize os fatos em **ordem cronológica**, sem acrescentar nada que não esteja no relato ou na conversa.
 - Identifique o **tema** em linguagem técnica (ex.: "Execução de alimentos", "Cobrança indevida com negativação", "Reconhecimento e dissolução de união estável") e um `temaSlug` em snake_case.
-- Se o relato for insuficiente para identificar a pretensão, registre isso em `dadosFaltantes` — **não deduza** a pretensão.
-- `partes.reu`: use o nome que o cidadão informou; se não informou, `[A COMPLETAR EM ENTREVISTA]`.
-- `hipossuficiencia.indicios`: `true` **apenas** se o relato ou os dados trouxerem indício concreto (renda informada abaixo de 3 salários mínimos, desemprego, CadÚnico, benefício social, dificuldade financeira relatada). Caso contrário, `false` com justificativa "não há elementos no relato".
-- `urgencia.existe`: `true` somente se houver risco **concreto e atual** relatado (falta de alimento para criança, corte de serviço essencial, risco à saúde, prazo decadencial próximo). Preferência ou pressa do cidadão não é urgência.
-- `alertas`: inconsistências no relato, indícios de matéria conexa fora do escopo (ex.: violência), risco de prescrição/decadência, necessidade de encaminhamento paralelo.
+- Se o material for insuficiente para identificar a pretensão, registre isso em `dadosFaltantes` — **não deduza** a pretensão.
+- `partes.reu`: use o nome informado; se não houver, `[A COMPLETAR EM ENTREVISTA]`.
+- `hipossuficiencia.indicios`: `true` **apenas** com indício concreto (renda informada abaixo de 3 salários mínimos, desemprego, CadÚnico, benefício social, dificuldade financeira relatada). Caso contrário, `false` com justificativa "não há elementos no relato".
+- `urgencia.existe`: `true` somente com risco **concreto e atual** (falta de alimento para criança, corte de serviço essencial, risco à saúde, prazo decadencial próximo). Pressa da parte não é urgência.
+- `alertas`: inconsistências entre o relato e a conversa, matéria conexa fora do escopo (ex.: violência), risco de prescrição/decadência, necessidade de encaminhamento paralelo.
 - `foraDoEscopo`: aplique a regra do sistema. Se `true`, preencha `motivoForaDoEscopo` e deixe `fatosCronologicos` com o relato resumido em 1 item, sem análise jurídica.
 - `fontesUtilizadas`: apenas os `id` que embasam sua leitura do tema. Não cite fonte que não usou.
 
@@ -31,7 +42,7 @@ Bloco `<fontes>` com os dispositivos recuperados para o tema.
   "resumoExecutivo": "string — 2 a 4 frases, para leitura do advogado",
   "fatosCronologicos": ["string", "..."],
   "partes": { "autor": "string", "reu": "string", "vinculo": "string" },
-  "pretensao": "string — o que o cidadão quer, em linguagem técnica",
+  "pretensao": "string — o que a parte quer, em linguagem técnica",
   "urgencia": { "existe": true, "motivo": "string" },
   "hipossuficiencia": { "indicios": true, "justificativa": "string" },
   "dadosFaltantes": ["string", "..."],

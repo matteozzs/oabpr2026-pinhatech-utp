@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, Plus, UserCheck } from 'lucide-react';
+import { ArrowRight, UserCheck } from 'lucide-react';
 import { entrarComo, useCasos, usePerfil } from '@/lib/store';
 import { CardCaso } from '@/features/casos';
 
@@ -17,8 +16,8 @@ export default function CidadaoPage() {
         <UserCheck className="w-12 h-12 text-navy-700 mx-auto" />
         <h1 className="mt-4 text-3xl font-black text-navy-950">Sou Cidadão</h1>
         <p className="mt-3 text-ink-700">
-          Aqui você conta o seu problema com suas palavras — por texto ou por voz — e recebe um número de protocolo. Um(a) advogado(a)
-          dativo(a) nomeado(a) pela OAB/PR vai analisar e falar com você por aqui.
+          Aqui você acompanha o processo em que a OAB/PR ou o Fórum nomeou um(a) advogado(a) dativo(a) para você: conversa com ele(a),
+          envia os documentos que faltam e assina o que for necessário.
         </p>
         <button
           className="btn-primary mt-6 w-full sm:w-auto text-base px-6 py-3"
@@ -36,18 +35,15 @@ export default function CidadaoPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-black text-navy-950">Minhas solicitações</h1>
-          <p className="text-ink-700 mt-1">Acompanhe o andamento, envie documentos e fale com o(a) advogado(a).</p>
-        </div>
-        <Link href="/cidadao/nova-solicitacao" className="btn-primary">
-          <Plus className="w-4 h-4" /> Nova solicitação
-        </Link>
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-black text-navy-950">Meus processos</h1>
+        <p className="text-ink-700 mt-1">Acompanhe o andamento, envie documentos e fale com o(a) advogado(a) nomeado(a).</p>
       </div>
 
       {!pronto ? null : casos.length === 0 ? (
-        <div className="card p-8 text-center text-ink-700">Você ainda não tem solicitações.</div>
+        <div className="card p-8 text-center text-ink-700">
+          Nenhum processo por aqui ainda. Os processos aparecem quando a OAB/PR ou o Fórum nomeia um(a) advogado(a) dativo(a) para o seu caso.
+        </div>
       ) : (
         <ul className="grid gap-3">
           {casos.map((c) => (

@@ -128,7 +128,7 @@ evidencias/         ← saídas brutas dos testes e prints dos checkpoints
 
 Stack: Next.js 16 (App Router) · TypeScript · Tailwind v4 · Gemini via REST (sem SDK, chamada legível) · `docx` · Web Speech API para voz.
 
-**Mapa completo das 14 telas, com link e o que validar em cada uma: [`docs/telas.md`](docs/telas.md).**
+**Mapa completo das 12 telas (a do caso tem 5 subtelas), com link e o que validar: [`docs/telas.md`](docs/telas.md).**
 
 ## 7. Dados
 
