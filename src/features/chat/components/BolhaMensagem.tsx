@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Building2, ExternalLink, FileSignature, MapPin, Paperclip } from 'lucide-react';
+import { Building2, ExternalLink, FileSignature, Mail, MapPin, Paperclip } from 'lucide-react';
 import type { Caso, Mensagem, Perfil } from '@/types';
 import { linkBuscaCras, linkBuscaForum } from '@/lib/cras';
 import { cn, formatarDataHora } from '@/lib/utils';
@@ -24,6 +24,22 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
         <a className="btn-secondary text-xs py-1.5" href={linkBuscaForum(cidade)} target="_blank" rel="noreferrer">
           <MapPin className="w-3.5 h-3.5" /> Fórum <ExternalLink className="w-3 h-3" />
         </a>
+      </Cartao>
+    );
+  }
+
+  if (m.canal === 'email') {
+    return (
+      <Cartao
+        minha={minha}
+        titulo={m.assunto ? `E-mail · ${m.assunto}` : 'E-mail enviado'}
+        icone={<Mail className="w-3.5 h-3.5" />}
+        em={m.enviadoEm}
+        texto={m.texto}
+      >
+        <span className="text-[11px] text-ink-500">
+          Enviado pelo e-mail do(a) advogado(a){m.geradaPorIA ? ' · redigido com IA, revisado' : ''}
+        </span>
       </Cartao>
     );
   }

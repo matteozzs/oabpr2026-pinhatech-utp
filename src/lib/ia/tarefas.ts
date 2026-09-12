@@ -288,13 +288,14 @@ export async function tarefaMinuta(
 
 
 export interface EntradaMensagem {
+  canal?: 'chat' | 'email';
   advogado: { nome: string };
   assistido: { primeiroNome: string; sabeLerEscrever?: boolean; cidade: string };
   pendencias: { nome: string; ondeObter?: string }[];
   cras?: { municipio: string; rede: string; servicos: string[] } | null;
 }
 
-export async function tarefaMensagem(e: EntradaMensagem): Promise<{ texto: string; resumoCurto: string; meta: MetaIA }> {
+export async function tarefaMensagem(e: EntradaMensagem): Promise<{ texto: string; assunto: string; resumoCurto: string; meta: MetaIA }> {
   const inicio = Date.now();
   const user = [
     bloco('tarefa', lerPrompt('04-mensagem-assistido')),
@@ -305,7 +306,7 @@ export async function tarefaMensagem(e: EntradaMensagem): Promise<{ texto: strin
     bloco('cras', e.cras ?? null),
   ].join('\n\n');
 
-  const { dados, meta } = await gerarJSON<{ texto?: string; resumoCurto?: string }>({
+  const { dados, meta } = await gerarJSON<{ texto?: string; assunto?: string; resumoCurto?: string }>({
     system: systemBase(),
     user,
     maxOutputTokens: 2048,
@@ -313,6 +314,7 @@ export async function tarefaMensagem(e: EntradaMensagem): Promise<{ texto: strin
   });
   return {
     texto: dados.texto ?? '',
+    assunto: e.canal === 'email' ? (dados.assunto ?? '') : '',
     resumoCurto: dados.resumoCurto ?? '',
     meta: {
       modelo: meta.modelo,

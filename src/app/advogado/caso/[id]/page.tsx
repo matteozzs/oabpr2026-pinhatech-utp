@@ -18,6 +18,7 @@ import {
   SecaoResumo,
   type SecaoCaso,
 } from '@/features/casos';
+import { SecaoContato } from '@/features/contato';
 
 /**
  * Atendimento de um caso. O índice à esquerda navega entre as etapas; o conteúdo
@@ -58,7 +59,7 @@ export default function CasoPage({ params }: { params: Promise<{ id: string }> }
           <ArrowLeft className="w-4 h-4" /> Painel
         </Link>
         <Link href={`/advogado/chat/${caso.id}`} className="btn-secondary text-xs">
-          <MessageCircle className="w-3.5 h-3.5" /> Conversa com a parte
+          <MessageCircle className="w-3.5 h-3.5" /> Abrir conversa
         </Link>
       </div>
 
@@ -71,6 +72,7 @@ export default function CasoPage({ params }: { params: Promise<{ id: string }> }
 
         <div className="min-w-0">
           {ativa === 'resumo' && <SecaoResumo caso={caso} ia={ia} />}
+          {ativa === 'contato' && <SecaoContato caso={caso} />}
           {ativa === 'documentos' && <SecaoDocumentos caso={caso} ia={ia} />}
           {ativa === 'minuta' && <SecaoMinuta caso={caso} ia={ia} />}
           {ativa === 'pacote' && <SecaoPacote caso={caso} />}

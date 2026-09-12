@@ -27,7 +27,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black text-navy-950">Meus atendimentos</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-navy-950">Atendimentos em andamento</h1>
           <p className="text-ink-700 mt-1">
             {ADVOGADO_DEMO.nome} · {ADVOGADO_DEMO.oab}
           </p>

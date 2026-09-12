@@ -10,7 +10,8 @@ const FEITO = [
   'Procuração, declaração de hipossuficiência e consentimento LGPD em .docx a partir dos templates',
   'Minuta da petição inicial com citação por id e validação no servidor',
   'Chat dedicado com a parte, pelo número oficial da plataforma (número do advogado preservado), com caixa de entrada, orientação do CRAS e pedido de assinatura como cartões',
-  'Painel de instrução ao assistido com rede CRAS da RMC',
+  'Seção de Contato no painel do caso: chat interno, e-mail com redação por IA e WhatsApp declarado',
+  'Painel de instrução à parte com rede CRAS da RMC',
   'Assinatura eletrônica com hash (simulação), gov.br (ilustrativo) e impressão + foto',
   'Corpus jurídico aberto e prompts auditáveis',
 ];
@@ -20,7 +21,7 @@ const ROADMAP = [
   { t: 'Transcrição de vídeo e áudio no servidor', d: 'Relatos em vídeo/áudio enviados pelo WhatsApp transcritos por modelo multimodal.' },
   { t: 'Assinatura gov.br e ICP-Brasil', d: 'Assinatura qualificada da procuração e declarações via gov.br (prata/ouro) e certificado A1/A3.' },
   { t: 'Integração com o sistema de dativos da OAB/PR', d: 'Receber a nomeação direto do sistema oficial, sem o advogado precisar registrá-la à mão. O credenciamento segue acontecendo lá, não aqui.' },
-  { t: 'E-mail como canal', d: 'Notificações e cópia da conversa por e-mail para quem preferir.' },
+  { t: 'Disparo de e-mail pelo servidor', d: 'Hoje a composição é feita na plataforma e o envio abre o cliente de e-mail do advogado. Falta o SMTP próprio, com registro de entrega e resposta da parte voltando para a conversa.' },
   { t: 'Mapa estadual completo', d: 'CRAS, CREAS, Defensoria e Fórum dos 399 municípios com endereço verificado (CadSUAS).' },
   { t: 'Novas áreas', d: 'Criminal (maior volume de nomeações), Infância e Juventude, Execução Penal — bastando ampliar o corpus e os prompts.' },
   { t: 'Persistência compartilhada', d: 'Supabase/Postgres para o caso criado no celular do cidadão aparecer no painel do advogado em outro dispositivo.' },

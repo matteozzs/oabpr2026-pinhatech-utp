@@ -1,16 +1,33 @@
-export function Logo({ tamanho = 36, comTexto = true }: { tamanho?: number; comTexto?: boolean }) {
+import Image from 'next/image';
+
+/**
+ * Marca da Ordem Dativa. Os arquivos em `public/marca/` são os oficiais fornecidos
+ * pela equipe, recortados e com fundo transparente.
+ */
+export function Logo({ altura = 36, comTexto = true }: { altura?: number; comTexto?: boolean }) {
+  if (!comTexto) {
+    return (
+      <Image
+        src="/marca/icone.png"
+        alt="Ordem Dativa"
+        width={512}
+        height={454}
+        priority
+        style={{ height: altura, width: 'auto' }}
+        className="select-none"
+      />
+    );
+  }
+
   return (
-    <span className="inline-flex items-center gap-2.5 select-none">
-      <svg width={tamanho} height={tamanho} viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="24" cy="32" r="21" fill="#1565C0" />
-        <path d="M28 6 A26 26 0 0 1 28 58 Z" fill="#0B3A78" />
-      </svg>
-      {comTexto && (
-        <span className="leading-none">
-          <span className="block text-[15px] font-black tracking-tight text-navy-900">ORDEM</span>
-          <span className="block text-[15px] font-light tracking-[0.18em] text-navy-700">DATIVA</span>
-        </span>
-      )}
-    </span>
+    <Image
+      src="/marca/logo.png"
+      alt="Ordem Dativa"
+      width={720}
+      height={250}
+      priority
+      style={{ height: altura, width: 'auto' }}
+      className="select-none"
+    />
   );
 }

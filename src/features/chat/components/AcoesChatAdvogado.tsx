@@ -40,15 +40,16 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
 
   async function pedirDocumentos() {
     const cras = encontrarCras(caso.assistido.cidade);
-    const texto = await ia.executar('mensagem', () =>
+    const r = await ia.executar('mensagem', () =>
       iaApi.pedirMensagem({
+        canal: 'chat',
         advogado: { nome: adv.nome },
         assistido: { primeiroNome, sabeLerEscrever: caso.assistido.sabeLerEscrever, cidade: caso.assistido.cidade },
         pendencias: docsPendentes.map((d) => ({ nome: d.nome, ondeObter: d.ondeObter })),
         cras: cras ? { municipio: cras.municipio, rede: cras.rede, servicos: cras.servicos } : null,
       }),
     );
-    if (texto) setRascunho(texto);
+    if (r) setRascunho(r.texto);
   }
 
   function enviarRascunho() {

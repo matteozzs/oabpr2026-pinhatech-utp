@@ -2,17 +2,17 @@
 
 /*
   Ordem Dativa — identidade visual (tema claro apenas).
-  Azul institucional inspirado na marca: navy #0B3A78 e azul #1565C0.
+  Azuis extraídos da marca oficial em public/marca: #013B78 (escuro) e #0066C3 (claro).
 */
 @theme {
-  --color-navy-950: #071f42;
-  --color-navy-900: #0b3a78;
-  --color-navy-800: #0f4a99;
-  --color-navy-700: #1565c0;
-  --color-navy-600: #1976d2;
-  --color-navy-500: #2b87e3;
-  --color-navy-100: #e3eefb;
-  --color-navy-50: #f1f6fd;
+  --color-navy-950: #012247;
+  --color-navy-900: #013b78;
+  --color-navy-800: #01498f;
+  --color-navy-700: #0066c3;
+  --color-navy-600: #1478d6;
+  --color-navy-500: #3a94e6;
+  --color-navy-100: #dceafa;
+  --color-navy-50: #f0f6fe;
 
   --color-ink-900: #0f172a;
   --color-ink-700: #334155;

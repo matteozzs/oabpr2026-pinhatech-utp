@@ -132,10 +132,10 @@ export interface Advogado {
 }
 
 export type AutorMensagem = 'assistido' | 'advogado' | 'plataforma';
-export type CanalMensagem = 'chat' | 'whatsapp_simulado';
+export type CanalMensagem = 'chat' | 'email' | 'whatsapp_simulado';
 
 /** Tipos especiais renderizados como cartões no chat. */
-export type TipoMensagem = 'texto' | 'orientacao_cras' | 'solicitacao_assinatura' | 'documento';
+export type TipoMensagem = 'texto' | 'orientacao_cras' | 'solicitacao_assinatura' | 'documento' | 'email';
 
 export interface Mensagem {
   id: string;
@@ -146,6 +146,8 @@ export interface Mensagem {
   texto: string;
   enviadoEm: string;
   anexo?: { nome: string; documentoId?: string };
+  /** Assunto — só nas mensagens de canal 'email'. */
+  assunto?: string;
   /** Mensagem redigida pela IA (para auditoria). */
   geradaPorIA?: boolean;
   /** Lida pelo destinatário (controle simples de "não lidas" na caixa de entrada). */

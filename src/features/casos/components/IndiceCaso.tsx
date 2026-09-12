@@ -6,10 +6,11 @@ import type { Caso } from '@/types';
 import { cn } from '@/lib/utils';
 import { lacunasDaMinuta } from '@/features/documentos';
 
-export type SecaoCaso = 'resumo' | 'documentos' | 'minuta' | 'pacote' | 'historico';
+export type SecaoCaso = 'resumo' | 'contato' | 'documentos' | 'minuta' | 'pacote' | 'historico';
 
 export const SECOES: { id: SecaoCaso; rotulo: string; icone: typeof Sparkles }[] = [
   { id: 'resumo', rotulo: 'Resumo fático', icone: Sparkles },
+  { id: 'contato', rotulo: 'Contato', icone: MessageCircle },
   { id: 'documentos', rotulo: 'Documentos', icone: FileText },
   { id: 'minuta', rotulo: 'Minuta da petição', icone: Gavel },
   { id: 'pacote', rotulo: 'Pacote de protocolo', icone: PackageCheck },
@@ -21,6 +22,8 @@ function estado(caso: Caso, secao: SecaoCaso): 'concluido' | 'em_andamento' | 'p
   switch (secao) {
     case 'resumo':
       return caso.ia.resumo ? 'concluido' : 'pendente';
+    case 'contato':
+      return caso.assistido.email || caso.assistido.telefone ? 'concluido' : 'pendente';
     case 'documentos': {
       const pendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
       if (!caso.ia.checklist) return 'pendente';
@@ -37,7 +40,6 @@ function estado(caso: Caso, secao: SecaoCaso): 'concluido' | 'em_andamento' | 'p
 }
 
 export function IndiceCaso({ caso, ativa }: { caso: Caso; ativa: SecaoCaso }) {
-  const naoLidas = 0;
   const lacunas = lacunasDaMinuta(caso).length;
 
   return (
@@ -75,14 +77,6 @@ export function IndiceCaso({ caso, ativa }: { caso: Caso; ativa: SecaoCaso }) {
         })}
       </ul>
 
-      <Link
-        href={`/advogado/chat/${caso.id}`}
-        className="mt-2 flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm text-navy-800 border border-navy-100 bg-navy-50 hover:bg-navy-100 transition-colors whitespace-nowrap"
-      >
-        <MessageCircle className="w-4 h-4 shrink-0" />
-        <span className="flex-1 font-semibold">Conversa com a parte</span>
-        {naoLidas > 0 && <span className="badge bg-navy-700 text-white">{naoLidas}</span>}
-      </Link>
     </nav>
   );
 }

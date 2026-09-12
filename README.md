@@ -36,7 +36,7 @@ O advogado dativo recebe a nomeação, um cidadão em situação de vulnerabilid
 | Recebe protocolo e acompanha o status em linguagem simples | Lê o **resumo fático** gerado pela IA para se apropriar do caso em um minuto |
 | Vê a lista de documentos que faltam e **onde obter** cada um | Gera o **checklist documental** cruzando o relato com o catálogo |
 | Recebe orientação sobre o **CRAS** do seu município | Gera **procuração, declaração de hipossuficiência e termo de consentimento LGPD** em `.docx` a partir dos templates oficiais |
-| **Assina** os documentos (aceite eletrônico com hash, gov.br ilustrativo, ou impressão + foto) | Conversa com a parte em uma **tela dedicada com caixa de entrada**, pelo **número oficial da plataforma** (o número pessoal nunca é exposto): pede documentos em **linguagem acessível** (IA, revisada), envia a orientação do CRAS e o pedido de assinatura como cartões |
+| **Assina** os documentos (aceite eletrônico com hash, gov.br ilustrativo, ou impressão + foto) | Fala com a parte pela seção **Contato** — chat interno pelo **número oficial da plataforma** (o número pessoal nunca é exposto) e **e-mail redigido com IA**: pede documentos em **linguagem acessível** (IA, revisada), envia a orientação do CRAS e o pedido de assinatura como cartões |
 | Conversa com o advogado em uma **tela de chat dedicada** e envia fotos dos documentos | Gera a **minuta da petição inicial** com cada citação validada contra o corpus, baixa em `.docx`, aprova o **pacote de protocolo** |
 
 Escopo desta versão: **Família e Sucessões** e **Direito do Consumidor (cível)**.

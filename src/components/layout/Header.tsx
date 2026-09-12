@@ -57,7 +57,7 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-ink-200">
       <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between gap-3">
         <Link href="/" aria-label="Ordem Dativa — início" className="shrink-0">
-          <Logo />
+          <Logo altura={34} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Principal">
