@@ -2,19 +2,19 @@
 
 Execução automática dos 7 atendimentos de demonstração contra `http://127.0.0.1:3400/api/ia/resumo`.
 São os mesmos casos que aparecem em **Atendimentos** — mesmos relatos, mesmas conversas.
-Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
+Gerado em 13/09/2026, 13:47:57 por `npm run testar:ia`.
 
 **40 de 40 verificações passaram.**
 
 | Protocolo | Área | Comarca | Falas da parte | Verificações | Tempo |
 |---|---|---|---|---|---|
-| OD-2026-100001 | familia | Colombo | 2 | ✅ 7/7 | 4455ms |
-| OD-2026-100002 | consumidor | Curitiba | 2 | ✅ 6/6 | 3780ms |
-| OD-2026-100003 | consumidor | Fazenda Rio Grande | 2 | ✅ 5/5 | 3858ms |
-| OD-2026-100004 | familia | Castro | 3 | ✅ 7/7 | 4700ms |
-| OD-2026-100005 | familia | Ponta Grossa | 2 | ✅ 6/6 | 3758ms |
-| OD-2026-100006 | consumidor | Terra Boa | 3 | ✅ 6/6 | 4136ms |
-| OD-2026-100007 | familia | Curitiba | 0 | ✅ 3/3 | 8ms |
+| OD-2026-100001 | familia | Colombo | 2 | ✅ 7/7 | 4573ms |
+| OD-2026-100002 | consumidor | Curitiba | 2 | ✅ 6/6 | 4242ms |
+| OD-2026-100003 | consumidor | Fazenda Rio Grande | 2 | ✅ 5/5 | 3516ms |
+| OD-2026-100004 | familia | Castro | 3 | ✅ 7/7 | 5178ms |
+| OD-2026-100005 | familia | Ponta Grossa | 2 | ✅ 6/6 | 4611ms |
+| OD-2026-100006 | consumidor | Terra Boa | 3 | ✅ 6/6 | 4056ms |
+| OD-2026-100007 | familia | Curitiba | 0 | ✅ 3/3 | 13ms |
 
 ## Detalhe por atendimento
 
@@ -36,14 +36,13 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 - ✅ lista os fatos em ordem
 - ✅ reconhece indícios de hipossuficiência
 
-**Observado:** escopo aceito · urgência true · hipossuficiência true · 4 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 6 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 1 alerta(s)
 
-> A assistida relata que se separou do ex-marido há cerca de dois anos, ocasião em que combinaram verbalmente o pagamento de pensão alimentícia de R$ 600,00 mensais para os dois filhos menores. O genitor não realiza os pagamentos há quatro meses, comprometendo a subsistência das crianças, especialmente o tratamento de saúde de uma delas. A assistida busca a fixação e a cobrança dos alimentos por via judicial.
+> A assistida busca a fixação de pensão alimentícia para seus dois filhos menores, Kauã (9 anos) e Laura (6 anos), em face do genitor. Havia um acordo verbal de R$ 600,00 mensais que deixou de ser cumprido há quatro meses. A assistida trabalha como diarista e relata dificuldades para arcar com as despesas básicas e de saúde das crianças.
 
 **Alertas levantados pela IA:**
 
-- O acordo de alimentos anterior foi estritamente verbal, inexistindo título executivo judicial ou extrajudicial anterior para fins de execução direta.
-- A assistida mencionou que o requerido trabalha com registro em carteira em uma transportadora, o que viabiliza o pedido de desconto dos alimentos diretamente em folha de pagamento.
+- O acordo anterior de R$ 600,00 era estritamente verbal, necessitando de ação de fixação de alimentos (e não de execução de alimentos).
 
 ### OD-2026-100002 — Curitiba
 
@@ -62,14 +61,14 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 - ✅ não acrescenta pedido que a parte não fez
 - ✅ registra a negativação como fato
 
-**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido cancelou seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Em julho de 2026, descobriu que seu nome foi negativado no Serasa por uma suposta dívida de R$ 359,60 referente a essa linha. Ele busca a retirada de seu nome dos cadastros de proteção ao crédito, o cancelamento das cobranças e a devolução de R$ 180,00 pagos indevidamente após o cancelamento.
+> O assistido cancelou seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Com medo de ficar negativado, pagou duas faturas indevidas que somam R$ 180,00. Em julho de 2026, descobriu que seu nome foi inscrito no Serasa por uma suposta dívida de R$ 359,60 referente à linha cancelada, o que o impediu de realizar uma compra de geladeira via crediário.
 
 **Alertas levantados pela IA:**
 
-- O nome exato da operadora de telefonia ré precisa ser confirmado na fatura ou no comprovante de negativação.
-- O assistido mencionou possuir os números de protocolo anotados em papel, os quais precisam ser digitalizados ou transcritos para o processo.
+- O nome exato da empresa ré precisa ser confirmado através das faturas ou do extrato de negativação do Serasa.
+- O assistido possui documentos físicos (anotações de protocolos) que precisam ser digitalizados ou transcritos para o processo.
 
 ### OD-2026-100003 — Fazenda Rio Grande
 
@@ -89,12 +88,12 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 
 **Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento da fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em um supermercado, mas a concessionária recusou o restabelecimento imediato sob argumento de necessidade de prazo para compensação sistêmica. O assistido reside com a esposa e dois filhos pequenos, estando sem abastecimento de água há cinco dias.
+> O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento da fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em um supermercado, mas a concessionária recusou o restabelecimento imediato sob alegação de prazo para compensação no sistema. O assistido reside com dois filhos pequenos e está sem abastecimento de água.
 
 **Alertas levantados pela IA:**
 
-- O assistido informou na conversa que a esposa enviaria a foto do comprovante de pagamento, mas os arquivos ainda não constam anexados no histórico de mensagens.
-- O assistido é não alfabetizado (declarou não saber ler e escrever), o que demanda atenção especial na colheita de assinaturas ou necessidade de procuração por instrumento público/assinatura a rogo.
+- O assistido informou na conversa que sua esposa enviaria a foto do comprovante, mas o documento ainda não consta como recebido no chat.
+- O assistido é não alfabetizado (sabe ler/escrever: false), demandando cuidados adicionais na leitura e assinatura de termos.
 
 ### OD-2026-100004 — Castro
 
@@ -128,7 +127,7 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 
 **Alertas levantados pela IA:**
 
-- A assistida menciona possuir fotos e contas de internet em seu nome para provar a união, mas os documentos ainda precisam ser anexados ao sistema.
+- A assistida menciona que os bens (casa e carro) estão registrados exclusivamente em nome do requerido, sendo necessária a busca de documentos que comprovem a propriedade e as datas de aquisição.
 
 ### OD-2026-100005 — Ponta Grossa
 
@@ -147,14 +146,14 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 - ✅ a pretensão é ajustar o valor, não deixar de pagar
 - ✅ não registra a prisão como fato consumado
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 6 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido busca a redução da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata ter perdido o veículo de trabalho em um acidente em abril de 2026, ficando desempregado e passando a realizar bicos. Atualmente, sua renda média é de R$ 1.500,00 e ele propõe pagar entre R$ 400,00 e R$ 450,00.
+> O assistido busca a redução do valor da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata que perdeu o veículo de trabalho em um acidente em abril de 2026 e ficou desempregado, passando a realizar bicos com renda média de R$ 1.500,00. Diante da impossibilidade de arcar com o valor atual e da ameaça de pedido de prisão por parte da mãe do menor, ele pleiteia o ajuste do encargo para sua nova realidade financeira.
 
 **Alertas levantados pela IA:**
 
-- Risco de ajuizamento de execução de alimentos sob o rito da prisão pela parte contrária.
-- Necessidade de obtenção dos documentos específicos do caso (boletim de ocorrência e CTPS) que foram mencionados mas ainda constam como pendentes no sistema.
+- O assistido menciona a existência de processo ativo de alimentos, sendo necessário verificar se a demanda atual deve ser distribuída por dependência ou se trata de ação revisional autônoma.
+- Necessidade de obtenção urgente dos documentos comprobatórios do acidente e da ausência de vínculo empregatício para instruir eventual pedido liminar.
 
 ### OD-2026-100006 — Terra Boa
 
@@ -173,21 +172,19 @@ Gerado em 13/09/2026, 13:28:08 por `npm run testar:ia`.
 - ✅ captura o CPF que a parte digitou
 - ✅ não inventa o RG que ela disse não saber
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 6 fato(s) · 5 dado(s) faltante(s) · 4 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 3 dado(s) faltante(s) · 2 dado(s) de identificação · 2 alerta(s)
 
-> A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação com um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante se recusam a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.
+> A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação com um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante recusam-se a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.
 
 **Dados de qualificação recuperados da conversa:**
 
 - `cpf` = 11744820966 — “Doutora, meu CPF é 11744820966.”
-- `endereco` = Avenida Brasil, 1042, apartamento 3 — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
-- `bairro` = centro — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
-- `cidade` = Terra Boa — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
+- `endereco` = Avenida Brasil, 1042, apartamento 3, centro de Terra Boa — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
 
 **Alertas levantados pela IA:**
 
 - A assistida informou que enviará a foto do RG posteriormente, pois não sabe o número de cabeça.
-- Necessário identificar a fabricante do produto para eventual inclusão no polo passivo junto com a comerciante.
+- Necessário identificar a qualificação completa da fabricante e da loja vendedora a partir dos documentos anexados.
 
 ### OD-2026-100007 — Curitiba
 
