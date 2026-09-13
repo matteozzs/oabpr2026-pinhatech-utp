@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Building2, FileSignature, FileWarning, Send, Sparkles, UserRound } from 'lucide-react';
+import { ArrowRight, Building2, FileSignature, Sparkles, UserRound } from 'lucide-react';
 import type { Caso } from '@/types';
-import { ADVOGADO_DEMO, atualizarCaso, atualizarDocumento, enviarMensagem, mudarStatus, useMensagens } from '@/lib/store';
+import { atualizarCaso, atualizarDocumento, enviarMensagem, useMensagens } from '@/lib/store';
 import { encontrarCras } from '@/lib/cras';
 import { Aviso, Carregando, RotuloIA } from '@/components/ui';
 import { cn } from '@/lib/utils';
@@ -14,16 +14,18 @@ import { iaApi, materialParaResumo, useIA } from '@/features/ia';
  *
  * O único uso de IA aqui é o **resumo dos fatos**: quando o advogado julga ter apurado o
  * suficiente com a parte, a IA transforma mensagens e áudios transcritos numa síntese
- * factual. O restante — pendências, CRAS, assinatura — é determinístico.
+ * factual. O restante — CRAS, assinatura — é determinístico.
+ *
+ * Pedir documento à parte é conversa, e conversa quem conduz é o advogado: ele escreve o
+ * que precisa, do jeito dele, na caixa de mensagem. A lista do que falta continua onde ela
+ * serve para decidir — na aba Documentos do caso.
  */
 export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
   const ia = useIA();
   const mensagens = useMensagens(caso.id);
 
-  const adv = caso.advogado ?? ADVOGADO_DEMO;
   const primeiroNome = caso.assistido.nome.split(' ')[0];
   const docsPendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
-  const docsRecebidos = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['recebido', 'assinado'].includes(d.status));
   const docsAssinar = caso.documentos.filter((d) => d.exigeAssinatura && d.status !== 'assinado');
   const temResumo = Boolean(caso.ia.resumo);
   const material = materialParaResumo(caso, mensagens);
@@ -36,21 +38,6 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
       descricao: `Resumo dos fatos gerado pela IA (${r.modelo}) a partir da conversa com a parte.`,
       autor: 'ia',
     });
-  }
-
-  /** Lista de pendências por template — sem IA. O advogado revisa no chat como qualquer mensagem. */
-  function enviarPendencias() {
-    if (!docsPendentes.length) return;
-    const lista = docsPendentes.map((d, i) => `${i + 1}. ${d.nome}${d.ondeObter ? ` — ${d.ondeObter}` : ''}`).join('\n');
-    enviarMensagem({
-      casoId: caso.id,
-      autor: 'advogado',
-      canal: 'chat',
-      tipo: 'texto',
-      texto: `Oi, ${primeiroNome}. Para eu dar entrada no seu pedido, ainda preciso destes documentos:\n\n${lista}\n\nPode mandar foto por aqui mesmo, bem nítida. Assim que chegar, eu preparo os papéis.\n\n${adv.nome}\nAdvogado(a) dativo(a) nomeado(a) para o seu caso`,
-    });
-    docsPendentes.filter((d) => d.status === 'pendente').forEach((d) => atualizarDocumento(caso.id, d.id, { status: 'solicitado' }));
-    if (caso.status === 'em_atendimento') mudarStatus(caso.id, 'aguardando_documentos', 'Documentos solicitados à parte pela conversa.');
   }
 
   function enviarCras() {
@@ -97,21 +84,6 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
     <div className="space-y-2">
       {ia.ocupado === 'resumo' && <Carregando texto="Lendo a conversa e resumindo os fatos…" />}
       {ia.erro && <Aviso tipo="erro">{ia.erro}</Aviso>}
-
-      {/* Alerta determinístico do estado dos documentos — sem IA */}
-      {docsPendentes.length > 0 && (
-        <div className="rounded-xl border border-amber-200 bg-warn-100 px-3 py-2.5">
-          <p className="text-xs font-semibold text-warn-600 inline-flex items-center gap-1.5">
-            <FileWarning className="w-3.5 h-3.5" />
-            {docsPendentes.length} documento(s) pendente(s)
-            {docsRecebidos.length > 0 && <span className="font-normal">· {docsRecebidos.length} já entregue(s)</span>}
-          </p>
-          <p className="text-xs text-warn-600 mt-1">{docsPendentes.map((d) => d.nome).join(' · ')}</p>
-          <button className="btn-secondary text-xs py-1 mt-2" onClick={enviarPendencias}>
-            <Send className="w-3.5 h-3.5" /> Enviar a lista à parte
-          </button>
-        </div>
-      )}
 
       {/* Resumo dos fatos: o único uso de IA nesta tela */}
       <div className="flex flex-wrap items-center gap-1.5 pb-1.5 border-b border-ink-200">

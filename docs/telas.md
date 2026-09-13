@@ -53,7 +53,6 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 ### Ações na conversa (tela 10)
 
 - **Resumir os fatos** — consolida relato e conversa numa síntese **factual**, sem enquadramento jurídico. Fica desabilitado enquanto a parte não falar nada. Depois de pronto, aparece o atalho **Ver no painel do caso**
-- **Enviar a lista à parte** — pendências por template, sem IA
 - **Orientar ao CRAS** — cartão com busca pública do CRAS e do Fórum
 - **Pedir assinatura** — cartão com atalho "Assinar agora" para o cidadão
 - **Simular resposta (demo)** — a parte responde e envia uma foto, para validar o fluxo sozinho
