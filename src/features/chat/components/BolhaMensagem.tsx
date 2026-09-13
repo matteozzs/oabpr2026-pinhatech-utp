@@ -73,15 +73,28 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
         )}
         <p>{m.texto}</p>
         {m.anexo && (
-          <div className={cn('mt-1.5 rounded-lg px-2 py-1.5', minha ? 'bg-navy-800' : 'bg-ink-100')}>
-            <p className="text-xs inline-flex items-center gap-1">
-              <Paperclip className="w-3 h-3" /> {m.anexo.nome}
+          <div className={cn('mt-1.5 flex flex-col gap-1.5 rounded-lg p-1.5', minha ? 'bg-navy-800' : 'bg-ink-100')}>
+            <p className="text-xs inline-flex items-center gap-1 px-1">
+              <Paperclip className="w-3 h-3 flex-shrink-0" />
+              <span className="truncate">{m.anexo.nome}</span>
             </p>
+            {m.anexo.url && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={m.anexo.url}
+                alt={m.anexo.nome}
+                className="max-w-full h-auto rounded-md object-contain max-h-48 border border-black/10"
+              />
+            )}
             {/* Só o advogado baixa: o arquivo é da parte, e é a guarda dele que muda ao sair daqui. */}
             {perfil === 'advogado' && m.autor === 'assistido' && (
-              <div className="mt-1.5">
-                <BaixarArquivoPessoal caso={caso} nomeArquivo={m.anexo.nome} documentoId={m.anexo.documentoId} variante="discreto" />
-              </div>
+              <BaixarArquivoPessoal
+                caso={caso}
+                nomeArquivo={m.anexo.nome}
+                url={m.anexo.url}
+                documentoId={m.anexo.documentoId}
+                variante="discreto"
+              />
             )}
           </div>
         )}

@@ -24,11 +24,14 @@ export const ANOS_DE_GUARDA = 3;
 export function BaixarArquivoPessoal({
   caso,
   nomeArquivo,
+  url,
   documentoId,
   variante = 'secundario',
 }: {
   caso: Caso;
   nomeArquivo: string;
+  /** Arquivo real enviado pela parte. Sem ele, a demonstração baixa o comprovante do acesso. */
+  url?: string;
   documentoId?: string;
   variante?: 'secundario' | 'discreto';
 }) {
@@ -44,7 +47,7 @@ export function BaixarArquivoPessoal({
         <Download className="w-3.5 h-3.5" /> Baixar
       </button>
 
-      {aberto && <AvisoDeGuarda caso={caso} nomeArquivo={nomeArquivo} documentoId={documentoId} aoFechar={() => setAberto(false)} />}
+      {aberto && <AvisoDeGuarda caso={caso} nomeArquivo={nomeArquivo} url={url} documentoId={documentoId} aoFechar={() => setAberto(false)} />}
     </>
   );
 }
@@ -52,11 +55,13 @@ export function BaixarArquivoPessoal({
 function AvisoDeGuarda({
   caso,
   nomeArquivo,
+  url,
   documentoId,
   aoFechar,
 }: {
   caso: Caso;
   nomeArquivo: string;
+  url?: string;
   documentoId?: string;
   aoFechar: () => void;
 }) {
@@ -93,14 +98,14 @@ function AvisoDeGuarda({
       'Ambiente de demonstração: o arquivo original é simulado e não acompanha este comprovante.',
     ].join('\n');
 
-    const url = URL.createObjectURL(new Blob([conteudo], { type: 'text/plain;charset=utf-8' }));
+    const objeto = url ? null : URL.createObjectURL(new Blob([conteudo], { type: 'text/plain;charset=utf-8' }));
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `comprovante-acesso-${caso.protocolo}.txt`;
+    a.href = url ?? objeto!;
+    a.download = url ? nomeArquivo : `comprovante-acesso-${caso.protocolo}.txt`;
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    if (objeto) setTimeout(() => URL.revokeObjectURL(objeto), 2000);
 
     atualizarCaso(caso.id, {}, {
       tipo: 'documento',

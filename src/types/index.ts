@@ -119,6 +119,7 @@ export interface DocumentoCatalogo {
 export interface DocumentoCaso extends DocumentoCatalogo {
   status: StatusDocumento;
   arquivoNome?: string;
+  arquivoUrl?: string;
   atualizadoEm?: string;
   /** Pendência identificada pela IA (motivo textual). */
   observacaoIA?: string;
@@ -159,7 +160,7 @@ export interface Mensagem {
   tipo?: TipoMensagem;
   texto: string;
   enviadoEm: string;
-  anexo?: { nome: string; documentoId?: string };
+  anexo?: { nome: string; documentoId?: string; url?: string; analisado?: boolean };
   /** Assunto — só nas mensagens de canal 'email'. */
   assunto?: string;
   /** Mensagem redigida pela IA (para auditoria). */

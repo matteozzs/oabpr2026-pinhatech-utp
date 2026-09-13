@@ -27,7 +27,8 @@ export function Chat({
 }) {
   const mensagens = useMensagens(caso.id);
   const [texto, setTexto] = useState('');
-  const [anexoId, setAnexoId] = useState('');
+  const [arquivo, setArquivo] = useState<File | null>(null);
+  const [enviando, setEnviando] = useState(false);
   const fimRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,31 +43,54 @@ export function Chat({
   const pendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
   const primeiroNome = caso.assistido.nome.split(' ')[0];
 
-  function enviar() {
+  async function enviar() {
     const t = texto.trim();
-    if (!t && !anexoId) return;
-    const doc = caso.documentos.find((d) => d.id === anexoId);
+    if (!t && !arquivo) return;
 
-    enviarMensagem({
-      casoId: caso.id,
-      autor: perfil === 'cidadao' ? 'assistido' : 'advogado',
-      canal: 'chat',
-      tipo: doc ? 'documento' : 'texto',
-      texto: t || (doc ? `Enviei a foto do documento: ${doc.nome}` : ''),
-      anexo: doc ? { nome: `${doc.nome} (foto simulada).jpg`, documentoId: doc.id } : undefined,
-    });
+    setEnviando(true);
+    try {
+      let arquivoUrl = undefined;
+      let arquivoNome = undefined;
 
-    if (doc) {
-      atualizarDocumento(
-        caso.id,
-        doc.id,
-        { status: 'recebido', arquivoNome: `${doc.nome} (foto simulada).jpg` },
-        { tipo: 'documento', descricao: `Assistido enviou "${doc.nome}" pelo chat.`, autor: 'assistido' },
-      );
+      if (arquivo) {
+        const formData = new FormData();
+        formData.append('file', arquivo);
+        
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        if (!res.ok) throw new Error('Falha no upload');
+        const data = await res.json();
+        arquivoUrl = data.url;
+        arquivoNome = arquivo.name;
+      }
+
+      const anexoMsg = arquivoNome
+        ? {
+            nome: arquivoNome,
+            url: arquivoUrl,
+            analisado: false
+          }
+        : undefined;
+
+      enviarMensagem({
+        casoId: caso.id,
+        autor: perfil === 'cidadao' ? 'assistido' : 'advogado',
+        canal: 'chat',
+        tipo: anexoMsg ? 'documento' : 'texto',
+        texto: t || (arquivoNome ? 'Enviei um documento' : ''),
+        anexo: anexoMsg,
+      });
+
+      setTexto('');
+      setArquivo(null);
+    } catch (e) {
+      alert('Houve um erro no envio. Tente novamente.');
+      console.error(e);
+    } finally {
+      setEnviando(false);
     }
-
-    setTexto('');
-    setAnexoId('');
   }
 
   return (
@@ -95,20 +119,21 @@ export function Chat({
       <div className="p-3 border-t border-ink-200 space-y-2">
         {acoes}
 
-        {perfil === 'cidadao' && pendentes.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <label htmlFor={`anexo-${caso.id}`} className="text-ink-700 font-medium inline-flex items-center gap-1">
-              <Paperclip className="w-3.5 h-3.5" /> Anexar foto de documento:
-            </label>
-            <select id={`anexo-${caso.id}`} value={anexoId} onChange={(e) => setAnexoId(e.target.value)} className="input py-1.5 w-auto text-xs">
-              <option value="">— escolher —</option>
-              {pendentes.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.nome}
-                </option>
-              ))}
-            </select>
-            <span className="text-ink-500">(simulação: marca como recebido)</span>
+        {perfil === 'cidadao' && (
+          <div className="flex flex-col gap-2 text-xs mb-2">
+            <div className="flex items-center gap-2">
+              <label htmlFor={`arquivo-${caso.id}`} className="text-ink-700 font-medium inline-flex items-center gap-1 cursor-pointer">
+                <Paperclip className="w-3.5 h-3.5" /> Anexar documento
+              </label>
+              <input 
+                id={`arquivo-${caso.id}`}
+                type="file" 
+                accept="image/*" 
+                onChange={(e) => setArquivo(e.target.files?.[0] || null)}
+                className="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-navy-50 file:text-navy-700 hover:file:bg-navy-100 file:cursor-pointer"
+                disabled={enviando}
+              />
+            </div>
           </div>
         )}
 
@@ -126,7 +151,7 @@ export function Chat({
             }}
             aria-label="Mensagem"
           />
-          <button className="btn-primary px-3" onClick={enviar} aria-label="Enviar mensagem">
+          <button className="btn-primary px-3" onClick={enviar} aria-label="Enviar mensagem" disabled={enviando}>
             <Send className="w-4 h-4" />
           </button>
         </div>

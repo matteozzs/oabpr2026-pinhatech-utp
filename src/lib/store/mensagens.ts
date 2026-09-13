@@ -37,3 +37,9 @@ export function marcarLidas(casoId: string) {
   });
   if (mudou) gravar(K.mensagens, novas);
 }
+
+export function atualizarMensagem(id: string, atualizacao: Partial<Mensagem>) {
+  const todas = ler<Mensagem[]>(K.mensagens, []);
+  const novas = todas.map((m) => (m.id === id ? { ...m, ...atualizacao } : m));
+  gravar(K.mensagens, novas);
+}

@@ -18,6 +18,6 @@ export {
   registrarAssinatura,
   documentosIniciais,
 } from './casos';
-export { todasMensagens, mensagensDoCaso, enviarMensagem, marcarLidas } from './mensagens';
+export { todasMensagens, mensagensDoCaso, enviarMensagem, marcarLidas, atualizarMensagem } from './mensagens';
 export { perfilAtual, entrarComo, sair } from './perfil';
 export { usePronto, useCasos, useCaso, useMensagens, usePerfil, useResumoConversas } from './hooks';
