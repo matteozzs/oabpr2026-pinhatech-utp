@@ -78,14 +78,29 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
               <Paperclip className="w-3 h-3 flex-shrink-0" />
               <span className="truncate">{m.anexo.nome}</span>
             </p>
-            {m.anexo.url && (
+
+            {/* Imagem tem prévia; o resto vira link para abrir no visualizador do navegador. */}
+            {m.anexo.url && /\.(jpeg|jpg|gif|png|webp)$/i.test(m.anexo.nome) ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 src={m.anexo.url}
                 alt={m.anexo.nome}
                 className="max-w-full h-auto rounded-md object-contain max-h-48 border border-black/10"
               />
-            )}
+            ) : m.anexo.url ? (
+              <a
+                href={m.anexo.url}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(
+                  'text-xs flex font-medium flex-col items-center justify-center p-3 mt-1 rounded-md border border-black/10 transition-colors',
+                  minha ? 'bg-navy-700 hover:bg-navy-600 text-white' : 'bg-white hover:bg-ink-50 text-ink-700',
+                )}
+              >
+                Abrir documento anexo
+              </a>
+            ) : null}
+
             {/* Só o advogado baixa: o arquivo é da parte, e é a guarda dele que muda ao sair daqui. */}
             {perfil === 'advogado' && m.autor === 'assistido' && (
               <BaixarArquivoPessoal

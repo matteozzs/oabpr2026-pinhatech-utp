@@ -137,11 +137,11 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
                   return (
                     <li key={m.id} className="rounded-xl border border-warn-200 bg-white p-3 flex flex-col gap-3">
                       <div className="flex gap-3">
-                        {m.anexo?.url ? (
+                        {m.anexo?.url && m.anexo.nome.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
                           <img src={m.anexo.url} alt={m.anexo.nome} className="w-16 h-16 object-cover rounded shadow-sm shrink-0 border border-black/10" />
                         ) : (
-                          <div className="w-16 h-16 bg-warn-100 flex items-center justify-center rounded shrink-0">
+                          <div className="w-16 h-16 bg-warn-100 flex items-center justify-center rounded shrink-0 border border-warn-200">
                             <FileText className="w-6 h-6 text-warn-600" />
                           </div>
                         )}
@@ -270,9 +270,15 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
                         {!geravel && recebido && doc.arquivoUrl && (
                           <div className="flex flex-col gap-2 w-full mt-2 p-3 bg-ink-50 rounded-lg border border-ink-200">
                             <div className="flex items-center gap-3">
-                              <a href={doc.arquivoUrl} target="_blank" rel="noreferrer" className="shrink-0">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={doc.arquivoUrl} alt={doc.nome} className="w-12 h-12 object-cover rounded border border-ink-300" />
+                              <a href={doc.arquivoUrl} target="_blank" rel="noreferrer" className="shrink-0 block">
+                                {doc.arquivoUrl && doc.arquivoNome?.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? (
+                                  /* eslint-disable-next-line @next/next/no-img-element */
+                                  <img src={doc.arquivoUrl} alt={doc.nome} className="w-12 h-12 object-cover rounded border border-ink-300" />
+                                ) : (
+                                  <div className="w-12 h-12 bg-ink-100 border border-ink-300 rounded flex items-center justify-center">
+                                    <FileText className="w-5 h-5 text-ink-500" />
+                                  </div>
+                                )}
                               </a>
                               <div className="flex-1">
                                 <p className="text-xs font-semibold text-ink-900">Anexo vinculado</p>
