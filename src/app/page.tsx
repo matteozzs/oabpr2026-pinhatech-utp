@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePerfil, usePronto } from '@/lib/store';
 import { ArrowRight, BookOpenCheck, FileText, MessageSquareHeart, Scale, ShieldCheck, Users } from 'lucide-react';
 import comarcas from '@/data/comarcas.json';
+import { PainelDemonstracao } from '@/components/ui';
 
 export default function Home() {
   const perfil = usePerfil();
@@ -84,6 +85,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <PainelDemonstracao />
     </div>
   );
 }

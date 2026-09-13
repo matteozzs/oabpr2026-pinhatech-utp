@@ -32,6 +32,20 @@ export const STATUS_LABEL: Record<StatusCaso, string> = {
   protocolado: 'Protocolado',
 };
 
+/**
+ * O mesmo status, dito para quem está do outro lado.
+ * O cidadão não precisa saber de "minuta" nem de fila interna — precisa saber
+ * se está tudo correndo e se falta alguma coisa dele.
+ */
+export const STATUS_LABEL_CIDADAO: Record<StatusCaso, string> = {
+  nova_solicitacao: 'Aguardando advogado',
+  em_atendimento: 'Em andamento',
+  aguardando_documentos: 'Faltam documentos seus',
+  minuta_gerada: 'Em andamento',
+  pronto_protocolo: 'Pronto para dar entrada',
+  protocolado: 'Protocolado na Justiça',
+};
+
 export const AREA_LABEL: Record<Area, string> = {
   familia: 'Família e Sucessões',
   consumidor: 'Direito do Consumidor (Cível)',

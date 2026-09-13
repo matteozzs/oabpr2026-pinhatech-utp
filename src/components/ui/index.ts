@@ -5,3 +5,4 @@ export { Aviso } from './Aviso';
 export { Carregando } from './Carregando';
 export { StatusBadge } from './StatusBadge';
 export { RotuloIA } from './RotuloIA';
+export { PainelDemonstracao } from './PainelDemonstracao';

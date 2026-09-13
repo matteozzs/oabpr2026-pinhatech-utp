@@ -36,7 +36,7 @@ export default function ChatCidadaoPage({ params }: { params: Promise<{ id: stri
         <Link href={`/cidadao/solicitacao/${caso.id}`} className="btn-ghost -ml-3">
           <ArrowLeft className="w-4 h-4" /> Minha solicitação
         </Link>
-        <StatusBadge status={caso.status} />
+        <StatusBadge status={caso.status} perfil="cidadao" />
       </div>
       <div>
         <h1 className="text-xl font-black text-navy-950">Conversa com {caso.advogado?.nome ?? 'o(a) advogado(a)'}</h1>

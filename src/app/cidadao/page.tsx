@@ -48,7 +48,7 @@ export default function CidadaoPage() {
         <ul className="grid gap-3">
           {casos.map((c) => (
             <li key={c.id}>
-              <CardCaso caso={c} href={`/cidadao/solicitacao/${c.id}`} destacarUrgencia={false} />
+              <CardCaso caso={c} href={`/cidadao/solicitacao/${c.id}`} perfil="cidadao" />
             </li>
           ))}
         </ul>

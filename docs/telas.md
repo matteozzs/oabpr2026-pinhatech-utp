@@ -2,7 +2,7 @@
 
 **12 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
 
-Casos de demonstração: `caso_demo_001` a `caso_demo_006`. **Restaurar demonstração** (painel do advogado) devolve tudo ao estado inicial.
+Casos de demonstração: `caso_demo_001` a `caso_demo_006`, cada um **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
 
 > **Premissa do produto:** a nomeação do advogado dativo e o seu aceite acontecem na **OAB/PR ou no Fórum, antes da plataforma**. A plataforma não cria solicitações nem credencia ninguém — ela entra em jogo com o advogado já nomeado e atuando.
 
@@ -12,7 +12,7 @@ Casos de demonstração: `caso_demo_001` a `caso_demo_006`. **Restaurar demonstr
 
 | # | Tela | Link | O que validar |
 |---|---|---|---|
-| 1 | **Home / portal duplo** | [`/`](/) | Dois caminhos (Cidadão / Advogado) + números do dado real: 80.933 nomeações, 163 comarcas, 34.215 em Cível+Família |
+| 1 | **Home / portal duplo** | [`/`](/) | Dois caminhos (Cidadão / Advogado) + números do dado real: 80.933 nomeações, 163 comarcas, 34.215 em Cível+Família. No rodapé: **versão** e **Reiniciar dados da demonstração** (confirma antes, e encerra o perfil em uso) |
 | 2 | **Transparência da IA** | [`/transparencia`](/transparencia) | Os **69 dispositivos** do corpus por diploma, com texto e selo "a verificar"; links dos 4 prompts |
 | 3 | **Roadmap** | [`/roadmap`](/roadmap) | O que está entregue × o que vem depois |
 
@@ -20,9 +20,11 @@ Casos de demonstração: `caso_demo_001` a `caso_demo_006`. **Restaurar demonstr
 
 | # | Tela | Link | O que validar |
 |---|---|---|---|
-| 4 | **Meus processos** | [`/cidadao`](/cidadao) | Entrada por botão de demonstração; lista dos processos em que já há advogado nomeado |
+| 4 | **Meus processos** | [`/cidadao`](/cidadao) | Entrada por botão de demonstração; lista dos processos em que já há advogado nomeado. **Sem triagem interna** — ver quadro abaixo |
 | 5 | **Acompanhamento** | [`/cidadao/solicitacao/caso_demo_001`](/cidadao/solicitacao/caso_demo_001) | Status em linguagem simples; cartão da conversa; documentos que faltam com onde conseguir; assinatura; CRAS |
 | 6 | **Conversa** | [`/cidadao/chat/caso_demo_001`](/cidadao/chat/caso_demo_001) | Chat em tela cheia; anexar foto de documento; cartões de CRAS e de assinatura |
+
+**O que o cidadão não vê.** A marcação de urgência, o selo de "analisado", o tema escrito pela IA e os status na linguagem do advogado ("Minuta gerada") são triagem interna do atendimento. Na visão do cidadão o card mostra as **palavras dele** e o status em linguagem simples: *Aguardando advogado · Em andamento · Faltam documentos seus · Pronto para dar entrada · Protocolado na Justiça*. Compare [`/cidadao`](/cidadao) com [`/advogado/dashboard`](/advogado/dashboard) no mesmo caso.
 
 **Assinatura:** em (5) → "Documentos para assinar" → **Assinar digitalmente (simulação)** gera registro com método, horário e SHA-256. Também há gov.br (ilustrativo) e imprimir + foto.
 
@@ -31,7 +33,7 @@ Casos de demonstração: `caso_demo_001` a `caso_demo_006`. **Restaurar demonstr
 | # | Tela | Link | O que validar |
 |---|---|---|---|
 | 7 | **Porta de entrada** | [`/advogado`](/advogado) | Botão de demonstração |
-| 8 | **Meus atendimentos** | [`/advogado/dashboard`](/advogado/dashboard) | 6 casos; indicadores; filtros; urgentes destacados; não lidas; restaurar demonstração |
+| 8 | **Meus atendimentos** | [`/advogado/dashboard`](/advogado/dashboard) | 6 casos; indicadores; filtros; urgentes destacados; não lidas; restaurar demonstração (sem encerrar o perfil) |
 | 9 | **Registrar nomeação** | [`/advogado/novo-atendimento`](/advogado/novo-atendimento) | Origem da nomeação (OAB/Fórum) e ofício; dados da parte; relato colado, digitado ou transcrito |
 | 10 | **Atendimento do caso** | [`/advogado/caso/caso_demo_001`](/advogado/caso/caso_demo_001) | **A tela principal** — índice à esquerda, subtela ao centro. Detalhe abaixo |
 | 11 | **Caixa de conversas** | [`/advogado/chat`](/advogado/chat) | Lista por parte com última mensagem, protocolo, status e não lidas |

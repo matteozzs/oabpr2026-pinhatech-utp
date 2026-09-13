@@ -65,12 +65,12 @@ export default function SolicitacaoPage({ params }: { params: Promise<{ id: stri
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="text-xs font-mono text-ink-500">Protocolo {caso.protocolo}</p>
-            <h1 className="text-2xl font-black text-navy-950">{caso.ia.resumo?.tema ?? AREA_LABEL[caso.area]}</h1>
+            <h1 className="text-2xl font-black text-navy-950">{AREA_LABEL[caso.area]}</h1>
             <p className="text-sm text-ink-700 mt-1">
               {caso.assistido.nome} · {caso.comarca} · enviado em {formatarDataHora(caso.criadoEm)}
             </p>
           </div>
-          <StatusBadge status={caso.status} />
+          <StatusBadge status={caso.status} perfil="cidadao" />
         </div>
         <p className="mt-4 text-ink-900 bg-navy-50 rounded-xl p-3 inline-flex items-start gap-2">
           <Clock className="w-4 h-4 mt-0.5 text-navy-700 shrink-0" /> {EXPLICA_STATUS[caso.status]}
