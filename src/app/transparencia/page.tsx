@@ -22,6 +22,11 @@ export default function TransparenciaPage() {
         <p className="text-ink-700 mt-1">
           Tudo que a IA pode citar está nesta página. Tudo que a IA é instruída a fazer está em arquivos Markdown públicos. Nada é caixa-preta.
         </p>
+        <p className="text-ink-700 mt-2 text-sm">
+          Fato e direito ficam separados. O <strong>resumo</strong> conta o que aconteceu e não recebe nenhum dispositivo — não tem como citar
+          lei errada porque não tem lei nenhuma à mão. Só o <strong>checklist</strong> e a <strong>minuta</strong> recebem o corpus, e cada
+          citação deles é conferida no servidor antes de aparecer na tela.
+        </p>
       </div>
 
       <section className="grid sm:grid-cols-3 gap-3">
@@ -46,10 +51,9 @@ export default function TransparenciaPage() {
         <ul className="grid sm:grid-cols-2 gap-2 text-sm">
           {[
             ['00-sistema-base.md', 'Persona, escopo, regras de grounding e anti-alucinação'],
-            ['01-resumo-fatico.md', 'Síntese executiva para o advogado se apropriar do caso'],
-            ['02-checklist-documental.md', 'Pendências documentais'],
-            ['03-minuta-peticao-inicial.md', 'Petição inicial com citação por id'],
-            ['04-mensagem-assistido.md', 'Mensagem acessível ao cidadão'],
+            ['01-resumo-fatico.md', 'Só os fatos, em ordem. Esta tarefa não recebe o corpus e é proibida de citar lei'],
+            ['02-checklist-documental.md', 'Pendências documentais, com citação por id'],
+            ['03-minuta-peticao-inicial.md', 'Petição inicial, com citação por id'],
           ].map(([arq, desc]) => (
             <li key={arq} className="rounded-xl border border-ink-200 p-3">
               <a href={`${REPO}/prompts/${arq}`} target="_blank" rel="noreferrer" className="font-mono text-navy-700 underline inline-flex items-center gap-1">
