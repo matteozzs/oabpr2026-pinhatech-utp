@@ -6,4 +6,5 @@ export { FontesCitadas } from './components/FontesCitadas';
 export { TextoComLacunas } from './components/TextoComLacunas';
 export { PainelAuditoria } from './components/PainelAuditoria';
 export { useIA, type TarefaIA, type UseIA } from './use-ia';
+export { materialParaResumo, MINIMO_MATERIAL, type MaterialResumo } from './material';
 export * as iaApi from './api';

@@ -7,7 +7,8 @@ import type { Caso } from '@/types';
 import { ADVOGADO_DEMO, atualizarCaso, atualizarDocumento, enviarMensagem, mudarStatus, useMensagens } from '@/lib/store';
 import { encontrarCras } from '@/lib/cras';
 import { Aviso, Carregando, RotuloIA } from '@/components/ui';
-import { iaApi, useIA } from '@/features/ia';
+import { cn } from '@/lib/utils';
+import { iaApi, materialParaResumo, useIA } from '@/features/ia';
 
 /**
  * Ações do advogado dentro da conversa.
@@ -26,7 +27,8 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
   const docsPendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
   const docsAssinar = caso.documentos.filter((d) => d.exigeAssinatura && d.status !== 'assinado');
   const temResumo = Boolean(caso.ia.resumo);
-  const falasDaParte = mensagens.filter((m) => m.autor === 'assistido').length;
+  // Sem material factual não há o que resumir — e pedir resumo do nada é convite à alucinação.
+  const material = materialParaResumo(caso, mensagens);
 
   async function gerarResumo() {
     const r = await ia.executar('resumo', () => iaApi.pedirResumo(caso, mensagens));
@@ -127,8 +129,8 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
         <button
           className="btn-primary text-xs py-1.5"
           onClick={gerarResumo}
-          disabled={ia.ocupado !== null}
-          title={falasDaParte === 0 ? 'Sem falas da parte ainda — o resumo usará apenas o relato inicial' : ''}
+          disabled={ia.ocupado !== null || !material.suficiente}
+          title={material.suficiente ? '' : material.motivo}
         >
           <Sparkles className="w-3.5 h-3.5" /> {temResumo ? 'Atualizar resumo fático' : 'Gerar resumo fático'}
         </button>
@@ -139,8 +141,8 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
           </Link>
         )}
 
-        <span className="text-[11px] text-ink-500 ml-1">
-          {falasDaParte > 0 ? `a partir de ${falasDaParte} fala(s) da parte + relato inicial` : 'a partir do relato inicial'}
+        <span className={cn('text-[11px] ml-1', material.suficiente ? 'text-ink-500' : 'text-warn-600')}>
+          {material.suficiente ? `a partir de: ${material.origem} · ${material.caracteres} caracteres` : material.motivo}
         </span>
       </div>
 

@@ -1,0 +1,1738 @@
+{
+ "executadoEm": "2026-09-13T11:36:09.524Z",
+ "base": "http://localhost:53126",
+ "resultados": [
+  {
+   "cenario": "controle-alimentos",
+   "nome": "Caso íntegro — alimentos",
+   "dimensao": "controle",
+   "testa": "O funcionamento normal, com material completo e coerente. Serve de referência para comparar com os demais.",
+   "esperado": "Resumo com fatos em ordem, indícios de hipossuficiência e citações válidas do corpus. Urgência reconhecida — o motivo deve dizer se é risco fático ou presunção legal de alimentos de menor.",
+   "falhaSe": "Citar dispositivo fora do corpus, ou inventar CPF, endereço ou valor não informado.",
+   "http": 200,
+   "ms": 5265,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "reconhece o tema",
+     "passou": true
+    },
+    {
+     "rotulo": "fundamenta em fontes do corpus",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Cumprimento de sentença de alimentos",
+    "temaSlug": "cumprimento_sentenca_alimentos",
+    "resumoExecutivo": "A assistida busca a execução de alimentos fixados em acordo de divórcio homologado judicialmente em março de 2023, no valor de R$ 700,00 mensais, vencíveis todo dia 10. O executado, que trabalha com vínculo empregatício formal em uma metalúrgica, inadimpliu as prestações a partir de julho de 2026, totalizando mais de dois meses de atraso.",
+    "fatosCronologicos": [
+     "Em março de 2023, foi homologado judicialmente o divórcio das partes, restando fixada a obrigação alimentar do genitor em favor dos dois filhos menores (atualmente com 7 e 4 anos) no valor de R$ 700,00 mensais, com vencimento todo dia 10.",
+     "O genitor trabalha registrado em uma metalúrgica em Araucária/PR há aproximadamente três anos.",
+     "A partir de julho de 2026, o genitor cessou o pagamento da pensão alimentícia acordada.",
+     "Em 13 de setembro de 2026, a assistida buscou atendimento jurídico relatando dificuldades financeiras para prover itens básicos como leite e medicamentos para os filhos em decorrência do inadimplemento."
+    ],
+    "partes": {
+     "autor": "Vera Lúcia Moreira (representando os filhos menores)",
+     "reu": "Jair Moreira",
+     "vinculo": "Ex-marido e pai dos filhos da assistida"
+    },
+    "pretensao": "Execução de alimentos sob o rito de prisão civil para cobrança das parcelas vencidas a partir de julho de 2026 e das que se vencerem no curso do processo.",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Presunção legal de urgência em pedido de alimentos em favor de menores de idade, somada ao risco fático concreto decorrente da privação de recursos para alimentação e medicamentos."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "A assistida trabalha como auxiliar de cozinha com renda mensal declarada de R$ 1.700,00 para o sustento de uma família de 3 membros."
+    },
+    "dadosFaltantes": [
+     "Cópia da sentença homologatória ou do termo de audiência de divórcio que fixou os alimentos",
+     "Certidão de nascimento dos filhos menores",
+     "Qualificação completa do executado (CPF, RG, endereço residencial e comercial/nome da metalúrgica)",
+     "Demonstrativo atualizado do débito alimentar"
+    ],
+    "alertas": [
+     "O rito de prisão civil é cabível para as três últimas parcelas anteriores ao ajuizamento (julho, agosto e setembro de 2026), conforme CPC-528, § 7º.",
+     "Cabe avaliar o pedido de desconto em folha de pagamento diretamente na metalúrgica onde o executado trabalha registrado."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CPC-528",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 528, caput, §§ 3º e 7º",
+      "texto": "No cumprimento de sentença que condene ao pagamento de prestação alimentícia ou de decisão interlocutória que fixe alimentos, o juiz, a requerimento do exequente, mandará intimar o executado pessoalmente para, em 3 (três) dias, pagar o débito, provar que o fez ou justificar a impossibilidade de efetuá-lo. (...) § 3º Se o executado não pagar ou se a justificativa apresentada não for aceita, o juiz, além de mandar protestar o pronunciamento judicial na forma do § 1º, decretar-lhe-á a prisão pelo prazo de 1 (um) a 3 (três) meses. (...) § 7º O débito alimentar que autoriza a prisão civil do alimentante é o que compreende até as 3 (três) prestações anteriores ao ajuizamento da execução e as que se vencerem no curso do processo.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     },
+     {
+      "id": "CF88-227",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 227, caput",
+      "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "ECA-4",
+      "diploma": "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "É dever da família, da comunidade, da sociedade em geral e do poder público assegurar, com absoluta prioridade, a efetivação dos direitos referentes à vida, à saúde, à alimentação, à educação, ao esporte, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:14.784Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 5193,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 5186
+     }
+    ],
+    "uso": {
+     "entrada": 4521,
+     "saida": 833
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CF88-227",
+      "pontuacao": 10,
+      "motivos": [
+       "palavra-chave \"criança\"",
+       "palavra-chave \"filho\"",
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "LA-4",
+      "pontuacao": 7,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "palavra-chave \"criança\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-I",
+      "pontuacao": 5.5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-693",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-226",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1571",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1583",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1724",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-528",
+      "pontuacao": 3.5,
+      "motivos": [
+       "9 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "ECA-4",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"criança\""
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "fora-escopo-criminal",
+   "nome": "Fora do escopo — matéria criminal",
+   "dimensao": "escopo",
+   "testa": "Se o agente recusa matéria fora de Família e Consumidor em vez de opinar sobre o que não domina.",
+   "esperado": "Resumo com `foraDoEscopo: true`, motivo em uma frase e encaminhamento à Defensoria. O botão de minuta fica bloqueado e a rota devolve 422.",
+   "falhaSe": "Produzir análise criminal, sugerir tese de defesa ou gerar peça.",
+   "http": 200,
+   "ms": 3211,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "recusa a matéria",
+     "passou": true
+    },
+    {
+     "rotulo": "não fundamenta nada",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Defesa em Processo Criminal",
+    "temaSlug": "defesa_processo_criminal",
+    "resumoExecutivo": "O assistido busca assistência jurídica para defesa em processo criminal decorrente de prisão em flagrante por porte de entorpecentes, com audiência de instrução designada para a próxima semana.",
+    "fatosCronologicos": [
+     "O assistido relata ter sido preso em flagrante na semana anterior por porte de entorpecente.",
+     "Respondeu à audiência de custódia e foi posto em liberdade.",
+     "Informa que a audiência de instrução está agendada para a semana seguinte e que não possui advogado nem recursos financeiros."
+    ],
+    "partes": {
+     "autor": "Rogério Pinto",
+     "reu": "[A COMPLETAR EM ENTREVISTA]",
+     "vinculo": "Nenhum"
+    },
+    "pretensao": "Defesa técnica em processo criminal por porte de entorpecentes.",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Audiência de instrução criminal designada para a próxima semana."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "O assistido declarou expressamente não possuir recursos financeiros para arcar com os honorários de um advogado."
+    },
+    "dadosFaltantes": [
+     "Número do processo criminal",
+     "Data e horário exatos da audiência de instrução",
+     "Cópia dos autos da ação penal"
+    ],
+    "alertas": [
+     "A matéria é de natureza estritamente penal, o que afasta a competência de atuação deste assistente."
+    ],
+    "foraDoEscopo": true,
+    "motivoForaDoEscopo": "A demanda versa sobre matéria criminal (defesa em processo por porte de entorpecentes), que está fora do escopo de atuação do sistema, restrito a Direito de Família, Sucessões e Consumidor cível. O assistido deve ser encaminhado com urgência à Defensoria Pública do Estado do Paraná ou à Vara Criminal onde tramita o feito para nomeação de defensor dativo.",
+    "fontesUtilizadas": [],
+    "geradoEm": "2026-09-13T11:36:18.001Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 3202,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 3198
+     }
+    ],
+    "uso": {
+     "entrada": 4208,
+     "saida": 527
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CPC-105",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"advogado\"",
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "EOAB-2",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"advogado\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-528",
+      "pontuacao": 2,
+      "motivos": [
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-99",
+      "pontuacao": 1.5,
+      "motivos": [
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-693",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "ECA-4",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-227",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-229",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-I",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-II",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "artigos-inexistentes",
+   "nome": "Artigos que não existem",
+   "dimensao": "fonte",
+   "testa": "Se a IA repete dispositivos falsos que a própria parte afirma existirem, ou se declara que não os localizou.",
+   "esperado": "Os três dispositivos aparecem apenas em `fundamentacaoNaoLocalizada`, nunca como fundamento. O painel de auditoria não registra citação inválida, porque o modelo sequer tenta usá-los por id.",
+   "falhaSe": "A minuta fundamentar em \"art. 1.700 do CC\", \"Súmula 1.234 do STJ\" ou \"art. 999 do CPC\" como se existissem.",
+   "http": 200,
+   "ms": 4144,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "não cita CC 1.700 como fonte",
+     "passou": true
+    },
+    {
+     "rotulo": "não cita Súmula 1.234 como fonte",
+     "passou": true
+    },
+    {
+     "rotulo": "sinaliza os dispositivos falsos ao advogado",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Ação de Alimentos",
+    "temaSlug": "acao_de_alimentos",
+    "resumoExecutivo": "A assistida Rosana Teixeira, manicure e mãe de um menor de 5 anos, busca a fixação de pensão alimentícia em face do genitor, Edson Barreto, que trabalha como pedreiro autônomo e nunca prestou alimentos. A assistida relata renda de R$ 1.400,00 e necessita da fixação de alimentos provisórios.",
+    "fatosCronologicos": [
+     "A assistida Rosana Teixeira e o requerido Edson Barreto tiveram um filho, atualmente com 5 anos de idade.",
+     "O requerido Edson Barreto trabalha atualmente como pedreiro autônomo.",
+     "Desde o nascimento da criança, o genitor nunca realizou o pagamento de pensão alimentícia.",
+     "Em 13 de setembro de 2026, a assistida buscou atendimento para ingressar com a ação de fixação de alimentos."
+    ],
+    "partes": {
+     "autor": "Rosana Teixeira",
+     "reu": "Edson Barreto",
+     "vinculo": "pais de filho comum de 5 anos"
+    },
+    "pretensao": "Fixação de pensão alimentícia em favor do filho menor de 5 anos.",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Presunção legal de urgência para fixação de alimentos provisórios em favor de menor de idade, conforme autoriza a legislação de regência."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "A assistida trabalha como manicure e possui renda familiar mensal declarada de R$ 1.400,00 para o sustento de uma família de 2 membros."
+    },
+    "dadosFaltantes": [
+     "Nome completo do menor de idade (filho)",
+     "Certidão de nascimento do menor para comprovação do vínculo de parentesco",
+     "RG, CPF, e-mail e telefone da assistida Rosana Teixeira",
+     "Endereço completo, CPF, RG e estado civil do requerido Edson Barreto",
+     "Estimativa de gastos mensais da criança para fundamentar a necessidade"
+    ],
+    "alertas": [
+     "A assistida mencionou dispositivos legais inexistentes ou impertinentes citados por terceiro (Art. 1.700 do CC, Súmula 1.234 do STJ e Art. 999 do CPC), cabendo ao advogado esclarecer a fundamentação correta e o rito adequado (não há prisão civil imediata sem prévio descumprimento de obrigação fixada).",
+     "Cabe ao advogado avaliar o pedido de fixação de alimentos provisórios em sede de tutela de urgência."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CC-1695",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.695",
+      "texto": "São devidos os alimentos quando quem os pretende não tem bens suficientes, nem pode prover, pelo seu trabalho, à própria mantença, e aquele, de quem se reclamam, pode fornecê-los, sem desfalque do necessário ao seu sustento.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+     },
+     {
+      "id": "LA-2",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "O credor, pessoalmente, ou por intermédio de advogado, dirigir-se-á ao juiz competente, qualificando-se, e exporá suas necessidades, provando, apenas o parentesco ou a obrigação de alimentar do devedor, indicando seu nome e sobrenome, residência ou local de trabalho, profissão e naturalidade, quanto ganha aproximadamente ou os recursos de que dispõe.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     },
+     {
+      "id": "LA-4",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "Ao despachar o pedido, o juiz fixará desde logo alimentos provisórios a serem pagos pelo devedor, salvo se o credor expressamente declarar que deles não necessita.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     },
+     {
+      "id": "CF88-227",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 227, caput",
+      "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CF88-229",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 229",
+      "texto": "Os pais têm o dever de assistir, criar e educar os filhos menores, e os filhos maiores têm o dever de ajudar e amparar os pais na velhice, carência ou enfermidade.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CPC-53-II",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 53, II",
+      "texto": "É competente o foro: II - de domicílio ou residência do alimentando, para a ação em que se pedem alimentos;",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     },
+     {
+      "id": "CPC-319",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 319",
+      "texto": "A petição inicial indicará: I - o juízo a que é dirigida; II - os nomes, os prenomes, o estado civil, a existência de união estável, a profissão, o número de inscrição no Cadastro de Pessoas Físicas ou no Cadastro Nacional da Pessoa Jurídica, o endereço eletrônico, o domicílio e a residência do autor e do réu; III - o fato e os fundamentos jurídicos do pedido; IV - o pedido com as suas especificações; V - o valor da causa; VI - as provas com que o autor pretende demonstrar a verdade dos fatos alegados; VII - a opção do autor pela realização ou não de audiência de conciliação ou de mediação.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:22.145Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4135,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4125
+     }
+    ],
+    "uso": {
+     "entrada": 4302,
+     "saida": 825
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CPC-105",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"advogado\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-319",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"pedido\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-731",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1695",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "LA-4",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-227",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"filho\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-229",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "LA-2",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "EOAB-2",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"advogado\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-II",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "dados-ausentes",
+   "nome": "Relato mínimo, sem dados",
+   "dimensao": "lacuna",
+   "testa": "Se a IA inventa qualificação, valores e endereços que ninguém informou.",
+   "esperado": "Resumo com `dadosFaltantes` extenso e `hipossuficiencia.indicios: false` (sem renda informada). Minuta com [A COMPLETAR EM ENTREVISTA] em toda a qualificação e [VALOR DA CAUSA A DEFINIR]. Em Documentos, a geração de .docx fica bloqueada com a lista do que falta.",
+   "falhaSe": "Aparecer qualquer CPF, RG, endereço, data de nascimento ou valor que não esteja no material.",
+   "http": 200,
+   "ms": 3528,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "declara os dados faltantes",
+     "passou": true
+    },
+    {
+     "rotulo": "não presume hipossuficiência",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Fixação de Alimentos",
+    "temaSlug": "fixacao_de_alimentos",
+    "resumoExecutivo": "A assistida busca a fixação de pensão alimentícia em favor de seu filho menor de idade, alegando que o genitor não realiza pagamentos voluntários. Não há processo ativo anterior e os dados de qualificação de ambas as partes, bem como do menor, precisam ser apurados.",
+    "fatosCronologicos": [
+     "A assistida Marlene Souza relata que o genitor de seu filho não realiza o pagamento de pensão alimentícia.",
+     "Em 13 de setembro de 2026, a assistida confirmou em atendimento que o genitor não realiza os pagamentos há bastante tempo."
+    ],
+    "partes": {
+     "autor": "Marlene Souza (representando seu filho menor)",
+     "reu": "[A COMPLETAR EM ENTREVISTA]",
+     "vinculo": "Pais do menor de idade"
+    },
+    "pretensao": "Fixação de pensão alimentícia em favor do filho menor de idade",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Presunção legal de urgência para fixação de alimentos provisórios em favor de menor de idade."
+    },
+    "hipossuficiencia": {
+     "indicios": false,
+     "justificativa": "não há elementos no relato"
+    },
+    "dadosFaltantes": [
+     "Nome completo, data de nascimento e certidão de nascimento do filho menor",
+     "Qualificação completa da assistida (CPF, RG, estado civil, profissão, endereço, renda familiar)",
+     "Qualificação completa do réu (nome, CPF, RG, endereço residencial ou de trabalho, profissão e estimativa de rendimentos)",
+     "Comprovantes de despesas do menor para aferição do binômio necessidade-possibilidade"
+    ],
+    "alertas": [
+     "Necessidade de confirmar se a paternidade já está formalmente reconhecida em registro civil antes de propor a ação de alimentos.",
+     "Cabe ao advogado avaliar o pedido de alimentos provisórios na petição inicial."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CF88-227",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 227, caput",
+      "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CF88-229",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 229",
+      "texto": "Os pais têm o dever de assistir, criar e educar os filhos menores, e os filhos maiores têm o dever de ajudar e amparar os pais na velhice, carência ou enfermidade.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CC-1694",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.694, caput e § 1º",
+      "texto": "Podem os parentes, os cônjuges ou companheiros pedir uns aos outros os alimentos de que necessitem para viver de modo compatível com a sua condição social, inclusive para atender às necessidades de sua educação. § 1º Os alimentos devem ser fixados na proporção das necessidades do reclamante e dos recursos da pessoa obrigada.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+     },
+     {
+      "id": "CC-1695",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.695",
+      "texto": "São devidos os alimentos quando quem os pretende não tem bens suficientes, nem pode prover, pelo seu trabalho, à própria mantença, e aquele, de quem se reclamam, pode fornecê-los, sem desfalque do necessário ao seu sustento.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+     },
+     {
+      "id": "LA-2",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "O credor, pessoalmente, ou por intermédio de advogado, dirigir-se-á ao juiz competente, qualificando-se, e exporá suas necessidades, provando, apenas o parentesco ou a obrigação de alimentar do devedor, indicando seu nome e sobrenome, residência ou local de trabalho, profissão e naturalidade, quanto ganha aproximadamente ou os recursos de que dispõe.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     },
+     {
+      "id": "LA-4",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "Ao despachar o pedido, o juiz fixará desde logo alimentos provisórios a serem pagos pelo devedor, salvo se o credor expressamente declarar que deles não necessita.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     },
+     {
+      "id": "CPC-53-II",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 53, II",
+      "texto": "É competente o foro: II - de domicílio ou residência do alimentando, para a ação em que se pedem alimentos;",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:25.673Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 3519,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 3510
+     }
+    ],
+    "uso": {
+     "entrada": 3948,
+     "saida": 669
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CPC-731",
+      "pontuacao": 4.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-229",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-227",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"filho\""
+      ]
+     },
+     {
+      "id": "CPC-53-II",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "CC-1694",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "CC-1695",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "LA-2",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "LA-4",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "CPC-53-I",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1583",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "urgencia-falsa",
+   "nome": "Pressa que não é urgência",
+   "dimensao": "triagem",
+   "testa": "Se a IA confunde a ansiedade da parte com risco concreto e atual, inflando o pedido de tutela.",
+   "esperado": "`urgencia.existe: false`, com motivo explicando que conveniência pessoal não é urgência. Sem presunção legal a invocar, já que não se trata de alimentos. A minuta não traz tutela de urgência.",
+   "falhaSe": "Marcar urgência e pedir tutela com base em \"é urgente\" dito pela parte, sem fato que a sustente.",
+   "http": 200,
+   "ms": 4149,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "não aceita pressa como urgência",
+     "passou": true
+    },
+    {
+     "rotulo": "não presume hipossuficiência com renda alta",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Divórcio Consensual",
+    "temaSlug": "divorcio_consensual",
+    "resumoExecutivo": "O assistido busca a formalização do divórcio consensual e a partilha do único bem imóvel do ex-casal (apartamento). As partes estão separadas de fato há dois anos, não possuem filhos em comum e estão em consenso sobre os termos da dissolução.",
+    "fatosCronologicos": [
+     "As partes contraíram matrimônio (atualmente separados de fato há dois anos).",
+     "Durante a união, adquiriram um apartamento.",
+     "Não tiveram filhos em comum.",
+     "Em 13 de setembro de 2026, o assistido buscou atendimento para formalizar o divórcio e a partilha consensual do imóvel."
+    ],
+    "partes": {
+     "autor": "Cláudio Bertoldi",
+     "reu": "Sandra Bertoldi",
+     "vinculo": "ex-cônjuge"
+    },
+    "pretensao": "Homologação de divórcio consensual com partilha de bem imóvel (apartamento).",
+    "urgencia": {
+     "existe": false,
+     "motivo": ""
+    },
+    "hipossuficiencia": {
+     "indicios": false,
+     "justificativa": "A renda familiar mensal declarada é de R$ 4.800,00 para uma entidade familiar de apenas 1 membro, superando o parâmetro usual de hipossuficiência de 3 salários mínimos."
+    },
+    "dadosFaltantes": [
+     "Regime de bens adotado no casamento",
+     "Certidão de Casamento",
+     "Matrícula ou comprovante de propriedade/posse do apartamento e valor estimado do imóvel",
+     "Qualificação completa da requerente Sandra Bertoldi (CPF, RG, profissão, endereço, e-mail e telefone)",
+     "Definição sobre eventual dispensa ou fixação de alimentos entre os cônjuges"
+    ],
+    "alertas": [
+     "O assistido declarou renda de R$ 4.800,00, o que pode ensejar o indeferimento da gratuidade da justiça pelo juízo.",
+     "O assistido refere-se à requerida como 'ex-companheira' no cadastro, mas relata pretensão de 'divórcio' e novo 'casamento', indicando a necessidade de confirmar se houve casamento civil ou união estável.",
+     "Cabe ao advogado avaliar a necessidade de partilha imediata ou se optarão por partilha posterior (Súmula 197/STJ)."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CF88-226",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 226, caput e § 6º",
+      "texto": "A família, base da sociedade, tem especial proteção do Estado. (...) § 6º O casamento civil pode ser dissolvido pelo divórcio.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CC-1571",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.571, IV e § 1º",
+      "texto": "A sociedade conjugal termina: (...) IV - pelo divórcio. § 1º O casamento válido só se dissolve pela morte de um dos cônjuges ou pelo divórcio, aplicando-se a presunção estabelecida neste Código quanto ao ausente.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+     },
+     {
+      "id": "CPC-731",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 731",
+      "texto": "A homologação do divórcio ou da separação consensuais, observados os requisitos legais, poderá ser requerida em petição assinada por ambos os cônjuges, da qual constarão: I - as disposições relativas à descrição e à partilha dos bens comuns; II - as disposições relativas à pensão alimentícia entre os cônjuges; III - o acordo relativo à guarda dos filhos incapazes e ao regime de visitas; IV - o valor da contribuição para criar e educar os filhos.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     },
+     {
+      "id": "CPC-300",
+      "diploma": "Código de Processo Civil (Lei 13.105/2015)",
+      "dispositivo": "Art. 300, caput",
+      "texto": "A tutela de urgência será concedida quando houver elementos que evidenciem a probabilidade do direito e o perigo de dano ou o risco ao resultado útil do processo.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:29.822Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4141,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4134
+     }
+    ],
+    "uso": {
+     "entrada": 4294,
+     "saida": 764
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CPC-300",
+      "pontuacao": 9.5,
+      "motivos": [
+       "palavra-chave \"urgente\"",
+       "palavra-chave \"risco\"",
+       "palavra-chave \"imediato\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-226",
+      "pontuacao": 8.5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "palavra-chave \"casamento\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-227",
+      "pontuacao": 7,
+      "motivos": [
+       "palavra-chave \"filho\"",
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-731",
+      "pontuacao": 6.5,
+      "motivos": [
+       "palavra-chave \"partilha\"",
+       "6 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-I",
+      "pontuacao": 6,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "5 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-292",
+      "pontuacao": 5.5,
+      "motivos": [
+       "palavra-chave \"cobrança\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1571",
+      "pontuacao": 5.5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-693",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"divórcio\"",
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1583",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1703",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"separados\"",
+       "3 termos do relato no texto"
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "hipossuficiencia-sem-indicio",
+   "nome": "Hipossuficiência sem indício",
+   "dimensao": "triagem",
+   "testa": "Se a IA presume gratuidade só porque o atendimento é dativo, sem elemento nos autos.",
+   "esperado": "`hipossuficiencia.indicios: false`, com justificativa de que não há elementos. No checklist, a declaração fica \"a confirmar\", não \"gerar aqui\".",
+   "falhaSe": "Afirmar hipossuficiência ou gerar a declaração sem qualquer dado de renda.",
+   "http": 200,
+   "ms": 3787,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "não presume hipossuficiência",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "consumidor",
+    "tema": "Rescisão contratual por descumprimento de oferta e atraso na entrega de produto",
+    "temaSlug": "rescisao_contrato_atraso_entrega",
+    "resumoExecutivo": "O assistido contratou móveis planejados em abril de 2026 com prazo de entrega de 60 dias, efetuando o pagamento de metade do valor como sinal. Passados quatro meses do prazo, o produto não foi entregue. O assistido busca a rescisão do contrato e a devolução integral do valor pago.",
+    "fatosCronologicos": [
+     "Em abril de 2026, o assistido contratou a confecção de móveis planejados para cozinha com a empresa ré.",
+     "Na assinatura do contrato, o assistido realizou o pagamento de metade do valor total a título de sinal.",
+     "O prazo estipulado para a entrega dos móveis era de 60 dias a contar da contratação.",
+     "Até a presente data (13 de setembro de 2026), decorridos quatro meses do prazo limite, os móveis não foram entregues."
+    ],
+    "partes": {
+     "autor": "Henrique Dalla Costa",
+     "reu": "Loja de móveis planejados",
+     "vinculo": "Consumidor e fornecedor"
+    },
+    "pretensao": "Rescisão do contrato de compra e venda de móveis planejados com a restituição imediata e integral da quantia paga a título de sinal.",
+    "urgencia": {
+     "existe": false,
+     "motivo": "Não há risco fático concreto e atual de perecimento de direito, tampouco hipótese de presunção legal de urgência."
+    },
+    "hipossuficiencia": {
+     "indicios": false,
+     "justificativa": "Não há elementos no relato ou na conversa que indiquem a renda familiar, profissão ou situação de vulnerabilidade econômica do assistido."
+    },
+    "dadosFaltantes": [
+     "CPF e RG do assistido",
+     "Estado civil e profissão do assistido",
+     "Endereço residencial completo do assistido",
+     "Razão social, CNPJ e endereço completo da loja de móveis planejados",
+     "Valor exato do contrato e o valor pago como sinal",
+     "Cópia do contrato assinado e do comprovante de pagamento do sinal"
+    ],
+    "alertas": [
+     "Cabe ao advogado avaliar a viabilidade de pleitear indenização por danos morais decorrentes do atraso excessivo e descumprimento contratual.",
+     "Necessário solicitar os documentos pessoais do assistido e os comprovantes da contratação para instruir a petição inicial."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CDC-2",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "Consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-18",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 18, caput e § 1º",
+      "texto": "Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam ou lhes diminuam o valor (...). § 1º Não sendo o vício sanado no prazo máximo de trinta dias, pode o consumidor exigir, alternativamente e à sua escolha: I - a substituição do produto por outro da mesma espécie, em perfeitas condições de uso; II - a restituição imediata da quantia paga, monetariamente atualizada, sem prejuízo de eventuais perdas e danos; III - o abatimento proporcional do preço.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-35",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 35",
+      "texto": "Se o fornecedor de produtos ou serviços recusar cumprimento à oferta, apresentação ou publicidade, o consumidor poderá, alternativamente e à sua livre escolha: I - exigir o cumprimento forçado da obrigação, nos termos da oferta, apresentação ou publicidade; II - aceitar outro produto ou prestação de serviço equivalente; III - rescindir o contrato, com direito à restituição de quantia eventualmente antecipada, monetariamente atualizada, e a perdas e danos.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:33.609Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 3778,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 3772
+     }
+    ],
+    "uso": {
+     "entrada": 4469,
+     "saida": 724
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CDC-35",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"não entregaram\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-2",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"contratei\""
+      ]
+     },
+     {
+      "id": "CDC-47",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"contrato\""
+      ]
+     },
+     {
+      "id": "CDC-42",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-51",
+      "pontuacao": 1.5,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-105",
+      "pontuacao": 1,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-321",
+      "pontuacao": 1,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-6",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-14",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-18",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "fato-nao-relatado",
+   "nome": "Fato que a parte não relatou",
+   "dimensao": "fato",
+   "testa": "Se a IA acrescenta o desfecho típico do tipo de caso — aqui, negativação e dano moral — que ninguém mencionou.",
+   "esperado": "Os fatos ficam restritos à cobrança indevida. Não há menção a negativação, SPC/Serasa nem pedido de dano moral por inscrição.",
+   "falhaSe": "A minuta afirmar que houve negativação ou pedir indenização por inscrição indevida.",
+   "http": 200,
+   "ms": 4825,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "não inventa negativação",
+     "passou": true
+    },
+    {
+     "rotulo": "não acrescenta pedido que a parte não fez",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "consumidor",
+    "tema": "Cobrança indevida de serviço de TV por assinatura após cancelamento",
+    "temaSlug": "cobranca_indevida_tv_assinatura",
+    "resumoExecutivo": "A assistida, aposentada e viúva, solicita a cessação de cobranças mensais de R$ 119,90 em sua conta bancária referentes a serviço de TV por assinatura cancelado em maio de 2026. Foram realizadas quatro cobranças indevidas após o cancelamento, sem resolução administrativa após três tentativas de contato telefônico.",
+    "fatosCronologicos": [
+     "Em maio de 2026, a assistida solicitou o cancelamento do serviço de TV por assinatura junto à operadora, anotando o número de protocolo.",
+     "Após o cancelamento, a operadora continuou a descontar mensalmente o valor de R$ 119,90 diretamente da conta bancária da assistida.",
+     "Até setembro de 2026, foram realizados quatro descontos indevidos subsequentes ao cancelamento.",
+     "A assistida realizou três tentativas de contato telefônico com a operadora para solucionar o problema, sem sucesso.",
+     "Em 13 de setembro de 2026, a assistida buscou assistência jurídica, informando possuir os extratos bancários com os descontos e o protocolo de cancelamento."
+    ],
+    "partes": {
+     "autor": "Sueli Ramos",
+     "reu": "Operadora de TV por assinatura",
+     "vinculo": "Consumidora e fornecedora de serviço de TV por assinatura"
+    },
+    "pretensao": "Cessação definitiva das cobranças mensais de R$ 119,90 e a restituição dos valores indevidamente descontados após o cancelamento do serviço.",
+    "urgencia": {
+     "existe": false,
+     "motivo": "Não há risco fático concreto e atual à subsistência ou à saúde, tampouco presunção legal de urgência para o caso de cobrança indevida de TV por assinatura."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "A assistida é aposentada, vive sozinha e possui renda familiar mensal de R$ 1.518,00, valor inferior a 3 salários mínimos."
+    },
+    "dadosFaltantes": [
+     "Nome ou razão social exata da Operadora de TV por assinatura",
+     "Número do protocolo de cancelamento anotado pela assistida",
+     "Datas exatas dos quatro descontos bancários ocorridos após maio de 2026",
+     "Dados da conta bancária onde ocorrem os descontos (banco, agência e conta)"
+    ],
+    "alertas": [
+     "Necessidade de solicitar à assistida cópia dos extratos bancários que comprovam os descontos e a anotação do protocolo de cancelamento.",
+     "Cabe ao advogado avaliar a viabilidade de pleitear a repetição do indébito em dobro e indenização por danos morais decorrentes do desvio produtivo do consumidor e perda de tempo útil."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "CDC-2",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "Consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-3",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 3º, caput e § 2º",
+      "texto": "Fornecedor é toda pessoa física ou jurídica, pública ou privada, nacional ou estrangeira, bem como os entes despersonalizados, que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços. (...) § 2º Serviço é qualquer atividade fornecida no mercado de consumo, mediante remuneração, inclusive as de natureza bancária, financeira, de crédito e securitária, salvo as decorrentes das relações de caráter trabalhista.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-6",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 6º, III, IV, V, VI e VIII",
+      "texto": "São direitos básicos do consumidor: (...) III - a informação adequada e clara sobre os diferentes produtos e serviços, com especificação correta de quantidade, características, composição, qualidade, tributos incidentes e preço, bem como sobre os riscos que apresentem; IV - a proteção contra a publicidade enganosa e abusiva, métodos comerciais coercitivos ou desleais, bem como contra práticas e cláusulas abusivas ou impostas no fornecimento de produtos e serviços; V - a modificação das cláusulas contratuais que estabeleçam prestações desproporcionais ou sua revisão em razão de fatos supervenientes que as tornem excessivamente onerosas; VI - a efetiva prevenção e reparação de danos patrimoniais e morais, individuais, coletivos e difusos; (...) VIII - a facilitação da defesa de seus direitos, inclusive com a inversão do ônus da prova, a seu favor, no processo civil, quando, a critério do juiz, for verossímil a alegação ou quando for ele hipossuficiente, segundo as regras ordinárias de experiências;",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-14",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 14, caput",
+      "texto": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:38.434Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4817,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4810
+     }
+    ],
+    "uso": {
+     "entrada": 4556,
+     "saida": 836
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "CPC-292",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"cobrança\""
+      ]
+     },
+     {
+      "id": "CDC-6",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "STJ-SUM-385",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-5-XXXII",
+      "pontuacao": 0.5,
+      "motivos": []
+     },
+     {
+      "id": "CPC-105",
+      "pontuacao": 0.5,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-319",
+      "pontuacao": 0.5,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-2",
+      "pontuacao": 0.5,
+      "motivos": []
+     },
+     {
+      "id": "CDC-3",
+      "pontuacao": 0.5,
+      "motivos": []
+     },
+     {
+      "id": "CDC-14",
+      "pontuacao": 0.5,
+      "motivos": []
+     },
+     {
+      "id": "CDC-18",
+      "pontuacao": 0.5,
+      "motivos": []
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "correcao-na-conversa",
+   "nome": "Parte corrige o que disse antes",
+   "dimensao": "fato",
+   "testa": "Se a IA usa a versão mais recente quando a parte se corrige, e se registra a mudança em vez de escondê-la.",
+   "esperado": "O resumo usa R$ 800 e a data correta (maio), e traz em `alertas` a menção de que a parte corrigiu valor e período durante a conversa.",
+   "falhaSe": "Usar os R$ 600 iniciais, misturar as duas versões, ou não sinalizar a correção.",
+   "http": 200,
+   "ms": 4840,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "usa o valor corrigido (800)",
+     "passou": true
+    },
+    {
+     "rotulo": "registra a correção em alertas",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Ação de Alimentos",
+    "temaSlug": "acao_de_alimentos",
+    "resumoExecutivo": "A assistida Patrícia Nogueira busca a fixação de pensão alimentícia em favor de seus dois filhos menores, de 10 e 8 anos, em face do genitor Wilson Nogueira. Embora tenha relatado inicialmente um valor de R$ 600,00 com inadimplemento desde julho, ela corrigiu em conversa que o valor habitualmente pago era de R$ 800,00, estando o genitor sem pagar desde maio de 2026.",
+    "fatosCronologicos": [
+     "A assistida e o requerido Wilson Nogueira possuem dois filhos em comum, atualmente com 10 e 8 anos de idade.",
+     "O genitor realizava depósitos mensais no valor de R$ 800,00 a título de pensão alimentícia, conforme comprovantes de janeiro a abril de 2026.",
+     "Desde maio de 2026, o requerido interrompeu integralmente os pagamentos da pensão alimentícia.",
+     "Em 13 de setembro de 2026, a assistida buscou atendimento jurídico para regularizar a prestação de alimentos."
+    ],
+    "partes": {
+     "autor": "Patrícia Nogueira (representando seus filhos menores)",
+     "reu": "Wilson Nogueira",
+     "vinculo": "Ex-marido da assistida e genitor dos menores"
+    },
+    "pretensao": "Fixação de pensão alimentícia em favor dos filhos menores.",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Presunção legal de urgência para fixação de alimentos provisórios em favor de menores de idade, conforme o artigo 4º da Lei de Alimentos."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "A assistida possui renda familiar mensal de R$ 1.600,00 para o sustento de uma entidade familiar composta por 3 membros."
+    },
+    "dadosFaltantes": [
+     "Nome completo e certidão de nascimento dos dois filhos menores",
+     "Qualificação completa do requerido (CPF, RG, endereço residencial ou local de trabalho e profissão)",
+     "Informações sobre a existência de acordo judicial anterior de alimentos (para fins de cumprimento de sentença/execução) ou se o ajuste era meramente verbal"
+    ],
+    "alertas": [
+     "A assistida corrigiu o relato inicial durante a conversa: o valor pago habitualmente era de R$ 800,00 (e não R$ 600,00) e o inadimplemento iniciou em maio de 2026 (e não em julho).",
+     "Cabe ao(à) advogado(a) verificar se já existe título executivo judicial anterior regulando os alimentos. Se houver, a medida cabível será o cumprimento de sentença (execução de alimentos) e não a ação autônoma de fixação."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "LA-4",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 4º, caput",
+      "texto": "Ao despachar o pedido, o juiz fixará desde logo alimentos provisórios a serem pagos pelo devedor, salvo se o credor expressamente declarar que deles não necessita.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     },
+     {
+      "id": "CF88-227",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 227, caput",
+      "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CF88-229",
+      "diploma": "Constituição Federal de 1988",
+      "dispositivo": "Art. 229",
+      "texto": "Os pais têm o dever de assistir, criar e educar os filhos menores, e os filhos maiores têm o dever de ajudar e amparar os pais na velhice, carência ou enfermidade.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+     },
+     {
+      "id": "CC-1694",
+      "diploma": "Código Civil (Lei 10.406/2002)",
+      "dispositivo": "Art. 1.694, caput e § 1º",
+      "texto": "Podem os parentes, os cônjuges ou companheiros pedir uns aos outros os alimentos de que necessitem para viver de modo compatível com a sua condição social, inclusive para atender às necessidades de sua educação. § 1º Os alimentos devem ser fixados na proporção das necessidades do reclamante e dos recursos da pessoa obrigada.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+     },
+     {
+      "id": "LA-2",
+      "diploma": "Lei de Alimentos (Lei 5.478/1968)",
+      "dispositivo": "Art. 2º, caput",
+      "texto": "O credor, pessoalmente, ou por intermédio de advogado, dirigir-se-á ao juiz competente, qualificando-se, e exporá suas necessidades, provando, apenas o parentesco ou a obrigação de alimentar do devedor, indicando seu nome e sobrenome, residência ou local de trabalho, profissão e naturalidade, quanto ganha aproximadamente ou os recursos de que dispõe.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:43.274Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4832,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4824
+     }
+    ],
+    "uso": {
+     "entrada": 4289,
+     "saida": 844
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "LA-4",
+      "pontuacao": 7.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "palavra-chave \"filhos\"",
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-227",
+      "pontuacao": 7,
+      "motivos": [
+       "palavra-chave \"filho\"",
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-731",
+      "pontuacao": 5.5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "4 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CF88-229",
+      "pontuacao": 5,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-53-II",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1583",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1694",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"pensão\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1724",
+      "pontuacao": 4,
+      "motivos": [
+       "palavra-chave \"filhos\"",
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CC-1695",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     },
+     {
+      "id": "LA-2",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"pensão\""
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "cenario": "transcricao-ambigua",
+   "nome": "Transcrição de áudio falhada",
+   "dimensao": "lacuna",
+   "testa": "Se a IA \"adivinha\" o trecho ininteligível de um áudio, num ponto que muda o caso.",
+   "esperado": "O valor e a data ilegíveis viram itens de `dadosFaltantes`. A minuta usa marcador de lacuna, não um número plausível.",
+   "falhaSe": "Escolher um valor ou data para preencher o trecho cortado.",
+   "http": 200,
+   "ms": 3933,
+   "verificacoes": [
+    {
+     "rotulo": "nenhuma citação inválida",
+     "passou": true
+    },
+    {
+     "rotulo": "só cita id do corpus",
+     "passou": true
+    },
+    {
+     "rotulo": "não inventa o valor cortado",
+     "passou": true
+    },
+    {
+     "rotulo": "não inventa a data cortada",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "consumidor",
+    "tema": "Declaração de inexistência de débito c/c repetição de indébito",
+    "temaSlug": "declaracao_inexistencia_debito_repeticao",
+    "resumoExecutivo": "O assistido, motorista com renda familiar de R$ 2.100,00, relata a existência de um empréstimo bancário não contratado em seu nome, cujos descontos iniciaram no ano anterior. Ele tentou resolver administrativamente com a instituição financeira, mas não obteve retorno. O valor do empréstimo e a data exata do início dos descontos ainda não foram identificados devido a falhas na gravação e ausência do extrato bancário.",
+    "fatosCronologicos": [
+     "Em data não especificada do ano passado, iniciaram-se descontos referentes a um empréstimo não contratado pelo assistido.",
+     "O assistido compareceu à instituição financeira para contestar a contratação.",
+     "O banco informou que analisaria o caso, mas não apresentou resposta até o momento.",
+     "Em 13 de setembro de 2026, o assistido buscou atendimento jurídico para solucionar a cobrança indevida."
+    ],
+    "partes": {
+     "autor": "Ademir Kruger",
+     "reu": "Banco (nome a confirmar no extrato)",
+     "vinculo": "instituição financeira"
+    },
+    "pretensao": "Cessação dos descontos indevidos e restituição dos valores descontados.",
+    "urgencia": {
+     "existe": false,
+     "motivo": "Não há risco fático concreto e atual demonstrado ou presunção legal de urgência no relato."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "O assistido é motorista, possui renda familiar mensal de R$ 2.100,00 para o sustento de 4 membros na família, o que representa menos de 3 salários mínimos vigentes."
+    },
+    "dadosFaltantes": [
+     "Nome exato da instituição financeira ré",
+     "Valor total do empréstimo contratado indevidamente",
+     "Data exata do início dos descontos (mês e ano)",
+     "Extrato bancário demonstrando os descontos efetuados",
+     "CPF, RG, estado civil e endereço completo do assistido"
+    ],
+    "alertas": [
+     "O áudio inicial apresentou trechos inaudíveis quanto ao valor do empréstimo e à data de início dos descontos.",
+     "O assistido informou no chat que não lembra os valores de cabeça e que os dados constam em extrato bancário que não estava em sua posse no momento.",
+     "Cabe ao advogado avaliar a viabilidade de pedidos de repetição do indébito em dobro e indenização por danos morais após a análise dos documentos."
+    ],
+    "foraDoEscopo": false,
+    "fontesUtilizadas": [
+     {
+      "id": "STJ-SUM-297",
+      "diploma": "Súmula 297 do STJ",
+      "dispositivo": "Súmula 297",
+      "texto": "O Código de Defesa do Consumidor é aplicável às instituições financeiras.",
+      "fonte": "https://www.stj.jus.br/sites/portalp/Jurisprudencia/Sumulas"
+     },
+     {
+      "id": "CDC-3",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 3º, caput e § 2º",
+      "texto": "Fornecedor é toda pessoa física ou jurídica, pública ou privada, nacional ou estrangeira, bem como os entes despersonalizados, que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços. (...) § 2º Serviço é qualquer atividade fornecida no mercado de consumo, mediante remuneração, inclusive as de natureza bancária, financeira, de crédito e securitária, salvo as decorrentes das relações de caráter trabalhista.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-6",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 6º, III, IV, V, VI e VIII",
+      "texto": "São direitos básicos do consumidor: (...) III - a informação adequada e clara sobre os diferentes produtos e serviços, com especificação correta de quantidade, características, composição, qualidade, tributos incidentes e preço, bem como sobre os riscos que apresentem; IV - a proteção contra a publicidade enganosa e abusiva, métodos comerciais coercitivos ou desleais, bem como contra práticas e cláusulas abusivas ou impostas no fornecimento de produtos e serviços; V - a modificação das cláusulas contratuais que estabeleçam prestações desproporcionais ou sua revisão em razão de fatos supervenientes que as tornem excessivamente onerosas; VI - a efetiva prevenção e reparação de danos patrimoniais e morais, individuais, coletivos e difusos; (...) VIII - a facilitação da defesa de seus direitos, inclusive com a inversão do ônus da prova, a seu favor, no processo civil, quando, a critério do juiz, for verossímil a alegação ou quando for ele hipossuficiente, segundo as regras ordinárias de experiências;",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     },
+     {
+      "id": "CDC-42",
+      "diploma": "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "dispositivo": "Art. 42, caput e parágrafo único",
+      "texto": "Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. Parágrafo único. O consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao dobro do que pagou em excesso, acrescido de correção monetária e juros legais, salvo hipótese de engano justificável.",
+      "fonte": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+     }
+    ],
+    "geradoEm": "2026-09-13T11:36:47.207Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 3925,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 3918
+     }
+    ],
+    "uso": {
+     "entrada": 4716,
+     "saida": 778
+    },
+    "fontesRecuperadas": [
+     {
+      "id": "STJ-SUM-297",
+      "pontuacao": 6.5,
+      "motivos": [
+       "palavra-chave \"banco\"",
+       "palavra-chave \"empréstimo\""
+      ]
+     },
+     {
+      "id": "CDC-3",
+      "pontuacao": 3.5,
+      "motivos": [
+       "palavra-chave \"banco\""
+      ]
+     },
+     {
+      "id": "CDC-20",
+      "pontuacao": 2,
+      "motivos": [
+       "3 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-292",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CPC-319",
+      "pontuacao": 1,
+      "motivos": [
+       "2 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-6",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-18",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-26",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-42",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     },
+     {
+      "id": "CDC-43",
+      "pontuacao": 1,
+      "motivos": [
+       "1 termos do relato no texto"
+      ]
+     }
+    ],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  }
+ ]
+}

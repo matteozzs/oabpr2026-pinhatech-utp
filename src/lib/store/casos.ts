@@ -35,6 +35,7 @@ export interface EntradaNovoCaso {
   relato: Caso['relato'];
   registradoPor: 'assistido' | 'advogado';
   nomeacao?: Caso['nomeacao'];
+  cenarioTeste?: string;
 }
 
 /**
@@ -82,6 +83,7 @@ export function criarCaso(e: EntradaNovoCaso): Caso {
     advogado: ADVOGADO_DEMO,
     nomeacao: e.nomeacao,
     registradoPor: e.registradoPor,
+    cenarioTeste: e.cenarioTeste,
     ia: {},
     documentos: documentosIniciais(e.area, e.assistido.tipoPessoa),
     assinaturas: [],
@@ -129,6 +131,13 @@ export function atualizarDocumento(
     }),
     evento,
   );
+}
+
+/** Remove os casos criados pelo banco de cenários, preservando os de demonstração. */
+export function limparCasosDeTeste() {
+  const restantes = carregarCasos().filter((c) => !c.cenarioTeste);
+  salvarCasos(restantes);
+  return restantes.length;
 }
 
 export function registrarAssinatura(casoId: string, assinatura: Assinatura) {

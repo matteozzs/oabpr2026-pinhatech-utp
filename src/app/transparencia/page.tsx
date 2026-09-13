@@ -60,7 +60,15 @@ export default function TransparenciaPage() {
           ))}
         </ul>
         <p className="text-sm text-ink-700 mt-4">
-          Como funciona o controle de alucinação, passo a passo, e como testá-lo:{' '}
+          Para testar na prática, use o{' '}
+          <Link href="/auditoria" className="text-navy-700 underline font-semibold">
+            Banco de cenários
+          </Link>
+          : {/* cenários prontos que exercitam cada mecanismo, mais um cenário livre */}
+          cenários prontos que exercitam cada mecanismo, mais um livre para montar o caso que quiser.
+        </p>
+        <p className="text-sm text-ink-700 mt-2">
+          Como funciona o controle de alucinação, passo a passo:{' '}
           <a href={`${REPO}/docs/auditoria-ia.md`} target="_blank" rel="noreferrer" className="text-navy-700 underline">
             docs/auditoria-ia.md
           </a>

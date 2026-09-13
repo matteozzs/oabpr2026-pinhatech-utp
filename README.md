@@ -59,7 +59,7 @@ Acesse o link da demonstração (ou rode localmente, seção 5). Não há login:
 3. Envie. Na tela da solicitação: documentos pendentes, **assinar** procuração/declaração/consentimento, painel do **CRAS**, e a **conversa** (tela dedicada). Anexe uma “foto” de documento pela conversa.
 4. Volte ao perfil de advogado: o caso novo está no topo da fila, com o documento recebido.
 
-**C. Testes de alucinação (ver [`docs/auditoria-ia.md`](docs/auditoria-ia.md))** — relato fora do escopo (criminal), pedido de artigo inexistente, relato sem dados: a IA deve recusar, declarar lacuna e nunca preencher CPF/endereço/valor.
+**C. Testes de alucinação — [`/auditoria`](docs/telas.md)** — 9 cenários prontos, cada um declarando antes o que testa e o que é falha, mais um cenário livre para montar o caso que quiser. Por linha de comando, `npm run testar:ia` roda todos contra a API real e gera [`evidencias/testes-ia/relatorio.md`](evidencias/testes-ia/relatorio.md) — última execução: **36/36 verificações**. Roteiro completo em [`docs/auditoria-ia.md`](docs/auditoria-ia.md).
 
 ## 4. Como a IA é controlada (anti-alucinação)
 
@@ -76,6 +76,8 @@ A IA desta plataforma **não tem acesso livre ao próprio conhecimento jurídico
 | **Escopo delimitado** (`foraDoEscopo`) | `prompts/00-sistema-base.md` §2 | Matéria criminal/trabalhista etc. não gera peça |
 | **Temperatura 0.2**, raciocínio em nível baixo, teto de tokens por chamada | `src/lib/ia/provider.ts` | Saída determinística e custo controlado |
 | **Rótulo permanente** “gerado por IA · requer revisão” | UI e rodapé dos `.docx` | Nada sai como definitivo |
+| **Recusa de gerar sem material** | `src/features/ia/material.ts` | Sem relato nem falas da parte, o resumo nem é oferecido — não se pede à IA o que ela não tem como responder |
+| **Banco de cenários + massa de testes** | `/auditoria`, `npm run testar:ia` | 9 cenários com resultado esperado declarado; 36 verificações automáticas |
 | **Painel de auditoria** na própria tela | `src/components/ia.tsx#PainelAuditoria` | Auditor vê fontes recuperadas, pontuação, citações bloqueadas |
 
 Os prompts são arquivos Markdown legíveis por quem não programa e reutilizáveis em qualquer LLM: [`prompts/README.md`](prompts/README.md). A página **/transparencia** da própria plataforma lista o corpus inteiro.

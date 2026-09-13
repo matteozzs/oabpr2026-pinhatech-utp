@@ -263,6 +263,8 @@ export interface Caso {
   historico: EventoHistorico[];
   /** Caso de demonstração pré-carregado. */
   semente?: boolean;
+  /** Id do cenário de auditoria que originou o caso — permite limpar só os de teste. */
+  cenarioTeste?: string;
 }
 
 /* ------------------------------------------------------------------ */

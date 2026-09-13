@@ -16,10 +16,17 @@ export function mensagensDoCaso(casoId: string): Mensagem[] {
     .sort((a, b) => a.enviadoEm.localeCompare(b.enviadoEm));
 }
 
-export function enviarMensagem(m: Omit<Mensagem, 'id' | 'enviadoEm'>): Mensagem {
-  const nova: Mensagem = { ...m, id: gerarId('msg'), enviadoEm: agoraISO() };
+export function enviarMensagem(m: Omit<Mensagem, 'id' | 'enviadoEm'> & { enviadoEmForcado?: string }): Mensagem {
+  const { enviadoEmForcado, ...resto } = m;
+  const nova: Mensagem = { ...resto, id: gerarId('msg'), enviadoEm: enviadoEmForcado ?? agoraISO() };
   gravar(K.mensagens, [...ler<Mensagem[]>(K.mensagens, []), nova]);
   return nova;
+}
+
+/** Apaga as mensagens dos casos informados — usado ao limpar cenários de teste. */
+export function removerMensagensDosCasos(casoIds: string[]) {
+  const alvo = new Set(casoIds);
+  gravar(K.mensagens, ler<Mensagem[]>(K.mensagens, []).filter((m) => !alvo.has(m.casoId)));
 }
 
 /** Marca como lidas as mensagens do assistido — usado ao abrir a conversa pelo advogado. */
