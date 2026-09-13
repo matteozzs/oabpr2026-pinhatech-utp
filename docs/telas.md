@@ -2,7 +2,7 @@
 
 **10 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
 
-Casos de demonstração: `caso_demo_001` a `caso_demo_007`. Os seis primeiros chegam **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. O sétimo chega **em branco**, para o avaliador montar o caso que quiser. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
+Casos de demonstração: `caso_demo_001` a `caso_demo_007`. Os seis primeiros chegam **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. O sétimo chega no estado em que o caso realmente aparece: **nomeação aceita e nada mais** — sem relato e sem conversa, para o avaliador fazer o primeiro contato e montar o caso que quiser. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
 
 > **Premissa do produto:** a nomeação do advogado dativo e o seu aceite acontecem na **OAB/PR ou no Fórum, antes da plataforma**. A plataforma não cria solicitações nem credencia ninguém — ela entra em jogo com o advogado já nomeado e atuando.
 
@@ -67,7 +67,7 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 | OD-2026-100004 | [`caso_demo_004`](/advogado/caso/caso_demo_004) | União estável, **Castro**. A parte **digitou CPF, RG e endereço no chat** | **faltam 4** — o resumo os recupera |
 | OD-2026-100005 | [`caso_demo_005`](/advogado/caso/caso_demo_005) | Revisional de alimentos, **processo em andamento** | completos |
 | OD-2026-100006 | [`caso_demo_006`](/advogado/caso/caso_demo_006) | Vício de produto, **Terra Boa**. Digitou só o CPF e o endereço | **faltam 4** — o RG continua lacuna |
-| OD-2026-100007 | [`caso_demo_007`](/advogado/caso/caso_demo_007) | **Em branco, para auditoria** — sem relato, sem conversa | **nenhum** — monte o caso que quiser |
+| OD-2026-100007 | [`caso_demo_007`](/advogado/caso/caso_demo_007) | **Nomeação recém-aceita** — sem relato e sem conversa; o primeiro contato é do advogado. Cartão reservado para testes | **nenhum** — monte o caso que quiser |
 
 ## 5. Rotas de API
 

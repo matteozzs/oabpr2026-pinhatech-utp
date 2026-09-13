@@ -8,7 +8,7 @@ import { ADVOGADO_DEMO, atualizarCaso } from '@/lib/store';
 import { OBRIGATORIEDADE_LABEL } from '@/data/documentos';
 import { Aviso, Carregando, RotuloIA, Secao } from '@/components/ui';
 import { FontesCitadas, PainelAuditoria, TextoComLacunas, iaApi, type UseIA } from '@/features/ia';
-import { DadosDaParte, baixarDocx, camposFaltantes, type TipoDocx } from '@/features/documentos';
+import { BaixarArquivoPessoal, DadosDaParte, baixarDocx, camposFaltantes, type TipoDocx } from '@/features/documentos';
 import { cn } from '@/lib/utils';
 
 const COR_SITUACAO: Record<ItemChecklist['situacao'], string> = {
@@ -145,6 +145,15 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
                             <span className="badge bg-ok-100 text-ok-600 inline-flex items-center gap-1">
                               <CheckCircle2 className="w-3 h-3" /> assinado pela parte
                             </span>
+                          )}
+
+                          {/* Arquivo que a parte enviou: baixar passa a guarda para o advogado, e o aviso vem antes. */}
+                          {doc && !doc.geradoPelaPlataforma && ['recebido', 'assinado'].includes(doc.status) && (
+                            <BaixarArquivoPessoal
+                              caso={caso}
+                              nomeArquivo={doc.arquivoNome ?? `${doc.nome} (enviado pela parte)`}
+                              documentoId={doc.id}
+                            />
                           )}
 
                           {/* O que depende da parte: direcionamento para a conversa */}

@@ -79,7 +79,13 @@ export function Chat({
       </div>
 
       <div className={cn('overflow-y-auto p-4 space-y-3 bg-ink-50', modo === 'dedicado' ? 'flex-1' : 'max-h-[360px]')} aria-live="polite">
-        {mensagens.length === 0 && <p className="text-sm text-ink-500 text-center py-6">Nenhuma mensagem ainda.</p>}
+        {mensagens.length === 0 && (
+          <p className="text-sm text-ink-500 text-center py-6 px-4">
+            {perfil === 'advogado'
+              ? 'Nenhuma mensagem ainda. Escreva para fazer o primeiro contato e entender o caso.'
+              : 'Nenhuma mensagem ainda.'}
+          </p>
+        )}
         {mensagens.map((m) => (
           <BolhaMensagem key={m.id} m={m} perfil={perfil} caso={caso} primeiroNome={primeiroNome} />
         ))}

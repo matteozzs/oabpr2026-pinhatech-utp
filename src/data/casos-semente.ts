@@ -306,12 +306,15 @@ export const CASOS_SEMENTE: Caso[] = [
   },
 
   /*
-   * 007 — atendimento em branco, para a auditoria.
+   * 007 — nomeação recém-aceita, antes do primeiro contato.
    *
-   * Chega sem relato, sem conversa e sem nenhum dado da parte preenchido. Existe para
-   * quem for auditar montar o caso que quiser: escrever a história pelo chat, gerar o
-   * resumo e ver o que a plataforma faz com aquilo. Também é o cartão que demonstra o
-   * bloqueio na origem — sem fala da parte, o resumo nem é oferecido.
+   * É o estado em que o caso realmente chega: a OAB/PR nomeou, a advogada aceitou, e o
+   * ofício traz o nome da parte, a comarca e a área. Nada mais. Não há relato, não há
+   * conversa, e a qualificação vem vazia porque nenhum documento chegou ainda.
+   *
+   * O primeiro contato é ele que faz — abre a conversa e escreve. É também o cartão
+   * reservado para testes: quem for auditar monta o caso que quiser pelo chat e observa
+   * o que a plataforma faz com aquilo. Sem fala da parte, o resumo nem é oferecido.
    */
   {
     id: 'caso_demo_007',
@@ -322,10 +325,12 @@ export const CASOS_SEMENTE: Caso[] = [
     comarca: 'Curitiba',
     temProcessoAtivo: false,
     assistido: {
-      nome: 'Parte a identificar',
+      // O que o ofício de nomeação informa. O resto o advogado apura na conversa.
+      nome: 'Rosangela Ferreira de Lima',
       tipoPessoa: 'PF',
       cidade: 'Curitiba',
       uf: 'PR',
+      telefone: '(41) 99999-0007',
     },
     relato: { origem: 'texto', urgencia: false, texto: '' },
     status: 'em_atendimento',
@@ -334,7 +339,13 @@ export const CASOS_SEMENTE: Caso[] = [
     documentos: docs('familia'),
     assinaturas: [],
     historico: [
-      { em: T(0, 7), tipo: 'nomeacao', descricao: 'Nomeação pela OAB/PR aceita pela advogada — fora da plataforma. Atendimento em branco, reservado para testes de auditoria.', autor: 'advogado' },
+      {
+        em: T(0, 7),
+        tipo: 'nomeacao',
+        descricao:
+          'Nomeação pela OAB/PR aceita pela advogada — fora da plataforma. Atendimento recebido sem relato: o primeiro contato com a parte ainda não foi feito.',
+        autor: 'advogado',
+      },
     ],
     registradoPor: 'advogado',
     nomeacao: { origem: 'oab', referencia: 'Ofício de nomeação (fictício)' },

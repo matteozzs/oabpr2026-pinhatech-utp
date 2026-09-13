@@ -61,8 +61,8 @@ export default function TransparenciaPage() {
         </ul>
         <p className="text-sm text-ink-700 mt-4">
           Para testar na prática, entre como advogado e use os atendimentos de demonstração. O protocolo{' '}
-          <span className="font-mono">OD-2026-100007</span> chega em branco, sem relato e sem conversa, para o avaliador montar o caso que
-          quiser e observar o comportamento da IA.
+          <span className="font-mono">OD-2026-100007</span> é uma nomeação recém-aceita: chega sem relato e sem conversa, para o avaliador
+          fazer o primeiro contato, montar o caso que quiser e observar o comportamento da IA.
         </p>
         <p className="text-sm text-ink-700 mt-2">
           Como funciona o controle de alucinação, passo a passo:{' '}

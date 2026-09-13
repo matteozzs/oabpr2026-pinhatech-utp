@@ -5,6 +5,7 @@ import { Building2, ExternalLink, FileSignature, Mail, MapPin, Paperclip } from 
 import type { Caso, Mensagem, Perfil } from '@/types';
 import { linkBuscaCras, linkBuscaForum } from '@/lib/cras';
 import { cn, formatarDataHora } from '@/lib/utils';
+import { BaixarArquivoPessoal } from '@/features/documentos';
 
 /**
  * Uma mensagem no chat. Mensagens com `tipo` viram cartões acionáveis:
@@ -72,9 +73,17 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
         )}
         <p>{m.texto}</p>
         {m.anexo && (
-          <p className={cn('mt-1.5 text-xs inline-flex items-center gap-1 rounded-lg px-2 py-1', minha ? 'bg-navy-800' : 'bg-ink-100')}>
-            <Paperclip className="w-3 h-3" /> {m.anexo.nome}
-          </p>
+          <div className={cn('mt-1.5 rounded-lg px-2 py-1.5', minha ? 'bg-navy-800' : 'bg-ink-100')}>
+            <p className="text-xs inline-flex items-center gap-1">
+              <Paperclip className="w-3 h-3" /> {m.anexo.nome}
+            </p>
+            {/* Só o advogado baixa: o arquivo é da parte, e é a guarda dele que muda ao sair daqui. */}
+            {perfil === 'advogado' && m.autor === 'assistido' && (
+              <div className="mt-1.5">
+                <BaixarArquivoPessoal caso={caso} nomeArquivo={m.anexo.nome} documentoId={m.anexo.documentoId} variante="discreto" />
+              </div>
+            )}
+          </div>
         )}
         <p className={cn('text-[10px] mt-1', minha ? 'text-navy-100' : 'text-ink-500')}>{formatarDataHora(m.enviadoEm)}</p>
       </div>

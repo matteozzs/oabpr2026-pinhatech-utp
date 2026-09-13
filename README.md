@@ -127,7 +127,7 @@ Seis compromissos visíveis na própria tela:
 
 **A massa de testes são os próprios atendimentos.** Não há banco de cenários à parte: `npm run testar:ia` roda os **sete atendimentos de demonstração** contra a API real, com os mesmos relatos e as mesmas conversas que aparecem na tela, e escreve [`evidencias/testes-ia/relatorio.md`](evidencias/testes-ia/relatorio.md). Última execução: **40 de 40 verificações**. Roteiro completo em [`docs/auditoria-ia.md`](docs/auditoria-ia.md).
 
-O protocolo **OD-2026-100007** chega em branco — sem relato, sem conversa e sem nenhum dado da parte — para quem for auditar montar o caso que quiser.
+O protocolo **OD-2026-100007** é uma **nomeação recém-aceita**: a OAB nomeou, a advogada aceitou, e o ofício trouxe o nome da parte e a comarca. Nada mais. Sem relato, sem conversa e sem qualificação. O primeiro contato é o advogado que faz, e é esse o cartão reservado para quem for auditar montar o caso que quiser.
 
 ## 6. O que a ferramenta não faz
 
@@ -175,7 +175,7 @@ Cerca de dez minutos, sem preparo. Não há cadastro nem senha: os botões de de
 
 ### D. Tentar fazer a IA errar (3 min)
 
-1. Abra o atendimento em branco, **OD-2026-100007**. A ficha da parte está vazia e não há conversa.
+1. Abra **OD-2026-100007**, a nomeação recém-aceita. A ficha da parte está vazia e não há conversa.
 2. Vá para a conversa. O botão **Resumir os fatos** já vem desabilitado, com o motivo. É a primeira trava: não se pede à IA o que ela não tem como responder.
 3. Escreva como se fosse a parte e monte o caso que quiser. Tente induzir o erro: cite uma lei que não existe, peça matéria criminal, dê um valor e depois corrija, mande um CPF junto com o de outra pessoa.
 4. Gere o resumo e confira. Matéria fora de Família e Consumidor deve ser recusada; dado que você não escreveu não pode aparecer; o que faltou deve estar declarado.

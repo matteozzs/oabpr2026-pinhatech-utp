@@ -2,18 +2,18 @@
 
 Execução automática dos 7 atendimentos de demonstração contra `http://localhost:53126/api/ia/resumo`.
 São os mesmos casos que aparecem em **Atendimentos** — mesmos relatos, mesmas conversas.
-Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
+Gerado em 13/09/2026, 11:17:02 por `npm run testar:ia`.
 
 **40 de 40 verificações passaram.**
 
 | Protocolo | Área | Comarca | Falas da parte | Verificações | Tempo |
 |---|---|---|---|---|---|
-| OD-2026-100001 | familia | Colombo | 2 | ✅ 7/7 | 5405ms |
-| OD-2026-100002 | consumidor | Curitiba | 2 | ✅ 6/6 | 4440ms |
-| OD-2026-100003 | consumidor | Fazenda Rio Grande | 2 | ✅ 5/5 | 3610ms |
-| OD-2026-100004 | familia | Castro | 3 | ✅ 7/7 | 5568ms |
-| OD-2026-100005 | familia | Ponta Grossa | 2 | ✅ 6/6 | 4354ms |
-| OD-2026-100006 | consumidor | Terra Boa | 3 | ✅ 6/6 | 4481ms |
+| OD-2026-100001 | familia | Colombo | 2 | ✅ 7/7 | 4128ms |
+| OD-2026-100002 | consumidor | Curitiba | 2 | ✅ 6/6 | 4007ms |
+| OD-2026-100003 | consumidor | Fazenda Rio Grande | 2 | ✅ 5/5 | 3790ms |
+| OD-2026-100004 | familia | Castro | 3 | ✅ 7/7 | 5178ms |
+| OD-2026-100005 | familia | Ponta Grossa | 2 | ✅ 6/6 | 3742ms |
+| OD-2026-100006 | consumidor | Terra Boa | 3 | ✅ 6/6 | 3725ms |
 | OD-2026-100007 | familia | Curitiba | 0 | ✅ 3/3 | 8ms |
 
 ## Detalhe por atendimento
@@ -36,14 +36,14 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ lista os fatos em ordem
 - ✅ reconhece indícios de hipossuficiência
 
-**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 4 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> A assistida relata que se separou do ex-marido há cerca de dois anos, ocasião em que combinaram verbalmente o pagamento de pensão alimentícia no valor de R$ 600,00 mensais para os dois filhos menores. Contudo, o genitor não realiza nenhum pagamento há quatro meses, alegando falta de recursos, embora tenha adquirido uma motocicleta recentemente. A assistida, que trabalha como diarista, necessita da fixação e do recebimento dos alimentos para custear despesas básicas e tratamento de saúde da filha.
+> A assistida relata que se separou do ex-marido há cerca de dois anos, ocasião em que combinaram verbalmente o pagamento de pensão alimentícia de R$ 600,00 mensais para os dois filhos menores. O genitor não realiza os pagamentos há quatro meses, comprometendo a subsistência das crianças, especialmente a compra de medicamentos de uso contínuo. A assistida busca a fixação e a cobrança dos alimentos.
 
 **Alertas levantados pela IA:**
 
-- O acordo de alimentos anterior foi estritamente verbal, não havendo título executivo judicial ou extrajudicial a ser executado de imediato.
-- A assistida mencionou que o requerido trabalha formalmente (carteira assinada) em uma transportadora, o que viabiliza o pedido de desconto em folha de pagamento.
+- O acordo de alimentos anterior foi estritamente verbal, sem homologação judicial ou formalização por escrito.
+- Necessidade de comprovação do vínculo de parentesco mediante certidões de nascimento dos menores, que ainda estão pendentes de apresentação.
 
 ### OD-2026-100002 — Curitiba
 
@@ -62,14 +62,14 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ não acrescenta pedido que a parte não fez
 - ✅ registra a negativação como fato
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 6 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido solicitou o cancelamento de seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Em julho de 2026, descobriu que seu nome foi inscrito nos órgãos de proteção ao crédito por uma dívida de R$ 359,60 referente à linha cancelada, o que impediu a aprovação de um crediário para compra de uma geladeira. Ele busca a exclusão de seu nome do Serasa, o cancelamento das cobranças e a devolução de R$ 180,00 pagos indevidamente após o cancelamento.
+> O assistido cancelou seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Em julho de 2026, descobriu que seu nome foi negativado no Serasa por uma suposta dívida de R$ 359,60 referente à linha cancelada. Ele busca a retirada de seu nome dos cadastros de proteção ao crédito, o cancelamento das cobranças e a devolução de R$ 180,00 pagos indevidamente após o cancelamento.
 
 **Alertas levantados pela IA:**
 
-- O nome exato da empresa ré precisa ser confirmado por meio das faturas ou do extrato de negativação antes da qualificação na peça.
-- O assistido relata possuir anotações físicas dos protocolos de atendimento que precisam ser digitalizadas ou transcritas para o processo.
+- O nome exato da operadora ré precisa ser confirmado na fatura ou no comprovante de negativação.
+- O assistido informou possuir anotações físicas dos protocolos de atendimento que precisam ser digitalizadas ou transcritas.
 
 ### OD-2026-100003 — Fazenda Rio Grande
 
@@ -87,14 +87,14 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ a urgência vem justificada ou declarada como não avaliada
 - ✅ usa a informação mais recente da conversa
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 3 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento da fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em um supermercado, mas a concessionária recusou a religação imediata sob argumento de necessidade de prazo para compensação no sistema. A residência abriga duas crianças pequenas e está sem abastecimento de água.
+> O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento de fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em correspondente bancário (mercado), mas a concessionária recusou o restabelecimento imediato sob alegação de necessidade de prazo para compensação. O assistido reside com dois filhos pequenos e está sem abastecimento de água.
 
 **Alertas levantados pela IA:**
 
-- O assistido informou que a esposa enviaria a foto do comprovante de pagamento, mas o documento ainda não foi anexado ao chat.
-- O assistido é não alfabetizado, demandando atenção especial na leitura e assinatura de termos.
+- O assistido informou no chat que a esposa enviaria a foto do comprovante de pagamento, mas o documento ainda não consta como recebido no histórico da conversa.
+- O assistido é não alfabetizado (sabe ler/escrever: false), o que demanda atenção especial na colheita de assinaturas ou impressões digitais.
 
 ### OD-2026-100004 — Castro
 
@@ -114,9 +114,9 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ captura o RG que a parte digitou
 - ✅ captura o endereço que a parte digitou
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 5 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 5 dado(s) de identificação · 2 alerta(s)
 
-> A assistida relata ter convivido em união estável com o requerido de 2011 a março de 2026, período em que adquiriram uma casa e um carro registrados em nome dele. Após a separação, o requerido negou a partilha dos bens sob a alegação de não serem casados civilmente. A assistida busca o reconhecimento da união estável e a partilha do patrimônio comum.
+> A assistida conviveu em união estável com o requerido de 2011 a março de 2026, período em que adquiriram uma casa e um carro, registrados em nome dele. Após a separação em março de 2026, o requerido negou a partilha dos bens sob a alegação de não serem casados formalmente. A assistida busca o reconhecimento e a dissolução da união estável com a consequente partilha do patrimônio comum.
 
 **Dados de qualificação recuperados da conversa:**
 
@@ -128,8 +128,8 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 
 **Alertas levantados pela IA:**
 
-- A assistida informou que os bens (casa e carro) estão registrados exclusivamente em nome do ex-companheiro.
-- A assistida mencionou possuir fotos e contas de internet para comprovar a união, além de testemunhas, mas os documentos físicos correspondentes ainda precisam ser anexados e analisados.
+- A assistida informou que os bens estão registrados exclusivamente em nome do ex-companheiro.
+- A assistida mencionou possuir fotos e contas de internet em seu nome, além de testemunhas, mas os arquivos físicos/digitais ainda não foram anexados ao sistema para análise.
 
 ### OD-2026-100005 — Ponta Grossa
 
@@ -148,14 +148,13 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ a pretensão é ajustar o valor, não deixar de pagar
 - ✅ não registra a prisão como fato consumado
 
-**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 6 dado(s) faltante(s) · 0 dado(s) de identificação · 1 alerta(s)
 
-> O assistido busca a redução do valor da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata que perdeu o veículo de trabalho em um acidente em abril de 2026 e ficou desempregado, passando a realizar bicos com renda média de R$ 1.500,00. Diante da impossibilidade de arcar com o valor atual e da ameaça de pedido de prisão por parte da mãe do menor, ele pleiteia a adequação do encargo para sua realidade financeira atual.
+> O assistido busca a redução do valor da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata que perdeu o veículo de trabalho em um acidente em abril de 2026 e ficou desempregado, passando a realizar bicos com renda média de R$ 1.500,00. Diante da impossibilidade de arcar com o valor atual e da ameaça de pedido de prisão pela genitora, ele requer a readequação do encargo.
 
 **Alertas levantados pela IA:**
 
-- O assistido menciona a existência de processo ativo de alimentos, sendo necessário verificar se a demanda atual deve ser distribuída por dependência ou se trata de ação revisional autônoma.
-- Necessidade de obtenção urgente dos documentos que comprovam o acidente de abril de 2026 e a ausência de vínculo empregatício para instruir eventual pedido de tutela provisória.
+- O assistido menciona que a genitora ameaçou pedir sua prisão, o que demanda verificação urgente sobre a existência de cumprimento de sentença em andamento.
 
 ### OD-2026-100006 — Terra Boa
 
@@ -174,25 +173,23 @@ Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 - ✅ captura o CPF que a parte digitou
 - ✅ não inventa o RG que ela disse não saber
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 4 dado(s) de identificação · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 3 dado(s) faltante(s) · 2 dado(s) de identificação · 2 alerta(s)
 
-> A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação com um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante recusam-se a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.
+> A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação após um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante recusam-se a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.
 
 **Dados de qualificação recuperados da conversa:**
 
 - `cpf` = 11744820966 — “Doutora, meu CPF é 11744820966.”
-- `endereco` = Avenida Brasil, 1042, apartamento 3 — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
-- `bairro` = centro — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
-- `cidade` = Terra Boa — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
+- `endereco` = Avenida Brasil, 1042, apartamento 3, centro de Terra Boa — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
 
 **Alertas levantados pela IA:**
 
-- A assistida mencionou que enviará a foto do RG posteriormente, pois não sabe o número de cabeça.
-- Necessário identificar a fabricante do produto a partir dos documentos anexados (nota fiscal/ordem de serviço) para eventual inclusão no polo passivo.
+- A assistida informou que enviará a foto do RG posteriormente.
+- Necessário identificar a razão social correta da loja e da fabricante a partir da nota fiscal anexada.
 
 ### OD-2026-100007 — Curitiba
 
-**Testa:** O atendimento em branco, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.
+**Testa:** A nomeação recém-aceita: o caso chega com o nome da parte e a comarca, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.
 
 **Esperado:** A rota recusa com HTTP 400 e uma frase explicando por quê. Nenhuma chamada ao modelo é feita. Na tela, o botão de resumir já vem desabilitado, com o mesmo motivo.
 

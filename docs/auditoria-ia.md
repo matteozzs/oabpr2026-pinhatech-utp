@@ -53,7 +53,7 @@ Não há banco de cenários paralelo: **a massa de testes são os próprios aten
 | OD-2026-100004 | CPF, RG e endereço escritos pela parte no meio do chat |
 | OD-2026-100005 | Processo em andamento; pedido de ajuste de valor, não de exoneração |
 | OD-2026-100006 | Captura parcial: o RG que a parte disse não saber não pode ser inventado |
-| OD-2026-100007 | Atendimento em branco — a rota recusa gerar sem material |
+| OD-2026-100007 | Nomeação recém-aceita, sem relato e sem conversa — a rota recusa gerar sem material |
 
 Correções que nasceram dessa massa, e que valem como exemplo do que ela pega:
 
@@ -75,9 +75,11 @@ Duas travas, nenhuma delas confiando no modelo:
 
 Nos atendimentos em que ninguém escreveu dado pessoal, a lista volta vazia — nenhum falso positivo.
 
-### O atendimento em branco
+### A nomeação recém-aceita
 
-**OD-2026-100007** chega sem relato, sem conversa e sem nenhum dado da parte preenchido. É o cartão reservado para quem for auditar: escreva a história que quiser pelo chat, como se fosse a parte, e depois gere o resumo como advogado. Serve também de demonstração da recusa — veja 3.3.
+**OD-2026-100007** está no estado em que o caso de fato chega: a OAB/PR nomeou, a advogada aceitou, e o ofício trouxe o nome da parte, a comarca e a área. Sem relato, sem conversa, sem qualificação. O primeiro contato é o advogado que faz.
+
+É o cartão reservado para quem for auditar: abra a conversa, escreva a história que quiser como se fosse a parte, e depois gere o resumo como advogado. Serve também de demonstração da recusa — veja 3.3.
 
 ## 3. Testes para tentar induzir alucinação
 
@@ -101,7 +103,7 @@ Relato de família mencionando explicitamente:
 
 ### 3.3 Resumo sem material
 
-Abra a conversa do atendimento em branco, **OD-2026-100007**, sem escrever nada.
+Abra a conversa de **OD-2026-100007**, a nomeação recém-aceita, sem escrever nada.
 
 **Esperado:** o botão *Resumir os fatos* fica **desabilitado**, com o motivo — *"A parte ainda não falou nada nesta conversa"*. A trava existe também no servidor: chamar `POST /api/ia/resumo` com esse caso devolve **HTTP 400** e nenhuma chamada ao modelo é feita. É a primeira linha de defesa: não pedir à IA o que ela não tem como responder — um modelo pressionado a resumir o nada tende a preencher o vazio.
 

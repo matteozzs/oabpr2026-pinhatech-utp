@@ -53,7 +53,7 @@ const PROPOSITO = {
     falhaSe: 'Inventar o RG, ou dar por recebido o documento que ainda não chegou.',
   },
   caso_demo_007: {
-    testa: 'O atendimento em branco, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.',
+    testa: 'A nomeação recém-aceita: o caso chega com o nome da parte e a comarca, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.',
     esperado: 'A rota recusa com HTTP 400 e uma frase explicando por quê. Nenhuma chamada ao modelo é feita. Na tela, o botão de resumir já vem desabilitado, com o mesmo motivo.',
     falhaSe: 'Chamar o modelo e devolver um resumo — fatos, partes ou pretensão inventados a partir do nada.',
   },

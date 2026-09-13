@@ -73,7 +73,7 @@ export function CardCaso({
         </p>
 
         <p className={cn('text-xs text-ink-500 mt-0.5 truncate', !assunto && 'italic')}>
-          {assunto || 'Sem relato e sem conversa — atendimento em branco, reservado para testes.'}
+          {assunto || 'Nomeação recebida. Nenhum contato com a parte ainda.'}
         </p>
       </div>
 
