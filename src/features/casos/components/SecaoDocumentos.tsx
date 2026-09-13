@@ -52,9 +52,9 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
       enviarMensagem({
         casoId: caso.id,
         texto: `Documento enviado manualmente pelo advogado: ${file.name}`,
-        autorId: adv.id,
-        tipo: 'advogado',
-        lida: true,
+        autor: 'advogado',
+        canal: 'chat',
+        tipo: 'documento',
         anexo: { nome: file.name, url, analisado: false }
       });
     } catch(err) {
@@ -235,7 +235,7 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
                       
                       {itemIA && (
                         <div className="text-sm text-ink-700 mt-1">
-                          <TextoComLacunas texto={itemIA.porQue} className="font-sans text-sm leading-normal" fontes={checklist.fontesUtilizadas} />
+                          <TextoComLacunas texto={itemIA.porQue} className="font-sans text-sm leading-normal" fontes={checklist?.fontesUtilizadas || []} />
                         </div>
                       )}
                       {(itemIA?.ondeObter || doc.ondeObter) && (
