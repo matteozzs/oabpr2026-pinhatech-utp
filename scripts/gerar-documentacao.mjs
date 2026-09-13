@@ -124,7 +124,7 @@ async function corpo() {
 
     h2('4.1 Painel de atendimentos'),
     p('A fila de casos em andamento. Os urgentes ficam destacados, as conversas com mensagem nova aparecem com contador, e os filtros separam por área e por etapa.'),
-    ...(await tela('03-painel-advogado', 'Painel do advogado: seis casos de demonstração, indicadores e filtros.')),
+    ...(await tela('03-painel-advogado', 'Painel do advogado: os atendimentos titulados pelo protocolo, com o relato da parte como descrição.')),
 
     h2('4.2 Conversa com a parte'),
     p('A conversa acontece pelo canal oficial da plataforma. O número pessoal do advogado não é exposto. A parte pode escrever, mandar áudio transcrito no próprio navegador e anexar foto de documento.'),
@@ -193,8 +193,7 @@ async function corpo() {
     item('Fato e direito ficam separados. O resumo conta o que aconteceu e não cita lei; o enquadramento jurídico só aparece nas etapas seguintes.'),
     item('Matéria fora de Família e Consumidor é recusada, com encaminhamento, em vez de gerar peça sobre o que a ferramenta não cobre.'),
     espaco(),
-    rico([['Banco de testes aberto. '], 'A própria plataforma traz uma página de testes, fora do fluxo do produto, com dez cenários que tentam induzir erro. Cada cenário declara antes o que está testando, qual é o comportamento correto e o que caracteriza falha. Na última execução, 50 de 50 verificações automáticas passaram.']),
-    ...(await tela('19-banco-de-testes', 'Banco de testes: dez cenários prontos e um cenário livre, para o avaliador montar o caso que quiser.')),
+    rico([['A massa de testes são os próprios atendimentos. '], 'Não há banco de cenários à parte: o comando npm run testar:ia roda os sete atendimentos de demonstração contra a API real, com os mesmos relatos e as mesmas conversas que aparecem na tela. Na última execução, 40 de 40 verificações automáticas passaram. O protocolo OD-2026-100007 chega em branco, para quem for auditar montar o caso que quiser.']),
 
     quebra(),
     h1('7. O que a ferramenta não faz'),
@@ -218,7 +217,7 @@ async function corpo() {
 
     h2('8.2 Teste A — a jornada do advogado (6 minutos)'),
     passo(1, 'Na tela inicial, escolha "Sou Advogado Dativo" e entre na demonstração.'),
-    passo(2, 'No painel, repare que os seis casos já chegam em atendimento. Isso é proposital: a nomeação aconteceu na OAB ou no Fórum, antes da plataforma. Não existe "abrir caso" aqui.'),
+    passo(2, 'No painel, repare que os casos já chegam em atendimento. Isso é proposital: a nomeação aconteceu na OAB ou no Fórum, antes da plataforma. Não existe "abrir caso" aqui.'),
     passo(3, 'Abra o caso OD-2026-100004, de Cleusa Maria Andrade, em Castro.'),
     passo(4, 'Vá em "Resumo fático". Ainda não há resumo, e a tela diz por quê: ele nasce da conversa. Clique em "Ir para a conversa".'),
     passo(5, 'Leia a conversa. Em uma das mensagens a parte escreve o CPF, o RG e o endereço dela. Clique em "Resumir os fatos" e espere alguns segundos.'),
@@ -243,14 +242,14 @@ async function corpo() {
     passo(3, 'Confira que "Minuta gerada" virou "Em andamento" e que "Aguardando documentos" virou "Faltam documentos seus".'),
 
     h2('8.5 Teste D — tentar fazer a IA errar (3 minutos)'),
-    passo(1, 'No menu, abra "Banco de testes". Ele fica fora do fluxo do produto, e existe para o avaliador.'),
-    passo(2, 'Escolha um cenário. Cada um declara antes do teste o que está exercitando, o que é o comportamento correto e o que seria falha.'),
-    passo(3, 'Sugestões: "CPF e RG soltos no meio da conversa" mostra o dado pessoal sendo recuperado sem que o da outra parte se misture; "Fora do escopo — matéria criminal" mostra a recusa; "Artigos inexistentes" mostra o que acontece quando a parte cita uma lei que não existe.'),
-    passo(4, 'Clique em "Criar cenário", abra a conversa como advogado e gere o resumo. Compare o resultado com o que o cenário declarou esperar.'),
-    passo(5, 'Use o "cenário livre" para montar o caso e a conversa que quiser, e tentar induzir a ferramenta a inventar.'),
+    passo(1, 'Abra o atendimento em branco, protocolo OD-2026-100007. A ficha da parte está vazia e não há conversa.'),
+    passo(2, 'Vá para a conversa. O botão "Resumir os fatos" já vem desabilitado, com o motivo. É a primeira trava: não se pede à IA o que ela não tem como responder.'),
+    passo(3, 'Escreva como se fosse a parte e monte o caso que quiser. Tente induzir o erro: cite uma lei que não existe, peça matéria criminal, dê um valor e depois corrija, mande um CPF junto com o de outra pessoa.'),
+    passo(4, 'Gere o resumo e confira. Matéria fora de Família e Consumidor deve ser recusada; dado que você não escreveu não pode aparecer; o que faltou deve estar declarado.'),
+    passo(5, 'Para ver os mesmos mecanismos nos casos prontos, rode npm run testar:ia com o servidor no ar. O relatório diz, protocolo a protocolo, o que cada um coloca à prova e o que se espera.'),
 
     h2('8.6 Voltar ao estado inicial'),
-    p('A qualquer momento: rodapé da tela inicial, botão "Reiniciar dados da demonstração". No painel do advogado há o equivalente, em "Restaurar demonstração". Tudo volta aos seis casos originais.'),
+    p('A qualquer momento: rodapé da tela inicial, botão "Reiniciar dados da demonstração". No painel do advogado há o equivalente, em "Restaurar demonstração". Tudo volta aos sete atendimentos originais.'),
 
     quebra(),
     h1('9. Acesso'),

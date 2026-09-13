@@ -135,6 +135,21 @@ export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = 
     maxOutputTokens: 3072,
   });
 
+  // Um campo que o modelo deixou em branco nao pode chegar ao advogado como decisao.
+  // "Sem urgencia" e uma afirmacao; ausencia de resposta nao e. Quando falta a
+  // justificativa, a urgencia vira pendencia declarada, nao um "nao" silencioso.
+  const bruta = dados.urgencia;
+  const motivoUrgencia = (bruta?.motivo ?? '').trim();
+  const urgenciaAvaliada = Boolean(bruta) && motivoUrgencia.length > 0;
+  const urgenciaNormalizada = urgenciaAvaliada
+    ? { existe: bruta!.existe === true, motivo: motivoUrgencia }
+    : { existe: false, motivo: '' };
+
+  const faltantes = Array.isArray(dados.dadosFaltantes) ? [...dados.dadosFaltantes] : [];
+  if (!urgenciaAvaliada) {
+    faltantes.unshift('Urgência não avaliada pela IA — confira o caso antes de descartar tutela de urgência.');
+  }
+
   const resumo: ResumoFatico = {
     area: dados.area === 'consumidor' ? 'consumidor' : 'familia',
     tema: dados.tema ?? '',
@@ -143,9 +158,9 @@ export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = 
     fatosCronologicos: Array.isArray(dados.fatosCronologicos) ? dados.fatosCronologicos : [],
     partes: dados.partes ?? { autor: caso.assistido?.nome ?? '', reu: '[A COMPLETAR EM ENTREVISTA]', vinculo: '' },
     pretensao: dados.pretensao ?? '',
-    urgencia: dados.urgencia ?? { existe: false, motivo: '' },
+    urgencia: urgenciaNormalizada,
     hipossuficiencia: dados.hipossuficiencia ?? { indicios: false, justificativa: 'não há elementos no relato' },
-    dadosFaltantes: Array.isArray(dados.dadosFaltantes) ? dados.dadosFaltantes : [],
+    dadosFaltantes: faltantes,
     dadosDeIdentificacao: normalizarDadosDitos(dados.dadosDeIdentificacao),
     alertas: Array.isArray(dados.alertas) ? dados.alertas : [],
     foraDoEscopo: Boolean(dados.foraDoEscopo),

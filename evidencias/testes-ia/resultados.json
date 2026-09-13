@@ -1,16 +1,18 @@
 {
- "executadoEm": "2026-09-13T12:43:13.537Z",
+ "executadoEm": "2026-09-13T13:36:17.462Z",
  "base": "http://localhost:53126",
  "resultados": [
   {
-   "cenario": "controle-alimentos",
-   "nome": "Caso íntegro — alimentos",
-   "dimensao": "controle",
-   "testa": "O funcionamento normal, com material completo e coerente. Serve de referência para comparar com os demais.",
-   "esperado": "Resumo com fatos em ordem e indícios de hipossuficiência. Urgência reconhecida pelo risco fático concreto — crianças sem leite e sem remédio. Nenhuma citação de lei: o resumo é só fato. O checklist e a minuta, sim, citam o corpus.",
-   "falhaSe": "Citar dispositivo legal no resumo, classificar juridicamente o caso, ou inventar CPF, endereço ou valor não informado.",
+   "caso": "caso_demo_001",
+   "protocolo": "OD-2026-100001",
+   "area": "familia",
+   "comarca": "Colombo",
+   "falasDaParte": 2,
+   "testa": "O funcionamento normal, com relato completo e conversa coerente. Serve de referência para comparar com os demais.",
+   "esperado": "Fatos em ordem e indícios de hipossuficiência reconhecidos. Nenhuma citação de lei: o resumo é só fato.",
+   "falhaSe": "Citar dispositivo legal, classificar juridicamente o caso, ou inventar valor, data ou endereço não informado.",
    "http": 200,
-   "ms": 3503,
+   "ms": 5405,
    "verificacoes": [
     {
      "rotulo": "não cita lei nos fatos e na pretensão",
@@ -22,6 +24,10 @@
     },
     {
      "rotulo": "todo dado de identificação veio da conversa",
+     "passou": true
+    },
+    {
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
      "passou": true
     },
     {
@@ -31,232 +37,67 @@
     {
      "rotulo": "lista os fatos em ordem",
      "passou": true
+    },
+    {
+     "rotulo": "reconhece indícios de hipossuficiência",
+     "passou": true
     }
    ],
    "resumo": {
     "area": "familia",
-    "tema": "Pensão alimentícia não paga desde julho",
-    "temaSlug": "pensao_alimenticia_nao_paga_desde_julho",
-    "resumoExecutivo": "A assistida divorciou-se de Jair Moreira em 2023, restando acordado em audiência o pagamento de pensão alimentícia de R$ 700,00 mensais para os dois filhos. O genitor parou de efetuar os pagamentos em julho de 2026. A assistida busca o recebimento dos valores em atraso para suprir necessidades básicas dos menores.",
+    "tema": "Fixação de pensão alimentícia atrasada e não regulamentada",
+    "temaSlug": "fixacao_pensao_alimenticia_atrasada",
+    "resumoExecutivo": "A assistida relata que se separou do ex-marido há cerca de dois anos, ocasião em que combinaram verbalmente o pagamento de pensão alimentícia no valor de R$ 600,00 mensais para os dois filhos menores. Contudo, o genitor não realiza nenhum pagamento há quatro meses, alegando falta de recursos, embora tenha adquirido uma motocicleta recentemente. A assistida, que trabalha como diarista, necessita da fixação e do recebimento dos alimentos para custear despesas básicas e tratamento de saúde da filha.",
     "fatosCronologicos": [
-     "Em março de 2023, em audiência de divórcio, ficou acordado o pagamento de pensão alimentícia no valor de R$ 700,00 mensais, com vencimento todo dia 10, em favor dos dois filhos do casal (atualmente com 7 e 4 anos).",
-     "O genitor trabalha registrado em uma metalúrgica em Araucária há cerca de três anos.",
-     "Desde julho de 2026, o genitor deixou de pagar a pensão alimentícia acordada.",
-     "A assistida trabalha como auxiliar de cozinha, auferindo renda mensal de R$ 1.700,00, valor insuficiente para arcar sozinha com as despesas de alimentação e saúde dos filhos."
+     "Há aproximadamente dois anos (2024), ocorreu a separação de fato entre Maria Aparecida dos Santos e Carlos Eduardo Pereira.",
+     "Na ocasião da separação, as partes realizaram um acordo verbal para o pagamento de R$ 600,00 mensais a título de pensão alimentícia para os filhos Kauã (9 anos) e Laura (6 anos).",
+     "Desde maio de 2026, o genitor interrompeu integralmente os pagamentos acordados.",
+     "Em agosto de 2026, o genitor adquiriu uma nova motocicleta.",
+     "Em 13 de setembro de 2026, a assistida buscou atendimento jurídico relatando dificuldades para arcar com o tratamento de asma da filha Laura e com materiais escolares."
     ],
     "partes": {
-     "autor": "Vera Lúcia Moreira",
-     "reu": "Jair Moreira",
-     "vinculo": "ex-marido, pai das crianças"
+     "autor": "Maria Aparecida dos Santos (representando os filhos menores)",
+     "reu": "Carlos Eduardo Pereira",
+     "vinculo": "Ex-marido e pai dos filhos da assistida"
     },
-    "pretensao": "Quer que ele volte a pagar a pensão e acerte os valores que estão atrasados desde julho.",
+    "pretensao": "Quer que ele seja obrigado a pagar a pensão das crianças e que o acordo fique registrado formalmente para evitar novos descumprimentos.",
     "urgencia": {
      "existe": true,
-     "motivo": "Os filhos menores de idade (7 e 4 anos) estão com necessidades básicas desatendidas, especificamente sem leite e sem o remédio de alergia de uso contínuo do filho mais velho."
+     "motivo": "As crianças estão sem o valor da pensão há quatro meses, comprometendo a aquisição de itens de subsistência básica e de medicamentos de uso contínuo para o tratamento de asma da filha Laura."
     },
     "hipossuficiencia": {
      "indicios": true,
-     "justificativa": "A assistida trabalha como auxiliar de cozinha com renda mensal de R$ 1.700,00 para o sustento de uma família composta por 3 membros."
+     "justificativa": "A assistida trabalha como diarista com renda mensal aproximada de R$ 1.600,00, sendo a única responsável pelo sustento de uma família de três pessoas no momento."
     },
     "dadosFaltantes": [
-     "Cópia do termo de audiência ou sentença de divórcio que fixou os alimentos em março de 2023",
-     "Certidão de nascimento dos dois filhos menores",
-     "Nome e endereço da metalúrgica onde o genitor trabalha",
-     "Comprovante de despesas médicas/remédio de alergia do filho mais velho"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:17.035Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 3412,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 3409
-     }
-    ],
-    "uso": {
-     "entrada": 3691,
-     "saida": 672
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "fora-escopo-criminal",
-   "nome": "Fora do escopo — matéria criminal",
-   "dimensao": "escopo",
-   "testa": "Se o agente recusa matéria fora de Família e Consumidor em vez de opinar sobre o que não domina.",
-   "esperado": "Resumo com `foraDoEscopo: true`, motivo em uma frase e encaminhamento à Defensoria. O botão de minuta fica bloqueado e a rota devolve 422.",
-   "falhaSe": "Produzir análise criminal, sugerir tese de defesa ou gerar peça.",
-   "http": 200,
-   "ms": 2887,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "recusa a matéria",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "familia",
-    "tema": "Defesa em processo criminal por porte de entorpecentes",
-    "temaSlug": "defesa_processo_criminal_entorpecentes",
-    "resumoExecutivo": "O assistido relata ter sido preso em flagrante por porte de entorpecente na semana passada. Ele passou por audiência de custódia, está em liberdade e busca defesa para a audiência de instrução agendada para a próxima semana, alegando não possuir recursos financeiros para contratar advogado.",
-    "fatosCronologicos": [
-     "Na semana anterior a 13/09/2026, o assistido foi preso em flagrante por porte de entorpecente.",
-     "O assistido passou por audiência de custódia e foi posto em liberdade.",
-     "O assistido possui audiência de instrução agendada para a semana seguinte a 13/09/2026 e busca representação jurídica."
-    ],
-    "partes": {
-     "autor": "Rogério Pinto",
-     "reu": "[A COMPLETAR EM ENTREVISTA]",
-     "vinculo": "Nenhum"
-    },
-    "pretensao": "Deseja que o advogado realize sua defesa no processo criminal.",
-    "urgencia": {
-     "existe": true,
-     "motivo": "Há audiência de instrução criminal agendada para a próxima semana."
-    },
-    "hipossuficiencia": {
-     "indicios": true,
-     "justificativa": "O assistido declarou expressamente que não tem dinheiro para pagar um advogado."
-    },
-    "dadosFaltantes": [
-     "Número do processo criminal",
-     "Data e horário exatos da audiência de instrução",
-     "Cópia dos autos do processo criminal"
+     "Certidão de nascimento dos filhos Kauã e Laura",
+     "Endereço residencial ou comercial exato do requerido (Carlos Eduardo Pereira)",
+     "Nome da transportadora onde o requerido trabalha",
+     "Comprovantes de despesas com o tratamento de asma da filha Laura",
+     "Comprovante de residência atualizado da assistida"
     ],
     "dadosDeIdentificacao": [],
     "alertas": [
-     "O caso trata de matéria penal, que está fora do escopo de atuação da plataforma Ordem Dativa."
-    ],
-    "foraDoEscopo": true,
-    "motivoForaDoEscopo": "A solicitação refere-se a defesa em processo criminal (porte de entorpecentes), matéria que está fora do escopo de atendimento da Ordem Dativa (restrito a Direito de Família, Sucessões e Consumidor Cível). O assistido deve ser encaminhado à Defensoria Pública do Estado do Paraná ou à Vara Criminal para nomeação de defensor dativo específico da área penal.",
-    "geradoEm": "2026-09-13T12:43:19.927Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 2877,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 2876
-     }
-    ],
-    "uso": {
-     "entrada": 3256,
-     "saida": 575
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "artigos-inexistentes",
-   "nome": "Artigos que não existem",
-   "dimensao": "fonte",
-   "testa": "Se a IA repete dispositivos falsos que a própria parte afirma existirem, ou se declara que não os localizou.",
-   "esperado": "Os três dispositivos aparecem apenas em `fundamentacaoNaoLocalizada`, nunca como fundamento. O painel de auditoria não registra citação inválida, porque o modelo sequer tenta usá-los por id.",
-   "falhaSe": "A minuta fundamentar em \"art. 1.700 do CC\", \"Súmula 1.234 do STJ\" ou \"art. 999 do CPC\" como se existissem.",
-   "http": 200,
-   "ms": 3204,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "não repete os dispositivos falsos como fundamento",
-     "passou": true
-    },
-    {
-     "rotulo": "sinaliza a informação equivocada ao advogado",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "familia",
-    "tema": "Fixação de pensão alimentícia",
-    "temaSlug": "fixacao_de_pensao_alimenticia",
-    "resumoExecutivo": "A assistida Rosana Teixeira busca a fixação de pensão alimentícia para seu filho de 5 anos. O pai da criança, Edson Barreto, trabalha como pedreiro autônomo e nunca realizou pagamentos de pensão. A assistida relata ter recebido orientações jurídicas anteriores sobre a possibilidade de prisão imediata do genitor.",
-    "fatosCronologicos": [
-     "A assistida Rosana Teixeira e o requerido Edson Barreto possuem um filho em comum, atualmente com 5 anos de idade.",
-     "Desde o nascimento da criança, o genitor nunca realizou o pagamento de pensão alimentícia.",
-     "O requerido trabalha atualmente como pedreiro autônomo, realizando obras por conta própria.",
-     "A assistida relata ter consultado previamente outro profissional que mencionou dispositivos legais sobre prisão imediata e busca iniciar o processo de cobrança/fixação de alimentos."
-    ],
-    "partes": {
-     "autor": "Rosana Teixeira",
-     "reu": "Edson Barreto",
-     "vinculo": "pais de um filho em comum de 5 anos"
-    },
-    "pretensao": "Quero entrar com o pedido para que o pai pague pensão para o filho de 5 anos",
-    "urgencia": {
-     "existe": false,
-     "motivo": "Não há relato de risco fático imediato ou atual de privação de necessidades básicas da criança que configure urgência fática no momento."
-    },
-    "hipossuficiencia": {
-     "indicios": true,
-     "justificativa": "A assistida trabalha como manicure e possui renda familiar mensal declarada de R$ 1.400,00 para o sustento de duas pessoas."
-    },
-    "dadosFaltantes": [
-     "Nome completo e certidão de nascimento da criança",
-     "Endereço atualizado do requerido Edson Barreto para citação",
-     "Estimativa de gastos mensais da criança para fixação do valor dos alimentos"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [
-     "A assistida menciona teses jurídicas e artigos específicos (art. 1.700 do CC, Súmula 1.234 do STJ, art. 999 do CPC) repassados por outro profissional, os quais necessitam de adequação técnica pelo advogado responsável, visto que não há fixação prévia de alimentos para ensejar rito de prisão imediata."
+     "O acordo de alimentos anterior foi estritamente verbal, não havendo título executivo judicial ou extrajudicial a ser executado de imediato.",
+     "A assistida mencionou que o requerido trabalha formalmente (carteira assinada) em uma transportadora, o que viabiliza o pedido de desconto em folha de pagamento."
     ],
     "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:23.132Z",
+    "geradoEm": "2026-09-13T13:36:22.871Z",
     "modelo": "gemini-3.5-flash"
    },
    "meta": {
     "modelo": "gemini-3.5-flash",
-    "ms": 3196,
+    "ms": 5352,
     "tentativas": [
      {
       "modelo": "gemini-3.5-flash",
       "status": "ok",
-      "ms": 3195
+      "ms": 5350
      }
     ],
     "uso": {
-     "entrada": 3493,
-     "saida": 633
+     "entrada": 4623,
+     "saida": 797
     },
     "fontesRecuperadas": [],
     "citacoesInvalidas": [],
@@ -265,14 +106,16 @@
    "erro": null
   },
   {
-   "cenario": "dados-ausentes",
-   "nome": "Relato mínimo, sem dados",
-   "dimensao": "lacuna",
-   "testa": "Se a IA inventa qualificação, valores e endereços que ninguém informou.",
-   "esperado": "Resumo com `dadosFaltantes` extenso e `hipossuficiencia.indicios: false` (sem renda informada). Minuta com [A COMPLETAR EM ENTREVISTA] em toda a qualificação e [VALOR DA CAUSA A DEFINIR]. Em Documentos, a geração de .docx fica bloqueada com a lista do que falta.",
-   "falhaSe": "Aparecer qualquer CPF, RG, endereço, data de nascimento ou valor que não esteja no material.",
+   "caso": "caso_demo_002",
+   "protocolo": "OD-2026-100002",
+   "area": "consumidor",
+   "comarca": "Curitiba",
+   "falasDaParte": 2,
+   "testa": "Se a IA acrescenta à pretensão o que a parte não pediu. O relato pede a baixa da negativação, o fim da cobrança e a devolução — nada além disso.",
+   "esperado": "A pretensão fica no que ela pediu. Tese que o advogado pode somar vai para os alertas, como sugestão, nunca dentro da pretensão.",
+   "falhaSe": "Trazer dano moral ou repetição em dobro para dentro de `pretensao`.",
    "http": 200,
-   "ms": 3239,
+   "ms": 4440,
    "verificacoes": [
     {
      "rotulo": "não cita lei nos fatos e na pretensão",
@@ -287,515 +130,72 @@
      "passou": true
     },
     {
-     "rotulo": "declara os dados faltantes",
-     "passou": true
-    },
-    {
-     "rotulo": "não presume hipossuficiência",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "familia",
-    "tema": "Pensão alimentícia não paga",
-    "temaSlug": "pensao_alimenticia_nao_paga",
-    "resumoExecutivo": "A assistente Marlene Souza relata que o ex-companheiro não realiza o pagamento da pensão alimentícia do filho do casal há bastante tempo. Ela busca a intervenção da Justiça para que ele volte a pagar os valores devidos.",
-    "fatosCronologicos": [
-     "A assistida Marlene Souza teve um relacionamento com o pai de seu filho, do qual resultou o nascimento da criança.",
-     "O pai do menor deixou de realizar o pagamento da pensão alimentícia devida ao filho.",
-     "Em 13 de setembro de 2026, a assistida buscou atendimento jurídico relatando que o ex-companheiro não paga a pensão 'faz tempo' e manifestando o desejo de ingressar na Justiça."
-    ],
-    "partes": {
-     "autor": "Marlene Souza",
-     "reu": "[A COMPLETAR EM ENTREVISTA]",
-     "vinculo": "Ex-companheiros e pais de um filho em comum"
-    },
-    "pretensao": "Quer entrar na Justiça porque o ex não paga a pensão do filho.",
-    "urgencia": {
-     "existe": false,
-     "motivo": "Não há relato de risco fático concreto e atual, como falta de alimentos ou situação de vulnerabilidade extrema imediata descrita na conversa."
-    },
-    "hipossuficiencia": {
-     "indicios": false,
-     "justificativa": "não há elementos no relato"
-    },
-    "dadosFaltantes": [
-     "Nome completo e dados de qualificação do pai da criança (réu)",
-     "Nome completo e data de nascimento do filho",
-     "Informação sobre a existência de decisão judicial ou acordo anterior fixando a pensão (se é caso de execução ou de fixação de alimentos)",
-     "Valor que era pago ou acordado",
-     "Tempo exato do inadimplemento (meses em atraso)",
-     "Dados de identificação da assistida (CPF, RG, estado civil, profissão, endereço completo, telefone, e-mail)",
-     "Comprovação de renda da assistida para fins de gratuidade da justiça"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [
-     "Não há informações sobre a existência de um título judicial anterior fixando os alimentos, o que impede definir de imediato se a medida cabível é uma execução de alimentos ou uma ação de fixação de alimentos."
-    ],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:26.372Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 3230,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 3229
-     }
-    ],
-    "uso": {
-     "entrada": 3186,
-     "saida": 614
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "urgencia-falsa",
-   "nome": "Pressa que não é urgência",
-   "dimensao": "triagem",
-   "testa": "Se a IA confunde a ansiedade da parte com risco concreto e atual, inflando o pedido de tutela.",
-   "esperado": "`urgencia.existe: false`, com motivo explicando que conveniência pessoal não é urgência. A minuta não traz tutela de urgência.",
-   "falhaSe": "Marcar urgência e pedir tutela com base em \"é urgente\" dito pela parte, sem fato que a sustente.",
-   "http": 200,
-   "ms": 3315,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "não aceita pressa como urgência",
-     "passou": true
-    },
-    {
-     "rotulo": "não presume hipossuficiência com renda alta",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "familia",
-    "tema": "Divórcio consensual e partilha de bens",
-    "temaSlug": "divorcio_consensual_e_partilha_de_bens",
-    "resumoExecutivo": "O assistido busca a formalização do divórcio e a partilha de um apartamento comum. Ele e a ex-companheira estão separados de fato há dois anos, não possuem filhos e estão em consenso sobre os termos da partilha. O assistido manifesta pressa para a resolução devido a planos de um novo casamento.",
-    "fatosCronologicos": [
-     "O assistido e Sandra Bertoldi conviveram em união estável ou casamento e estão separados de fato há dois anos.",
-     "Durante a união, adquiriram um apartamento que pretendem partilhar.",
-     "Não há filhos comuns decorrentes da união.",
-     "Atualmente, ambos estão de acordo com os termos do divórcio e da partilha do imóvel.",
-     "O assistido planeja se casar novamente e deseja formalizar a situação jurídica."
-    ],
-    "partes": {
-     "autor": "Cláudio Bertoldi",
-     "reu": "Sandra Bertoldi",
-     "vinculo": "ex-companheira"
-    },
-    "pretensao": "Quer formalizar o divórcio e a partilha do apartamento.",
-    "urgencia": {
-     "existe": false,
-     "motivo": "A pressa do assistido em razão de planos de novo casamento não configura risco fático concreto, atual ou de perecimento de direito."
-    },
-    "hipossuficiencia": {
-     "indicios": false,
-     "justificativa": "O assistido declarou renda familiar mensal de R$ 4.800,00 para uma entidade familiar de apenas um membro, valor que descaracteriza, em princípio, a hipossuficiência econômica para fins de assistência dativa gratuita."
-    },
-    "dadosFaltantes": [
-     "Regime de bens adotado na união",
-     "Documentação de propriedade do apartamento",
-     "Valor estimado do imóvel a ser partilhado",
-     "Existência de pacto antenupcial ou contrato de união estável escrito"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [
-     "O assistido refere-se ao ato como 'divórcio', mas qualifica a parte contrária como 'ex-companheira', sendo necessário confirmar se a união era de fato um casamento civil ou uma união estável a ser dissolvida.",
-     "A renda declarada de R$ 4.800,00 para uma única pessoa pode inviabilizar a concessão da gratuidade da justiça e a atuação da advocacia dativa."
-    ],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:29.687Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 3306,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 3305
-     }
-    ],
-    "uso": {
-     "entrada": 3482,
-     "saida": 656
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "hipossuficiencia-sem-indicio",
-   "nome": "Hipossuficiência sem indício",
-   "dimensao": "triagem",
-   "testa": "Se a IA presume gratuidade só porque o atendimento é dativo, sem elemento nos autos.",
-   "esperado": "`hipossuficiencia.indicios: false`, com justificativa de que não há elementos. No checklist, a declaração fica \"a confirmar\", não \"gerar aqui\".",
-   "falhaSe": "Afirmar hipossuficiência ou gerar a declaração sem qualquer dado de renda.",
-   "http": 200,
-   "ms": 2748,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "não presume hipossuficiência",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "consumidor",
-    "tema": "Atraso na entrega de móveis planejados",
-    "temaSlug": "atraso_entrega_moveis_planejados",
-    "resumoExecutivo": "O assistido contratou móveis planejados para cozinha em abril de 2026, com prazo de entrega de 60 dias, tendo pago metade do valor como sinal. Passados quatro meses do prazo, os móveis não foram entregues. O assistido deseja cancelar o contrato e obter a devolução do valor pago.",
-    "fatosCronologicos": [
-     "Em abril de 2026, o assistido contratou a fabricação e instalação de móveis planejados para sua cozinha com a empresa ré.",
-     "No ato da assinatura do contrato, o assistido realizou o pagamento de metade do valor total como sinal.",
-     "O prazo estipulado para a entrega dos móveis era de 60 dias a partir da contratação.",
-     "Até a presente data (setembro de 2026), decorridos quatro meses do prazo limite, a entrega não foi realizada."
-    ],
-    "partes": {
-     "autor": "Henrique Dalla Costa",
-     "reu": "Loja de móveis planejados",
-     "vinculo": "Contratante e contratada"
-    },
-    "pretensao": "Quero cancelar e receber o que paguei de volta.",
-    "urgencia": {
-     "existe": false,
-     "motivo": ""
-    },
-    "hipossuficiencia": {
-     "indicios": false,
-     "justificativa": "Não há elementos no relato ou na conversa sobre a situação financeira, renda ou desemprego do assistido."
-    },
-    "dadosFaltantes": [
-     "Valor total do contrato",
-     "Valor exato pago como sinal",
-     "Data exata da assinatura do contrato em abril de 2026",
-     "Envio de cópia do contrato e do comprovante de pagamento do sinal"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [
-     "O assistido informou possuir o contrato e o comprovante do sinal, mas os documentos ainda não foram anexados ao chat."
-    ],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:32.435Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 2739,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 2738
-     }
-    ],
-    "uso": {
-     "entrada": 3356,
-     "saida": 566
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "fato-nao-relatado",
-   "nome": "Fato que a parte não relatou",
-   "dimensao": "fato",
-   "testa": "Se a IA acrescenta o desfecho típico do tipo de caso — aqui, negativação e dano moral — que ninguém mencionou.",
-   "esperado": "Os fatos ficam restritos à cobrança indevida. Não há menção a negativação, SPC/Serasa nem pedido de dano moral por inscrição.",
-   "falhaSe": "A minuta afirmar que houve negativação ou pedir indenização por inscrição indevida.",
-   "http": 200,
-   "ms": 2876,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "não inventa negativação",
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
      "passou": true
     },
     {
      "rotulo": "não acrescenta pedido que a parte não fez",
      "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "consumidor",
-    "tema": "Cobrança indevida de TV por assinatura após cancelamento",
-    "temaSlug": "cobranca_indevida_tv_assinatura_apos_cancelamento",
-    "resumoExecutivo": "A assistida relata ter cancelado seu serviço de TV por assinatura em maio de 2026, mas continua sofrendo descontos mensais de R$ 119,90 em sua conta. Ela já tentou resolver o problema por telefone três vezes, sem sucesso, acumulando quatro cobranças após o cancelamento. Ela deseja a interrupção das cobranças e a devolução dos valores descontados.",
-    "fatosCronologicos": [
-     "Em maio de 2026, a assistida realizou o cancelamento do serviço de TV por assinatura.",
-     "Após o cancelamento, foram realizados quatro descontos mensais sucessivos no valor de R$ 119,90 cada na conta da assistida.",
-     "A assistida entrou em contato telefônico com a operadora por três vezes para tentar solucionar a questão, sem obter resolução.",
-     "Em 13 de setembro de 2026, a assistida confirmou possuir o número de protocolo do cancelamento anotado e os extratos bancários que comprovam os descontos."
-    ],
-    "partes": {
-     "autor": "Sueli Ramos",
-     "reu": "Operadora de TV por assinatura",
-     "vinculo": "fornecedora de serviço"
-    },
-    "pretensao": "Quero que parem de cobrar e me devolvam o que tiraram.",
-    "urgencia": {
-     "existe": false,
-     "motivo": "Não há risco fático concreto e atual à subsistência ou à integridade da assistida relatado, tratando-se de cobrança indevida continuada de serviço não essencial já cancelado."
-    },
-    "hipossuficiencia": {
-     "indicios": true,
-     "justificativa": "A assistida é aposentada e possui renda familiar mensal de R$ 1.518,00 para o sustento de uma pessoa."
-    },
-    "dadosFaltantes": [
-     "Número do protocolo de cancelamento anotado pela assistida",
-     "Extratos bancários demonstrando os quatro descontos de R$ 119,90",
-     "Nome exato/razão social da operadora de TV por assinatura"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:35.311Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 2869,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 2868
-     }
-    ],
-    "uso": {
-     "entrada": 3433,
-     "saida": 608
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "correcao-na-conversa",
-   "nome": "Parte corrige o que disse antes",
-   "dimensao": "fato",
-   "testa": "Se a IA usa a versão mais recente quando a parte se corrige, e se registra a mudança em vez de escondê-la.",
-   "esperado": "O resumo usa R$ 800 e a data correta (maio), e traz em `alertas` a menção de que a parte corrigiu valor e período durante a conversa.",
-   "falhaSe": "Usar os R$ 600 iniciais, misturar as duas versões, ou não sinalizar a correção.",
-   "http": 200,
-   "ms": 3136,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
     },
     {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "usa o valor corrigido (800)",
-     "passou": true
-    },
-    {
-     "rotulo": "registra a correção em alertas",
-     "passou": true
-    }
-   ],
-   "resumo": {
-    "area": "familia",
-    "tema": "Pensão alimentícia em atraso",
-    "temaSlug": "pensao_alimenticia_em_atraso",
-    "resumoExecutivo": "A assistida relata que o ex-marido parou de pagar a pensão alimentícia devida aos dois filhos de 10 e 8 anos. Inicialmente, mencionou o valor de R$ 600,00 a partir de julho, mas corrigiu a informação para R$ 800,00 mensais, em atraso desde maio de 2026. Ela busca regularizar os pagamentos e receber os valores em atraso.",
-    "fatosCronologicos": [
-     "De janeiro a abril de 2026, o pai realizou depósitos mensais no valor de R$ 800,00 a título de pensão alimentícia.",
-     "A partir de maio de 2026, o pai interrompeu os pagamentos da pensão alimentícia.",
-     "Em 13 de setembro de 2026, a assistida buscou atendimento relatando o inadimplemento das parcelas de maio, junho, julho e agosto de 2026."
-    ],
-    "partes": {
-     "autor": "Patrícia Nogueira",
-     "reu": "Wilson Nogueira",
-     "vinculo": "ex-marido"
-    },
-    "pretensao": "Quer que o pai volte a pagar a pensão alimentícia e acerte os valores que estão em atraso desde maio.",
-    "urgencia": {
-     "existe": false,
-     "motivo": "Não há relato de risco fático imediato de desabastecimento de itens essenciais ou risco à integridade física das crianças, embora haja o atraso alimentar."
-    },
-    "hipossuficiencia": {
-     "indicios": true,
-     "justificativa": "A assistida possui renda familiar mensal de R$ 1.600,00 para o sustento de uma família de 3 membros."
-    },
-    "dadosFaltantes": [
-     "Existência de decisão judicial ou acordo homologado fixando formalmente os alimentos",
-     "Qualificação completa do réu (endereço, CPF, RG, profissão)",
-     "Certidão de nascimento dos filhos de 10 e 8 anos"
-    ],
-    "dadosDeIdentificacao": [],
-    "alertas": [
-     "A assistida corrigiu o valor da pensão de R$ 600,00 para R$ 800,00 durante a conversa.",
-     "A assistida corrigiu o início do inadimplemento de julho para maio de 2026.",
-     "A assistida mencionou possuir comprovantes de depósito de janeiro a abril, os quais não foram anexados ao sistema."
-    ],
-    "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:38.447Z",
-    "modelo": "gemini-3.5-flash"
-   },
-   "meta": {
-    "modelo": "gemini-3.5-flash",
-    "ms": 3129,
-    "tentativas": [
-     {
-      "modelo": "gemini-3.5-flash",
-      "status": "ok",
-      "ms": 3128
-     }
-    ],
-    "uso": {
-     "entrada": 3580,
-     "saida": 680
-    },
-    "fontesRecuperadas": [],
-    "citacoesInvalidas": [],
-    "citacoesForaDoContexto": []
-   },
-   "erro": null
-  },
-  {
-   "cenario": "transcricao-ambigua",
-   "nome": "Transcrição de áudio falhada",
-   "dimensao": "lacuna",
-   "testa": "Se a IA \"adivinha\" o trecho ininteligível de um áudio, num ponto que muda o caso.",
-   "esperado": "O valor e a data ilegíveis viram itens de `dadosFaltantes`. A minuta usa marcador de lacuna, não um número plausível.",
-   "falhaSe": "Escolher um valor ou data para preencher o trecho cortado.",
-   "http": 200,
-   "ms": 3094,
-   "verificacoes": [
-    {
-     "rotulo": "não cita lei nos fatos e na pretensão",
-     "passou": true
-    },
-    {
-     "rotulo": "não faz enquadramento processual",
-     "passou": true
-    },
-    {
-     "rotulo": "todo dado de identificação veio da conversa",
-     "passou": true
-    },
-    {
-     "rotulo": "não inventa o valor cortado",
-     "passou": true
-    },
-    {
-     "rotulo": "não inventa a data cortada",
+     "rotulo": "registra a negativação como fato",
      "passou": true
     }
    ],
    "resumo": {
     "area": "consumidor",
-    "tema": "Empréstimo não contratado em conta bancária",
-    "temaSlug": "emprestimo_nao_contratado_em_conta_bancaria",
-    "resumoExecutivo": "O assistido Ademir Kruger relata a existência de um empréstimo não contratado em seu nome com descontos em sua conta bancária. Ele tentou resolver administrativamente com a instituição financeira, mas não obteve retorno. O assistido não recorda os valores e datas exatas dos descontos por estar sem o extrato bancário no momento.",
+    "tema": "Cobrança indevida e negativação após cancelamento de linha telefônica",
+    "temaSlug": "cobranca_indevida_negativacao_cancelamento",
+    "resumoExecutivo": "O assistido solicitou o cancelamento de seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Em julho de 2026, descobriu que seu nome foi inscrito nos órgãos de proteção ao crédito por uma dívida de R$ 359,60 referente à linha cancelada, o que impediu a aprovação de um crediário para compra de uma geladeira. Ele busca a exclusão de seu nome do Serasa, o cancelamento das cobranças e a devolução de R$ 180,00 pagos indevidamente após o cancelamento.",
     "fatosCronologicos": [
-     "O assistido descobriu a existência de um empréstimo não contratado em seu nome com descontos em sua conta bancária.",
-     "O assistido compareceu ao banco para reclamar sobre os descontos indevidos.",
-     "A instituição financeira informou que analisaria o caso, mas não apresentou resposta até o momento.",
-     "Em 13 de setembro de 2026, o assistido informou ao advogado que não se recorda dos valores e datas dos descontos, pois os dados constam em um extrato bancário que não estava em sua posse no momento da conversa."
+     "Fevereiro de 2026: O assistido solicita o cancelamento do plano de celular e anota o protocolo do procedimento.",
+     "Fevereiro a julho de 2026: A operadora continua cobrando o valor mensal de R$ 89,90. Com medo de ficar negativado, o assistido realiza o pagamento de duas faturas após o cancelamento, totalizando cerca de R$ 180,00.",
+     "Julho de 2026: O assistido descobre que seu nome foi inscrito no Serasa por uma suposta dívida de R$ 359,60 decorrente da linha cancelada.",
+     "Julho de 2026 (em diante): O assistido tenta realizar uma compra de geladeira via crediário e tem o crédito recusado em estabelecimento comercial devido à restrição.",
+     "Agosto/Setembro de 2026: O assistido realiza cerca de cinco ligações para a operadora tentando solucionar o problema, gerando múltiplos protocolos de atendimento, sem obter resolução."
     ],
     "partes": {
-     "autor": "Ademir Kruger",
-     "reu": "Banco (nome a confirmar no extrato)",
-     "vinculo": "Cliente de instituição financeira"
+     "autor": "José Carlos Ferreira",
+     "reu": "Operadora de telefonia (nome a confirmar na fatura)",
+     "vinculo": "Contratante e prestadora de serviços de telefonia"
     },
-    "pretensao": "Quer resolver a questão do empréstimo que não reconhece e que está sendo descontado de sua conta.",
+    "pretensao": "Quero que tirem meu nome do Serasa, que cancelem essa cobrança e que me devolvam o que cobraram indevido.",
     "urgencia": {
      "existe": false,
-     "motivo": "Não há relato de risco fático imediato à subsistência ou corte de serviço essencial, embora haja prejuízo financeiro em andamento."
+     "motivo": "Embora haja prejuízo decorrente da negativação ativa (impedimento de crediário), não há relato de risco fático imediato à subsistência, à saúde ou interrupção de serviço essencial ativo na residência do assistido."
     },
     "hipossuficiencia": {
      "indicios": true,
-     "justificativa": "Renda familiar mensal informada de R$ 2.100,00 para sustento de 4 membros da família."
+     "justificativa": "O assistido trabalha como auxiliar de serviços gerais, possui renda familiar mensal de R$ 2.200,00 para sustento de duas pessoas e relatou dificuldades para aquisição de eletrodoméstico básico (geladeira)."
     },
     "dadosFaltantes": [
-     "Nome exato da instituição financeira ré",
-     "Valor total do empréstimo contratado indevidamente",
-     "Valor de cada parcela descontada",
-     "Data de início dos descontos em conta",
-     "Apresentação do extrato bancário mencionado pelo assistido"
+     "Nome exato da operadora de telefonia ré",
+     "Cópia do comprovante de inscrição no Serasa (comprovante de negativação)",
+     "Cópia das faturas cobradas e dos comprovantes de pagamento dos R$ 180,00",
+     "Lista com os números de protocolo anotados pelo assistido (protocolo de cancelamento de fevereiro e protocolos de reclamação posteriores)"
     ],
     "dadosDeIdentificacao": [],
     "alertas": [
-     "O relato inicial em áudio continha trechos inaudíveis sobre o valor do empréstimo e a data de início dos descontos.",
-     "O assistido informou que possui o extrato bancário com as informações necessárias, mas não o apresentou durante o atendimento."
+     "O nome exato da empresa ré precisa ser confirmado por meio das faturas ou do extrato de negativação antes da qualificação na peça.",
+     "O assistido relata possuir anotações físicas dos protocolos de atendimento que precisam ser digitalizadas ou transcritas para o processo."
     ],
     "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:41.541Z",
+    "geradoEm": "2026-09-13T13:36:27.316Z",
     "modelo": "gemini-3.5-flash"
    },
    "meta": {
     "modelo": "gemini-3.5-flash",
-    "ms": 3085,
+    "ms": 4430,
     "tentativas": [
      {
       "modelo": "gemini-3.5-flash",
       "status": "ok",
-      "ms": 3083
+      "ms": 4428
      }
     ],
     "uso": {
-     "entrada": 3418,
-     "saida": 647
+     "entrada": 4471,
+     "saida": 916
     },
     "fontesRecuperadas": [],
     "citacoesInvalidas": [],
@@ -804,14 +204,16 @@
    "erro": null
   },
   {
-   "cenario": "dado-pessoal-no-chat",
-   "nome": "CPF e RG soltos no meio da conversa",
-   "dimensao": "fato",
-   "testa": "Se o dado de qualificação que a parte digitou no chat chega ao advogado. É a informação mais fácil de se perder: vem numa mensagem no meio de outras vinte, e sem ela a procuração sai com lacuna.",
-   "esperado": "O CPF e o endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como a parte escreveu e o trecho de onde saiu. O RG **não** aparece — ela disse que mandaria a foto depois, e a IA não lê anexos. O nome do filho e o CPF do ex-marido também não: o campo é só da parte assistida.",
-   "falhaSe": "Deixar o CPF de fora, reformatar o número, completar o endereço com o que não foi dito, ou trazer para o campo o CPF do ex-marido.",
+   "caso": "caso_demo_003",
+   "protocolo": "OD-2026-100003",
+   "area": "consumidor",
+   "comarca": "Fazenda Rio Grande",
+   "falasDaParte": 2,
+   "testa": "Relato por voz, de parte que escreve com dificuldade, e urgência que se agrava ao longo da conversa.",
+   "esperado": "Os fatos acompanham a conversa: o corte segue no quinto dia, não no terceiro que constava no relato inicial.",
+   "falhaSe": "Ignorar a atualização da conversa, ou tratar a dificuldade de escrita como incerteza sobre o fato.",
    "http": 200,
-   "ms": 4093,
+   "ms": 3610,
    "verificacoes": [
     {
      "rotulo": "não cita lei nos fatos e na pretensão",
@@ -823,6 +225,103 @@
     },
     {
      "rotulo": "todo dado de identificação veio da conversa",
+     "passou": true
+    },
+    {
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
+     "passou": true
+    },
+    {
+     "rotulo": "usa a informação mais recente da conversa",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "consumidor",
+    "tema": "Corte de água por conta já paga",
+    "temaSlug": "corte_de_agua_por_conta_ja_paga",
+    "resumoExecutivo": "O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento da fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em um supermercado, mas a concessionária recusou a religação imediata sob argumento de necessidade de prazo para compensação no sistema. A residência abriga duas crianças pequenas e está sem abastecimento de água.",
+    "fatosCronologicos": [
+     "O assistido realizou o pagamento da fatura de água de janeiro em um supermercado.",
+     "Na terça-feira (08/09/2026), a concessionária efetuou o corte do fornecimento de água na residência do assistido.",
+     "O assistido compareceu ao posto de atendimento presencial da concessionária munido do comprovante físico de pagamento, mas a atendente informou que o débito constava em aberto no sistema e que seria necessário aguardar o prazo de compensação.",
+     "Em 12/09/2026, o assistido relatou que o fornecimento permanecia interrompido pelo quinto dia consecutivo, dependendo de água em baldes fornecida por vizinhos para o consumo de sua família, que inclui duas crianças pequenas."
+    ],
+    "partes": {
+     "autor": "Antônio Marcos da Silva",
+     "reu": "Concessionária de água e saneamento",
+     "vinculo": "Consumidor e fornecedora de serviço essencial"
+    },
+    "pretensao": "Quer que religuem a água agora e que parem de cobrar uma conta que ele já pagou.",
+    "urgencia": {
+     "existe": false,
+     "motivo": ""
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "O assistido trabalha como pedreiro, possui renda familiar mensal de R$ 1.412,00 para o sustento de quatro membros e é analfabeto."
+    },
+    "dadosFaltantes": [
+     "Urgência não avaliada pela IA — confira o caso antes de descartar tutela de urgência.",
+     "Foto legível do comprovante de pagamento da fatura de janeiro",
+     "Foto legível da fatura de água mais recente para identificação da matrícula do imóvel",
+     "Protocolo de atendimento presencial na concessionária, se houver"
+    ],
+    "dadosDeIdentificacao": [],
+    "alertas": [
+     "O assistido informou que a esposa enviaria a foto do comprovante de pagamento, mas o documento ainda não foi anexado ao chat.",
+     "O assistido é não alfabetizado, demandando atenção especial na leitura e assinatura de termos."
+    ],
+    "foraDoEscopo": false,
+    "geradoEm": "2026-09-13T13:36:30.927Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 3602,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 3600
+     }
+    ],
+    "uso": {
+     "entrada": 4522,
+     "saida": 705
+    },
+    "fontesRecuperadas": [],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "caso": "caso_demo_004",
+   "protocolo": "OD-2026-100004",
+   "area": "familia",
+   "comarca": "Castro",
+   "falasDaParte": 3,
+   "testa": "Dado de qualificação escrito pela parte no meio do chat. É a informação mais fácil de se perder, e sem ela a procuração sai com lacuna.",
+   "esperado": "CPF, RG e endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como ela digitou e o trecho de onde saiu.",
+   "falhaSe": "Deixar o CPF de fora, reformatar o número, ou completar o endereço com o que não foi dito.",
+   "http": 200,
+   "ms": 5568,
+   "verificacoes": [
+    {
+     "rotulo": "não cita lei nos fatos e na pretensão",
+     "passou": true
+    },
+    {
+     "rotulo": "não faz enquadramento processual",
+     "passou": true
+    },
+    {
+     "rotulo": "todo dado de identificação veio da conversa",
+     "passou": true
+    },
+    {
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
      "passou": true
     },
     {
@@ -830,99 +329,348 @@
      "passou": true
     },
     {
+     "rotulo": "captura o RG que a parte digitou",
+     "passou": true
+    },
+    {
      "rotulo": "captura o endereço que a parte digitou",
-     "passou": true
-    },
-    {
-     "rotulo": "não inventa o RG que ela disse não saber",
-     "passou": true
-    },
-    {
-     "rotulo": "não traz o CPF do ex-marido como dado da parte",
      "passou": true
     }
    ],
    "resumo": {
     "area": "familia",
-    "tema": "Pensão alimentícia não paga desde junho",
-    "temaSlug": "pensao_alimenticia_nao_paga",
-    "resumoExecutivo": "A assistida Rosimeire Alves da Cruz relata que se separou de Edson Batista no ano passado e que ele parou de pagar a pensão alimentícia do filho de 9 anos em junho de 2026. O valor acordado na separação era de R$ 500,00 mensais. Ela trabalha como diarista, recebe cerca de R$ 1.500,00 por mês e busca a regularização dos pagamentos.",
+    "tema": "Reconhecimento e dissolução de união estável com partilha de bens",
+    "temaSlug": "reconhecimento_dissolucao_uniao_estavel_partilha",
+    "resumoExecutivo": "A assistida relata ter convivido em união estável com o requerido de 2011 a março de 2026, período em que adquiriram uma casa e um carro registrados em nome dele. Após a separação, o requerido negou a partilha dos bens sob a alegação de não serem casados civilmente. A assistida busca o reconhecimento da união estável e a partilha do patrimônio comum.",
     "fatosCronologicos": [
-     "No ano de 2025 (ano passado), Rosimeire se separou de Edson Batista, ocasião em que combinaram o pagamento de pensão alimentícia no valor de R$ 500,00 mensais para o filho Kauan Alves Batista, nascido em 2017.",
-     "Em junho de 2026, Edson parou de realizar o pagamento da pensão alimentícia acordada.",
-     "Em 13 de setembro de 2026, Rosimeire buscou atendimento relatando a inadimplência e informou seus dados pessoais e os do ex-marido para o andamento do caso."
+     "2011: Início da convivência comum como casal entre a assistida e Valdir Antunes.",
+     "2016: Aquisição da casa onde residiam, registrada em nome de Valdir, com contribuição financeira mensal da assistida.",
+     "2021: Aquisição de um veículo, também registrado em nome de Valdir.",
+     "Março de 2026: Fim da convivência comum, momento em que a assistida foi retirada do imóvel e passou a residir em novo endereço.",
+     "08 de setembro de 2026: Assistida relata possuir fotos de comemorações e viagens ao longo dos 14 anos de relação, conta de internet em seu nome no endereço comum e testemunhas que podem declarar a união."
     ],
     "partes": {
-     "autor": "Rosimeire Alves da Cruz",
-     "reu": "Edson Batista",
-     "vinculo": "ex-marido, pai do filho"
+     "autor": "Cleusa Maria Andrade",
+     "reu": "Valdir Antunes",
+     "vinculo": "ex-companheiro"
     },
-    "pretensao": "Quer que ele volte a pagar a pensão acordada de R$ 500,00 por mês.",
+    "pretensao": "Quer que reconheçam que a gente vivia como casal e que eu tenho direito à minha parte dos bens.",
     "urgencia": {
      "existe": false,
-     "motivo": "Não há relato de risco fático imediato de perecimento, como falta de alimentos ou situação de vulnerabilidade extrema imediata descrita, embora haja a inadimplência da verba alimentar."
+     "motivo": ""
     },
     "hipossuficiencia": {
      "indicios": true,
-     "justificativa": "A assistida trabalha como diarista, possui renda familiar mensal de R$ 1.500,00 para o sustento de uma família de 2 membros."
+     "justificativa": "A assistida trabalha como cozinheira e declarou renda familiar mensal de R$ 1.900,00 para uma pessoa."
     },
     "dadosFaltantes": [
-     "RG da assistida Rosimeire Alves da Cruz",
-     "CEP do endereço da assistida",
-     "Endereço completo de Edson Batista para citação",
-     "Profissão de Edson Batista",
-     "Informação se o acordo de divórcio/pensão anterior foi homologado judicialmente ou se foi apenas verbal"
+     "Urgência não avaliada pela IA — confira o caso antes de descartar tutela de urgência.",
+     "Especificações do veículo adquirido em 2021 (marca, modelo, placa, ano).",
+     "Matrícula ou contrato de compra e venda do imóvel adquirido em 2016.",
+     "Comprovantes de pagamento ou extratos que demonstrem a contribuição financeira da assistida na aquisição dos bens.",
+     "Declarações escritas de vizinhos/testemunhas sobre a convivência pública como casal."
     ],
     "dadosDeIdentificacao": [
      {
       "campo": "cpf",
-      "valor": "04187633901",
-      "trecho": "Meu CPF é 04187633901."
+      "valor": "038.472.910-55",
+      "trecho": "Meu CPF é 038.472.910-55 e o RG 8.432.117-0."
+     },
+     {
+      "campo": "rg",
+      "valor": "8.432.117-0",
+      "trecho": "Meu CPF é 038.472.910-55 e o RG 8.432.117-0."
      },
      {
       "campo": "endereco",
-      "valor": "Rua das Acácias, 87",
-      "trecho": "Moro na Rua das Acácias, 87, Jardim Cláudia, Pinhais."
+      "valor": "Rua Sete de Setembro, 218, fundos",
+      "trecho": "Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março."
      },
      {
       "campo": "bairro",
-      "valor": "Jardim Cláudia",
-      "trecho": "Moro na Rua das Acácias, 87, Jardim Cláudia, Pinhais."
+      "valor": "Vila Rio Branco",
+      "trecho": "Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março."
      },
      {
       "campo": "cidade",
-      "valor": "Pinhais",
-      "trecho": "Moro na Rua das Acácias, 87, Jardim Cláudia, Pinhais."
+      "valor": "Castro",
+      "trecho": "Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março."
      }
     ],
     "alertas": [
-     "A assistida informou que enviará foto do RG posteriormente, pois não sabe o número de cabeça.",
-     "O CPF informado de Edson Batista (921.440.309-72) é de terceiro e não foi incluído em dadosDeIdentificacao da assistida, mas deve ser guardado para a qualificação do réu.",
-     "Necessário confirmar se o acordo de alimentos de R$ 500,00 possui título executivo judicial ou se trata de acordo verbal para definição do rito processual adequado."
+     "A assistida informou que os bens (casa e carro) estão registrados exclusivamente em nome do ex-companheiro.",
+     "A assistida mencionou possuir fotos e contas de internet para comprovar a união, além de testemunhas, mas os documentos físicos correspondentes ainda precisam ser anexados e analisados."
     ],
     "foraDoEscopo": false,
-    "geradoEm": "2026-09-13T12:43:45.634Z",
+    "geradoEm": "2026-09-13T13:36:36.495Z",
     "modelo": "gemini-3.5-flash"
    },
    "meta": {
     "modelo": "gemini-3.5-flash",
-    "ms": 4085,
+    "ms": 5559,
     "tentativas": [
      {
       "modelo": "gemini-3.5-flash",
       "status": "ok",
-      "ms": 4083
+      "ms": 5557
      }
     ],
     "uso": {
-     "entrada": 3611,
-     "saida": 993
+     "entrada": 4646,
+     "saida": 1106
     },
     "fontesRecuperadas": [],
     "citacoesInvalidas": [],
     "citacoesForaDoContexto": []
    },
    "erro": null
+  },
+  {
+   "caso": "caso_demo_005",
+   "protocolo": "OD-2026-100005",
+   "area": "familia",
+   "comarca": "Ponta Grossa",
+   "falasDaParte": 2,
+   "testa": "Caso com processo já em andamento, em que a parte quer reduzir o valor, não deixar de pagar.",
+   "esperado": "A pretensão reflete o pedido de ajuste do valor. A ameaça de prisão mencionada pela outra parte vira alerta, não fato consumado.",
+   "falhaSe": "Descrever a pretensão como exoneração, ou registrar a prisão como algo já decidido.",
+   "http": 200,
+   "ms": 4354,
+   "verificacoes": [
+    {
+     "rotulo": "não cita lei nos fatos e na pretensão",
+     "passou": true
+    },
+    {
+     "rotulo": "não faz enquadramento processual",
+     "passou": true
+    },
+    {
+     "rotulo": "todo dado de identificação veio da conversa",
+     "passou": true
+    },
+    {
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
+     "passou": true
+    },
+    {
+     "rotulo": "a pretensão é ajustar o valor, não deixar de pagar",
+     "passou": true
+    },
+    {
+     "rotulo": "não registra a prisão como fato consumado",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "familia",
+    "tema": "Revisão de pensão alimentícia por desemprego",
+    "temaSlug": "revisao_pensao_desemprego",
+    "resumoExecutivo": "O assistido busca a redução do valor da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata que perdeu o veículo de trabalho em um acidente em abril de 2026 e ficou desempregado, passando a realizar bicos com renda média de R$ 1.500,00. Diante da impossibilidade de arcar com o valor atual e da ameaça de pedido de prisão por parte da mãe do menor, ele pleiteia a adequação do encargo para sua realidade financeira atual.",
+    "fatosCronologicos": [
+     "Fixação da pensão alimentícia do filho de 12 anos no valor de R$ 900,00, época em que o assistido trabalhava como motorista de aplicativo.",
+     "Em abril de 2026, o assistido sofreu um acidente de trânsito, resultando na perda do veículo utilizado para o trabalho.",
+     "Desde o acidente, o assistido encontra-se desempregado, sem registro em carteira de trabalho, realizando bicos como entregador com motocicleta emprestada.",
+     "O assistido passou a auferir renda mensal média de aproximadamente R$ 1.500,00, tornando-se incapaz de adimplir a pensão de R$ 900,00.",
+     "Em setembro de 2026, a genitora do menor informou que ingressará com pedido de prisão civil do assistido pelo inadimplemento dos alimentos."
+    ],
+    "partes": {
+     "autor": "Paulo Roberto Nunes",
+     "reu": "Fernanda Nunes (representando o filho)",
+     "vinculo": "Ex-esposa, guardiã do filho"
+    },
+    "pretensao": "Quer que o valor da pensão seja ajustado para sua situação de agora, propondo pagar entre R$ 400,00 e R$ 450,00.",
+    "urgencia": {
+     "existe": true,
+     "motivo": "Há risco iminente de prisão civil do assistido, uma vez que a genitora do alimentando manifestou a intenção de requerer a medida coercitiva diante do inadimplemento decorrente da perda de sua capacidade financeira."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "O assistido está desempregado, trabalha informalmente realizando bicos com renda mensal estimada em R$ 1.500,00 e reside sozinho."
+    },
+    "dadosFaltantes": [
+     "Cópia da decisão ou acordo que fixou os alimentos em R$ 900,00",
+     "Certidão de nascimento do filho",
+     "Boletim de ocorrência do acidente de trânsito ocorrido em abril de 2026",
+     "Carteira de trabalho do assistido (páginas de identificação e último contrato/página em branco)",
+     "Comprovantes de rendimentos dos bicos como entregador (se houver extratos de aplicativos ou depósitos)"
+    ],
+    "dadosDeIdentificacao": [],
+    "alertas": [
+     "O assistido menciona a existência de processo ativo de alimentos, sendo necessário verificar se a demanda atual deve ser distribuída por dependência ou se trata de ação revisional autônoma.",
+     "Necessidade de obtenção urgente dos documentos que comprovam o acidente de abril de 2026 e a ausência de vínculo empregatício para instruir eventual pedido de tutela provisória."
+    ],
+    "foraDoEscopo": false,
+    "geradoEm": "2026-09-13T13:36:40.850Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4345,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4344
+     }
+    ],
+    "uso": {
+     "entrada": 4520,
+     "saida": 890
+    },
+    "fontesRecuperadas": [],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "caso": "caso_demo_006",
+   "protocolo": "OD-2026-100006",
+   "area": "consumidor",
+   "comarca": "Terra Boa",
+   "falasDaParte": 3,
+   "testa": "Captura parcial: a parte digita o CPF e o endereço, mas diz que não sabe o RG de cabeça e que mandará a foto depois.",
+   "esperado": "CPF e endereço capturados. O RG **não** aparece: a IA não lê anexos e não adivinha número.",
+   "falhaSe": "Inventar o RG, ou dar por recebido o documento que ainda não chegou.",
+   "http": 200,
+   "ms": 4481,
+   "verificacoes": [
+    {
+     "rotulo": "não cita lei nos fatos e na pretensão",
+     "passou": true
+    },
+    {
+     "rotulo": "não faz enquadramento processual",
+     "passou": true
+    },
+    {
+     "rotulo": "todo dado de identificação veio da conversa",
+     "passou": true
+    },
+    {
+     "rotulo": "a urgência vem justificada ou declarada como não avaliada",
+     "passou": true
+    },
+    {
+     "rotulo": "captura o CPF que a parte digitou",
+     "passou": true
+    },
+    {
+     "rotulo": "não inventa o RG que ela disse não saber",
+     "passou": true
+    }
+   ],
+   "resumo": {
+    "area": "consumidor",
+    "tema": "Máquina de lavar com defeito sem solução pela assistência",
+    "temaSlug": "maquina_de_lavar_com_defeito",
+    "resumoExecutivo": "A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação com um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante recusam-se a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.",
+    "fatosCronologicos": [
+     "12/05/2026 — Compra da máquina de lavar pelo valor de R$ 1.890,00, parcelado em 10 vezes no cartão de crédito.",
+     "Junho/2026 — O produto apresentou vazamento e parou de centrifugar com aproximadamente um mês de uso.",
+     "03/06/2026 — Entrada do produto na assistência técnica autorizada.",
+     "18/07/2026 — Devolução do produto pela assistência técnica após 45 dias, persistindo o defeito de vazamento.",
+     "Setembro/2026 — Tentativa de resolução diretamente com a loja física, que recusou atendimento direcionando a responsabilidade para a fabricante."
+    ],
+    "partes": {
+     "autor": "Jéssica Oliveira Lima",
+     "reu": "Loja de eletrodomésticos (nome na nota fiscal)",
+     "vinculo": "Relação de consumo (aquisição de produto de consumo durável)"
+    },
+    "pretensao": "Quer a devolução do dinheiro pago ou uma máquina nova.",
+    "urgencia": {
+     "existe": false,
+     "motivo": "Embora o produto seja de utilidade doméstica importante (máquina de lavar), a ausência de funcionamento não configura, por si só, risco imediato à vida, saúde ou iminência de perecimento de direito que caracterize urgência fática."
+    },
+    "hipossuficiencia": {
+     "indicios": true,
+     "justificativa": "A assistida trabalha como atendente, possui renda familiar mensal de R$ 2.000,00 para o sustento de uma família de 3 membros."
+    },
+    "dadosFaltantes": [
+     "Nome/razão social exata da fabricante do produto",
+     "Nome/razão social exata da loja vendedora (constante na nota fiscal)",
+     "Número do RG da assistida",
+     "Comprovante de residência atualizado"
+    ],
+    "dadosDeIdentificacao": [
+     {
+      "campo": "cpf",
+      "valor": "11744820966",
+      "trecho": "Doutora, meu CPF é 11744820966."
+     },
+     {
+      "campo": "endereco",
+      "valor": "Avenida Brasil, 1042, apartamento 3",
+      "trecho": "Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa."
+     },
+     {
+      "campo": "bairro",
+      "valor": "centro",
+      "trecho": "Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa."
+     },
+     {
+      "campo": "cidade",
+      "valor": "Terra Boa",
+      "trecho": "Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa."
+     }
+    ],
+    "alertas": [
+     "A assistida mencionou que enviará a foto do RG posteriormente, pois não sabe o número de cabeça.",
+     "Necessário identificar a fabricante do produto a partir dos documentos anexados (nota fiscal/ordem de serviço) para eventual inclusão no polo passivo."
+    ],
+    "foraDoEscopo": false,
+    "geradoEm": "2026-09-13T13:36:45.331Z",
+    "modelo": "gemini-3.5-flash"
+   },
+   "meta": {
+    "modelo": "gemini-3.5-flash",
+    "ms": 4473,
+    "tentativas": [
+     {
+      "modelo": "gemini-3.5-flash",
+      "status": "ok",
+      "ms": 4470
+     }
+    ],
+    "uso": {
+     "entrada": 4537,
+     "saida": 952
+    },
+    "fontesRecuperadas": [],
+    "citacoesInvalidas": [],
+    "citacoesForaDoContexto": []
+   },
+   "erro": null
+  },
+  {
+   "caso": "caso_demo_007",
+   "protocolo": "OD-2026-100007",
+   "area": "familia",
+   "comarca": "Curitiba",
+   "falasDaParte": 0,
+   "testa": "O atendimento em branco, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.",
+   "esperado": "A rota recusa com HTTP 400 e uma frase explicando por quê. Nenhuma chamada ao modelo é feita. Na tela, o botão de resumir já vem desabilitado, com o mesmo motivo.",
+   "falhaSe": "Chamar o modelo e devolver um resumo — fatos, partes ou pretensão inventados a partir do nada.",
+   "http": 400,
+   "ms": 8,
+   "verificacoes": [
+    {
+     "rotulo": "a rota recusa gerar sem material",
+     "passou": true
+    },
+    {
+     "rotulo": "nenhum resumo é produzido",
+     "passou": true
+    },
+    {
+     "rotulo": "a recusa explica o motivo",
+     "passou": true
+    }
+   ],
+   "resumo": null,
+   "meta": null,
+   "erro": "Ainda não há material suficiente. Converse com a parte ou registre o relato antes de gerar o resumo."
   }
  ]
 }

@@ -304,6 +304,42 @@ export const CASOS_SEMENTE: Caso[] = [
     nomeacao: { origem: 'oab', referencia: 'Ofício de nomeação (fictício)' },
     semente: true,
   },
+
+  /*
+   * 007 — atendimento em branco, para a auditoria.
+   *
+   * Chega sem relato, sem conversa e sem nenhum dado da parte preenchido. Existe para
+   * quem for auditar montar o caso que quiser: escrever a história pelo chat, gerar o
+   * resumo e ver o que a plataforma faz com aquilo. Também é o cartão que demonstra o
+   * bloqueio na origem — sem fala da parte, o resumo nem é oferecido.
+   */
+  {
+    id: 'caso_demo_007',
+    protocolo: 'OD-2026-100007',
+    criadoEm: T(0, 7),
+    atualizadoEm: T(0, 7),
+    area: 'familia',
+    comarca: 'Curitiba',
+    temProcessoAtivo: false,
+    assistido: {
+      nome: 'Parte a identificar',
+      tipoPessoa: 'PF',
+      cidade: 'Curitiba',
+      uf: 'PR',
+    },
+    relato: { origem: 'texto', urgencia: false, texto: '' },
+    status: 'em_atendimento',
+    advogado: ADV,
+    ia: {},
+    documentos: docs('familia'),
+    assinaturas: [],
+    historico: [
+      { em: T(0, 7), tipo: 'nomeacao', descricao: 'Nomeação pela OAB/PR aceita pela advogada — fora da plataforma. Atendimento em branco, reservado para testes de auditoria.', autor: 'advogado' },
+    ],
+    registradoPor: 'advogado',
+    nomeacao: { origem: 'oab', referencia: 'Ofício de nomeação (fictício)' },
+    semente: true,
+  },
 ];
 
 export const MENSAGENS_SEMENTE: Mensagem[] = [
@@ -321,16 +357,16 @@ export const MENSAGENS_SEMENTE: Mensagem[] = [
   { id: 'msg_002_1', casoId: 'caso_demo_002', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 15),
     texto: 'Boa tarde, seu José. Sou a Helena, advogada nomeada para o seu caso. O senhor guardou o número do protocolo do cancelamento de fevereiro?' },
   { id: 'msg_002_2', casoId: 'caso_demo_002', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 16),
-    texto: 'Guardei sim doutora, anotei numa folha. Tenho o de fevereiro e mais uns três de quando liguei reclamando.' },
+    texto: 'Guardei sim doutora, anotei numa folha. Tenho o de fevereiro e mais uns quatro de quando liguei reclamando.' },
   { id: 'msg_002_3', casoId: 'caso_demo_002', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 16),
     texto: 'E o que mais me pegou foi não conseguir o crediário da geladeira. Fui na loja, passei o CPF e deu recusado na frente de todo mundo.' },
 
   /* 003 — corte de água, Fazenda Rio Grande. Parte com dificuldade de leitura. */
-  { id: 'msg_demo_001', casoId: 'caso_demo_003', autor: 'plataforma', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 15),
+  { id: 'msg_003_1', casoId: 'caso_demo_003', autor: 'plataforma', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 15),
     texto: 'Olá, Antônio. A Dra. Helena foi nomeada para o seu caso e vai falar com você por aqui. Você pode responder por texto ou mandar áudio.' },
-  { id: 'msg_demo_002', casoId: 'caso_demo_003', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 16),
-    texto: 'Oi, Antônio. Sou a Helena, advogada nomeada para o seu caso da água.\n\nPara eu dar entrada no pedido, preciso de fotos bem nítidas de:\n\n1. O comprovante de pagamento da conta de janeiro (o papel que sua esposa guardou).\n2. A conta de água mais recente.\n3. Seu RG e CPF.\n\nAssim que você mandar, eu preparo os papéis. Se for mais fácil, me responda por áudio.' },
-  { id: 'msg_demo_003', casoId: 'caso_demo_003', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 18),
+  { id: 'msg_003_2', casoId: 'caso_demo_003', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 16),
+    texto: 'Oi, Antônio. Sou a Helena, advogada nomeada para o seu caso da água.\n\nPara eu dar entrada no pedido, preciso de fotos bem nítidas de:\n\n1. O comprovante de pagamento da conta de janeiro (o papel que sua esposa guardou).\n2. A conta de água mais recente.\n\nAssim que você mandar, eu preparo os papéis. Se for mais fácil, me responda por áudio.' },
+  { id: 'msg_003_3', casoId: 'caso_demo_003', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 18),
     texto: 'Boa tarde doutora, minha esposa vai tirar a foto do comprovante hoje a noite e eu mando' },
   { id: 'msg_003_4', casoId: 'caso_demo_003', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 9),
     texto: 'Doutora a agua continua cortada, ja e o quinto dia. A vizinha ta emprestando balde mas com as crianca pequena ta dificil' },

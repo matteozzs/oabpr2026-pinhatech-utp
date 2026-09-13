@@ -23,11 +23,6 @@ export function enviarMensagem(m: Omit<Mensagem, 'id' | 'enviadoEm'> & { enviado
   return nova;
 }
 
-/** Apaga as mensagens dos casos informados — usado ao limpar cenários de teste. */
-export function removerMensagensDosCasos(casoIds: string[]) {
-  const alvo = new Set(casoIds);
-  gravar(K.mensagens, ler<Mensagem[]>(K.mensagens, []).filter((m) => !alvo.has(m.casoId)));
-}
 
 /** Marca como lidas as mensagens do assistido — usado ao abrir a conversa pelo advogado. */
 export function marcarLidas(casoId: string) {

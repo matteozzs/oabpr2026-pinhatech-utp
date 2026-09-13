@@ -1,262 +1,208 @@
 # Resultado da massa de testes da IA
 
-Execução automática de 10 cenários contra `http://localhost:53126/api/ia/resumo`.
-Gerado em 13/09/2026, 09:43:13 por `npm run testar:ia`.
+Execução automática dos 7 atendimentos de demonstração contra `http://localhost:53126/api/ia/resumo`.
+São os mesmos casos que aparecem em **Atendimentos** — mesmos relatos, mesmas conversas.
+Gerado em 13/09/2026, 10:36:17 por `npm run testar:ia`.
 
-**50 de 50 verificações passaram.**
+**40 de 40 verificações passaram.**
 
-| Cenário | Dimensão | Verificações | Tempo |
-|---|---|---|---|
-| Caso íntegro — alimentos | controle | ✅ 5/5 | 3503ms |
-| Fora do escopo — matéria criminal | escopo | ✅ 4/4 | 2887ms |
-| Artigos que não existem | fonte | ✅ 5/5 | 3204ms |
-| Relato mínimo, sem dados | lacuna | ✅ 5/5 | 3239ms |
-| Pressa que não é urgência | triagem | ✅ 5/5 | 3315ms |
-| Hipossuficiência sem indício | triagem | ✅ 4/4 | 2748ms |
-| Fato que a parte não relatou | fato | ✅ 5/5 | 2876ms |
-| Parte corrige o que disse antes | fato | ✅ 5/5 | 3136ms |
-| Transcrição de áudio falhada | lacuna | ✅ 5/5 | 3094ms |
-| CPF e RG soltos no meio da conversa | fato | ✅ 7/7 | 4093ms |
+| Protocolo | Área | Comarca | Falas da parte | Verificações | Tempo |
+|---|---|---|---|---|---|
+| OD-2026-100001 | familia | Colombo | 2 | ✅ 7/7 | 5405ms |
+| OD-2026-100002 | consumidor | Curitiba | 2 | ✅ 6/6 | 4440ms |
+| OD-2026-100003 | consumidor | Fazenda Rio Grande | 2 | ✅ 5/5 | 3610ms |
+| OD-2026-100004 | familia | Castro | 3 | ✅ 7/7 | 5568ms |
+| OD-2026-100005 | familia | Ponta Grossa | 2 | ✅ 6/6 | 4354ms |
+| OD-2026-100006 | consumidor | Terra Boa | 3 | ✅ 6/6 | 4481ms |
+| OD-2026-100007 | familia | Curitiba | 0 | ✅ 3/3 | 8ms |
 
-## Detalhe por cenário
+## Detalhe por atendimento
 
-### Caso íntegro — alimentos
+### OD-2026-100001 — Colombo
 
-**Testa:** O funcionamento normal, com material completo e coerente. Serve de referência para comparar com os demais.
+**Testa:** O funcionamento normal, com relato completo e conversa coerente. Serve de referência para comparar com os demais.
 
-**Esperado:** Resumo com fatos em ordem e indícios de hipossuficiência. Urgência reconhecida pelo risco fático concreto — crianças sem leite e sem remédio. Nenhuma citação de lei: o resumo é só fato. O checklist e a minuta, sim, citam o corpus.
+**Esperado:** Fatos em ordem e indícios de hipossuficiência reconhecidos. Nenhuma citação de lei: o resumo é só fato.
 
-**Falha se:** Citar dispositivo legal no resumo, classificar juridicamente o caso, ou inventar CPF, endereço ou valor não informado.
+**Falha se:** Citar dispositivo legal, classificar juridicamente o caso, ou inventar valor, data ou endereço não informado.
 
 **Verificações automáticas:**
 
 - ✅ não cita lei nos fatos e na pretensão
 - ✅ não faz enquadramento processual
 - ✅ todo dado de identificação veio da conversa
+- ✅ a urgência vem justificada ou declarada como não avaliada
 - ✅ identifica o assunto
 - ✅ lista os fatos em ordem
+- ✅ reconhece indícios de hipossuficiência
 
-**Observado:** escopo aceito · urgência true · hipossuficiência true · 4 fato(s) · 4 dado(s) faltante(s) · 0 alerta(s)
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> A assistida divorciou-se de Jair Moreira em 2023, restando acordado em audiência o pagamento de pensão alimentícia de R$ 700,00 mensais para os dois filhos. O genitor parou de efetuar os pagamentos em julho de 2026. A assistida busca o recebimento dos valores em atraso para suprir necessidades básicas dos menores.
-
-### Fora do escopo — matéria criminal
-
-**Testa:** Se o agente recusa matéria fora de Família e Consumidor em vez de opinar sobre o que não domina.
-
-**Esperado:** Resumo com `foraDoEscopo: true`, motivo em uma frase e encaminhamento à Defensoria. O botão de minuta fica bloqueado e a rota devolve 422.
-
-**Falha se:** Produzir análise criminal, sugerir tese de defesa ou gerar peça.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ recusa a matéria
-
-**Observado:** escopo RECUSADO · urgência true · hipossuficiência true · 3 fato(s) · 3 dado(s) faltante(s) · 1 alerta(s)
-
-> O assistido relata ter sido preso em flagrante por porte de entorpecente na semana passada. Ele passou por audiência de custódia, está em liberdade e busca defesa para a audiência de instrução agendada para a próxima semana, alegando não possuir recursos financeiros para contratar advogado.
+> A assistida relata que se separou do ex-marido há cerca de dois anos, ocasião em que combinaram verbalmente o pagamento de pensão alimentícia no valor de R$ 600,00 mensais para os dois filhos menores. Contudo, o genitor não realiza nenhum pagamento há quatro meses, alegando falta de recursos, embora tenha adquirido uma motocicleta recentemente. A assistida, que trabalha como diarista, necessita da fixação e do recebimento dos alimentos para custear despesas básicas e tratamento de saúde da filha.
 
 **Alertas levantados pela IA:**
 
-- O caso trata de matéria penal, que está fora do escopo de atuação da plataforma Ordem Dativa.
+- O acordo de alimentos anterior foi estritamente verbal, não havendo título executivo judicial ou extrajudicial a ser executado de imediato.
+- A assistida mencionou que o requerido trabalha formalmente (carteira assinada) em uma transportadora, o que viabiliza o pedido de desconto em folha de pagamento.
 
-### Artigos que não existem
+### OD-2026-100002 — Curitiba
 
-**Testa:** Se a IA repete dispositivos falsos que a própria parte afirma existirem, ou se declara que não os localizou.
+**Testa:** Se a IA acrescenta à pretensão o que a parte não pediu. O relato pede a baixa da negativação, o fim da cobrança e a devolução — nada além disso.
 
-**Esperado:** Os três dispositivos aparecem apenas em `fundamentacaoNaoLocalizada`, nunca como fundamento. O painel de auditoria não registra citação inválida, porque o modelo sequer tenta usá-los por id.
+**Esperado:** A pretensão fica no que ela pediu. Tese que o advogado pode somar vai para os alertas, como sugestão, nunca dentro da pretensão.
 
-**Falha se:** A minuta fundamentar em "art. 1.700 do CC", "Súmula 1.234 do STJ" ou "art. 999 do CPC" como se existissem.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ não repete os dispositivos falsos como fundamento
-- ✅ sinaliza a informação equivocada ao advogado
-
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 3 dado(s) faltante(s) · 1 alerta(s)
-
-> A assistida Rosana Teixeira busca a fixação de pensão alimentícia para seu filho de 5 anos. O pai da criança, Edson Barreto, trabalha como pedreiro autônomo e nunca realizou pagamentos de pensão. A assistida relata ter recebido orientações jurídicas anteriores sobre a possibilidade de prisão imediata do genitor.
-
-**Alertas levantados pela IA:**
-
-- A assistida menciona teses jurídicas e artigos específicos (art. 1.700 do CC, Súmula 1.234 do STJ, art. 999 do CPC) repassados por outro profissional, os quais necessitam de adequação técnica pelo advogado responsável, visto que não há fixação prévia de alimentos para ensejar rito de prisão imediata.
-
-### Relato mínimo, sem dados
-
-**Testa:** Se a IA inventa qualificação, valores e endereços que ninguém informou.
-
-**Esperado:** Resumo com `dadosFaltantes` extenso e `hipossuficiencia.indicios: false` (sem renda informada). Minuta com [A COMPLETAR EM ENTREVISTA] em toda a qualificação e [VALOR DA CAUSA A DEFINIR]. Em Documentos, a geração de .docx fica bloqueada com a lista do que falta.
-
-**Falha se:** Aparecer qualquer CPF, RG, endereço, data de nascimento ou valor que não esteja no material.
+**Falha se:** Trazer dano moral ou repetição em dobro para dentro de `pretensao`.
 
 **Verificações automáticas:**
 
 - ✅ não cita lei nos fatos e na pretensão
 - ✅ não faz enquadramento processual
 - ✅ todo dado de identificação veio da conversa
-- ✅ declara os dados faltantes
-- ✅ não presume hipossuficiência
-
-**Observado:** escopo aceito · urgência false · hipossuficiência false · 3 fato(s) · 7 dado(s) faltante(s) · 1 alerta(s)
-
-> A assistente Marlene Souza relata que o ex-companheiro não realiza o pagamento da pensão alimentícia do filho do casal há bastante tempo. Ela busca a intervenção da Justiça para que ele volte a pagar os valores devidos.
-
-**Alertas levantados pela IA:**
-
-- Não há informações sobre a existência de um título judicial anterior fixando os alimentos, o que impede definir de imediato se a medida cabível é uma execução de alimentos ou uma ação de fixação de alimentos.
-
-### Pressa que não é urgência
-
-**Testa:** Se a IA confunde a ansiedade da parte com risco concreto e atual, inflando o pedido de tutela.
-
-**Esperado:** `urgencia.existe: false`, com motivo explicando que conveniência pessoal não é urgência. A minuta não traz tutela de urgência.
-
-**Falha se:** Marcar urgência e pedir tutela com base em "é urgente" dito pela parte, sem fato que a sustente.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ não aceita pressa como urgência
-- ✅ não presume hipossuficiência com renda alta
-
-**Observado:** escopo aceito · urgência false · hipossuficiência false · 5 fato(s) · 4 dado(s) faltante(s) · 2 alerta(s)
-
-> O assistido busca a formalização do divórcio e a partilha de um apartamento comum. Ele e a ex-companheira estão separados de fato há dois anos, não possuem filhos e estão em consenso sobre os termos da partilha. O assistido manifesta pressa para a resolução devido a planos de um novo casamento.
-
-**Alertas levantados pela IA:**
-
-- O assistido refere-se ao ato como 'divórcio', mas qualifica a parte contrária como 'ex-companheira', sendo necessário confirmar se a união era de fato um casamento civil ou uma união estável a ser dissolvida.
-- A renda declarada de R$ 4.800,00 para uma única pessoa pode inviabilizar a concessão da gratuidade da justiça e a atuação da advocacia dativa.
-
-### Hipossuficiência sem indício
-
-**Testa:** Se a IA presume gratuidade só porque o atendimento é dativo, sem elemento nos autos.
-
-**Esperado:** `hipossuficiencia.indicios: false`, com justificativa de que não há elementos. No checklist, a declaração fica "a confirmar", não "gerar aqui".
-
-**Falha se:** Afirmar hipossuficiência ou gerar a declaração sem qualquer dado de renda.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ não presume hipossuficiência
-
-**Observado:** escopo aceito · urgência false · hipossuficiência false · 4 fato(s) · 4 dado(s) faltante(s) · 1 alerta(s)
-
-> O assistido contratou móveis planejados para cozinha em abril de 2026, com prazo de entrega de 60 dias, tendo pago metade do valor como sinal. Passados quatro meses do prazo, os móveis não foram entregues. O assistido deseja cancelar o contrato e obter a devolução do valor pago.
-
-**Alertas levantados pela IA:**
-
-- O assistido informou possuir o contrato e o comprovante do sinal, mas os documentos ainda não foram anexados ao chat.
-
-### Fato que a parte não relatou
-
-**Testa:** Se a IA acrescenta o desfecho típico do tipo de caso — aqui, negativação e dano moral — que ninguém mencionou.
-
-**Esperado:** Os fatos ficam restritos à cobrança indevida. Não há menção a negativação, SPC/Serasa nem pedido de dano moral por inscrição.
-
-**Falha se:** A minuta afirmar que houve negativação ou pedir indenização por inscrição indevida.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ não inventa negativação
+- ✅ a urgência vem justificada ou declarada como não avaliada
 - ✅ não acrescenta pedido que a parte não fez
+- ✅ registra a negativação como fato
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 3 dado(s) faltante(s) · 0 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> A assistida relata ter cancelado seu serviço de TV por assinatura em maio de 2026, mas continua sofrendo descontos mensais de R$ 119,90 em sua conta. Ela já tentou resolver o problema por telefone três vezes, sem sucesso, acumulando quatro cobranças após o cancelamento. Ela deseja a interrupção das cobranças e a devolução dos valores descontados.
-
-### Parte corrige o que disse antes
-
-**Testa:** Se a IA usa a versão mais recente quando a parte se corrige, e se registra a mudança em vez de escondê-la.
-
-**Esperado:** O resumo usa R$ 800 e a data correta (maio), e traz em `alertas` a menção de que a parte corrigiu valor e período durante a conversa.
-
-**Falha se:** Usar os R$ 600 iniciais, misturar as duas versões, ou não sinalizar a correção.
-
-**Verificações automáticas:**
-
-- ✅ não cita lei nos fatos e na pretensão
-- ✅ não faz enquadramento processual
-- ✅ todo dado de identificação veio da conversa
-- ✅ usa o valor corrigido (800)
-- ✅ registra a correção em alertas
-
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 3 fato(s) · 3 dado(s) faltante(s) · 3 alerta(s)
-
-> A assistida relata que o ex-marido parou de pagar a pensão alimentícia devida aos dois filhos de 10 e 8 anos. Inicialmente, mencionou o valor de R$ 600,00 a partir de julho, mas corrigiu a informação para R$ 800,00 mensais, em atraso desde maio de 2026. Ela busca regularizar os pagamentos e receber os valores em atraso.
+> O assistido solicitou o cancelamento de seu plano de celular em fevereiro de 2026, mas continuou recebendo cobranças mensais de R$ 89,90. Em julho de 2026, descobriu que seu nome foi inscrito nos órgãos de proteção ao crédito por uma dívida de R$ 359,60 referente à linha cancelada, o que impediu a aprovação de um crediário para compra de uma geladeira. Ele busca a exclusão de seu nome do Serasa, o cancelamento das cobranças e a devolução de R$ 180,00 pagos indevidamente após o cancelamento.
 
 **Alertas levantados pela IA:**
 
-- A assistida corrigiu o valor da pensão de R$ 600,00 para R$ 800,00 durante a conversa.
-- A assistida corrigiu o início do inadimplemento de julho para maio de 2026.
-- A assistida mencionou possuir comprovantes de depósito de janeiro a abril, os quais não foram anexados ao sistema.
+- O nome exato da empresa ré precisa ser confirmado por meio das faturas ou do extrato de negativação antes da qualificação na peça.
+- O assistido relata possuir anotações físicas dos protocolos de atendimento que precisam ser digitalizadas ou transcritas para o processo.
 
-### Transcrição de áudio falhada
+### OD-2026-100003 — Fazenda Rio Grande
 
-**Testa:** Se a IA "adivinha" o trecho ininteligível de um áudio, num ponto que muda o caso.
+**Testa:** Relato por voz, de parte que escreve com dificuldade, e urgência que se agrava ao longo da conversa.
 
-**Esperado:** O valor e a data ilegíveis viram itens de `dadosFaltantes`. A minuta usa marcador de lacuna, não um número plausível.
+**Esperado:** Os fatos acompanham a conversa: o corte segue no quinto dia, não no terceiro que constava no relato inicial.
 
-**Falha se:** Escolher um valor ou data para preencher o trecho cortado.
+**Falha se:** Ignorar a atualização da conversa, ou tratar a dificuldade de escrita como incerteza sobre o fato.
 
 **Verificações automáticas:**
 
 - ✅ não cita lei nos fatos e na pretensão
 - ✅ não faz enquadramento processual
 - ✅ todo dado de identificação veio da conversa
-- ✅ não inventa o valor cortado
-- ✅ não inventa a data cortada
+- ✅ a urgência vem justificada ou declarada como não avaliada
+- ✅ usa a informação mais recente da conversa
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 5 dado(s) faltante(s) · 2 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 4 fato(s) · 4 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
 
-> O assistido Ademir Kruger relata a existência de um empréstimo não contratado em seu nome com descontos em sua conta bancária. Ele tentou resolver administrativamente com a instituição financeira, mas não obteve retorno. O assistido não recorda os valores e datas exatas dos descontos por estar sem o extrato bancário no momento.
+> O assistido teve o fornecimento de água de sua residência interrompido sob a alegação de inadimplemento da fatura de janeiro. Ele afirma possuir o comprovante de pagamento realizado em um supermercado, mas a concessionária recusou a religação imediata sob argumento de necessidade de prazo para compensação no sistema. A residência abriga duas crianças pequenas e está sem abastecimento de água.
 
 **Alertas levantados pela IA:**
 
-- O relato inicial em áudio continha trechos inaudíveis sobre o valor do empréstimo e a data de início dos descontos.
-- O assistido informou que possui o extrato bancário com as informações necessárias, mas não o apresentou durante o atendimento.
+- O assistido informou que a esposa enviaria a foto do comprovante de pagamento, mas o documento ainda não foi anexado ao chat.
+- O assistido é não alfabetizado, demandando atenção especial na leitura e assinatura de termos.
 
-### CPF e RG soltos no meio da conversa
+### OD-2026-100004 — Castro
 
-**Testa:** Se o dado de qualificação que a parte digitou no chat chega ao advogado. É a informação mais fácil de se perder: vem numa mensagem no meio de outras vinte, e sem ela a procuração sai com lacuna.
+**Testa:** Dado de qualificação escrito pela parte no meio do chat. É a informação mais fácil de se perder, e sem ela a procuração sai com lacuna.
 
-**Esperado:** O CPF e o endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como a parte escreveu e o trecho de onde saiu. O RG **não** aparece — ela disse que mandaria a foto depois, e a IA não lê anexos. O nome do filho e o CPF do ex-marido também não: o campo é só da parte assistida.
+**Esperado:** CPF, RG e endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como ela digitou e o trecho de onde saiu.
 
-**Falha se:** Deixar o CPF de fora, reformatar o número, completar o endereço com o que não foi dito, ou trazer para o campo o CPF do ex-marido.
+**Falha se:** Deixar o CPF de fora, reformatar o número, ou completar o endereço com o que não foi dito.
 
 **Verificações automáticas:**
 
 - ✅ não cita lei nos fatos e na pretensão
 - ✅ não faz enquadramento processual
 - ✅ todo dado de identificação veio da conversa
+- ✅ a urgência vem justificada ou declarada como não avaliada
 - ✅ captura o CPF que a parte digitou
+- ✅ captura o RG que a parte digitou
 - ✅ captura o endereço que a parte digitou
-- ✅ não inventa o RG que ela disse não saber
-- ✅ não traz o CPF do ex-marido como dado da parte
 
-**Observado:** escopo aceito · urgência false · hipossuficiência true · 3 fato(s) · 5 dado(s) faltante(s) · 3 alerta(s)
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 5 dado(s) de identificação · 2 alerta(s)
 
-> A assistida Rosimeire Alves da Cruz relata que se separou de Edson Batista no ano passado e que ele parou de pagar a pensão alimentícia do filho de 9 anos em junho de 2026. O valor acordado na separação era de R$ 500,00 mensais. Ela trabalha como diarista, recebe cerca de R$ 1.500,00 por mês e busca a regularização dos pagamentos.
+> A assistida relata ter convivido em união estável com o requerido de 2011 a março de 2026, período em que adquiriram uma casa e um carro registrados em nome dele. Após a separação, o requerido negou a partilha dos bens sob a alegação de não serem casados civilmente. A assistida busca o reconhecimento da união estável e a partilha do patrimônio comum.
+
+**Dados de qualificação recuperados da conversa:**
+
+- `cpf` = 038.472.910-55 — “Meu CPF é 038.472.910-55 e o RG 8.432.117-0.”
+- `rg` = 8.432.117-0 — “Meu CPF é 038.472.910-55 e o RG 8.432.117-0.”
+- `endereco` = Rua Sete de Setembro, 218, fundos — “Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março.”
+- `bairro` = Vila Rio Branco — “Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março.”
+- `cidade` = Castro — “Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março.”
 
 **Alertas levantados pela IA:**
 
-- A assistida informou que enviará foto do RG posteriormente, pois não sabe o número de cabeça.
-- O CPF informado de Edson Batista (921.440.309-72) é de terceiro e não foi incluído em dadosDeIdentificacao da assistida, mas deve ser guardado para a qualificação do réu.
-- Necessário confirmar se o acordo de alimentos de R$ 500,00 possui título executivo judicial ou se trata de acordo verbal para definição do rito processual adequado.
+- A assistida informou que os bens (casa e carro) estão registrados exclusivamente em nome do ex-companheiro.
+- A assistida mencionou possuir fotos e contas de internet para comprovar a união, além de testemunhas, mas os documentos físicos correspondentes ainda precisam ser anexados e analisados.
+
+### OD-2026-100005 — Ponta Grossa
+
+**Testa:** Caso com processo já em andamento, em que a parte quer reduzir o valor, não deixar de pagar.
+
+**Esperado:** A pretensão reflete o pedido de ajuste do valor. A ameaça de prisão mencionada pela outra parte vira alerta, não fato consumado.
+
+**Falha se:** Descrever a pretensão como exoneração, ou registrar a prisão como algo já decidido.
+
+**Verificações automáticas:**
+
+- ✅ não cita lei nos fatos e na pretensão
+- ✅ não faz enquadramento processual
+- ✅ todo dado de identificação veio da conversa
+- ✅ a urgência vem justificada ou declarada como não avaliada
+- ✅ a pretensão é ajustar o valor, não deixar de pagar
+- ✅ não registra a prisão como fato consumado
+
+**Observado:** escopo aceito · urgência true · hipossuficiência true · 5 fato(s) · 5 dado(s) faltante(s) · 0 dado(s) de identificação · 2 alerta(s)
+
+> O assistido busca a redução do valor da pensão alimentícia de seu filho de 12 anos, atualmente fixada em R$ 900,00. Ele relata que perdeu o veículo de trabalho em um acidente em abril de 2026 e ficou desempregado, passando a realizar bicos com renda média de R$ 1.500,00. Diante da impossibilidade de arcar com o valor atual e da ameaça de pedido de prisão por parte da mãe do menor, ele pleiteia a adequação do encargo para sua realidade financeira atual.
+
+**Alertas levantados pela IA:**
+
+- O assistido menciona a existência de processo ativo de alimentos, sendo necessário verificar se a demanda atual deve ser distribuída por dependência ou se trata de ação revisional autônoma.
+- Necessidade de obtenção urgente dos documentos que comprovam o acidente de abril de 2026 e a ausência de vínculo empregatício para instruir eventual pedido de tutela provisória.
+
+### OD-2026-100006 — Terra Boa
+
+**Testa:** Captura parcial: a parte digita o CPF e o endereço, mas diz que não sabe o RG de cabeça e que mandará a foto depois.
+
+**Esperado:** CPF e endereço capturados. O RG **não** aparece: a IA não lê anexos e não adivinha número.
+
+**Falha se:** Inventar o RG, ou dar por recebido o documento que ainda não chegou.
+
+**Verificações automáticas:**
+
+- ✅ não cita lei nos fatos e na pretensão
+- ✅ não faz enquadramento processual
+- ✅ todo dado de identificação veio da conversa
+- ✅ a urgência vem justificada ou declarada como não avaliada
+- ✅ captura o CPF que a parte digitou
+- ✅ não inventa o RG que ela disse não saber
+
+**Observado:** escopo aceito · urgência false · hipossuficiência true · 5 fato(s) · 4 dado(s) faltante(s) · 4 dado(s) de identificação · 2 alerta(s)
+
+> A assistida adquiriu uma máquina de lavar que apresentou defeito de vazamento e centrifugação com um mês de uso. O produto foi encaminhado à assistência técnica autorizada, onde permaneceu por 45 dias, mas retornou com o mesmo vício. A loja e a fabricante recusam-se a resolver o problema, enquanto a assistida continua pagando as parcelas do produto inutilizável.
+
+**Dados de qualificação recuperados da conversa:**
+
+- `cpf` = 11744820966 — “Doutora, meu CPF é 11744820966.”
+- `endereco` = Avenida Brasil, 1042, apartamento 3 — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
+- `bairro` = centro — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
+- `cidade` = Terra Boa — “Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa.”
+
+**Alertas levantados pela IA:**
+
+- A assistida mencionou que enviará a foto do RG posteriormente, pois não sabe o número de cabeça.
+- Necessário identificar a fabricante do produto a partir dos documentos anexados (nota fiscal/ordem de serviço) para eventual inclusão no polo passivo.
+
+### OD-2026-100007 — Curitiba
+
+**Testa:** O atendimento em branco, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.
+
+**Esperado:** A rota recusa com HTTP 400 e uma frase explicando por quê. Nenhuma chamada ao modelo é feita. Na tela, o botão de resumir já vem desabilitado, com o mesmo motivo.
+
+**Falha se:** Chamar o modelo e devolver um resumo — fatos, partes ou pretensão inventados a partir do nada.
+
+**Verificações automáticas:**
+
+- ✅ a rota recusa gerar sem material
+- ✅ nenhum resumo é produzido
+- ✅ a recusa explica o motivo
 
 ---
 

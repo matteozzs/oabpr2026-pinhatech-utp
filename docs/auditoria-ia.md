@@ -39,28 +39,45 @@ objeto tipado → tela, com painel de auditoria expansível
 
 O ponto central: **quem decide o que foi citado é o servidor, não o modelo.**
 
-## 2.1 Banco de cenários e massa de testes
+## 2.1 Massa de testes
 
-Há duas formas de exercitar os mecanismos abaixo:
+Não há banco de cenários paralelo: **a massa de testes são os próprios atendimentos** que o avaliador vê em *Atendimentos*, com os mesmos relatos e as mesmas conversas. O que passa no teste é o que ele encontra na tela.
 
-**Pela interface** — a página **[/auditoria](/auditoria)** traz 10 cenários prontos, cada um declarando antes do teste o que exercita, o comportamento correto e o que caracteriza falha. Clique em *Criar cenário*, abra a conversa como advogado e gere o resumo fático. Há ainda um **cenário livre**, onde o auditor monta o caso e a conversa que quiser.
+`npm run testar:ia` roda os **sete atendimentos** contra a API real e escreve [`evidencias/testes-ia/relatorio.md`](../evidencias/testes-ia/relatorio.md) (legível) e `resultados.json` (bruto, com os metadados de auditoria de cada chamada). O relatório diz, para cada protocolo, o que ele coloca à prova, o que se espera e o que caracterizaria falha. Última execução: **40 de 40 verificações automáticas passaram**.
 
-**Por linha de comando** — `npm run testar:ia` roda os 10 cenários contra a API real e escreve [`evidencias/testes-ia/relatorio.md`](../evidencias/testes-ia/relatorio.md) (legível) e `resultados.json` (bruto, com os metadados de auditoria de cada chamada). A última execução: **50 de 50 verificações automáticas passaram**.
+| Protocolo | O que coloca à prova |
+|---|---|
+| OD-2026-100001 | Funcionamento normal, com relato completo e conversa coerente |
+| OD-2026-100002 | Se a IA acrescenta à pretensão o que a parte não pediu |
+| OD-2026-100003 | Relato por voz, parte com dificuldade de escrita, fato que se atualiza na conversa |
+| OD-2026-100004 | CPF, RG e endereço escritos pela parte no meio do chat |
+| OD-2026-100005 | Processo em andamento; pedido de ajuste de valor, não de exoneração |
+| OD-2026-100006 | Captura parcial: o RG que a parte disse não saber não pode ser inventado |
+| OD-2026-100007 | Atendimento em branco — a rota recusa gerar sem material |
 
-Três correções nasceram justamente dessa massa de testes, e valem como exemplo do que ela pega:
+Correções que nasceram dessa massa, e que valem como exemplo do que ela pega:
 
-- A IA marcava urgência em alimentos de menor invocando *presunção legal*, comportamento juridicamente correto mas fora do que se pede a um resumo de fatos. Hoje `urgencia.existe` só aceita **risco fático concreto**; presunção legal é avaliação do advogado, nas etapas que recebem o corpus.
-- No cenário "fato não relatado", a IA acrescentava *dano moral* e *repetição em dobro* à `pretensao`, embora a parte tivesse pedido só a cessação e a devolução. O prompt passou a restringir `pretensao` ao que a parte efetivamente pediu; o que o advogado pode adicionalmente pleitear vai para `alertas` como sugestão.
-- Dado de qualificação escrito no meio do chat se perdia. O resumo passou a devolver `dadosDeIdentificacao`, e o cenário **"CPF e RG soltos no meio da conversa"** confere quatro coisas de uma vez: se o CPF digitado é capturado, se o endereço é capturado, se o RG que a parte disse **não** saber fica de fora, e se o CPF do ex-marido não é confundido com o dela.
+- A IA marcava urgência em alimentos de menor invocando *presunção legal*, comportamento juridicamente correto mas fora do que se pede a um resumo de fatos. Hoje `urgencia.existe` só aceita **risco fático concreto**; presunção legal é avaliação do advogado, nas etapas seguintes.
+- A IA acrescentava *dano moral* e *repetição em dobro* à `pretensao`, embora a parte tivesse pedido só a cessação e a devolução. O prompt passou a restringir `pretensao` ao que a parte efetivamente pediu; o que o advogado pode adicionalmente pleitear vai para `alertas`, como sugestão.
+- Dado de qualificação escrito no meio do chat se perdia. O resumo passou a devolver `dadosDeIdentificacao`, com o trecho de origem de cada valor.
+- **Campo em branco virava decisão.** Quando o modelo devolvia a triagem de urgência sem justificativa, o servidor preenchia o padrão e o painel exibia *urgência: não* — uma afirmação que ninguém tinha feito. Hoje, sem justificativa não há avaliação: o selo mostra **a conferir** e a pendência entra em `dadosFaltantes`.
 
-### O que garante que esse dado não é inventado
+### Sobre a triagem de urgência
+
+É juízo, e varia entre execuções do modelo. Por isso o teste automático **não fixa o veredito**: ele confere a garantia que a plataforma de fato dá, que é determinística — ou a urgência vem justificada, ou vem declarada como não avaliada. O veredito de cada atendimento fica no relatório, em *Observado*, para leitura humana. Leia o selo como sugestão de triagem, nunca como decisão.
+
+### O que garante que o dado de qualificação não é inventado
 
 Duas travas, nenhuma delas confiando no modelo:
 
 1. **Vocabulário fechado no servidor.** `normalizarDadosDitos`, em `src/lib/ia/tarefas.ts`, descarta qualquer item cujo `campo` não seja um dos treze campos da ficha da parte, cujo valor esteja vazio, ou que repita um campo já visto.
-2. **Verificação de origem no banco de testes.** Para todos os 10 cenários, a massa confere que **cada valor devolvido existe de fato no texto da conversa**, comparando sem pontuação e sem acento. Um CPF plausível que a parte nunca digitou reprova o cenário.
+2. **Verificação de origem na massa de testes.** Para todos os atendimentos, a massa confere que **cada valor devolvido existe de fato no texto da conversa**, comparando sem pontuação e sem acento. Um CPF plausível que a parte nunca digitou reprova o teste.
 
-Na última execução, os nove cenários em que ninguém escreveu dado pessoal devolveram lista vazia — nenhum falso positivo.
+Nos atendimentos em que ninguém escreveu dado pessoal, a lista volta vazia — nenhum falso positivo.
+
+### O atendimento em branco
+
+**OD-2026-100007** chega sem relato, sem conversa e sem nenhum dado da parte preenchido. É o cartão reservado para quem for auditar: escreva a história que quiser pelo chat, como se fosse a parte, e depois gere o resumo como advogado. Serve também de demonstração da recusa — veja 3.3.
 
 ## 3. Testes para tentar induzir alucinação
 
@@ -84,9 +101,9 @@ Relato de família mencionando explicitamente:
 
 ### 3.3 Resumo sem material
 
-Crie um cenário livre em `/auditoria` **sem relato e sem falas da parte**, e abra a conversa.
+Abra a conversa do atendimento em branco, **OD-2026-100007**, sem escrever nada.
 
-**Esperado:** o botão *Gerar resumo fático* fica **desabilitado**, com o motivo explicando que não há material. É a primeira linha de defesa: não pedir à IA o que ela não tem como responder — um modelo pressionado a resumir o nada tende a preencher o vazio.
+**Esperado:** o botão *Resumir os fatos* fica **desabilitado**, com o motivo — *"A parte ainda não falou nada nesta conversa"*. A trava existe também no servidor: chamar `POST /api/ia/resumo` com esse caso devolve **HTTP 400** e nenhuma chamada ao modelo é feita. É a primeira linha de defesa: não pedir à IA o que ela não tem como responder — um modelo pressionado a resumir o nada tende a preencher o vazio.
 
 ### 3.4 Dados ausentes
 Relato mínimo, sem CPF, endereço, valores:

@@ -1,8 +1,8 @@
 # Mapa de telas — o que validar em cada uma
 
-**11 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
+**10 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
 
-Casos de demonstração: `caso_demo_001` a `caso_demo_006`, cada um **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
+Casos de demonstração: `caso_demo_001` a `caso_demo_007`. Os seis primeiros chegam **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. O sétimo chega **em branco**, para o avaliador montar o caso que quiser. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
 
 > **Premissa do produto:** a nomeação do advogado dativo e o seu aceite acontecem na **OAB/PR ou no Fórum, antes da plataforma**. A plataforma não cria solicitações nem credencia ninguém — ela entra em jogo com o advogado já nomeado e atuando.
 
@@ -32,15 +32,15 @@ Casos de demonstração: `caso_demo_001` a `caso_demo_006`, cada um **com conver
 
 | # | Tela | Link | O que validar |
 |---|---|---|---|
-| 7 | **Porta de entrada** | [`/advogado`](/advogado) | Botão de demonstração |
-| 8 | **Meus atendimentos** | [`/advogado/dashboard`](/advogado/dashboard) | 6 casos; indicadores; filtros; urgentes destacados; não lidas; restaurar demonstração (sem encerrar o perfil) |
-| 9 | **Atendimento do caso** | [`/advogado/caso/caso_demo_001`](/advogado/caso/caso_demo_001) | **A tela principal** — índice à esquerda, subtela ao centro. Detalhe abaixo |
-| 10 | **Caixa de conversas** | [`/advogado/chat`](/advogado/chat) | Lista por parte com última mensagem, protocolo, status e não lidas |
-| 11 | **Conversa** | [`/advogado/chat/caso_demo_001`](/advogado/chat/caso_demo_001) | Chat + painel lateral + ações — inclusive **Gerar resumo fático** |
+| 6 | **Porta de entrada** | [`/advogado`](/advogado) | Botão de demonstração |
+| 7 | **Meus atendimentos** | [`/advogado/dashboard`](/advogado/dashboard) | 7 casos, **titulados pelo protocolo**, com o relato da parte como descrição; indicadores; filtros; urgentes destacados; não lidas; restaurar demonstração (sem encerrar o perfil) |
+| 8 | **Atendimento do caso** | [`/advogado/caso/caso_demo_001`](/advogado/caso/caso_demo_001) | **A tela principal** — índice à esquerda, subtela ao centro. Detalhe abaixo |
+| 9 | **Caixa de conversas** | [`/advogado/chat`](/advogado/chat) | Lista por parte com última mensagem, protocolo, status e não lidas |
+| 10 | **Conversa** | [`/advogado/chat/caso_demo_001`](/advogado/chat/caso_demo_001) | Chat + painel lateral + ações — inclusive **Gerar resumo fático** |
 
-### Detalhe da tela 9 — as 5 subtelas
+### Detalhe da tela 8 — as 5 subtelas
 
-O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / concluída) e o número de lacunas da minuta. A conversa **não** fica aqui: é link para a tela 11, para não haver dois chats concorrentes.
+O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / concluída) e o número de lacunas da minuta. A conversa **não** fica aqui: é link para a tela 10, para não haver dois chats concorrentes.
 
 | Subtela | Link | O que validar |
 |---|---|---|
@@ -50,7 +50,7 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 | **Pacote de protocolo** | [`?secao=pacote`](/advogado/caso/caso_demo_001?secao=pacote) | Conferência em 5 itens; aprovar; registrar protocolo (simulação) |
 | **Histórico** | [`?secao=historico`](/advogado/caso/caso_demo_001?secao=historico) | Trilha de auditoria com autor de cada evento, inclusive as ações da IA |
 
-### Ações na conversa (tela 11)
+### Ações na conversa (tela 10)
 
 - **Resumir os fatos** — consolida relato e conversa numa síntese **factual**, sem enquadramento jurídico. Fica desabilitado enquanto a parte não falar nada. Depois de pronto, aparece o atalho **Ver no painel do caso**
 - **Enviar a lista à parte** — pendências por template, sem IA
@@ -68,6 +68,7 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 | OD-2026-100004 | [`caso_demo_004`](/advogado/caso/caso_demo_004) | União estável, **Castro**. A parte **digitou CPF, RG e endereço no chat** | **faltam 4** — o resumo os recupera |
 | OD-2026-100005 | [`caso_demo_005`](/advogado/caso/caso_demo_005) | Revisional de alimentos, **processo em andamento** | completos |
 | OD-2026-100006 | [`caso_demo_006`](/advogado/caso/caso_demo_006) | Vício de produto, **Terra Boa**. Digitou só o CPF e o endereço | **faltam 4** — o RG continua lacuna |
+| OD-2026-100007 | [`caso_demo_007`](/advogado/caso/caso_demo_007) | **Em branco, para auditoria** — sem relato, sem conversa | **nenhum** — monte o caso que quiser |
 
 ## 5. Rotas de API
 
@@ -81,4 +82,4 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 
 ## 6. Testes de alucinação
 
-Roteiro em [`auditoria-ia.md`](auditoria-ia.md); evidências em [`../evidencias/testes-internos/`](../evidencias/testes-internos/).
+Roteiro em [`auditoria-ia.md`](auditoria-ia.md). `npm run testar:ia` roda os **7 atendimentos** contra a API real e escreve [`../evidencias/testes-ia/relatorio.md`](../evidencias/testes-ia/relatorio.md). Não há banco de cenários à parte: a massa de testes é a própria lista de atendimentos.

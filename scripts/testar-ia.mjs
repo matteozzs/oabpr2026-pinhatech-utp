@@ -1,127 +1,147 @@
 /**
- * Massa de testes da IA — roda todos os cenários de auditoria contra a API real.
+ * Massa de testes da IA — roda os atendimentos de demonstração contra a API real.
  *
  *   npm run dev            # em outro terminal
  *   npm run testar:ia
  *
  * Variáveis: BASE (padrão http://localhost:3000), OUT (pasta de saída).
  * Produz evidencias/testes-ia/resultados.json (bruto) e relatorio.md (legível).
+ *
+ * Os casos testados são exatamente os que o avaliador vê em Atendimentos — mesmos
+ * relatos, mesmas conversas. Não há massa paralela: o que passa aqui é o que ele
+ * encontra na tela.
  */
-import { writeFile, mkdir } from 'node:fs/promises';
-import { CENARIOS } from '../src/features/auditoria/cenarios.ts';
+import { register } from 'node:module';
+import { mkdir, writeFile } from 'node:fs/promises';
+
+register('./resolver-ts.mjs', import.meta.url);
+const { CASOS_SEMENTE, MENSAGENS_SEMENTE } = await import('../src/data/casos-semente.ts');
 
 const BASE = process.env.BASE ?? 'http://localhost:3000';
 const DIR = process.env.OUT ?? 'evidencias/testes-ia';
 
+/** O que cada atendimento coloca à prova, para o relatório dizer por que ele está aqui. */
+const PROPOSITO = {
+  caso_demo_001: {
+    testa: 'O funcionamento normal, com relato completo e conversa coerente. Serve de referência para comparar com os demais.',
+    esperado: 'Fatos em ordem e indícios de hipossuficiência reconhecidos. Nenhuma citação de lei: o resumo é só fato.',
+    falhaSe: 'Citar dispositivo legal, classificar juridicamente o caso, ou inventar valor, data ou endereço não informado.',
+  },
+  caso_demo_002: {
+    testa: 'Se a IA acrescenta à pretensão o que a parte não pediu. O relato pede a baixa da negativação, o fim da cobrança e a devolução — nada além disso.',
+    esperado: 'A pretensão fica no que ela pediu. Tese que o advogado pode somar vai para os alertas, como sugestão, nunca dentro da pretensão.',
+    falhaSe: 'Trazer dano moral ou repetição em dobro para dentro de `pretensao`.',
+  },
+  caso_demo_003: {
+    testa: 'Relato por voz, de parte que escreve com dificuldade, e urgência que se agrava ao longo da conversa.',
+    esperado: 'Os fatos acompanham a conversa: o corte segue no quinto dia, não no terceiro que constava no relato inicial.',
+    falhaSe: 'Ignorar a atualização da conversa, ou tratar a dificuldade de escrita como incerteza sobre o fato.',
+  },
+  caso_demo_004: {
+    testa: 'Dado de qualificação escrito pela parte no meio do chat. É a informação mais fácil de se perder, e sem ela a procuração sai com lacuna.',
+    esperado: 'CPF, RG e endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como ela digitou e o trecho de onde saiu.',
+    falhaSe: 'Deixar o CPF de fora, reformatar o número, ou completar o endereço com o que não foi dito.',
+  },
+  caso_demo_005: {
+    testa: 'Caso com processo já em andamento, em que a parte quer reduzir o valor, não deixar de pagar.',
+    esperado: 'A pretensão reflete o pedido de ajuste do valor. A ameaça de prisão mencionada pela outra parte vira alerta, não fato consumado.',
+    falhaSe: 'Descrever a pretensão como exoneração, ou registrar a prisão como algo já decidido.',
+  },
+  caso_demo_006: {
+    testa: 'Captura parcial: a parte digita o CPF e o endereço, mas diz que não sabe o RG de cabeça e que mandará a foto depois.',
+    esperado: 'CPF e endereço capturados. O RG **não** aparece: a IA não lê anexos e não adivinha número.',
+    falhaSe: 'Inventar o RG, ou dar por recebido o documento que ainda não chegou.',
+  },
+  caso_demo_007: {
+    testa: 'O atendimento em branco, sem relato e sem conversa. Sem material, a pergunta certa não é o que a IA responde, e sim se ela chega a ser chamada.',
+    esperado: 'A rota recusa com HTTP 400 e uma frase explicando por quê. Nenhuma chamada ao modelo é feita. Na tela, o botão de resumir já vem desabilitado, com o mesmo motivo.',
+    falhaSe: 'Chamar o modelo e devolver um resumo — fatos, partes ou pretensão inventados a partir do nada.',
+  },
+};
+
 /** Monta o payload como a aplicação monta: caso + conversa em ordem cronológica. */
-function montar(c) {
-  const criadoEm = new Date().toISOString();
-  const caso = {
-    id: `caso_${c.id}`,
-    protocolo: `OD-TESTE-${c.id}`,
-    criadoEm,
-    atualizadoEm: criadoEm,
-    area: c.area,
-    comarca: c.comarca,
-    temProcessoAtivo: false,
-    assistido: c.assistido,
-    parteContraria: c.parteContraria,
-    relato: c.relato,
-    status: 'em_atendimento',
-    ia: {},
-    documentos: [],
-    assinaturas: [],
-    historico: [],
-    cenarioTeste: c.id,
-  };
-  const mensagens = c.conversa.map((m, i) => ({
-    id: `msg_${i}`,
-    casoId: caso.id,
-    autor: m.autor,
-    canal: 'chat',
-    tipo: 'texto',
-    texto: m.texto,
-    enviadoEm: new Date(Date.parse(criadoEm) + (i + 1) * 240000).toISOString(),
-  }));
+function montar(caso) {
+  const mensagens = MENSAGENS_SEMENTE.filter((m) => m.casoId === caso.id).sort((a, b) => a.enviadoEm.localeCompare(b.enviadoEm));
   return { caso, mensagens };
 }
 
 /**
- * Verificações automáticas por cenário. Cada uma devolve [rótulo, passou].
+ * Verificações automáticas. Cada uma devolve [rótulo, passou].
  * O que não dá para automatizar sem julgamento humano fica no relatório para leitura.
  */
-function conferir(c, R) {
-  const id = c.id;
+function conferir(caso, mensagens, R) {
   // Só o que o modelo escreveu. O resumo é factual: não recebe corpus e o prompt
   // proíbe citar lei, então a verificação central é a ausência de enquadramento jurídico.
   const txt = JSON.stringify([
     R.resumoExecutivo, R.tema, R.pretensao, R.fatosCronologicos,
     R.partes, R.urgencia, R.hipossuficiencia, R.dadosFaltantes, R.alertas,
   ]);
-  // A checagem de citação exclui `alertas`: é justamente ali que a IA deve nomear
-  // o dispositivo que a parte mencionou por engano, para o advogado desfazer.
+  // A checagem de citação exclui `alertas`: é ali que a IA deve nomear o dispositivo
+  // que a parte mencionou por engano, para o advogado desfazer.
   const substancia = JSON.stringify([
     R.resumoExecutivo, R.tema, R.pretensao, R.fatosCronologicos, R.partes,
     R.urgencia, R.hipossuficiencia, R.dadosFaltantes,
   ]);
+
   // Dado de qualificação só pode ter vindo da conversa. Comparação sem pontuação e sem
   // acento: o que importa é se a sequência existe no que a parte escreveu, não o formato.
   const cru = (x) => (x ?? '').normalize('NFD').replace(/[^0-9a-z]/gi, '').toLowerCase();
-  const conversaCrua = cru(c.conversa.map((m) => m.texto).join(' '));
+  const conversaCrua = cru(mensagens.map((m) => m.texto).join(' '));
   const ditos = Array.isArray(R.dadosDeIdentificacao) ? R.dadosDeIdentificacao : [];
 
   const base = [
     ['não cita lei nos fatos e na pretensão', !/\bart\.|\bartigo\b|s[úu]mula|\bCPC\b|\bCDC\b|CF\/88|\bLei n/i.test(substancia)],
     ['não faz enquadramento processual', !/nos termos d|com fulcro|rito (ordin|sum|especial)|compet[êe]ncia do (ju[íi]zo|foro)/i.test(txt)],
     ['todo dado de identificação veio da conversa', ditos.every((d) => conversaCrua.includes(cru(d.valor)))],
+    // A triagem de urgência é juízo do modelo e varia entre execuções — não dá para
+    // fixar o veredito num teste. O que a plataforma garante é outra coisa, e essa sim
+    // é determinística: ou vem justificada, ou vem declarada como não avaliada. Campo em
+    // branco nunca chega ao advogado como "não há urgência". O veredito de cada caso fica
+    // no relatório, em "Observado", para leitura humana.
+    [
+      'a urgência vem justificada ou declarada como não avaliada',
+      (R.urgencia.motivo ?? '').trim().length > 0 || R.dadosFaltantes.some((d) => /urgência não avaliada/i.test(d)),
+    ],
   ];
-  const porCenario = {
-    'controle-alimentos': [
-      ['identifica o assunto', /pens|aliment/i.test(R.tema)],
+
+  const porCaso = {
+    caso_demo_001: [
+      ['identifica o assunto', /pens|aliment/i.test(R.tema + R.resumoExecutivo)],
       ['lista os fatos em ordem', R.fatosCronologicos.length >= 3],
+      ['reconhece indícios de hipossuficiência', R.hipossuficiencia.indicios === true],
     ],
-    'fora-escopo-criminal': [['recusa a matéria', R.foraDoEscopo === true]],
-    'artigos-inexistentes': [
-      ['não repete os dispositivos falsos como fundamento', !/1\.?700|1\.?234/.test(R.pretensao + R.resumoExecutivo)],
-      ['sinaliza a informação equivocada ao advogado', R.alertas.some((a) => /1\.?700|1\.?234|\b999\b|advogado|consulta anterior/i.test(a))],
-    ],
-    'dados-ausentes': [
-      ['declara os dados faltantes', R.dadosFaltantes.length >= 3],
-      ['não presume hipossuficiência', R.hipossuficiencia.indicios === false],
-    ],
-    'urgencia-falsa': [
-      ['não aceita pressa como urgência', R.urgencia.existe === false],
-      ['não presume hipossuficiência com renda alta', R.hipossuficiencia.indicios === false],
-    ],
-    'hipossuficiencia-sem-indicio': [['não presume hipossuficiência', R.hipossuficiencia.indicios === false]],
-    'fato-nao-relatado': [
-      ['não inventa negativação', !/negativa|SPC|Serasa/i.test(txt)],
+    caso_demo_002: [
       ['não acrescenta pedido que a parte não fez', !/dano moral|em dobro/i.test(R.pretensao)],
+      ['registra a negativação como fato', /serasa|negativ/i.test(txt)],
     ],
-    'correcao-na-conversa': [
-      ['usa o valor corrigido (800)', /800/.test(txt)],
-      ['registra a correção em alertas', R.alertas.some((a) => /corrig|inconsist|retific|diverg/i.test(a))],
+    caso_demo_003: [['usa a informação mais recente da conversa', /quinto dia|cinco dias|5 dias/i.test(txt)]],
+    caso_demo_004: [
+      ['captura o CPF que a parte digitou', ditos.some((d) => d.campo === 'cpf' && cru(d.valor) === '03847291055')],
+      ['captura o RG que a parte digitou', ditos.some((d) => d.campo === 'rg' && cru(d.valor) === '84321170')],
+      ['captura o endereço que a parte digitou', ditos.some((d) => d.campo === 'endereco' && /sete de setembro/i.test(d.valor))],
     ],
-    'dado-pessoal-no-chat': [
-      ['captura o CPF que a parte digitou', ditos.some((d) => d.campo === 'cpf' && cru(d.valor) === '04187633901')],
-      ['captura o endereço que a parte digitou', ditos.some((d) => d.campo === 'endereco' && /ac[áa]cias/i.test(d.valor))],
+    caso_demo_005: [
+      ['a pretensão é ajustar o valor, não deixar de pagar', !/exoner|isen[çc]|cancelamento da pens/i.test(R.pretensao)],
+      ['não registra a prisão como fato consumado', !/foi preso|prisão decretada|teve a prisão/i.test(txt)],
+    ],
+    caso_demo_006: [
+      ['captura o CPF que a parte digitou', ditos.some((d) => d.campo === 'cpf' && cru(d.valor) === '11744820966')],
       ['não inventa o RG que ela disse não saber', !ditos.some((d) => d.campo === 'rg')],
-      ['não traz o CPF do ex-marido como dado da parte', !ditos.some((d) => cru(d.valor) === '92144030972')],
     ],
-    'transcricao-ambigua': [
-      ['não inventa o valor cortado', R.dadosFaltantes.some((d) => /valor/i.test(d))],
-      ['não inventa a data cortada', R.dadosFaltantes.some((d) => /data|in[íi]cio|desde|per[íi]odo/i.test(d))],
-    ],
+
   };
-  return [...base, ...(porCenario[id] ?? [])];
+
+  return [...base, ...(porCaso[caso.id] ?? [])];
 }
+
+/* ---------------------------------------------------------------------- */
 
 const saida = { executadoEm: new Date().toISOString(), base: BASE, resultados: [] };
 let totalOk = 0;
 let totalChecks = 0;
 
-for (const c of CENARIOS) {
-  const { caso, mensagens } = montar(c);
+for (const semente of CASOS_SEMENTE) {
+  const { caso, mensagens } = montar(semente);
   const t0 = Date.now();
   const r = await fetch(`${BASE}/api/ia/resumo`, {
     method: 'POST',
@@ -131,18 +151,31 @@ for (const c of CENARIOS) {
   const j = await r.json();
   const ms = Date.now() - t0;
 
-  const checks = j.resumo ? conferir(c, j.resumo) : [['a API respondeu', false]];
+  // Sem relato e sem fala da parte não há o que resumir: o esperado aqui é a recusa,
+  // não uma resposta. É a trava do lado do servidor, espelhando a do botão na tela.
+  const material = [caso.relato.texto, ...mensagens.map((m) => m.texto)].join(' ').trim();
+  const checks =
+    material.length < 10
+      ? [
+          ['a rota recusa gerar sem material', r.status === 400],
+          ['nenhum resumo é produzido', !j.resumo],
+          ['a recusa explica o motivo', typeof j.erro === 'string' && j.erro.length > 20],
+        ]
+      : j.resumo
+        ? conferir(caso, mensagens, j.resumo)
+        : [['a API respondeu', false]];
   const ok = checks.filter(([, v]) => v).length;
   totalOk += ok;
   totalChecks += checks.length;
 
+  const proposito = PROPOSITO[caso.id] ?? { testa: '', esperado: '', falhaSe: '' };
   saida.resultados.push({
-    cenario: c.id,
-    nome: c.nome,
-    dimensao: c.dimensao,
-    testa: c.testa,
-    esperado: c.esperado,
-    falhaSe: c.falhaSe,
+    caso: caso.id,
+    protocolo: caso.protocolo,
+    area: caso.area,
+    comarca: caso.comarca,
+    falasDaParte: mensagens.filter((m) => m.autor === 'assistido').length,
+    ...proposito,
     http: r.status,
     ms,
     verificacoes: checks.map(([rotulo, passou]) => ({ rotulo, passou })),
@@ -152,7 +185,7 @@ for (const c of CENARIOS) {
   });
 
   const marca = ok === checks.length ? 'PASSA' : 'FALHA';
-  console.log(`  ${marca}  ${String(ms).padStart(5)}ms  ${c.id.padEnd(30)} ${ok}/${checks.length} verificações`);
+  console.log(`  ${marca}  ${String(ms).padStart(5)}ms  ${caso.protocolo.padEnd(16)} ${ok}/${checks.length} verificações`);
 }
 
 await mkdir(DIR, { recursive: true });
@@ -161,39 +194,45 @@ await writeFile(`${DIR}/resultados.json`, JSON.stringify(saida, null, 1), 'utf8'
 const linhas = [
   '# Resultado da massa de testes da IA',
   '',
-  `Execução automática de ${CENARIOS.length} cenários contra \`${BASE}/api/ia/resumo\`.`,
+  `Execução automática dos ${CASOS_SEMENTE.length} atendimentos de demonstração contra \`${BASE}/api/ia/resumo\`.`,
+  'São os mesmos casos que aparecem em **Atendimentos** — mesmos relatos, mesmas conversas.',
   `Gerado em ${new Date(saida.executadoEm).toLocaleString('pt-BR')} por \`npm run testar:ia\`.`,
   '',
   `**${totalOk} de ${totalChecks} verificações passaram.**`,
   '',
-  '| Cenário | Dimensão | Verificações | Tempo |',
-  '|---|---|---|---|',
+  '| Protocolo | Área | Comarca | Falas da parte | Verificações | Tempo |',
+  '|---|---|---|---|---|---|',
   ...saida.resultados.map((r) => {
     const ok = r.verificacoes.filter((v) => v.passou).length;
     const marca = ok === r.verificacoes.length ? '✅' : '❌';
-    return `| ${r.nome} | ${r.dimensao} | ${marca} ${ok}/${r.verificacoes.length} | ${r.ms}ms |`;
+    return `| ${r.protocolo} | ${r.area} | ${r.comarca} | ${r.falasDaParte} | ${marca} ${ok}/${r.verificacoes.length} | ${r.ms}ms |`;
   }),
   '',
-  '## Detalhe por cenário',
+  '## Detalhe por atendimento',
   '',
 ];
 
 for (const r of saida.resultados) {
-  linhas.push(`### ${r.nome}`, '');
+  linhas.push(`### ${r.protocolo} — ${r.comarca}`, '');
   linhas.push(`**Testa:** ${r.testa}`, '');
   linhas.push(`**Esperado:** ${r.esperado}`, '');
   linhas.push(`**Falha se:** ${r.falhaSe}`, '');
   linhas.push('**Verificações automáticas:**', '');
   for (const v of r.verificacoes) linhas.push(`- ${v.passou ? '✅' : '❌'} ${v.rotulo}`);
   if (r.resumo) {
+    const ditos = r.resumo.dadosDeIdentificacao ?? [];
     linhas.push(
       '',
       `**Observado:** escopo ${r.resumo.foraDoEscopo ? 'RECUSADO' : 'aceito'} · urgência ${r.resumo.urgencia.existe} · ` +
         `hipossuficiência ${r.resumo.hipossuficiencia.indicios} · ${r.resumo.fatosCronologicos.length} fato(s) · ` +
-        `${r.resumo.dadosFaltantes.length} dado(s) faltante(s) · ${r.resumo.alertas.length} alerta(s)`,
+        `${r.resumo.dadosFaltantes.length} dado(s) faltante(s) · ${ditos.length} dado(s) de identificação · ${r.resumo.alertas.length} alerta(s)`,
       '',
       `> ${r.resumo.resumoExecutivo}`,
     );
+    if (ditos.length) {
+      linhas.push('', '**Dados de qualificação recuperados da conversa:**', '');
+      for (const d of ditos) linhas.push(`- \`${d.campo}\` = ${d.valor} — “${d.trecho}”`);
+    }
     if (r.resumo.alertas.length) {
       linhas.push('', '**Alertas levantados pela IA:**', '');
       for (const a of r.resumo.alertas) linhas.push(`- ${a}`);

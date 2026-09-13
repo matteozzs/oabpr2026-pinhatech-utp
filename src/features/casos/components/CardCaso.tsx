@@ -5,18 +5,24 @@ import { AREA_LABEL } from '@/types';
 import { StatusBadge } from '@/components/ui';
 import { cn, formatarData } from '@/lib/utils';
 
-function primeirasPalavras(t: string, n = 12) {
-  const p = t.split(/\s+/).slice(0, n).join(' ');
-  return p.length < t.length ? p + '…' : p;
+function primeirasPalavras(t: string, n = 16) {
+  const limpo = t.trim();
+  if (!limpo) return '';
+  const p = limpo.split(/\s+/).slice(0, n).join(' ');
+  return p.length < limpo.length ? p + '…' : p;
 }
 
 /**
- * Item da lista de casos.
+ * Item da lista de atendimentos.
  *
- * A visão do cidadão omite de propósito o que é triagem interna do advogado —
- * marcação de urgência, selo de "analisado", etapa do trabalho. Nada disso diz
- * respeito a quem está esperando o processo andar, e algumas dessas marcas
- * assustariam sem motivo.
+ * O título é o protocolo, não o assunto: é por ele que o caso é chamado no Fórum,
+ * na OAB e no telefone, e é o que não muda quando a leitura do caso muda. O relato
+ * da parte vem logo abaixo, como descrição — as palavras dela, e não uma etiqueta
+ * escolhida pela plataforma.
+ *
+ * A visão do cidadão omite de propósito o que é triagem interna do advogado:
+ * marcação de urgência, selo de "analisado" e etapa do trabalho. Nada disso diz
+ * respeito a quem está esperando o processo andar.
  */
 export function CardCaso({
   caso,
@@ -30,6 +36,7 @@ export function CardCaso({
   perfil?: Perfil;
 }) {
   const cidadao = perfil === 'cidadao';
+  const assunto = primeirasPalavras(caso.relato.texto);
 
   return (
     <Link
@@ -41,8 +48,6 @@ export function CardCaso({
     >
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2 text-xs text-ink-500">
-          <span className="font-mono">{caso.protocolo}</span>
-          <span>·</span>
           <span>{AREA_LABEL[caso.area]}</span>
 
           {/* Triagem interna: só o advogado vê */}
@@ -59,15 +64,16 @@ export function CardCaso({
           {naoLidas > 0 && <span className="badge bg-navy-700 text-white">{naoLidas} nova(s)</span>}
         </div>
 
-        {/* O tema e redacao da IA, escrita para o advogado. Na visao do cidadao ficam as palavras dele. */}
-        <p className="font-semibold text-ink-900 truncate mt-0.5">
-          {(!cidadao && caso.ia.resumo?.tema) || primeirasPalavras(caso.relato.texto)}
-        </p>
+        <p className="font-mono font-bold text-navy-950 mt-0.5">{caso.protocolo}</p>
 
         <p className="text-sm text-ink-700">
           {cidadao
             ? `${caso.advogado ? `Advogado(a): ${caso.advogado.nome} · ` : ''}${caso.comarca} · desde ${formatarData(caso.criadoEm)}`
             : `${caso.assistido.nome} · ${caso.comarca} · ${caso.temProcessoAtivo ? 'processo em andamento' : 'sem processo'} · ${formatarData(caso.criadoEm)}`}
+        </p>
+
+        <p className={cn('text-xs text-ink-500 mt-0.5 truncate', !assunto && 'italic')}>
+          {assunto || 'Sem relato e sem conversa — atendimento em branco, reservado para testes.'}
         </p>
       </div>
 

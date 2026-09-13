@@ -116,17 +116,18 @@ A interface foi desenhada primeiro para o celular, que é por onde a maior parte
 
 ## 5. O que garante que a IA não inventa
 
-Cinco compromissos visíveis na própria tela:
+Seis compromissos visíveis na própria tela:
 
 - **Declara o que não sabe.** Dado que não foi informado vira marcador de lacuna, nunca um número plausível.
 - **A minuta não pode ser dada por revisada** enquanto restar uma lacuna.
 - **Nada sai como definitivo.** Toda saída de IA é minuta e carrega o aviso de que exige revisão.
 - **Fato e direito ficam separados.** O resumo conta o que aconteceu e não cita lei. Um resumo que não cita lei não tem como citar lei errada.
 - **Matéria fora de Família e Consumidor é recusada**, com encaminhamento, em vez de gerar peça sobre o que a ferramenta não cobre.
+- **Campo em branco não vira decisão.** Quando a IA devolve a triagem de urgência sem justificar, o selo mostra *a conferir* e a pendência entra na lista de dados faltantes. Um campo vazio não chega ao advogado como "não há urgência".
 
-**Banco de testes aberto.** A plataforma traz uma página de testes, fora do fluxo do produto, com **dez cenários** que tentam induzir erro. Cada um declara antes o que exercita, qual é o comportamento correto e o que caracteriza falha. Por linha de comando, `npm run testar:ia` roda todos contra a API real e escreve [`evidencias/testes-ia/relatorio.md`](evidencias/testes-ia/relatorio.md). Última execução: **50 de 50 verificações**. Roteiro completo em [`docs/auditoria-ia.md`](docs/auditoria-ia.md).
+**A massa de testes são os próprios atendimentos.** Não há banco de cenários à parte: `npm run testar:ia` roda os **sete atendimentos de demonstração** contra a API real, com os mesmos relatos e as mesmas conversas que aparecem na tela, e escreve [`evidencias/testes-ia/relatorio.md`](evidencias/testes-ia/relatorio.md). Última execução: **40 de 40 verificações**. Roteiro completo em [`docs/auditoria-ia.md`](docs/auditoria-ia.md).
 
-![Banco de testes](docs/imagens/19-banco-de-testes.png)
+O protocolo **OD-2026-100007** chega em branco — sem relato, sem conversa e sem nenhum dado da parte — para quem for auditar montar o caso que quiser.
 
 ## 6. O que a ferramenta não faz
 
@@ -147,7 +148,7 @@ Cerca de dez minutos, sem preparo. Não há cadastro nem senha: os botões de de
 ### A. A jornada do advogado (6 min)
 
 1. Tela inicial → **Sou Advogado Dativo** → entrar na demonstração.
-2. No painel, repare que os seis casos já chegam **em atendimento**. É proposital: a nomeação aconteceu antes da plataforma. Não existe "abrir caso" aqui.
+2. No painel, repare que os casos já chegam **em atendimento**. É proposital: a nomeação aconteceu antes da plataforma. Não existe "abrir caso" aqui.
 3. Abra **OD-2026-100004** (Cleusa Maria Andrade, Castro).
 4. Vá em **Resumo fático**. Ainda não há resumo, e a tela diz por quê: ele nasce da conversa. Clique em **Ir para a conversa**.
 5. Leia a conversa. Em uma das mensagens a parte escreve o CPF, o RG e o endereço dela. Clique em **Resumir os fatos**.
@@ -174,11 +175,11 @@ Cerca de dez minutos, sem preparo. Não há cadastro nem senha: os botões de de
 
 ### D. Tentar fazer a IA errar (3 min)
 
-1. Menu → **Banco de testes**, fora do fluxo do produto.
-2. Escolha um cenário. Cada um declara antes o que exercita, o que é correto e o que seria falha.
-3. Sugestões: *CPF e RG soltos no meio da conversa* mostra o dado pessoal sendo recuperado sem que o da outra parte se misture; *Fora do escopo — matéria criminal* mostra a recusa; *Artigos inexistentes* mostra o que acontece quando a parte cita uma lei que não existe.
-4. **Criar cenário** → abra a conversa como advogado → gere o resumo. Compare com o que o cenário declarou esperar.
-5. Use o **cenário livre** para montar o caso e a conversa que quiser.
+1. Abra o atendimento em branco, **OD-2026-100007**. A ficha da parte está vazia e não há conversa.
+2. Vá para a conversa. O botão **Resumir os fatos** já vem desabilitado, com o motivo. É a primeira trava: não se pede à IA o que ela não tem como responder.
+3. Escreva como se fosse a parte e monte o caso que quiser. Tente induzir o erro: cite uma lei que não existe, peça matéria criminal, dê um valor e depois corrija, mande um CPF junto com o de outra pessoa.
+4. Gere o resumo e confira. Matéria fora de Família e Consumidor deve ser recusada; dado que você não escreveu não pode aparecer; o que faltou deve estar declarado.
+5. Para ver os mesmos mecanismos nos casos prontos, rode `npm run testar:ia` com o servidor no ar. O relatório diz, protocolo a protocolo, o que cada um coloca à prova e o que se espera.
 
 ### Voltar ao estado inicial
 

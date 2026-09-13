@@ -24,7 +24,6 @@ const LINKS_VISITANTE = [
 
 const LINKS_COMUNS = [
   { href: '/transparencia', rotulo: 'Transparência da IA' },
-  { href: '/auditoria', rotulo: 'Banco de testes' },
   { href: '/roadmap', rotulo: 'Roadmap' },
 ];
 

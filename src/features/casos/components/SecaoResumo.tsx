@@ -75,8 +75,19 @@ export function SecaoResumo({ caso, ia }: { caso: Caso; ia: UseIA }) {
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <span className={cn('badge', resumo.urgencia.existe ? 'bg-danger-100 text-danger-600' : 'bg-ink-100 text-ink-700')} title={resumo.urgencia.motivo}>
-                urgência: {resumo.urgencia.existe ? 'sim' : 'não'}
+              {/* Sem justificativa não houve avaliação: dizer "não" aqui seria afirmar o que a IA não afirmou. */}
+              <span
+                className={cn(
+                  'badge',
+                  !resumo.urgencia.motivo
+                    ? 'bg-warn-100 text-warn-600'
+                    : resumo.urgencia.existe
+                      ? 'bg-danger-100 text-danger-600'
+                      : 'bg-ink-100 text-ink-700',
+                )}
+                title={resumo.urgencia.motivo || 'A IA não justificou a triagem de urgência. Confira o caso.'}
+              >
+                urgência: {!resumo.urgencia.motivo ? 'a conferir' : resumo.urgencia.existe ? 'sim' : 'não'}
               </span>
               <span
                 className={cn('badge', resumo.hipossuficiencia.indicios ? 'bg-ok-100 text-ok-600' : 'bg-ink-100 text-ink-700')}
