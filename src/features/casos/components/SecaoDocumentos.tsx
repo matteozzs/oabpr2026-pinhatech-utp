@@ -8,7 +8,7 @@ import { ADVOGADO_DEMO, atualizarCaso, useMensagens, atualizarMensagem, atualiza
 import { OBRIGATORIEDADE_LABEL } from '@/data/documentos';
 import { Aviso, Carregando, RotuloIA, Secao } from '@/components/ui';
 import { FontesCitadas, PainelAuditoria, TextoComLacunas, iaApi, type UseIA } from '@/features/ia';
-import { BaixarArquivoPessoal, DadosDaParte, baixarDocx, camposFaltantes, type TipoDocx } from '@/features/documentos';
+import { BaixarArquivoPessoal, DadosDaParte, baixarDocx, camposFaltantes, prepararAnexo, type TipoDocx } from '@/features/documentos';
 import { cn, formatarDataHora } from '@/lib/utils';
 
 
@@ -42,11 +42,11 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
     if (!file) return;
 
     setEnviando(true);
-    const form = new FormData();
-    form.append('file', file);
+    setErro(null);
     try {
-      const res = await fetch('/api/upload', { method: 'POST', body: form });
-      const { url } = await res.json();
+      // Sem servidor: o arquivo vira data URL e fica no navegador, como no chat.
+      const preparado = await prepararAnexo(file);
+      if (preparado.motivo) setErro(preparado.motivo);
 
       enviarMensagem({
         casoId: caso.id,
@@ -55,12 +55,11 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
         tipo: 'documento',
         texto: `Documento enviado manualmente pelo advogado: ${file.name}`,
         lidaPeloAdvogado: true,
-        anexo: { nome: file.name, url, analisado: false },
+        anexo: { nome: preparado.nome, url: preparado.url, analisado: false },
       });
-    } catch(err) {
-      alert("Falha ao subir o arquivo");
     } finally {
       setEnviando(false);
+      e.target.value = '';
     }
   }
 

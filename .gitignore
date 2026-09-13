@@ -38,3 +38,6 @@ next-env.d.ts
 # arquivos originais da marca (grandes; os servidos ficam em public/marca)
 # mantidos no repo para reprocessamento — descomente para ignorar
 # /marca-origem
+
+# anexos da demonstracao: ficam no navegador de quem testa, nunca no repositorio
+public/uploads/

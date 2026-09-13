@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Paperclip, Send, Smartphone } from 'lucide-react';
 import type { Caso, Perfil } from '@/types';
-import { NUMERO_OFICIAL_PLATAFORMA, atualizarDocumento, enviarMensagem, marcarLidas, useMensagens } from '@/lib/store';
+import { NUMERO_OFICIAL_PLATAFORMA, enviarMensagem, marcarLidas, useMensagens } from '@/lib/store';
 import { cn } from '@/lib/utils';
+import { prepararAnexo } from '@/features/documentos';
 import { BolhaMensagem } from './BolhaMensagem';
 
 /**
@@ -29,6 +30,7 @@ export function Chat({
   const [texto, setTexto] = useState('');
   const [arquivo, setArquivo] = useState<File | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
   const fimRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +42,6 @@ export function Chat({
     if (perfil === 'advogado') marcarLidas(caso.id);
   }, [perfil, caso.id, mensagens.length]);
 
-  const pendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
   const primeiroNome = caso.assistido.nome.split(' ')[0];
 
   async function enviar() {
@@ -48,46 +49,24 @@ export function Chat({
     if (!t && !arquivo) return;
 
     setEnviando(true);
+    setErro(null);
     try {
-      let arquivoUrl = undefined;
-      let arquivoNome = undefined;
-
-      if (arquivo) {
-        const formData = new FormData();
-        formData.append('file', arquivo);
-        
-        const res = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
-        if (!res.ok) throw new Error('Falha no upload');
-        const data = await res.json();
-        arquivoUrl = data.url;
-        arquivoNome = arquivo.name;
-      }
-
-      const anexoMsg = arquivoNome
-        ? {
-            nome: arquivoNome,
-            url: arquivoUrl,
-            analisado: false
-          }
-        : undefined;
+      // O arquivo não sobe para lugar nenhum: vira data URL e fica no navegador,
+      // junto da mensagem. Sem servidor, funciona na Vercel e nada fica exposto.
+      const preparado = arquivo ? await prepararAnexo(arquivo) : null;
+      if (preparado?.motivo) setErro(preparado.motivo);
 
       enviarMensagem({
         casoId: caso.id,
         autor: perfil === 'cidadao' ? 'assistido' : 'advogado',
         canal: 'chat',
-        tipo: anexoMsg ? 'documento' : 'texto',
-        texto: t || (arquivoNome ? 'Enviei um documento' : ''),
-        anexo: anexoMsg,
+        tipo: preparado ? 'documento' : 'texto',
+        texto: t || (preparado ? 'Enviei um documento' : ''),
+        anexo: preparado ? { nome: preparado.nome, url: preparado.url, analisado: false } : undefined,
       });
 
       setTexto('');
       setArquivo(null);
-    } catch (e) {
-      alert('Houve um erro no envio. Tente novamente.');
-      console.error(e);
     } finally {
       setEnviando(false);
     }
@@ -118,6 +97,12 @@ export function Chat({
 
       <div className="p-3 border-t border-ink-200 space-y-2">
         {acoes}
+
+        {erro && (
+          <p className="text-xs text-warn-600 bg-warn-100 rounded-lg px-3 py-2">
+            {erro} A mensagem foi enviada com o nome do arquivo, sem o conteúdo.
+          </p>
+        )}
 
         {perfil === 'cidadao' && (
           <div className="flex flex-col gap-2 text-xs mb-2">
