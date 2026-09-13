@@ -1,6 +1,6 @@
 # Mapa de telas — o que validar em cada uma
 
-**12 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
+**11 telas** (a do caso tem 5 subtelas) + 6 rotas de API. Os links são relativos: prefixe com o endereço local (`npm run dev`, na porta que o terminal informar).
 
 Casos de demonstração: `caso_demo_001` a `caso_demo_006`, cada um **com conversa já iniciada** e nenhum com resumo pronto — o resumo nasce do chat, na frente de quem avalia. Para voltar ao estado inicial: **Reiniciar dados da demonstração** (rodapé da home) ou **Restaurar demonstração** (painel do advogado).
 
@@ -34,24 +34,23 @@ Casos de demonstração: `caso_demo_001` a `caso_demo_006`, cada um **com conver
 |---|---|---|---|
 | 7 | **Porta de entrada** | [`/advogado`](/advogado) | Botão de demonstração |
 | 8 | **Meus atendimentos** | [`/advogado/dashboard`](/advogado/dashboard) | 6 casos; indicadores; filtros; urgentes destacados; não lidas; restaurar demonstração (sem encerrar o perfil) |
-| 9 | **Registrar nomeação** | [`/advogado/novo-atendimento`](/advogado/novo-atendimento) | Origem da nomeação (OAB/Fórum) e ofício; dados da parte; relato colado, digitado ou transcrito |
-| 10 | **Atendimento do caso** | [`/advogado/caso/caso_demo_001`](/advogado/caso/caso_demo_001) | **A tela principal** — índice à esquerda, subtela ao centro. Detalhe abaixo |
-| 11 | **Caixa de conversas** | [`/advogado/chat`](/advogado/chat) | Lista por parte com última mensagem, protocolo, status e não lidas |
-| 12 | **Conversa** | [`/advogado/chat/caso_demo_001`](/advogado/chat/caso_demo_001) | Chat + painel lateral + ações — inclusive **Gerar resumo fático** |
+| 9 | **Atendimento do caso** | [`/advogado/caso/caso_demo_001`](/advogado/caso/caso_demo_001) | **A tela principal** — índice à esquerda, subtela ao centro. Detalhe abaixo |
+| 10 | **Caixa de conversas** | [`/advogado/chat`](/advogado/chat) | Lista por parte com última mensagem, protocolo, status e não lidas |
+| 11 | **Conversa** | [`/advogado/chat/caso_demo_001`](/advogado/chat/caso_demo_001) | Chat + painel lateral + ações — inclusive **Gerar resumo fático** |
 
-### Detalhe da tela 10 — as 5 subtelas
+### Detalhe da tela 9 — as 5 subtelas
 
-O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / concluída) e o número de lacunas da minuta. A conversa **não** fica aqui: é link para a tela 12, para não haver dois chats concorrentes.
+O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / concluída) e o número de lacunas da minuta. A conversa **não** fica aqui: é link para a tela 11, para não haver dois chats concorrentes.
 
 | Subtela | Link | O que validar |
 |---|---|---|
-| **Resumo fático** | [`?secao=resumo`](/advogado/caso/caso_demo_001?secao=resumo) | Só fatos: ordem cronológica, pretensão nas palavras da parte, urgência factual, dados que a IA não encontrou. **Sem citação de lei** — isso vem nas etapas seguintes |
-| **Documentos** | [`?secao=documentos`](/advogado/caso/caso_demo_001?secao=documentos) | **Dados da parte** (completo / % e o que falta) + checklist da IA. Cada item tem ação real: o que a plataforma emite vira **botão que gera o .docx** — habilitado só com os dados completos; o que falta ou precisa confirmar vira **botão que leva à conversa** |
+| **Resumo fático** | [`?secao=resumo`](/advogado/caso/caso_demo_001?secao=resumo) | Só fatos: ordem cronológica, pretensão nas palavras da parte, urgência factual, dados que a IA não encontrou. **Sem citação de lei** — isso vem nas etapas seguintes. Traz também **o que a parte digitou de CPF, RG ou endereço na conversa**, com o trecho de origem |
+| **Documentos** | [`?secao=documentos`](/advogado/caso/caso_demo_001?secao=documentos) | **Dados da parte** — sempre aberta, com botão **Usar** para aproveitar o que a parte escreveu no chat + checklist da IA. Cada item tem ação real: o que a plataforma emite vira **botão que gera o .docx** — habilitado só com os dados completos; o que falta ou precisa confirmar vira **botão que leva à conversa** |
 | **Minuta da petição** | [`?secao=minuta`](/advogado/caso/caso_demo_001?secao=minuta) | Gerar · **Editar** (campo a campo) · **Baixar .docx**. O painel de conferência conta as lacunas e **só libera "Marcar como revisada" quando não resta nenhuma** |
 | **Pacote de protocolo** | [`?secao=pacote`](/advogado/caso/caso_demo_001?secao=pacote) | Conferência em 5 itens; aprovar; registrar protocolo (simulação) |
 | **Histórico** | [`?secao=historico`](/advogado/caso/caso_demo_001?secao=historico) | Trilha de auditoria com autor de cada evento, inclusive as ações da IA |
 
-### Ações na conversa (tela 12)
+### Ações na conversa (tela 11)
 
 - **Resumir os fatos** — consolida relato e conversa numa síntese **factual**, sem enquadramento jurídico. Fica desabilitado enquanto a parte não falar nada. Depois de pronto, aparece o atalho **Ver no painel do caso**
 - **Enviar a lista à parte** — pendências por template, sem IA
@@ -66,9 +65,9 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 | OD-2026-100001 | [`caso_demo_001`](/advogado/caso/caso_demo_001) | Alimentos, Colombo, **urgente**, relato por voz | completos |
 | OD-2026-100002 | [`caso_demo_002`](/advogado/caso/caso_demo_002) | Consumidor, Curitiba, negativação indevida | completos |
 | OD-2026-100003 | [`caso_demo_003`](/advogado/caso/caso_demo_003) | Corte de água, Fazenda Rio Grande, **parte não lê bem** | completos |
-| OD-2026-100004 | [`caso_demo_004`](/advogado/caso/caso_demo_004) | União estável, **Castro** (19 nomeações no semestre) | **faltam 4** — demonstra o bloqueio de geração |
+| OD-2026-100004 | [`caso_demo_004`](/advogado/caso/caso_demo_004) | União estável, **Castro**. A parte **digitou CPF, RG e endereço no chat** | **faltam 4** — o resumo os recupera |
 | OD-2026-100005 | [`caso_demo_005`](/advogado/caso/caso_demo_005) | Revisional de alimentos, **processo em andamento** | completos |
-| OD-2026-100006 | [`caso_demo_006`](/advogado/caso/caso_demo_006) | Vício de produto, **Terra Boa** (1 nomeação no semestre) | **faltam 4** |
+| OD-2026-100006 | [`caso_demo_006`](/advogado/caso/caso_demo_006) | Vício de produto, **Terra Boa**. Digitou só o CPF e o endereço | **faltam 4** — o RG continua lacuna |
 
 ## 5. Rotas de API
 

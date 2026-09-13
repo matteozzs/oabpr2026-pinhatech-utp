@@ -343,6 +343,11 @@ export const MENSAGENS_SEMENTE: Mensagem[] = [
   { id: 'msg_004_3', casoId: 'caso_demo_004', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(5, 14),
     texto: 'A casa a gente comprou em 2016 e eu ajudei a pagar todo mês com meu salário de cozinheira. O carro foi em 2021. Tudo no nome dele.' },
 
+  { id: 'msg_004_4', casoId: 'caso_demo_004', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(4, 9),
+    texto: 'Obrigada, dona Cleusa. Para eu preparar a procuração preciso dos seus dados: CPF, RG e o endereço onde a senhora está morando agora.' },
+  { id: 'msg_004_5', casoId: 'caso_demo_004', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(4, 10),
+    texto: 'Meu CPF é 038.472.910-55 e o RG 8.432.117-0. Estou morando na Rua Sete de Setembro, 218, fundos, Vila Rio Branco, Castro, desde março.' },
+
   /* 005 — revisional, Ponta Grossa. Processo já em andamento. */
   { id: 'msg_005_1', casoId: 'caso_demo_005', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(6, 10),
     texto: 'Bom dia, seu Paulo. Sou a Helena, advogada nomeada para o seu caso. O senhor tem como comprovar que perdeu o carro e está sem trabalho fixo?' },
@@ -358,4 +363,6 @@ export const MENSAGENS_SEMENTE: Mensagem[] = [
     texto: 'Tenho os dois, doutora. A nota é de 12 de maio, 1.890 reais em 10 vezes. A ordem de serviço da assistência é de 3 de junho e eles devolveram a máquina dia 18 de julho, ainda vazando.' },
   { id: 'msg_006_3', casoId: 'caso_demo_006', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(9, 17),
     texto: 'Já paguei 5 parcelas de uma máquina que não lava. Fui na loja de novo semana passada e disseram que não é com eles, é com a fábrica.' },
+  { id: 'msg_006_4', casoId: 'caso_demo_006', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(8, 11),
+    texto: 'Doutora, meu CPF é 11744820966. Moro na Avenida Brasil, 1042, apartamento 3, centro de Terra Boa. O RG eu não sei de cabeça, mando a foto depois.' },
 ];

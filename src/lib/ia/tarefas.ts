@@ -1,4 +1,15 @@
-import type { Area, Caso, ChecklistDocumental, DocumentoCatalogo, Mensagem, MetaIA, Minuta, ResumoFatico } from '@/types';
+import type {
+  Area,
+  Caso,
+  ChecklistDocumental,
+  DadoNaConversa,
+  DocumentoCatalogo,
+  Mensagem,
+  MetaIA,
+  Minuta,
+  ResumoFatico,
+} from '@/types';
+import { CAMPOS_IDENTIFICACAO } from '@/types';
 import { lerPrompt, systemBase } from './prompts';
 import { recuperar, renderizarFontes, validarFontes, idsCitadosNoTexto } from './rag';
 import { gerarJSON } from './provider';
@@ -75,6 +86,36 @@ function conversaParaPrompt(mensagens: Mensagem[] = []) {
     }));
 }
 
+/**
+ * Filtra os dados de qualificação que o modelo diz ter achado na conversa.
+ *
+ * Mesma disciplina das citações: quem decide o que é válido é o servidor. Aqui isso
+ * significa vocabulário fechado (só campos que existem na ficha da parte), valor e
+ * trecho não vazios, e um item por campo — o resto é descartado em silêncio, porque
+ * um campo inventado no meio de uma lista de CPFs é exatamente o que o advogado não
+ * teria como conferir de relance.
+ */
+function normalizarDadosDitos(bruto: unknown): DadoNaConversa[] {
+  if (!Array.isArray(bruto)) return [];
+  const vistos = new Set<string>();
+  const saida: DadoNaConversa[] = [];
+
+  for (const item of bruto) {
+    if (!item || typeof item !== 'object') continue;
+    const { campo, valor, trecho } = item as Record<string, unknown>;
+    if (typeof campo !== 'string' || !CAMPOS_IDENTIFICACAO.includes(campo as DadoNaConversa['campo'])) continue;
+    if (typeof valor !== 'string' || !valor.trim()) continue;
+    if (vistos.has(campo)) continue;
+    vistos.add(campo);
+    saida.push({
+      campo: campo as DadoNaConversa['campo'],
+      valor: valor.trim(),
+      trecho: typeof trecho === 'string' ? trecho.trim() : '',
+    });
+  }
+  return saida;
+}
+
 export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = []): Promise<{ resumo: ResumoFatico; meta: MetaIA }> {
   const inicio = Date.now();
   const conversa = conversaParaPrompt(mensagens);
@@ -105,6 +146,7 @@ export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = 
     urgencia: dados.urgencia ?? { existe: false, motivo: '' },
     hipossuficiencia: dados.hipossuficiencia ?? { indicios: false, justificativa: 'não há elementos no relato' },
     dadosFaltantes: Array.isArray(dados.dadosFaltantes) ? dados.dadosFaltantes : [],
+    dadosDeIdentificacao: normalizarDadosDitos(dados.dadosDeIdentificacao),
     alertas: Array.isArray(dados.alertas) ? dados.alertas : [],
     foraDoEscopo: Boolean(dados.foraDoEscopo),
     motivoForaDoEscopo: dados.motivoForaDoEscopo || undefined,

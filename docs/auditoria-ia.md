@@ -43,14 +43,24 @@ O ponto central: **quem decide o que foi citado é o servidor, não o modelo.**
 
 Há duas formas de exercitar os mecanismos abaixo:
 
-**Pela interface** — a página **[/auditoria](/auditoria)** traz 9 cenários prontos, cada um declarando antes do teste o que exercita, o comportamento correto e o que caracteriza falha. Clique em *Criar cenário*, abra a conversa como advogado e gere o resumo fático. Há ainda um **cenário livre**, onde o auditor monta o caso e a conversa que quiser.
+**Pela interface** — a página **[/auditoria](/auditoria)** traz 10 cenários prontos, cada um declarando antes do teste o que exercita, o comportamento correto e o que caracteriza falha. Clique em *Criar cenário*, abra a conversa como advogado e gere o resumo fático. Há ainda um **cenário livre**, onde o auditor monta o caso e a conversa que quiser.
 
-**Por linha de comando** — `npm run testar:ia` roda os 9 cenários contra a API real e escreve [`evidencias/testes-ia/relatorio.md`](../evidencias/testes-ia/relatorio.md) (legível) e `resultados.json` (bruto, com os metadados de auditoria de cada chamada). A última execução: **36 de 36 verificações automáticas passaram**.
+**Por linha de comando** — `npm run testar:ia` roda os 10 cenários contra a API real e escreve [`evidencias/testes-ia/relatorio.md`](../evidencias/testes-ia/relatorio.md) (legível) e `resultados.json` (bruto, com os metadados de auditoria de cada chamada). A última execução: **50 de 50 verificações automáticas passaram**.
 
-Duas correções nasceram justamente dessa massa de testes, e valem como exemplo do que ela pega:
+Três correções nasceram justamente dessa massa de testes, e valem como exemplo do que ela pega:
 
-- A IA marcava urgência em alimentos de menor invocando *presunção legal*, comportamento juridicamente correto mas não previsto no prompt. O prompt 01 passou a distinguir **risco fático** de **presunção legal**, exigindo que o campo `motivo` diga qual das duas se aplica.
+- A IA marcava urgência em alimentos de menor invocando *presunção legal*, comportamento juridicamente correto mas fora do que se pede a um resumo de fatos. Hoje `urgencia.existe` só aceita **risco fático concreto**; presunção legal é avaliação do advogado, nas etapas que recebem o corpus.
 - No cenário "fato não relatado", a IA acrescentava *dano moral* e *repetição em dobro* à `pretensao`, embora a parte tivesse pedido só a cessação e a devolução. O prompt passou a restringir `pretensao` ao que a parte efetivamente pediu; o que o advogado pode adicionalmente pleitear vai para `alertas` como sugestão.
+- Dado de qualificação escrito no meio do chat se perdia. O resumo passou a devolver `dadosDeIdentificacao`, e o cenário **"CPF e RG soltos no meio da conversa"** confere quatro coisas de uma vez: se o CPF digitado é capturado, se o endereço é capturado, se o RG que a parte disse **não** saber fica de fora, e se o CPF do ex-marido não é confundido com o dela.
+
+### O que garante que esse dado não é inventado
+
+Duas travas, nenhuma delas confiando no modelo:
+
+1. **Vocabulário fechado no servidor.** `normalizarDadosDitos`, em `src/lib/ia/tarefas.ts`, descarta qualquer item cujo `campo` não seja um dos treze campos da ficha da parte, cujo valor esteja vazio, ou que repita um campo já visto.
+2. **Verificação de origem no banco de testes.** Para todos os 10 cenários, a massa confere que **cada valor devolvido existe de fato no texto da conversa**, comparando sem pontuação e sem acento. Um CPF plausível que a parte nunca digitou reprova o cenário.
+
+Na última execução, os nove cenários em que ninguém escreveu dado pessoal devolveram lista vazia — nenhum falso positivo.
 
 ## 3. Testes para tentar induzir alucinação
 

@@ -39,7 +39,6 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
   const rodando = ia.ocupado === 'checklist';
   const [erro, setErro] = useState<string | null>(null);
   const [baixando, setBaixando] = useState<string | null>(null);
-  const [abrirDados, setAbrirDados] = useState(false);
 
   const faltamDados = camposFaltantes(caso.assistido);
   const podeGerar = faltamDados.length === 0;
@@ -75,7 +74,7 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
 
   return (
     <div className="space-y-4">
-      <DadosDaParte caso={caso} abertoInicialmente={abrirDados} key={abrirDados ? 'aberto' : 'fechado'} />
+      <DadosDaParte caso={caso} />
 
       <Secao
         titulo="Documentos do caso"
@@ -137,9 +136,9 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
                                 {baixando === i.documentoId ? 'Gerando…' : `Gerar ${i.nome} (.docx)`}
                               </button>
                             ) : (
-                              <button className="btn-secondary text-xs py-1.5" onClick={() => setAbrirDados(true)}>
+                              <a className="btn-secondary text-xs py-1.5" href="#dados-da-parte">
                                 <UserRound className="w-3.5 h-3.5" /> Completar dados da parte ({faltamDados.length})
-                              </button>
+                              </a>
                             ))}
 
                           {geravel && jaAssinado && (
@@ -166,9 +165,9 @@ export function SecaoDocumentos({ caso, ia }: { caso: Caso; ia: UseIA }) {
             {!podeGerar && (
               <Aviso tipo="alerta">
                 Faltam <strong>{faltamDados.length}</strong> dados da parte para emitir os documentos sem lacuna: {faltamDados.join(', ')}.{' '}
-                <button className="underline font-semibold" onClick={() => setAbrirDados(true)}>
+                <a className="underline font-semibold" href="#dados-da-parte">
                   Completar agora
-                </button>
+                </a>
               </Aviso>
             )}
 

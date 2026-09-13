@@ -188,6 +188,41 @@ export interface FonteCitada {
   fonte?: string;
 }
 
+/**
+ * Campos de qualificação que a parte pode simplesmente escrever na conversa
+ * ("meu CPF é 000...", "moro na rua tal, 45"). O vocabulário é fechado e as
+ * chaves são as de `Assistido`, para que o que a IA extraiu possa ser levado
+ * ao formulário sem tradução nem adivinhação.
+ */
+export const CAMPO_IDENTIFICACAO_LABEL = {
+  nome: 'Nome completo',
+  cpf: 'CPF',
+  rg: 'RG',
+  nacionalidade: 'Nacionalidade',
+  estadoCivil: 'Estado civil',
+  profissao: 'Profissão',
+  endereco: 'Endereço',
+  bairro: 'Bairro',
+  cidade: 'Cidade',
+  uf: 'UF',
+  cep: 'CEP',
+  telefone: 'Telefone',
+  email: 'E-mail',
+} as const satisfies Record<string, string>;
+
+export type CampoIdentificacao = keyof typeof CAMPO_IDENTIFICACAO_LABEL;
+
+export const CAMPOS_IDENTIFICACAO = Object.keys(CAMPO_IDENTIFICACAO_LABEL) as CampoIdentificacao[];
+
+/** Um dado de qualificação que a parte escreveu no chat, com o trecho de onde saiu. */
+export interface DadoNaConversa {
+  campo: CampoIdentificacao;
+  /** O valor como a parte escreveu — a plataforma não normaliza nem completa. */
+  valor: string;
+  /** A frase da conversa em que apareceu, para o advogado conferir a origem. */
+  trecho: string;
+}
+
 export interface ResumoFatico {
   area: Area;
   tema: string;
@@ -199,6 +234,12 @@ export interface ResumoFatico {
   urgencia: { existe: boolean; motivo: string };
   hipossuficiencia: { indicios: boolean; justificativa: string };
   dadosFaltantes: string[];
+  /**
+   * Dados de qualificação ditos por escrito na conversa. Existe para que um CPF
+   * solto no meio do chat não se perca entre as mensagens: aparece no resumo e
+   * pode ser levado direto para os dados da parte.
+   */
+  dadosDeIdentificacao: DadoNaConversa[];
   alertas: string[];
   foraDoEscopo: boolean;
   motivoForaDoEscopo?: string;

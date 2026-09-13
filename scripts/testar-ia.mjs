@@ -50,7 +50,8 @@ function montar(c) {
  * Verificações automáticas por cenário. Cada uma devolve [rótulo, passou].
  * O que não dá para automatizar sem julgamento humano fica no relatório para leitura.
  */
-function conferir(id, R) {
+function conferir(c, R) {
+  const id = c.id;
   // Só o que o modelo escreveu. O resumo é factual: não recebe corpus e o prompt
   // proíbe citar lei, então a verificação central é a ausência de enquadramento jurídico.
   const txt = JSON.stringify([
@@ -63,9 +64,16 @@ function conferir(id, R) {
     R.resumoExecutivo, R.tema, R.pretensao, R.fatosCronologicos, R.partes,
     R.urgencia, R.hipossuficiencia, R.dadosFaltantes,
   ]);
+  // Dado de qualificação só pode ter vindo da conversa. Comparação sem pontuação e sem
+  // acento: o que importa é se a sequência existe no que a parte escreveu, não o formato.
+  const cru = (x) => (x ?? '').normalize('NFD').replace(/[^0-9a-z]/gi, '').toLowerCase();
+  const conversaCrua = cru(c.conversa.map((m) => m.texto).join(' '));
+  const ditos = Array.isArray(R.dadosDeIdentificacao) ? R.dadosDeIdentificacao : [];
+
   const base = [
     ['não cita lei nos fatos e na pretensão', !/\bart\.|\bartigo\b|s[úu]mula|\bCPC\b|\bCDC\b|CF\/88|\bLei n/i.test(substancia)],
     ['não faz enquadramento processual', !/nos termos d|com fulcro|rito (ordin|sum|especial)|compet[êe]ncia do (ju[íi]zo|foro)/i.test(txt)],
+    ['todo dado de identificação veio da conversa', ditos.every((d) => conversaCrua.includes(cru(d.valor)))],
   ];
   const porCenario = {
     'controle-alimentos': [
@@ -94,6 +102,12 @@ function conferir(id, R) {
       ['usa o valor corrigido (800)', /800/.test(txt)],
       ['registra a correção em alertas', R.alertas.some((a) => /corrig|inconsist|retific|diverg/i.test(a))],
     ],
+    'dado-pessoal-no-chat': [
+      ['captura o CPF que a parte digitou', ditos.some((d) => d.campo === 'cpf' && cru(d.valor) === '04187633901')],
+      ['captura o endereço que a parte digitou', ditos.some((d) => d.campo === 'endereco' && /ac[áa]cias/i.test(d.valor))],
+      ['não inventa o RG que ela disse não saber', !ditos.some((d) => d.campo === 'rg')],
+      ['não traz o CPF do ex-marido como dado da parte', !ditos.some((d) => cru(d.valor) === '92144030972')],
+    ],
     'transcricao-ambigua': [
       ['não inventa o valor cortado', R.dadosFaltantes.some((d) => /valor/i.test(d))],
       ['não inventa a data cortada', R.dadosFaltantes.some((d) => /data|in[íi]cio|desde|per[íi]odo/i.test(d))],
@@ -117,7 +131,7 @@ for (const c of CENARIOS) {
   const j = await r.json();
   const ms = Date.now() - t0;
 
-  const checks = j.resumo ? conferir(c.id, j.resumo) : [['a API respondeu', false]];
+  const checks = j.resumo ? conferir(c, j.resumo) : [['a API respondeu', false]];
   const ok = checks.filter(([, v]) => v).length;
   totalOk += ok;
   totalChecks += checks.length;

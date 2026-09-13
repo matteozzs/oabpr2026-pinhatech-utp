@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { MessageCircle, Sparkles } from 'lucide-react';
-import type { Caso } from '@/types';
+import { IdCard, MessageCircle, Sparkles } from 'lucide-react';
+import { CAMPO_IDENTIFICACAO_LABEL, type Caso } from '@/types';
 import { Aviso, RotuloIA, Secao } from '@/components/ui';
 import { PainelAuditoria, type UseIA } from '@/features/ia';
 import { cn } from '@/lib/utils';
@@ -98,6 +98,30 @@ export function SecaoResumo({ caso, ia }: { caso: Caso; ia: UseIA }) {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {resumo.dadosDeIdentificacao.length > 0 && (
+          <div className="rounded-xl border border-navy-100 bg-navy-50 p-3">
+            <p className="label mb-1 inline-flex items-center gap-1.5 text-navy-900">
+              <IdCard className="w-3.5 h-3.5" /> Dados que a parte escreveu na conversa
+            </p>
+            <p className="text-xs text-ink-700 mb-2">
+              Ficam aqui para não se perderem no meio do chat. Confira com o documento antes de usar — ninguém digita o próprio CPF sem errar
+              um dígito de vez em quando.
+            </p>
+            <ul className="space-y-1.5">
+              {resumo.dadosDeIdentificacao.map((d) => (
+                <li key={d.campo} className="text-sm">
+                  <span className="text-ink-500 text-xs">{CAMPO_IDENTIFICACAO_LABEL[d.campo]}: </span>
+                  <span className="font-mono text-ink-900">{d.valor}</span>
+                  {d.trecho && <p className="text-xs text-ink-500 italic">“{d.trecho}”</p>}
+                </li>
+              ))}
+            </ul>
+            <Link href={`/advogado/caso/${caso.id}?secao=documentos#dados-da-parte`} className="btn-secondary text-xs py-1.5 mt-3">
+              Levar para os dados da parte
+            </Link>
           </div>
         )}
 

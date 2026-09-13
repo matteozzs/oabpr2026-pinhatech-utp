@@ -47,7 +47,7 @@ Acesse o link da demonstração (ou rode localmente, seção 5). Não há login:
 
 **A. Jornada do advogado (3 min)**
 1. Início → **Sou Advogado Dativo** → *Entrar como Advogado (demonstração)*.
-2. No painel, abra o caso **OD-2026-100001** (Maria Aparecida, Colombo, urgente). Repare que o caso já chega **em atendimento**: a nomeação e o aceite aconteceram na OAB/Fórum. (Para registrar um caso novo como advogado: **Novo atendimento**.)
+2. No painel, abra o caso **OD-2026-100001** (Maria Aparecida, Colombo, urgente). Repare que o caso já chega **em atendimento**: a nomeação e o aceite aconteceram na OAB/Fórum. A plataforma não abre casos: quem nomeia é a OAB/PR ou o Fórum, e é de lá que o caso chega.
 3. Clique **Analisar com IA**. Em ~5s aparece o resumo fático, a triagem de urgência/hipossuficiência, os **dados que a IA não encontrou** (e não inventou) e as **fontes citadas** — cada uma expansível com o texto legal.
 4. Abra o **Painel de auditoria da IA** (linha tracejada): mostra os dispositivos recuperados pelo RAG, a pontuação de cada um, o modelo, os tokens, e quaisquer citações inválidas bloqueadas.
 5. **Gerar checklist com IA** → **Gerar minuta com IA** (~8–15s). Na minuta, os marcadores amarelos `[A COMPLETAR EM ENTREVISTA]` são lacunas declaradas; os chips azuis `[CPC-98]` são citações validadas. O quadro “A IA declarou o que não sabe” lista lacunas e fundamentação não localizada.

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { ClipboardPlus, MessageCircle, RotateCcw } from 'lucide-react';
+import { MessageCircle, RotateCcw } from 'lucide-react';
 import { ADVOGADO_DEMO, entrarComo, restaurarDemonstracao, useCasos, usePerfil, useResumoConversas } from '@/lib/store';
 import { AREA_LABEL, STATUS_LABEL, type Area, type StatusCaso } from '@/types';
 import { CardCaso } from '@/features/casos';
@@ -32,14 +32,9 @@ export default function DashboardPage() {
             {ADVOGADO_DEMO.nome} · {ADVOGADO_DEMO.oab}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <Link href="/advogado/chat" className="btn-secondary">
-            <MessageCircle className="w-4 h-4" /> Conversas {naoLidas > 0 && <span className="badge bg-navy-700 text-white ml-1">{naoLidas}</span>}
-          </Link>
-          <Link href="/advogado/novo-atendimento" className="btn-primary">
-            <ClipboardPlus className="w-4 h-4" /> Novo atendimento
-          </Link>
-        </div>
+        <Link href="/advogado/chat" className="btn-secondary shrink-0">
+          <MessageCircle className="w-4 h-4" /> Conversas {naoLidas > 0 && <span className="badge bg-navy-700 text-white ml-1">{naoLidas}</span>}
+        </Link>
       </div>
 
       <div className="grid grid-cols-3 gap-3">

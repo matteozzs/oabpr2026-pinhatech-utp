@@ -2,57 +2,84 @@
 
 ## Objetivo
 
-Consolidar **tudo que o(a) advogado(a) dativo(a) apurou com a parte** — a nomeação recebida, o relato inicial e, principalmente, a **conversa** havida no chat (mensagens escritas e transcrições de áudio) — em uma síntese executiva que permita se apropriar do caso em menos de um minuto.
+Contar ao advogado dativo **o que aconteceu**, para que ele não precise ler dezenas de mensagens soltas nem ouvir áudios longos em sequência antes de agir.
 
-Esta tarefa é acionada pelo advogado **de dentro da conversa**, quando ele julga já ter apurado o suficiente. O resultado alimenta o checklist documental e a minuta.
+O produto desta tarefa é **fato**, não direito. O enquadramento jurídico vem nas etapas seguintes (checklist e minuta), que recebem o corpus de fundamentação — esta não recebe.
+
+Esta tarefa é acionada pelo advogado **de dentro da conversa**, quando ele julga já ter apurado o suficiente.
 
 ## Entrada
 
 - `<caso>`: área, comarca, se há processo ativo, dados já conhecidos da parte e o relato inicial.
-- `<conversa>`: histórico do chat em ordem cronológica, com autor e origem de cada mensagem (`texto` ou `transcricao_audio`). Pode vir vazio — nesse caso trabalhe apenas com o relato inicial.
-- `<fontes>`: dispositivos recuperados para o tema.
+- `<conversa>`: histórico do chat em ordem cronológica, com autor e origem de cada mensagem (`texto` ou `transcricao_audio`).
+
+Não há bloco `<fontes>` nesta tarefa, e isso é proposital: **você não tem corpus para citar aqui**.
+
+## O que NÃO fazer
+
+- **Não cite lei.** Nenhum artigo, nenhuma súmula, nenhum diploma, nem "nos termos da lei".
+- **Não classifique juridicamente.** Não diga qual é o instituto, o rito, a natureza da ação ou o fundamento.
+- **Não sugira tese.** Nada de "cabe dano moral", "é caso de repetição em dobro", "possível tutela de urgência".
+- **Não avalie mérito.** Não diga se a parte tem razão, se vai ganhar ou se a prova é suficiente.
+- **Não acrescente fato.** Nada que não esteja no relato ou na conversa, por mais provável que pareça.
+
+Se sentir falta de alguma dessas coisas, é sinal de que está indo longe demais: pare no fato.
 
 ## Regras específicas
 
 ### Sobre a conversa
-- A conversa é **fonte de fato**, não de direito. Extraia dela: datas, valores, nomes, vínculos, documentos mencionados, mudanças na versão dos fatos.
+- A conversa é fonte de fato. Extraia dela: datas, valores, nomes, vínculos, documentos mencionados, mudanças na versão dos fatos.
 - Quando a parte **corrigir ou complementar** algo dito antes, vale a informação mais recente — e registre a mudança em `alertas`.
 - Transcrições de áudio podem conter repetição, hesitação e erro de transcrição. Interprete o sentido sem acrescentar fato novo; se um trecho for ininteligível ou ambíguo em ponto relevante, registre em `dadosFaltantes`.
 - **Não trate como fato** o que a parte apresenta como suposição, boato ou opinião ("acho que ele ganha uns três mil"). Se for relevante, registre como a confirmar.
 - Ignore mensagens operacionais da plataforma e pedidos de documento feitos pelo advogado — não são fatos do caso.
 
+### Dados de identificação ditos na conversa
+A parte costuma escrever o próprio CPF, RG ou endereço no meio do chat, em resposta a um pedido do advogado. Esse dado **não pode se perder entre as mensagens**: o advogado precisa levá-lo para a ficha da parte, que é o que alimenta procuração, declaração e petição.
+
+Preencha `dadosDeIdentificacao` com tudo que a parte informou **por escrito na conversa** e que caiba em um destes campos — e **somente** nestes:
+
+`nome` · `cpf` · `rg` · `nacionalidade` · `estadoCivil` · `profissao` · `endereco` · `bairro` · `cidade` · `uf` · `cep` · `telefone` · `email`
+
+- `valor`: exatamente como a parte escreveu, sem reformatar, sem completar e sem corrigir dígito. Se ela escreveu o CPF sem pontos, mantenha sem pontos.
+- `trecho`: a frase da conversa em que o dado apareceu, para o advogado conferir a origem.
+- Um item por dado. Se a parte repetir o mesmo dado, registre uma vez, com o valor mais recente.
+- Se ela **corrigir** um dado dito antes, use o valor corrigido e registre a correção em `alertas`.
+- Dado de **terceiro** (a outra parte, um filho, uma testemunha) **não entra aqui** — este campo é só da parte assistida. Mencione no fato, se for relevante.
+- Dado que aparece só em foto de documento anexada **não entra aqui**: você não lê anexos. Se a parte disser que mandou a foto, registre isso em `alertas`.
+- Nada dito na conversa? Devolva lista vazia. **Nunca repita aqui um dado que já veio em `<caso>`** e nunca invente um número.
+
 ### Sobre a síntese
 - Reorganize os fatos em **ordem cronológica**, sem acrescentar nada que não esteja no relato ou na conversa.
-- Identifique o **tema** em linguagem técnica (ex.: "Execução de alimentos", "Cobrança indevida com negativação", "Reconhecimento e dissolução de união estável") e um `temaSlug` em snake_case.
-- Se o material for insuficiente para identificar a pretensão, registre isso em `dadosFaltantes` — **não deduza** a pretensão.
+- `tema`: nomeie o assunto em poucas palavras, do jeito que se diria ao telefone ("Pensão não paga há quatro meses", "Cobrança de conta já cancelada"). Não é a classe processual. `temaSlug` em snake_case.
+- `resumoExecutivo`: 2 a 4 frases dizendo o que aconteceu e o que a parte quer. Sem juízo de valor.
 - `partes.reu`: use o nome informado; se não houver, `[A COMPLETAR EM ENTREVISTA]`.
-- `pretensao`: **exatamente o que a parte pediu**, traduzido para linguagem técnica — nada além. Repetição em dobro, dano moral, tutela de urgência, multa e afins podem ser cabíveis, mas são **decisão do advogado**: se identificar algum, registre em `alertas` como sugestão ("cabe avaliar o pedido de..."), nunca dentro de `pretensao`. O advogado precisa distinguir, de relance, o que a parte quer do que ele pode pleitear.
-- `hipossuficiencia.indicios`: `true` **apenas** com indício concreto (renda informada abaixo de 3 salários mínimos, desemprego, CadÚnico, benefício social, dificuldade financeira relatada). Caso contrário, `false` com justificativa "não há elementos no relato".
-- `urgencia.existe`: `true` em duas hipóteses — e o campo `motivo` **deve dizer qual das duas se aplica**:
-  - **(a) risco fático concreto e atual**: falta de alimento para criança, corte de serviço essencial, risco à saúde, prazo decadencial próximo;
-  - **(b) presunção legal**: pedido de alimentos em favor de menor, hipótese em que a lei autoriza a fixação de provisórios de plano.
-  A **pressa da parte não é urgência** em nenhuma das duas — "quero resolver logo", "é para ontem" e conveniência pessoal não contam. Fora dessas hipóteses, `false`, com o motivo explicando por quê.
-- `alertas`: inconsistências entre o relato e a conversa, matéria conexa fora do escopo (ex.: violência), risco de prescrição/decadência, necessidade de encaminhamento paralelo.
-- `foraDoEscopo`: aplique a regra do sistema. Se `true`, preencha `motivoForaDoEscopo` e deixe `fatosCronologicos` com o relato resumido em 1 item, sem análise jurídica.
-- `fontesUtilizadas`: apenas os `id` que embasam sua leitura do tema. Não cite fonte que não usou.
+- `pretensao`: **o que a parte pediu, nas palavras dela**. "Quer que ele volte a pagar a pensão", não "execução de alimentos pelo rito da prisão". Se ela não pediu nada de concreto, diga isso.
+- `hipossuficiencia.indicios`: `true` **apenas** com indício concreto e relatado (renda informada baixa, desemprego, CadÚnico, benefício social, dificuldade financeira dita pela parte). Caso contrário, `false` com justificativa "não há elementos no relato". É constatação de fato, não deferimento de gratuidade.
+- `urgencia.existe`: `true` só com **risco fático concreto e atual** — criança sem o que comer, serviço essencial cortado, risco à saúde, despejo marcado. A **pressa da parte não é urgência**: "quero resolver logo" e "é para ontem" não contam. Presunção legal também não é fato: se a urgência decorre da lei, quem avalia é o advogado, não este resumo. Fora disso, `false`, com o motivo explicando por quê.
+- `dadosFaltantes`: o que falta apurar para o caso andar, em linguagem de fato ("valor atual do aluguel", "data exata do corte").
+- `alertas`: inconsistências entre o relato e a conversa, correções feitas pela parte, matéria conexa que precisa de atenção (ex.: menção a violência), anexo que você não consegue ler. Sem recomendação de tese.
+- `foraDoEscopo`: aplique a regra do sistema. Se `true`, preencha `motivoForaDoEscopo` e deixe `fatosCronologicos` com o relato resumido em 1 item.
 
 ## Schema de saída (JSON)
 
 ```json
 {
   "area": "familia | consumidor",
-  "tema": "string",
+  "tema": "string — o assunto em poucas palavras",
   "temaSlug": "string",
-  "resumoExecutivo": "string — 2 a 4 frases, para leitura do advogado",
+  "resumoExecutivo": "string — 2 a 4 frases, só fatos",
   "fatosCronologicos": ["string", "..."],
   "partes": { "autor": "string", "reu": "string", "vinculo": "string" },
-  "pretensao": "string — o que a parte quer, em linguagem técnica",
-  "urgencia": { "existe": true, "motivo": "string" },
-  "hipossuficiencia": { "indicios": true, "justificativa": "string" },
+  "pretensao": "string — o que a parte pediu, nas palavras dela",
+  "urgencia": { "existe": false, "motivo": "string" },
+  "hipossuficiencia": { "indicios": false, "justificativa": "string" },
   "dadosFaltantes": ["string", "..."],
+  "dadosDeIdentificacao": [
+    { "campo": "cpf", "valor": "string — como a parte escreveu", "trecho": "string — a frase de onde saiu" }
+  ],
   "alertas": ["string", "..."],
   "foraDoEscopo": false,
-  "motivoForaDoEscopo": "string | vazio",
-  "fontesUtilizadas": [ { "id": "string" } ]
+  "motivoForaDoEscopo": "string | vazio"
 }
 ```

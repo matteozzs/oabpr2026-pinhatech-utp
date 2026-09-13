@@ -61,8 +61,8 @@ export const CENARIOS: CenarioTeste[] = [
     dimensao: 'controle',
     testa: 'O funcionamento normal, com material completo e coerente. Serve de referência para comparar com os demais.',
     esperado:
-      'Resumo com fatos em ordem, indícios de hipossuficiência e citações válidas do corpus. Urgência reconhecida — o motivo deve dizer se é risco fático ou presunção legal de alimentos de menor.',
-    falhaSe: 'Citar dispositivo fora do corpus, ou inventar CPF, endereço ou valor não informado.',
+      'Resumo com fatos em ordem e indícios de hipossuficiência. Urgência reconhecida pelo risco fático concreto — crianças sem leite e sem remédio. Nenhuma citação de lei: o resumo é só fato. O checklist e a minuta, sim, citam o corpus.',
+    falhaSe: 'Citar dispositivo legal no resumo, classificar juridicamente o caso, ou inventar CPF, endereço ou valor não informado.',
     area: 'familia',
     comarca: 'Araucária',
     assistido: base('Vera Lúcia Moreira', 'Araucária', {
@@ -172,7 +172,7 @@ export const CENARIOS: CenarioTeste[] = [
     nome: 'Pressa que não é urgência',
     dimensao: 'triagem',
     testa: 'Se a IA confunde a ansiedade da parte com risco concreto e atual, inflando o pedido de tutela.',
-    esperado: '`urgencia.existe: false`, com motivo explicando que conveniência pessoal não é urgência. Sem presunção legal a invocar, já que não se trata de alimentos. A minuta não traz tutela de urgência.',
+    esperado: '`urgencia.existe: false`, com motivo explicando que conveniência pessoal não é urgência. A minuta não traz tutela de urgência.',
     falhaSe: 'Marcar urgência e pedir tutela com base em "é urgente" dito pela parte, sem fato que a sustente.',
     area: 'familia',
     comarca: 'Maringá',
@@ -317,6 +317,44 @@ export const CENARIOS: CenarioTeste[] = [
     conversa: [
       { autor: 'advogado', texto: 'Seu Ademir, o áudio cortou em duas partes. O senhor consegue me dizer o valor do empréstimo e desde quando descontam?' },
       { autor: 'assistido', texto: 'Doutor eu não lembro de cabeça não, tá anotado no extrato que eu peguei lá no banco, mas tô sem ele aqui agora.' },
+    ],
+  },
+
+  {
+    id: 'dado-pessoal-no-chat',
+    nome: 'CPF e RG soltos no meio da conversa',
+    dimensao: 'fato',
+    testa:
+      'Se o dado de qualificação que a parte digitou no chat chega ao advogado. É a informação mais fácil de se perder: vem numa mensagem no meio de outras vinte, e sem ela a procuração sai com lacuna.',
+    esperado:
+      'O CPF e o endereço aparecem em `dadosDeIdentificacao`, com o valor exatamente como a parte escreveu e o trecho de onde saiu. O RG **não** aparece — ela disse que mandaria a foto depois, e a IA não lê anexos. O nome do filho e o CPF do ex-marido também não: o campo é só da parte assistida.',
+    falhaSe:
+      'Deixar o CPF de fora, reformatar o número, completar o endereço com o que não foi dito, ou trazer para o campo o CPF do ex-marido.',
+    area: 'familia',
+    comarca: 'Pinhais',
+    assistido: base('Rosimeire Alves da Cruz', 'Pinhais', {
+      telefone: '(41) 98888-5050',
+      profissao: 'diarista',
+      rendaFamiliarMensal: 1500,
+      membrosFamilia: 2,
+      sabeLerEscrever: true,
+    }),
+    parteContraria: { nome: 'Edson Batista', tipoPessoa: 'PF', relacao: 'ex-marido, pai do filho' },
+    relato: {
+      origem: 'texto',
+      urgencia: false,
+      texto:
+        'Me separei do Edson no ano passado e ele parou de pagar a pensão do nosso filho de 9 anos em junho. Era 500 reais por mês, combinado na separação. Trabalho de diarista e ganho por volta de 1.500.',
+    },
+    conversa: [
+      { autor: 'advogado', texto: 'Boa tarde, dona Rosimeire. Para eu preparar a procuração vou precisar dos seus dados: CPF, RG e o endereço completo.' },
+      {
+        autor: 'assistido',
+        texto:
+          'Meu CPF é 04187633901. O RG eu não sei de cabeça, tiro foto e mando mais tarde. Moro na Rua das Acácias, 87, Jardim Cláudia, Pinhais.',
+      },
+      { autor: 'advogado', texto: 'Obrigada. A senhora tem o CPF dele também?' },
+      { autor: 'assistido', texto: 'Do Edson eu tenho sim, é 921.440.309-72. E o meu filho chama Kauan Alves Batista, nasceu em 2017.' },
     ],
   },
 ];

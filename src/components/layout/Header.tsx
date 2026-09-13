@@ -10,10 +10,11 @@ import { cn } from '@/lib/utils';
 
 const LINKS_CIDADAO = [{ href: '/cidadao', rotulo: 'Meus processos' }];
 
+// Não há "novo atendimento": quem abre o caso é a OAB/PR ou o Fórum, ao nomear.
+// A plataforma entra depois, com o advogado já nomeado e o caso já existindo.
 const LINKS_ADVOGADO = [
   { href: '/advogado/dashboard', rotulo: 'Atendimentos' },
   { href: '/advogado/chat', rotulo: 'Conversas' },
-  { href: '/advogado/novo-atendimento', rotulo: 'Registrar nomeação' },
 ];
 
 const LINKS_VISITANTE = [
