@@ -77,14 +77,18 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
               <Paperclip className="w-3 h-3 flex-shrink-0" /> 
               <span className="truncate">{m.anexo.nome}</span>
             </p>
-            {m.anexo.url && (
+            {m.anexo.url && m.anexo.nome.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img 
                 src={m.anexo.url} 
                 alt={m.anexo.nome} 
                 className="max-w-full h-auto rounded-md object-contain max-h-48 border border-black/10" 
               />
-            )}
+            ) : m.anexo.url ? (
+              <a href={m.anexo.url} target="_blank" rel="noreferrer" className={cn('text-xs flex font-medium flex-col items-center justify-center p-3 mt-1 rounded-md border border-black/10 transition-colors', minha ? 'bg-navy-700 hover:bg-navy-600 text-white' : 'bg-white hover:bg-ink-50 text-ink-700')}>
+                Abrir documento anexo
+              </a>
+            ) : null}
           </div>
         )}
         <p className={cn('text-[10px] mt-1', minha ? 'text-navy-100' : 'text-ink-500')}>{formatarDataHora(m.enviadoEm)}</p>

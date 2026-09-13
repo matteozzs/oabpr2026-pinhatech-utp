@@ -122,7 +122,7 @@ export function Chat({
               <input 
                 id={`arquivo-${caso.id}`}
                 type="file" 
-                accept="image/*" 
+                accept="image/*,.pdf,.doc,.docx" 
                 onChange={(e) => setArquivo(e.target.files?.[0] || null)}
                 className="text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-navy-50 file:text-navy-700 hover:file:bg-navy-100 file:cursor-pointer"
                 disabled={enviando}
