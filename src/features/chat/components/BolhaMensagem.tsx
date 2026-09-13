@@ -72,9 +72,20 @@ export function BolhaMensagem({ m, perfil, caso, primeiroNome }: { m: Mensagem; 
         )}
         <p>{m.texto}</p>
         {m.anexo && (
-          <p className={cn('mt-1.5 text-xs inline-flex items-center gap-1 rounded-lg px-2 py-1', minha ? 'bg-navy-800' : 'bg-ink-100')}>
-            <Paperclip className="w-3 h-3" /> {m.anexo.nome}
-          </p>
+          <div className={cn('mt-1.5 flex flex-col gap-1.5 rounded-lg p-1.5', minha ? 'bg-navy-800' : 'bg-ink-100')}>
+            <p className="text-xs inline-flex items-center gap-1 px-1">
+              <Paperclip className="w-3 h-3 flex-shrink-0" /> 
+              <span className="truncate">{m.anexo.nome}</span>
+            </p>
+            {m.anexo.url && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img 
+                src={m.anexo.url} 
+                alt={m.anexo.nome} 
+                className="max-w-full h-auto rounded-md object-contain max-h-48 border border-black/10" 
+              />
+            )}
+          </div>
         )}
         <p className={cn('text-[10px] mt-1', minha ? 'text-navy-100' : 'text-ink-500')}>{formatarDataHora(m.enviadoEm)}</p>
       </div>
