@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import type { MetaIA } from '@/types';
 
-export type TarefaIA = 'resumo' | 'checklist' | 'minuta' | 'mensagem';
+export type TarefaIA = 'resumo' | 'checklist' | 'minuta';
 
 /**
  * Estado compartilhado das chamadas de IA numa tela: qual tarefa está rodando,

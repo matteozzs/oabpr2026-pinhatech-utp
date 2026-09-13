@@ -43,7 +43,7 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 
 | Subtela | Link | O que validar |
 |---|---|---|
-| **Resumo fático** | [`?secao=resumo`](/advogado/caso/caso_demo_001?secao=resumo) | Sem resumo, explica que ele nasce da conversa e leva até lá. Com resumo: fatos em ordem, pretensão, urgência, hipossuficiência, dados que a IA não encontrou, fontes e painel de auditoria |
+| **Resumo fático** | [`?secao=resumo`](/advogado/caso/caso_demo_001?secao=resumo) | Só fatos: ordem cronológica, pretensão nas palavras da parte, urgência factual, dados que a IA não encontrou. **Sem citação de lei** — isso vem nas etapas seguintes |
 | **Documentos** | [`?secao=documentos`](/advogado/caso/caso_demo_001?secao=documentos) | **Dados da parte** (completo / % e o que falta) + checklist da IA. Cada item tem ação real: o que a plataforma emite vira **botão que gera o .docx** — habilitado só com os dados completos; o que falta ou precisa confirmar vira **botão que leva à conversa** |
 | **Minuta da petição** | [`?secao=minuta`](/advogado/caso/caso_demo_001?secao=minuta) | Gerar · **Editar** (campo a campo) · **Baixar .docx**. O painel de conferência conta as lacunas e **só libera "Marcar como revisada" quando não resta nenhuma** |
 | **Pacote de protocolo** | [`?secao=pacote`](/advogado/caso/caso_demo_001?secao=pacote) | Conferência em 5 itens; aprovar; registrar protocolo (simulação) |
@@ -51,8 +51,8 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 
 ### Ações na conversa (tela 12)
 
-- **Gerar resumo fático** — consolida o relato inicial + toda a conversa (mensagens e áudios transcritos). Depois de pronto, aparece ao lado o atalho **Ver no painel do caso**
-- **Pedir documentos (IA)** — redige mensagem acessível e abre para revisão
+- **Resumir os fatos** — consolida relato e conversa numa síntese **factual**, sem enquadramento jurídico. Fica desabilitado enquanto a parte não falar nada. Depois de pronto, aparece o atalho **Ver no painel do caso**
+- **Enviar a lista à parte** — pendências por template, sem IA
 - **Orientar ao CRAS** — cartão com busca pública do CRAS e do Fórum
 - **Pedir assinatura** — cartão com atalho "Assinar agora" para o cidadão
 - **Simular resposta (demo)** — a parte responde e envia uma foto, para validar o fluxo sozinho
@@ -76,7 +76,6 @@ O índice à esquerda mostra o estado de cada etapa (pendente / em andamento / c
 | `/api/ia/resumo` | POST | Tarefa 01 — recebe o caso **e a conversa** |
 | `/api/ia/checklist` | POST | Tarefa 02 |
 | `/api/ia/minuta` | POST | Tarefa 03 — devolve **422** se o caso estiver fora do escopo |
-| `/api/ia/mensagem` | POST | Tarefa 04 |
 | `/api/documentos/docx` | POST | Gera `.docx` a partir dos templates |
 
 ## 6. Testes de alucinação

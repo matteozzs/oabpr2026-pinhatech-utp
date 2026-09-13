@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Building2, FileSignature, MessageSquareText, Send, Sparkles, UserRound } from 'lucide-react';
+import { ArrowRight, Building2, FileSignature, FileWarning, Send, Sparkles, UserRound } from 'lucide-react';
 import type { Caso } from '@/types';
 import { ADVOGADO_DEMO, atualizarCaso, atualizarDocumento, enviarMensagem, mudarStatus, useMensagens } from '@/lib/store';
 import { encontrarCras } from '@/lib/cras';
@@ -13,21 +12,20 @@ import { iaApi, materialParaResumo, useIA } from '@/features/ia';
 /**
  * Ações do advogado dentro da conversa.
  *
- * É daqui que nasce o **resumo fático**: quando o advogado julga ter apurado o suficiente
- * com a parte — por mensagem ou áudio transcrito — ele gera o resumo, que passa a existir
- * no painel do caso. Um atalho aparece ao lado do botão assim que o resumo fica pronto.
+ * O único uso de IA aqui é o **resumo dos fatos**: quando o advogado julga ter apurado o
+ * suficiente com a parte, a IA transforma mensagens e áudios transcritos numa síntese
+ * factual. O restante — pendências, CRAS, assinatura — é determinístico.
  */
 export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
   const ia = useIA();
   const mensagens = useMensagens(caso.id);
-  const [rascunho, setRascunho] = useState<string | null>(null);
 
   const adv = caso.advogado ?? ADVOGADO_DEMO;
   const primeiroNome = caso.assistido.nome.split(' ')[0];
   const docsPendentes = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['pendente', 'solicitado'].includes(d.status));
+  const docsRecebidos = caso.documentos.filter((d) => !d.geradoPelaPlataforma && ['recebido', 'assinado'].includes(d.status));
   const docsAssinar = caso.documentos.filter((d) => d.exigeAssinatura && d.status !== 'assinado');
   const temResumo = Boolean(caso.ia.resumo);
-  // Sem material factual não há o que resumir — e pedir resumo do nada é convite à alucinação.
   const material = materialParaResumo(caso, mensagens);
 
   async function gerarResumo() {
@@ -35,31 +33,24 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
     if (!r) return;
     atualizarCaso(caso.id, (c) => ({ ia: { ...c.ia, resumo: r } }), {
       tipo: 'ia',
-      descricao: `Resumo fático gerado pela IA (${r.modelo}) a partir da conversa com a parte.`,
+      descricao: `Resumo dos fatos gerado pela IA (${r.modelo}) a partir da conversa com a parte.`,
       autor: 'ia',
     });
   }
 
-  async function pedirDocumentos() {
-    const cras = encontrarCras(caso.assistido.cidade);
-    const r = await ia.executar('mensagem', () =>
-      iaApi.pedirMensagem({
-        canal: 'chat',
-        advogado: { nome: adv.nome },
-        assistido: { primeiroNome, sabeLerEscrever: caso.assistido.sabeLerEscrever, cidade: caso.assistido.cidade },
-        pendencias: docsPendentes.map((d) => ({ nome: d.nome, ondeObter: d.ondeObter })),
-        cras: cras ? { municipio: cras.municipio, rede: cras.rede, servicos: cras.servicos } : null,
-      }),
-    );
-    if (r) setRascunho(r.texto);
-  }
-
-  function enviarRascunho() {
-    if (!rascunho) return;
-    enviarMensagem({ casoId: caso.id, autor: 'advogado', canal: 'chat', tipo: 'texto', texto: rascunho, geradaPorIA: true });
+  /** Lista de pendências por template — sem IA. O advogado revisa no chat como qualquer mensagem. */
+  function enviarPendencias() {
+    if (!docsPendentes.length) return;
+    const lista = docsPendentes.map((d, i) => `${i + 1}. ${d.nome}${d.ondeObter ? ` — ${d.ondeObter}` : ''}`).join('\n');
+    enviarMensagem({
+      casoId: caso.id,
+      autor: 'advogado',
+      canal: 'chat',
+      tipo: 'texto',
+      texto: `Oi, ${primeiroNome}. Para eu dar entrada no seu pedido, ainda preciso destes documentos:\n\n${lista}\n\nPode mandar foto por aqui mesmo, bem nítida. Assim que chegar, eu preparo os papéis.\n\n${adv.nome}\nAdvogado(a) dativo(a) nomeado(a) para o seu caso`,
+    });
     docsPendentes.filter((d) => d.status === 'pendente').forEach((d) => atualizarDocumento(caso.id, d.id, { status: 'solicitado' }));
     if (caso.status === 'em_atendimento') mudarStatus(caso.id, 'aguardando_documentos', 'Documentos solicitados à parte pela conversa.');
-    setRascunho(null);
   }
 
   function enviarCras() {
@@ -104,27 +95,25 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
 
   return (
     <div className="space-y-2">
-      {rascunho !== null && (
-        <div className="rounded-xl border border-navy-100 bg-navy-50 p-3 space-y-2">
-          <p className="label">Revise antes de enviar</p>
-          <textarea className="input min-h-[160px]" value={rascunho} onChange={(e) => setRascunho(e.target.value)} aria-label="Mensagem à parte" />
-          <div className="flex gap-2">
-            <button className="btn-primary text-xs" onClick={enviarRascunho}>
-              <Send className="w-3.5 h-3.5" /> Enviar
-            </button>
-            <button className="btn-ghost text-xs" onClick={() => setRascunho(null)}>
-              Descartar
-            </button>
-          </div>
-          <RotuloIA />
+      {ia.ocupado === 'resumo' && <Carregando texto="Lendo a conversa e resumindo os fatos…" />}
+      {ia.erro && <Aviso tipo="erro">{ia.erro}</Aviso>}
+
+      {/* Alerta determinístico do estado dos documentos — sem IA */}
+      {docsPendentes.length > 0 && (
+        <div className="rounded-xl border border-amber-200 bg-warn-100 px-3 py-2.5">
+          <p className="text-xs font-semibold text-warn-600 inline-flex items-center gap-1.5">
+            <FileWarning className="w-3.5 h-3.5" />
+            {docsPendentes.length} documento(s) pendente(s)
+            {docsRecebidos.length > 0 && <span className="font-normal">· {docsRecebidos.length} já entregue(s)</span>}
+          </p>
+          <p className="text-xs text-warn-600 mt-1">{docsPendentes.map((d) => d.nome).join(' · ')}</p>
+          <button className="btn-secondary text-xs py-1 mt-2" onClick={enviarPendencias}>
+            <Send className="w-3.5 h-3.5" /> Enviar a lista à parte
+          </button>
         </div>
       )}
 
-      {ia.ocupado === 'resumo' && <Carregando texto="Lendo a conversa e consolidando o resumo fático…" />}
-      {ia.ocupado === 'mensagem' && <Carregando texto="Redigindo mensagem acessível…" />}
-      {ia.erro && <Aviso tipo="erro">{ia.erro}</Aviso>}
-
-      {/* Resumo fático: o passo que fecha a apuração */}
+      {/* Resumo dos fatos: o único uso de IA nesta tela */}
       <div className="flex flex-wrap items-center gap-1.5 pb-1.5 border-b border-ink-200">
         <button
           className="btn-primary text-xs py-1.5"
@@ -132,7 +121,7 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
           disabled={ia.ocupado !== null || !material.suficiente}
           title={material.suficiente ? '' : material.motivo}
         >
-          <Sparkles className="w-3.5 h-3.5" /> {temResumo ? 'Atualizar resumo fático' : 'Gerar resumo fático'}
+          <Sparkles className="w-3.5 h-3.5" /> {temResumo ? 'Atualizar resumo dos fatos' : 'Resumir os fatos'}
         </button>
 
         {temResumo && (
@@ -146,15 +135,9 @@ export function AcoesChatAdvogado({ caso }: { caso: Caso }) {
         </span>
       </div>
 
+      {temResumo && <RotuloIA />}
+
       <div className="flex flex-wrap gap-1.5">
-        <button
-          className="btn-secondary text-xs py-1.5"
-          onClick={pedirDocumentos}
-          disabled={ia.ocupado !== null || docsPendentes.length === 0}
-          title={docsPendentes.length ? '' : 'Nenhum documento pendente'}
-        >
-          <MessageSquareText className="w-3.5 h-3.5" /> Pedir documentos (IA)
-        </button>
         <button className="btn-secondary text-xs py-1.5" onClick={enviarCras}>
           <Building2 className="w-3.5 h-3.5" /> Orientar ao CRAS
         </button>

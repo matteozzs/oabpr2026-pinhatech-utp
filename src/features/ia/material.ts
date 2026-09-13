@@ -38,12 +38,14 @@ export function materialParaResumo(caso: Pick<Caso, 'relato'>, mensagens: Mensag
   if (relato) partes.push('relato inicial');
   if (falas.length) partes.push(`${falas.length} fala(s) da parte`);
 
-  const suficiente = caracteres >= MINIMO_MATERIAL;
+  // O resumo é o produto de ter conversado. Sem nenhuma fala da parte no chat não há
+  // o que resumir — e um resumo que existe sem conversa nenhuma confunde quem audita.
+  const suficiente = falas.length > 0 && caracteres >= MINIMO_MATERIAL;
   let motivo = '';
   if (!suficiente) {
     motivo =
-      caracteres === 0
-        ? 'Não há relato inicial nem falas da parte. Converse com ela antes de gerar o resumo.'
+      falas.length === 0
+        ? 'A parte ainda não falou nada nesta conversa. O resumo nasce do que ela contar aqui.'
         : `Material insuficiente (${caracteres} de ${MINIMO_MATERIAL} caracteres). Apure mais na conversa antes de gerar.`;
   }
 

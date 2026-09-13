@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import type { Caso } from '@/types';
 import { Aviso, RotuloIA, Secao } from '@/components/ui';
-import { FontesCitadas, PainelAuditoria, type UseIA } from '@/features/ia';
+import { PainelAuditoria, type UseIA } from '@/features/ia';
 import { cn } from '@/lib/utils';
 
 /**
@@ -37,7 +37,7 @@ export function SecaoResumo({ caso, ia }: { caso: Caso; ia: UseIA }) {
   return (
     <Secao
       titulo="Resumo fático"
-      descricao="Consolidado do relato inicial com a conversa havida com a parte."
+      descricao="Só os fatos, como a parte contou — sem enquadramento jurídico, que vem nas etapas seguintes."
       acoes={
         <Link href={`/advogado/chat/${caso.id}`} className="btn-secondary text-xs">
           <MessageCircle className="w-3.5 h-3.5" /> Atualizar na conversa
@@ -111,7 +111,6 @@ export function SecaoResumo({ caso, ia }: { caso: Caso; ia: UseIA }) {
           </Aviso>
         )}
 
-        <FontesCitadas fontes={resumo.fontesUtilizadas} />
         <RotuloIA modelo={resumo.modelo} quando={resumo.geradoEm} />
         <PainelAuditoria meta={ia.metas.resumo} />
       </div>

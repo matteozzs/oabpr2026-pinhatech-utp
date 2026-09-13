@@ -9,22 +9,27 @@ Todo prompt é um arquivo Markdown legível por qualquer pessoa — inclusive qu
 | Arquivo | Papel | Quando roda |
 |---|---|---|
 | `00-sistema-base.md` | Persona, escopo, **regras de grounding e anti-alucinação**, formato | Em toda chamada, como *system instruction* |
-| `01-resumo-fatico.md` | Síntese executiva para o advogado (já nomeado) se apropriar do caso | Ao abrir um caso |
+| `01-resumo-fatico.md` | **Resumo dos fatos** — sem enquadramento jurídico e sem citar lei | Quando o advogado aciona na conversa |
 | `02-checklist-documental.md` | Pendências documentais cruzando relato × catálogo | Após o resumo |
 | `03-minuta-peticao-inicial.md` | Minuta estruturada da petição, com citação por `id` | Quando o advogado aciona "Gerar minuta" |
-| `04-mensagem-assistido.md` | Mensagem acessível ao cidadão pedindo documentos | Ao clicar "Solicitar documentos" |
 
 ## Como uma chamada é montada
 
 ```
 system  = 00-sistema-base.md
-user    = <tarefa>  conteúdo de 0N-*.md  </tarefa>
-          <fontes>  dispositivos recuperados de knowledge/corpus.json (RAG)  </fontes>
+user    = <tarefa>  conteúdo de 01|02|03-*.md  </tarefa>
           <caso>    JSON com os dados do caso  </caso>
-          [<resumo>, <checklist>, <catalogo>, <advogado>, <motivo> ... conforme a tarefa]
+          [<conversa>]  histórico do chat — só na tarefa 01
+          [<fontes>]    dispositivos recuperados do corpus — só nas tarefas 02 e 03
+          [<resumo>, <checklist>, <catalogo>]  conforme a tarefa
+
+A tarefa 01 NÃO recebe o bloco <fontes>: é um resumo de fatos e o prompt proíbe
+citar lei, então não há citação a recuperar nem a validar.
 ```
 
 A montagem está em `src/lib/ia/tarefas.ts`. A recuperação das fontes está em `src/lib/ia/rag.ts`.
+
+**Divisão de trabalho:** a tarefa 01 responde *o que aconteceu* (fato). As tarefas 02 e 03 respondem *o que isso exige juridicamente* (direito), e só elas citam o corpus. Separar as duas coisas reduz a superfície de alucinação: um resumo que não cita lei não tem como citar lei errada.
 
 ## Mecanismos de controle de alucinação
 

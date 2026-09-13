@@ -77,20 +77,23 @@ function conversaParaPrompt(mensagens: Mensagem[] = []) {
 
 export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = []): Promise<{ resumo: ResumoFatico; meta: MetaIA }> {
   const inicio = Date.now();
-  const area = (caso.area ?? 'familia') as Area;
   const conversa = conversaParaPrompt(mensagens);
-  const rec = recuperar({ area, texto: `${textoDeBusca(caso)} ${conversa.map((m) => m.texto).join(' ')}`, limite: 10 });
-  const permitidas = new Set(rec.map((r) => r.dispositivo.id));
 
-  const user = [bloco('tarefa', lerPrompt('01-resumo-fatico')), renderizarFontes(rec), bloco('caso', casoParaPrompt(caso)), bloco('conversa', conversa)].join('\n\n');
+  // Sem bloco <fontes>: o resumo é factual e o prompt proíbe citar lei. Não havendo
+  // citação possível, não há o que recuperar nem o que validar — e some junto a
+  // superfície de alucinação jurídica desta etapa.
+  const user = [
+    bloco('tarefa', lerPrompt('01-resumo-fatico')),
+    bloco('caso', casoParaPrompt(caso)),
+    bloco('conversa', conversa),
+  ].join('\n\n');
 
-  const { dados, meta } = await gerarJSON<Omit<ResumoFatico, 'geradoEm' | 'modelo' | 'fontesUtilizadas'> & { fontesUtilizadas?: { id: string }[] }>({
+  const { dados, meta } = await gerarJSON<Omit<ResumoFatico, 'geradoEm' | 'modelo'>>({
     system: systemBase(),
     user,
-    maxOutputTokens: 4096,
+    maxOutputTokens: 3072,
   });
 
-  const v = validarFontes(dados.fontesUtilizadas, permitidas);
   const resumo: ResumoFatico = {
     area: dados.area === 'consumidor' ? 'consumidor' : 'familia',
     tema: dados.tema ?? '',
@@ -102,13 +105,9 @@ export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = 
     urgencia: dados.urgencia ?? { existe: false, motivo: '' },
     hipossuficiencia: dados.hipossuficiencia ?? { indicios: false, justificativa: 'não há elementos no relato' },
     dadosFaltantes: Array.isArray(dados.dadosFaltantes) ? dados.dadosFaltantes : [],
-    alertas: [
-      ...(Array.isArray(dados.alertas) ? dados.alertas : []),
-      ...v.invalidas.map((id) => `A IA citou "${id}", que não existe no corpus. Citação descartada.`),
-    ],
+    alertas: Array.isArray(dados.alertas) ? dados.alertas : [],
     foraDoEscopo: Boolean(dados.foraDoEscopo),
     motivoForaDoEscopo: dados.motivoForaDoEscopo || undefined,
-    fontesUtilizadas: v.validas,
     geradoEm: new Date().toISOString(),
     modelo: meta.modelo,
   };
@@ -120,9 +119,9 @@ export async function tarefaResumo(caso: Partial<Caso>, mensagens: Mensagem[] = 
       ms: Date.now() - inicio,
       tentativas: meta.tentativas,
       uso: meta.uso,
-      fontesRecuperadas: rec.map((r) => ({ id: r.dispositivo.id, pontuacao: r.pontuacao, motivos: r.motivos })),
-      citacoesInvalidas: v.invalidas,
-      citacoesForaDoContexto: v.foraDoContexto,
+      fontesRecuperadas: [],
+      citacoesInvalidas: [],
+      citacoesForaDoContexto: [],
     },
   };
 }
@@ -285,45 +284,3 @@ export async function tarefaMinuta(
 }
 
 /* ---------------------------------------------------------------------- */
-
-
-export interface EntradaMensagem {
-  canal?: 'chat' | 'email';
-  advogado: { nome: string };
-  assistido: { primeiroNome: string; sabeLerEscrever?: boolean; cidade: string };
-  pendencias: { nome: string; ondeObter?: string }[];
-  cras?: { municipio: string; rede: string; servicos: string[] } | null;
-}
-
-export async function tarefaMensagem(e: EntradaMensagem): Promise<{ texto: string; assunto: string; resumoCurto: string; meta: MetaIA }> {
-  const inicio = Date.now();
-  const user = [
-    bloco('tarefa', lerPrompt('04-mensagem-assistido')),
-    '<fontes>\n</fontes>',
-    bloco('advogado', e.advogado),
-    bloco('assistido', e.assistido),
-    bloco('pendencias', e.pendencias),
-    bloco('cras', e.cras ?? null),
-  ].join('\n\n');
-
-  const { dados, meta } = await gerarJSON<{ texto?: string; assunto?: string; resumoCurto?: string }>({
-    system: systemBase(),
-    user,
-    maxOutputTokens: 2048,
-    temperature: 0.4,
-  });
-  return {
-    texto: dados.texto ?? '',
-    assunto: e.canal === 'email' ? (dados.assunto ?? '') : '',
-    resumoCurto: dados.resumoCurto ?? '',
-    meta: {
-      modelo: meta.modelo,
-      ms: Date.now() - inicio,
-      tentativas: meta.tentativas,
-      uso: meta.uso,
-      fontesRecuperadas: [],
-      citacoesInvalidas: [],
-      citacoesForaDoContexto: [],
-    },
-  };
-}

@@ -307,30 +307,55 @@ export const CASOS_SEMENTE: Caso[] = [
 ];
 
 export const MENSAGENS_SEMENTE: Mensagem[] = [
-  {
-    id: 'msg_demo_001',
-    casoId: 'caso_demo_003',
-    autor: 'plataforma',
-    canal: 'chat',
-    texto: 'Olá, Antônio. A Dra. Helena foi nomeada para o seu caso e vai falar com você por aqui. Você pode responder por texto ou mandar áudio.',
-    enviadoEm: T(2, 15),
-  },
-  {
-    id: 'msg_demo_002',
-    casoId: 'caso_demo_003',
-    autor: 'advogado',
-    canal: 'chat',
-    geradaPorIA: true,
-    texto:
-      'Oi, Antônio. Sou a Helena, advogada nomeada para o seu caso da água.\n\nPara eu dar entrada no pedido, preciso de fotos bem nítidas de:\n\n1. O comprovante de pagamento da conta de janeiro (o papel que sua esposa guardou).\n2. A conta de água mais recente.\n3. Seu RG e CPF.\n\nAssim que você mandar, eu preparo os papéis. Se for mais fácil, me responda por áudio.\n\nHelena Marques Ribeiro\nAdvogada dativa nomeada para o seu caso',
-    enviadoEm: T(2, 16),
-  },
-  {
-    id: 'msg_demo_003',
-    casoId: 'caso_demo_003',
-    autor: 'assistido',
-    canal: 'chat',
-    texto: 'Boa tarde doutora, minha esposa vai tirar a foto do comprovante hoje a noite e eu mando',
-    enviadoEm: T(2, 18),
-  },
+  /* 001 — alimentos, Colombo. Conversa curta: a advogada já tem o essencial. */
+  { id: 'msg_001_1', casoId: 'caso_demo_001', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(0, 9),
+    texto: 'Bom dia, dona Maria. Sou a Helena, advogada nomeada pela OAB para o seu caso. Recebi o seu relato. O acordo dos 600 reais foi feito em algum processo, ou foi um combinado entre vocês?' },
+  { id: 'msg_001_2', casoId: 'caso_demo_001', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(0, 10),
+    texto: 'Bom dia doutora. Foi combinado entre nós dois mesmo, na época da separação. Não teve papel nenhum, nem advogado.' },
+  { id: 'msg_001_3', casoId: 'caso_demo_001', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(0, 10),
+    texto: 'Entendi. E a senhora sabe me dizer onde ele trabalha e quanto ganha, mais ou menos?' },
+  { id: 'msg_001_4', casoId: 'caso_demo_001', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(0, 11),
+    texto: 'Ele trabalha numa transportadora perto da rodoviária de Colombo, faz carga e descarga. Não sei o salário certo, mas é registrado. Mês passado ele trocou de moto, por isso eu sei que dinheiro ele tem.' },
+
+  /* 002 — consumidor, Curitiba. */
+  { id: 'msg_002_1', casoId: 'caso_demo_002', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 15),
+    texto: 'Boa tarde, seu José. Sou a Helena, advogada nomeada para o seu caso. O senhor guardou o número do protocolo do cancelamento de fevereiro?' },
+  { id: 'msg_002_2', casoId: 'caso_demo_002', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 16),
+    texto: 'Guardei sim doutora, anotei numa folha. Tenho o de fevereiro e mais uns três de quando liguei reclamando.' },
+  { id: 'msg_002_3', casoId: 'caso_demo_002', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 16),
+    texto: 'E o que mais me pegou foi não conseguir o crediário da geladeira. Fui na loja, passei o CPF e deu recusado na frente de todo mundo.' },
+
+  /* 003 — corte de água, Fazenda Rio Grande. Parte com dificuldade de leitura. */
+  { id: 'msg_demo_001', casoId: 'caso_demo_003', autor: 'plataforma', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 15),
+    texto: 'Olá, Antônio. A Dra. Helena foi nomeada para o seu caso e vai falar com você por aqui. Você pode responder por texto ou mandar áudio.' },
+  { id: 'msg_demo_002', casoId: 'caso_demo_003', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 16),
+    texto: 'Oi, Antônio. Sou a Helena, advogada nomeada para o seu caso da água.\n\nPara eu dar entrada no pedido, preciso de fotos bem nítidas de:\n\n1. O comprovante de pagamento da conta de janeiro (o papel que sua esposa guardou).\n2. A conta de água mais recente.\n3. Seu RG e CPF.\n\nAssim que você mandar, eu preparo os papéis. Se for mais fácil, me responda por áudio.' },
+  { id: 'msg_demo_003', casoId: 'caso_demo_003', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(2, 18),
+    texto: 'Boa tarde doutora, minha esposa vai tirar a foto do comprovante hoje a noite e eu mando' },
+  { id: 'msg_003_4', casoId: 'caso_demo_003', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(1, 9),
+    texto: 'Doutora a agua continua cortada, ja e o quinto dia. A vizinha ta emprestando balde mas com as crianca pequena ta dificil' },
+
+  /* 004 — união estável, Castro. Sem documentos ainda. */
+  { id: 'msg_004_1', casoId: 'caso_demo_004', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(5, 12),
+    texto: 'Boa tarde, dona Cleusa. Sou a Helena, advogada nomeada para o seu caso. A senhora tem alguma coisa que mostre que vocês viviam como casal? Conta no nome dos dois, fotos, declaração de alguém?' },
+  { id: 'msg_004_2', casoId: 'caso_demo_004', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(5, 14),
+    texto: 'Tenho bastante foto dos 14 anos, de aniversário, viagem, Natal com a família dele. A conta de luz ficou sempre no nome dele, mas a de internet estava no meu. E os vizinhos todos sabem, qualquer um assina declaração.' },
+  { id: 'msg_004_3', casoId: 'caso_demo_004', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(5, 14),
+    texto: 'A casa a gente comprou em 2016 e eu ajudei a pagar todo mês com meu salário de cozinheira. O carro foi em 2021. Tudo no nome dele.' },
+
+  /* 005 — revisional, Ponta Grossa. Processo já em andamento. */
+  { id: 'msg_005_1', casoId: 'caso_demo_005', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(6, 10),
+    texto: 'Bom dia, seu Paulo. Sou a Helena, advogada nomeada para o seu caso. O senhor tem como comprovar que perdeu o carro e está sem trabalho fixo?' },
+  { id: 'msg_005_2', casoId: 'caso_demo_005', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(6, 11),
+    texto: 'Tenho o boletim de ocorrência do acidente, de abril, e a carteira de trabalho sem registro desde então. Faço bico de entregador com a moto de um amigo, tiro no máximo 1.500 num mês bom.' },
+  { id: 'msg_005_3', casoId: 'caso_demo_005', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(5, 20),
+    texto: 'Doutora, a mãe do meu filho mandou mensagem falando que vai pedir minha prisão. Eu não quero deixar de pagar, só não consigo os 900 agora. Consigo uns 400, 450.' },
+
+  /* 006 — vício de produto, Terra Boa. */
+  { id: 'msg_006_1', casoId: 'caso_demo_006', autor: 'advogado', canal: 'chat', tipo: 'texto', enviadoEm: T(9, 16),
+    texto: 'Boa tarde, Jéssica. Sou a Helena, advogada nomeada para o seu caso. Você tem a nota fiscal e a ordem de serviço da assistência?' },
+  { id: 'msg_006_2', casoId: 'caso_demo_006', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(9, 17),
+    texto: 'Tenho os dois, doutora. A nota é de 12 de maio, 1.890 reais em 10 vezes. A ordem de serviço da assistência é de 3 de junho e eles devolveram a máquina dia 18 de julho, ainda vazando.' },
+  { id: 'msg_006_3', casoId: 'caso_demo_006', autor: 'assistido', canal: 'chat', tipo: 'texto', enviadoEm: T(9, 17),
+    texto: 'Já paguei 5 parcelas de uma máquina que não lava. Fui na loja de novo semana passada e disseram que não é com eles, é com a fábrica.' },
 ];

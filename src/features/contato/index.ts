@@ -1,3 +1,2 @@
-/** Feature Contato — canais de comunicação com a parte, reunidos no painel do caso. */
-export { SecaoContato } from './components/SecaoContato';
-export { ComporEmail } from './components/ComporEmail';
+/** Feature Contato — canais de comunicação com a parte. Nenhum uso de IA. */
+export { CanaisDeContato } from './components/CanaisDeContato';

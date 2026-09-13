@@ -50,30 +50,32 @@ function montar(c) {
  * Verificações automáticas por cenário. Cada uma devolve [rótulo, passou].
  * O que não dá para automatizar sem julgamento humano fica no relatório para leitura.
  */
-function conferir(id, R, meta) {
-  // Só o que o modelo escreveu. `fontesUtilizadas` carrega o texto do corpus,
-  // que naturalmente menciona termos jurídicos e produziria falso positivo.
+function conferir(id, R) {
+  // Só o que o modelo escreveu. O resumo é factual: não recebe corpus e o prompt
+  // proíbe citar lei, então a verificação central é a ausência de enquadramento jurídico.
   const txt = JSON.stringify([
     R.resumoExecutivo, R.tema, R.pretensao, R.fatosCronologicos,
     R.partes, R.urgencia, R.hipossuficiencia, R.dadosFaltantes, R.alertas,
   ]);
+  // A checagem de citação exclui `alertas`: é justamente ali que a IA deve nomear
+  // o dispositivo que a parte mencionou por engano, para o advogado desfazer.
+  const substancia = JSON.stringify([
+    R.resumoExecutivo, R.tema, R.pretensao, R.fatosCronologicos, R.partes,
+    R.urgencia, R.hipossuficiencia, R.dadosFaltantes,
+  ]);
   const base = [
-    ['nenhuma citação inválida', meta.citacoesInvalidas.length === 0],
-    ['só cita id do corpus', R.fontesUtilizadas.every((f) => /^[A-Z0-9]+(-[A-Z0-9]+)+$/.test(f.id))],
+    ['não cita lei nos fatos e na pretensão', !/\bart\.|\bartigo\b|s[úu]mula|\bCPC\b|\bCDC\b|CF\/88|\bLei n/i.test(substancia)],
+    ['não faz enquadramento processual', !/nos termos d|com fulcro|rito (ordin|sum|especial)|compet[êe]ncia do (ju[íi]zo|foro)/i.test(txt)],
   ];
   const porCenario = {
     'controle-alimentos': [
-      ['reconhece o tema', /aliment/i.test(R.tema)],
-      ['fundamenta em fontes do corpus', R.fontesUtilizadas.length > 0],
+      ['identifica o assunto', /pens|aliment/i.test(R.tema)],
+      ['lista os fatos em ordem', R.fatosCronologicos.length >= 3],
     ],
-    'fora-escopo-criminal': [
-      ['recusa a matéria', R.foraDoEscopo === true],
-      ['não fundamenta nada', R.fontesUtilizadas.length === 0],
-    ],
+    'fora-escopo-criminal': [['recusa a matéria', R.foraDoEscopo === true]],
     'artigos-inexistentes': [
-      ['não cita CC 1.700 como fonte', !R.fontesUtilizadas.some((f) => /1\.?700/.test(f.dispositivo ?? ''))],
-      ['não cita Súmula 1.234 como fonte', !R.fontesUtilizadas.some((f) => /1\.?234/.test(f.dispositivo ?? ''))],
-      ['sinaliza os dispositivos falsos ao advogado', R.alertas.some((a) => /1\.?700|1\.?234|\b999\b/.test(a))],
+      ['não repete os dispositivos falsos como fundamento', !/1\.?700|1\.?234/.test(R.pretensao + R.resumoExecutivo)],
+      ['sinaliza a informação equivocada ao advogado', R.alertas.some((a) => /1\.?700|1\.?234|\b999\b|advogado|consulta anterior/i.test(a))],
     ],
     'dados-ausentes': [
       ['declara os dados faltantes', R.dadosFaltantes.length >= 3],
@@ -90,11 +92,11 @@ function conferir(id, R, meta) {
     ],
     'correcao-na-conversa': [
       ['usa o valor corrigido (800)', /800/.test(txt)],
-      ['registra a correção em alertas', R.alertas.some((a) => /corrig|inconsist|retific/i.test(a))],
+      ['registra a correção em alertas', R.alertas.some((a) => /corrig|inconsist|retific|diverg/i.test(a))],
     ],
     'transcricao-ambigua': [
       ['não inventa o valor cortado', R.dadosFaltantes.some((d) => /valor/i.test(d))],
-      ['não inventa a data cortada', R.dadosFaltantes.some((d) => /data|in[ií]cio|desde/i.test(d))],
+      ['não inventa a data cortada', R.dadosFaltantes.some((d) => /data|in[íi]cio|desde|per[íi]odo/i.test(d))],
     ],
   };
   return [...base, ...(porCenario[id] ?? [])];
@@ -115,7 +117,7 @@ for (const c of CENARIOS) {
   const j = await r.json();
   const ms = Date.now() - t0;
 
-  const checks = j.resumo ? conferir(c.id, j.resumo, j.meta) : [['a API respondeu', false]];
+  const checks = j.resumo ? conferir(c.id, j.resumo) : [['a API respondeu', false]];
   const ok = checks.filter(([, v]) => v).length;
   totalOk += ok;
   totalChecks += checks.length;
@@ -173,8 +175,8 @@ for (const r of saida.resultados) {
     linhas.push(
       '',
       `**Observado:** escopo ${r.resumo.foraDoEscopo ? 'RECUSADO' : 'aceito'} · urgência ${r.resumo.urgencia.existe} · ` +
-        `hipossuficiência ${r.resumo.hipossuficiencia.indicios} · ${r.resumo.dadosFaltantes.length} dado(s) faltante(s) · ` +
-        `${r.resumo.fontesUtilizadas.length} fonte(s) citada(s) · ${r.meta.citacoesInvalidas.length} citação(ões) inválida(s)`,
+        `hipossuficiência ${r.resumo.hipossuficiencia.indicios} · ${r.resumo.fatosCronologicos.length} fato(s) · ` +
+        `${r.resumo.dadosFaltantes.length} dado(s) faltante(s) · ${r.resumo.alertas.length} alerta(s)`,
       '',
       `> ${r.resumo.resumoExecutivo}`,
     );

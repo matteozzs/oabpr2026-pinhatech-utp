@@ -36,19 +36,3 @@ export function pedirMinuta(caso: Caso, resumo?: ResumoFatico, checklist?: Check
     meta: r.meta,
   }));
 }
-
-export interface EntradaMensagem {
-  /** Muda a forma da mensagem (saudação, assinatura, assunto) — não o conteúdo. */
-  canal?: 'chat' | 'email';
-  advogado: { nome: string };
-  assistido: { primeiroNome: string; sabeLerEscrever?: boolean; cidade: string };
-  pendencias: { nome: string; ondeObter?: string }[];
-  cras?: { municipio: string; rede: string; servicos: string[] } | null;
-}
-
-export function pedirMensagem(entrada: EntradaMensagem) {
-  return post<{ texto: string; assunto?: string; resumoCurto: string; meta: MetaIA }>('/api/ia/mensagem', entrada).then((r) => ({
-    dados: { texto: r.texto, assunto: r.assunto ?? '', resumoCurto: r.resumoCurto },
-    meta: r.meta,
-  }));
-}

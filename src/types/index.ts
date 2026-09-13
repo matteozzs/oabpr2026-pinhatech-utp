@@ -188,7 +188,6 @@ export interface ResumoFatico {
   alertas: string[];
   foraDoEscopo: boolean;
   motivoForaDoEscopo?: string;
-  fontesUtilizadas: FonteCitada[];
   geradoEm: string;
   modelo: string;
 }

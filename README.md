@@ -74,6 +74,7 @@ A IA desta plataforma **não tem acesso livre ao próprio conhecimento jurídico
 | **Validação no servidor** de cada `id` citado | `src/lib/ia/rag.ts#validarFontes` | `id` inexistente é descartado e reportado; a IA não tem a palavra final |
 | **Saída estruturada em JSON** com `lacunas`, `dadosFaltantes`, `fundamentacaoNaoLocalizada` | `prompts/0N-*.md` | Obriga a IA a declarar o que não sabe |
 | **Escopo delimitado** (`foraDoEscopo`) | `prompts/00-sistema-base.md` §2 | Matéria criminal/trabalhista etc. não gera peça |
+| **Fato separado de direito** | `prompts/01` não recebe corpus e proíbe citar lei | O resumo responde *o que aconteceu*; só checklist e minuta respondem *o que o direito exige*. Um resumo que não cita lei não tem como citar lei errada |
 | **Temperatura 0.2**, raciocínio em nível baixo, teto de tokens por chamada | `src/lib/ia/provider.ts` | Saída determinística e custo controlado |
 | **Rótulo permanente** “gerado por IA · requer revisão” | UI e rodapé dos `.docx` | Nada sai como definitivo |
 | **Recusa de gerar sem material** | `src/features/ia/material.ts` | Sem relato nem falas da parte, o resumo nem é oferecido — não se pede à IA o que ela não tem como responder |
@@ -115,7 +116,7 @@ Um único repositório, um único deploy. Sem banco de dados: o estado da demons
 O código é organizado **por feature**, não por tipo de arquivo — detalhe e regras de dependência em [`docs/arquitetura.md`](docs/arquitetura.md).
 
 ```
-prompts/            ← O AGENTE. Persona, escopo, regras anti-alucinação e as 4 tarefas (Markdown)
+prompts/            ← O AGENTE. Persona, escopo, regras anti-alucinação e as 3 tarefas (Markdown)
 knowledge/          ← O CORPUS. Única fonte que a IA pode citar (JSON aberto) + metodologia
 templates/          ← Modelos oficiais .docx de procuração e declaração de hipossuficiência
 src/
